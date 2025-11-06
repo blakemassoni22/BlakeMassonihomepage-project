@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume | Blake Massoni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --google-blue: #4285f4;
+    --google-red: #ea4335;
+    --google-yellow: #fbbc04;
+    --google-green: #34a853;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --border-color: #dfe1e5;
+    --hover-bg: #f8f9fa;
+    --shadow-sm: 0 1px 6px rgba(32,33,36,.28);
+    --shadow-md: 0 2px 8px rgba(32,33,36,.28);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #fff;
+    color: var(--text-primary);
+    height: 100%;
+  }
+
+  /* Top Bar */
+  .topbar {
+    height: 64px;
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .google-logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .google-logo span:nth-child(1) { color: #4285F4; }
+  .google-logo span:nth-child(2) { color: #EA4335; }
+  .google-logo span:nth-child(3) { color: #FBBC05; }
+  .google-logo span:nth-child(4) { color: #4285F4; }
+  .google-logo span:nth-child(5) { color: #34A853; }
+  .google-logo span:nth-child(6) { color: #EA4335; }
+  .google-logo span:nth-child(7) { color: #FBBC05; }
+  .google-logo span:nth-child(8) { color: #4285F4; }
+  .google-logo span:nth-child(9) { color: #34A853; }
+  .google-logo span:nth-child(10) { color: #EA4335; }
+  .google-logo span:nth-child(11) { color: #FBBC05; }
+  .google-logo span:nth-child(12) { color: #4285F4; }
+
+  .page-title {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  /* Apps Menu */
+  .apps-menu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .apps-menu:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+
+  .apps-icon {
+    width: 20px;
+    height: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 6px);
+    grid-gap: 1px;
+    opacity: 0.6;
+  }
+
+  .apps-icon span {
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-secondary);
+    border-radius: 1px;
+  }
+
+  /* Profile Avatar */
+  .profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--google-blue), var(--google-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .profile-avatar:hover {
+    transform: scale(1.05);
+  }
+
+  .topbar-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .back-btn {
+    padding: 8px 20px;
+    background: var(--google-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Main Container */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Resume Viewer */
+  .resume-viewer {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+  }
+
+  .viewer-header {
+    padding: 16px 24px;
+    background: var(--hover-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .viewer-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .zoom-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .zoom-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-color);
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+  }
+
+  .zoom-btn:hover {
+    background: var(--hover-bg);
+    border-color: var(--google-blue);
+    color: var(--google-blue);
+  }
+
+  .zoom-level {
+    font-size: 14px;
+    color: var(--text-secondary);
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .image-container {
+    overflow: auto;
+    width: 100%;
+    height: 800px;
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform-origin: center top;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .action-buttons {
+    padding: 16px 24px;
+    background: white;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 12px;
+  }
+
+  .action-btn {
+    padding: 10px 24px;
+    background: var(--google-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Roboto', Arial, sans-serif;
+  }
+
+  .action-btn:hover {
+    background: #357ae8;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .action-btn.secondary {
+    background: white;
+    color: var(--google-blue);
+    border: 1px solid var(--border-color);
+  }
+
+  .action-btn.secondary:hover {
+    background: var(--hover-bg);
+    border-color: var(--google-blue);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px 12px;
+    }
+
+    .image-container {
+      height: 600px;
+      padding: 10px;
+    }
+
+    .viewer-header {
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+    }
+
+    .action-btn {
+      width: 100%;
+    }
+  }
+
+  /* Loading Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .resume-viewer {
+    animation: fadeIn 0.5s ease-out;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="logo-section">
+      <div class="google-logo" onclick="window.location.href='googleHomepage.html'" style="cursor: pointer;">
+        <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span><span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+      </div>
+      <span class="page-title">Resume</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="apps-menu" title="Google apps">
+        <div class="apps-icon">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="profile-avatar" title="Blake Massoni">B</div>
+      <a href="googleHomepage.html" class="back-btn">Back to Search</a>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <div class="resume-viewer">
+
+      <!-- Viewer Header -->
+      <div class="viewer-header">
+        <div class="viewer-title">Blake Massoni - Resume</div>
+        <div class="zoom-controls">
+          <button class="zoom-btn" onclick="zoomOut()" title="Zoom out">−</button>
+          <span class="zoom-level" id="zoom-level">100%</span>
+          <button class="zoom-btn" onclick="zoomIn()" title="Zoom in">+</button>
+          <button class="zoom-btn" onclick="resetZoom()" title="Reset zoom">⟲</button>
+        </div>
+      </div>
+
+      <!-- Image Container -->
+      <div class="image-container" id="image-container">
+        <img id="resume-image" src="Blake_Massoni_Resume.png" alt="Blake Massoni Resume">
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="action-btn" onclick="downloadResume()">Download PDF</button>
+        <button class="action-btn secondary" onclick="window.print()">Print Resume</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let scale = 1;
+    const img = document.getElementById('resume-image');
+    const zoomLevelDisplay = document.getElementById('zoom-level');
+
+    function updateTransform() {
+      img.style.transform = `scale(${scale})`;
+      zoomLevelDisplay.textContent = Math.round(scale * 100) + '%';
+    }
+
+    function zoomIn() {
+      if (scale < 3) {
+        scale += 0.1;
+        updateTransform();
+      }
+    }
+
+    function zoomOut() {
+      if (scale > 0.3) {
+        scale -= 0.1;
+        updateTransform();
+      }
+    }
+
+    function resetZoom() {
+      scale = 1;
+      updateTransform();
+      // Reset scroll position
+      document.getElementById('image-container').scrollTop = 0;
+    }
+
+    function downloadResume() {
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = 'Copy of Blake Massoni Resume.pdf';
+      link.download = 'Blake_Massoni_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.key === '+' || e.key === '=') {
+        e.preventDefault();
+        zoomIn();
+      } else if (e.key === '-' || e.key === '_') {
+        e.preventDefault();
+        zoomOut();
+      } else if (e.key === '0') {
+        e.preventDefault();
+        resetZoom();
+      }
+    });
+
+    // Initialize
+    updateTransform();
+  </script>
+
+</body>
+</html>

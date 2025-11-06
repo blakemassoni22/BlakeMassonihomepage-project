@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Path@Penn Redesign | Blake Massoni</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  :root {
+    --google-blue: #4285f4;
+    --google-red: #ea4335;
+    --google-yellow: #fbbc04;
+    --google-green: #34a853;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --border-color: #dadce0;
+    --upenn-blue: #011F5B;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #fff;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* ---------- HEADER ---------- */
+  .topbar {
+    height: 64px;
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    justify-content: space-between;
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .logo span:nth-child(1) { color: #4285F4; }
+  .logo span:nth-child(2) { color: #EA4335; }
+  .logo span:nth-child(3) { color: #FBBC05; }
+  .logo span:nth-child(4) { color: #4285F4; }
+  .logo span:nth-child(5) { color: #34A853; }
+  .logo span:nth-child(6) { color: #EA4335; }
+  .logo span:nth-child(7) { color: #FBBC05; }
+  .logo span:nth-child(8) { color: #4285F4; }
+  .logo span:nth-child(9) { color: #34A853; }
+  .logo span:nth-child(10){ color: #EA4335; }
+  .logo span:nth-child(11){ color: #FBBC05; }
+  .logo span:nth-child(12){ color: #4285F4; }
+
+  .page-title {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .topbar-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .apps-menu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .apps-menu:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+
+  .apps-icon {
+    width: 20px;
+    height: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 6px);
+    grid-gap: 1px;
+    opacity: 0.6;
+  }
+
+  .apps-icon span {
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-secondary);
+    border-radius: 1px;
+  }
+
+  .profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--google-blue), var(--google-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .profile-avatar:hover {
+    transform: scale(1.05);
+  }
+
+  .back-btn {
+    padding: 8px 20px;
+    background: var(--google-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  /* ---------- HERO SECTION ---------- */
+  .hero {
+    max-width: 900px;
+    margin: 40px auto 30px;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .hero .subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ---------- LAPTOP VIDEO ---------- */
+  .laptop-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto 50px;
+    perspective: 1200px;
+    padding: 0 40px;
+  }
+
+  .laptop {
+    position: relative;
+    width: 700px;
+    max-width: 100%;
+  }
+
+  .screen {
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+    border: 6px solid #222;
+  }
+
+  .screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .base {
+    position: absolute;
+    bottom: -120px;
+    left: 49.5%;
+    transform: translateX(-50%) rotateX(4deg) skewX(-3deg);
+    width: 101%;
+    height: 140px;
+    background: linear-gradient(59deg, #383535 0%, #5b5757 50%, #413b3b 100%);
+    box-shadow:
+      inset 0 7px 10px rgba(182, 170, 170, 0.08),
+      inset 0 -10px 25px rgba(0, 0, 0, 0.8),
+      0 20px 60px rgba(215, 205, 205, 0.6);
+    border-radius: 12px 12px 24px 24px;
+    border: 1px solid #4b4444;
+    perspective: 1800px;
+    transform-style: preserve-3d;
+    overflow: hidden;
+  }
+
+  .base::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 5%;
+    width: 90%;
+    height: 52%;
+    background: linear-gradient(135deg, #4e4848 25%, #444 25%, #444 50%, #333 50%, #333 75%, #444 75%, #444 100%);
+    background-size: 20px 20px;
+    border-radius: 6px;
+    box-shadow:
+      inset 0 4px 6px rgba(21, 20, 20, 0.05),
+      inset 0 -3px 10px rgba(0, 0, 0, 0.7);
+    transform: translateZ(20px);
+    opacity: 0.85;
+    transform-style: preserve-3d;
+  }
+
+  .base::after {
+    content: "";
+    position: absolute;
+    bottom: 24px;
+    left: 49%;
+    width: 18%;
+    height: 38px;
+    background: linear-gradient(to bottom, rgba(6, 6, 6, 0.6), rgba(82, 82, 82, 0.9));
+    border-radius: 2px;
+    filter: blur(.5px);
+    transform-style: preserve-3d;
+    transform: translateX(-50%) translateZ(-90px);
+  }
+
+  /* ---------- CONTENT CONTAINER ---------- */
+  .container {
+    max-width: 1100px;
+    margin: 180px auto 60px;
+    padding: 0 40px;
+  }
+
+  /* ---------- STORY SECTION ---------- */
+  .story-section {
+    margin-bottom: 50px;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+  }
+
+  .story-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 28px;
+    border-top: 4px solid var(--google-blue);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .story-card:nth-child(2) {
+    border-top-color: var(--google-green);
+  }
+
+  .story-card:nth-child(3) {
+    border-top-color: var(--google-yellow);
+  }
+
+  .story-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  .story-card h2 {
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .story-card h2 i {
+    font-size: 1.2rem;
+  }
+
+  .story-card:nth-child(1) h2 i { color: var(--google-blue); }
+  .story-card:nth-child(2) h2 i { color: var(--google-green); }
+  .story-card:nth-child(3) h2 i { color: var(--google-yellow); }
+
+  .story-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .story-card li {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .story-card li::before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: var(--google-blue);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .story-card:nth-child(2) li::before { color: var(--google-green); }
+  .story-card:nth-child(3) li::before { color: var(--google-yellow); }
+
+  /* ---------- WIREFRAMES SECTION ---------- */
+  .wireframes-section {
+    margin-top: 50px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .section-header p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .wireframes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .wireframe-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .wireframe-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .wireframe-image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wireframe-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .zoom-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .wireframe-card:hover .zoom-overlay {
+    opacity: 1;
+  }
+
+  .zoom-overlay i {
+    color: white;
+    font-size: 2rem;
+  }
+
+  .wireframe-label {
+    padding: 16px;
+    background: #fff;
+  }
+
+  .wireframe-label h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .wireframe-label h3 i {
+    color: var(--google-blue);
+    font-size: 0.9rem;
+  }
+
+  /* ---------- POPUP ---------- */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    padding: 40px;
+  }
+
+  .popup-overlay.active {
+    display: flex;
+  }
+
+  .popup-image {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(255,255,255,0.1);
+    animation: zoomIn 0.3s ease;
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .close-btn:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.6rem;
+    }
+
+    .hero .subtitle {
+      font-size: 0.9rem;
+    }
+
+    .container {
+      padding: 0 20px;
+      margin-top: 120px;
+    }
+
+    .story-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .wireframes-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .laptop {
+      width: 90%;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <div class="topbar">
+    <div class="logo-section">
+      <div class="logo" onclick="window.location.href='googleHomepage.html'">
+        <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span>
+        <span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+      </div>
+      <span class="page-title">Path@Penn Redesign</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="apps-menu" title="Google apps">
+        <div class="apps-icon">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="profile-avatar" title="Blake Massoni">B</div>
+      <a href="projects.html" class="back-btn">Back to Projects</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Path@Penn Student Portal Redesign</h1>
+    <p class="subtitle">
+      Redesigning UPenn's student portal to create a more navigable experience that streamlines course registration and addresses key student pain points.
+    </p>
+  </div>
+
+  <!-- LAPTOP VIDEO -->
+  <div class="laptop-container">
+    <div class="laptop">
+      <div class="screen">
+        <video autoplay muted loop playsinline>
+          <source src="video1173945155.mp4.mov" type="video/mp4">
+        </video>
+      </div>
+      <div class="base"></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- PROJECT STORY -->
+    <section class="story-section">
+      <div class="story-grid">
+        <div class="story-card">
+          <h2><i class="fas fa-exclamation-triangle"></i>The Challenge</h2>
+          <ul>
+            <li>Students struggled with confusing navigation and couldn't easily find key portal features</li>
+            <li>Course information lacked transparency about difficulty, workload, and requirements</li>
+            <li>Permission request process was cumbersome with multiple unclear steps</li>
+          </ul>
+        </div>
+
+        <div class="story-card">
+          <h2><i class="fas fa-bullseye"></i>The Goals</h2>
+          <ul>
+            <li>Improve navigation with intuitive information architecture and minimal clicks</li>
+            <li>Enhance course details with difficulty ratings, workload estimates, and reviews</li>
+            <li>Streamline permission request workflow with clear steps and status tracking</li>
+          </ul>
+        </div>
+
+        <div class="story-card">
+          <h2><i class="fas fa-lightbulb"></i>The Solution</h2>
+          <ul>
+            <li>Clean, consistent layout with balanced scaling and friendly typography</li>
+            <li>Comprehensive course information displayed in an accessible format</li>
+            <li>Simplified registration and permission request workflows</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORIGINAL DESIGN -->
+    <section class="wireframes-section">
+      <div class="section-header">
+        <h2>The Original Portal</h2>
+        <p>Understanding the existing interface and its pain points</p>
+      </div>
+
+      <div class="wireframes-grid">
+        <div class="wireframe-card" onclick="openPopup(this)">
+          <div class="wireframe-image">
+            <img src="IMG_4766.png" alt="Original Home Page">
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="wireframe-label">
+            <h3><i class="fas fa-home"></i> Home Dashboard </h3>
+          </div>
+        </div>
+
+        <div class="wireframe-card" onclick="openPopup(this)">
+          <div class="wireframe-image">
+            <img src="IMG_0658.png" alt="Schedule & Permission Requests">
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="wireframe-label">
+            <h3><i class="fas fa-calendar-check"></i>Schedule & Permission Requests</h3>
+          </div>
+        </div>
+
+        <div class="wireframe-card" onclick="openPopup(this)">
+          <div class="wireframe-image">
+            <img src="IMG_4566.png" alt="Course Description">
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="wireframe-label">
+            <h3><i class="fas fa-book-open"></i>Course Description Page</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WIREFRAMES -->
+    <section class="wireframes-section">
+      <div class="section-header">
+        <h2>Design Process</h2>
+        <p> Some of my Low-fidelity wireframes mapping the user flow and interface structure</p>
+      </div>
+
+      <div class="wireframes-grid">
+        <div class="wireframe-card" onclick="openPopup(this)">
+          <div class="wireframe-image">
+            <img src="Screen Shot 2025-10-28 at 11.29.40 PM.png" alt="Home Dashboard">
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="wireframe-label">
+            <h3><i class="fas fa-home"></i>Home Dashboard</h3>
+          </div>
+        </div>
+
+        <div class="wireframe-card" onclick="openPopup(this)">
+          <div class="wireframe-image">
+            <img src="Screen Shot 2025-10-28 at 11.33.04 PM.png" alt="Schedule View">
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="wireframe-label">
+            <h3><i class="fas fa-calendar-alt"></i>Schedule & Courses</h3>
+          </div>
+        </div>
+
+        <div class="wireframe-card" onclick="openPopup(this)">
+          <div class="wireframe-image">
+            <img src="Screen Shot 2025-10-28 at 11.33.45 PM.png" alt="Profile Section">
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="wireframe-label">
+            <h3><i class="fas fa-user"></i>Registration Hold</h3>
+          </div>
+        </div>
+
+        <div class="wireframe-card" onclick="openPopup(this)">
+          <div class="wireframe-image">
+            <img src="Screen Shot 2025-10-28 at 11.31.06 PM.png" alt="Grades Overview">
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="wireframe-label">
+            <h3><i class="fas fa-graduation-cap"></i>Degree Audit</h3>
+          </div>
+        </div>
+
+        <div class="wireframe-card" onclick="openPopup(this)">
+          <div class="wireframe-image">
+            <img src="Screen Shot 2025-10-28 at 9.27.46 PM.png" alt="Degree Fufillment Progress">
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="wireframe-label">
+            <h3><i class="fas fa-sign-in-alt"></i>Course Fufillment Towards Degree</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- POPUP OVERLAY -->
+  <div class="popup-overlay" id="popup">
+    <div class="close-btn" onclick="closePopup()">×</div>
+    <img src="" alt="Zoomed Frame" class="popup-image" id="popupImage">
+  </div>
+
+  <script>
+    function openPopup(card) {
+      const img = card.querySelector('.wireframe-image img');
+      const imgSrc = img.src;
+      const popup = document.getElementById("popup");
+      const popupImg = document.getElementById("popupImage");
+      popupImg.src = imgSrc;
+      popup.classList.add("active");
+    }
+
+    function closePopup() {
+      document.getElementById("popup").classList.remove("active");
+    }
+
+    // Close popup on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePopup();
+      }
+    });
+
+    // Close popup on background click
+    document.getElementById('popup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePopup();
+      }
+    });
+  </script>
+</body>
+</html>

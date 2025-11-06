@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IL MAKIAGE Campaign Creatives | Blake Massoni</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  :root {
+    --google-blue: #4285f4;
+    --google-red: #ea4335;
+    --google-yellow: #fbbc04;
+    --google-green: #34a853;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --border-color: #dadce0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #fff;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* ---------- HEADER ---------- */
+  .topbar {
+    height: 64px;
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    justify-content: space-between;
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .logo span:nth-child(1) { color: #4285F4; }
+  .logo span:nth-child(2) { color: #EA4335; }
+  .logo span:nth-child(3) { color: #FBBC05; }
+  .logo span:nth-child(4) { color: #4285F4; }
+  .logo span:nth-child(5) { color: #34A853; }
+  .logo span:nth-child(6) { color: #EA4335; }
+  .logo span:nth-child(7) { color: #FBBC05; }
+  .logo span:nth-child(8) { color: #4285F4; }
+  .logo span:nth-child(9) { color: #34A853; }
+  .logo span:nth-child(10){ color: #EA4335; }
+  .logo span:nth-child(11){ color: #FBBC05; }
+  .logo span:nth-child(12){ color: #4285F4; }
+
+  .page-title {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .topbar-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .apps-menu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .apps-menu:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+
+  .apps-icon {
+    width: 20px;
+    height: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 6px);
+    grid-gap: 1px;
+    opacity: 0.6;
+  }
+
+  .apps-icon span {
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-secondary);
+    border-radius: 1px;
+  }
+
+  .profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--google-blue), var(--google-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .profile-avatar:hover {
+    transform: scale(1.05);
+  }
+
+  .back-btn {
+    padding: 8px 20px;
+    background: var(--google-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  /* ---------- HERO SECTION ---------- */
+  .hero {
+    max-width: 900px;
+    margin: 60px auto 50px;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .hero h1 .brand {
+    background: linear-gradient(135deg, #000 0%, #333 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 .highlight {
+    color: var(--google-blue);
+    font-weight: 700;
+  }
+
+  .hero .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ---------- CONTENT CONTAINER ---------- */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  /* ---------- SECTION ---------- */
+  .section {
+    margin-bottom: 80px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-left: 4px solid var(--google-blue);
+    border-radius: 12px;
+    padding: 32px 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .section-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .section-header p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ---------- COMPARISON GRID ---------- */
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .comparison-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .comparison-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .card-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-concept {
+    background: #e3f2fd;
+    color: var(--google-blue);
+  }
+
+  .badge-final {
+    background: #e8f5e9;
+    color: var(--google-green);
+  }
+
+  .comparison-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .comparison-card p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .media-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .media-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .media-container.expanded {
+    padding: 30px;
+  }
+
+  .media-container.expanded img {
+    transform: scale(1.15);
+    transition: transform 0.3s ease;
+  }
+
+  .media-container.equal-height img {
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .designer-credit {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .designer-credit strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* ---------- SMS SECTION ---------- */
+  .sms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .sms-card {
+    background: #f8f9fa;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .sms-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .sms-card h3 i {
+    color: var(--google-blue);
+  }
+
+  .sms-card p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .video-container {
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ---------- HIGHLIGHT CONTAINERS ---------- */
+  .ui-highlight {
+    background: linear-gradient(135deg, #e3f2fd 0%, #fff4e6 100%);
+    border-radius: 20px;
+    padding: 50px 40px;
+    margin-top: 40px;
+  }
+
+  .sms-highlight {
+    background: linear-gradient(135deg, #e8f5e9 0%, #fce4ec 100%);
+    border-radius: 20px;
+    padding: 50px 40px;
+    margin-top: 40px;
+  }
+
+  .wallet-highlight {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    border-radius: 20px;
+    padding: 50px 40px;
+    margin-top: 40px;
+  }
+
+  /* ---------- ZOOM OVERLAY ---------- */
+  .media-container {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .zoom-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(66, 133, 244, 0.9);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .media-container:hover .zoom-overlay {
+    opacity: 1;
+  }
+
+  .zoom-overlay i {
+    color: white;
+    font-size: 20px;
+  }
+
+  /* ---------- POPUP MODAL ---------- */
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup-overlay.active {
+    display: flex;
+  }
+
+  .popup-content {
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+  }
+
+  .popup-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: var(--google-blue);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .popup-close:hover {
+    background: #1557b0;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+
+    .hero .subtitle {
+      font-size: 0.95rem;
+    }
+
+    .container {
+      padding: 0 20px 60px;
+    }
+
+    .comparison-grid,
+    .sms-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+      font-size: 1.4rem;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <div class="topbar">
+    <div class="logo-section">
+      <div class="logo" onclick="window.location.href='googleHomepage.html'">
+        <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span>
+        <span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+      </div>
+      <span class="page-title">IL MAKIAGE Campaign Work</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="apps-menu" title="Google apps">
+        <div class="apps-icon">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="profile-avatar" title="Blake Massoni">B</div>
+      <a href="projects.html" class="back-btn">Back to Projects</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1><span class="highlight">Email Campaign Creatives</span> for <span class="brand">IL MAKIAGE</span></h1>
+    <p class="subtitle">
+      From ideation sketches to final executions — exploring how recognizable digital patterns
+      can emotionally connect users to new product experiences.
+    </p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- SECTION 1: UI MIMICKING -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Mimicking Universally Recognized UI</h2>
+        <p>
+          Aligning new products with familiar interfaces builds trust and recognition — reinforcing that each user's skin concerns
+          are understood by our AI-Powered Algorithm and their product match is truly personalized.
+        </p>
+      </div>
+
+      <div class="ui-highlight">
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <span class="card-badge badge-concept">Concept</span>
+            <h3>Ideation Mock-Up Sketch</h3>
+            <p>
+              A blurred product hides behind the familiar Face ID lock screen — symbolizing that your match is exclusive,
+              made only for your face.
+            </p>
+            <div class="media-container" onclick="openPopup(this)">
+              <img src="Screen Shot 2025-11-01 at 5.31.15 PM.png" alt="Mock-Up Sketch">
+              <div class="zoom-overlay">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <span class="card-badge badge-final">Final Design</span>
+            <h3>Campaign Visual Execution</h3>
+            <p>
+              The final graphic brings together motion, familiarity, and sophistication to make each skincare match
+              feel uniquely personal.
+            </p>
+            <div class="media-container" onclick="openPopup(this)">
+              <img src="slice1.gif" alt="Final Design Animation">
+              <div class="zoom-overlay">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+            <p class="designer-credit">
+              Design executed by <strong>Doug Rodas</strong>, Sr. Graphic Designer
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: APPLE WALLET CONCEPT -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Apple Wallet Concept for Coupon Performance</h2>
+        <p>
+          Leveraging the familiar Apple Wallet interface to increase coupon engagement and create a sense of exclusivity
+          around promotional offers.
+        </p>
+      </div>
+
+      <div class="wallet-highlight">
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <span class="card-badge badge-concept">Initial Draft</span>
+            <h3>Concept Sketch</h3>
+            <p>
+              My first draft outlining the idea of advertising our coupons in a universally recognized UI: Apple Wallet.
+            </p>
+            <div class="media-container expanded equal-height" onclick="openPopup(this)">
+              <img src="Screen Shot 2025-11-04 at 9.18.01 PM.png" alt="Wallet Concept Sketch Top">
+              <div class="zoom-overlay">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+            <div class="media-container expanded equal-height" style="margin-top: 20px;" onclick="openPopup(this)">
+              <img src="Screen Shot 2025-11-04 at 9.16.51 PM.png" alt="Wallet Concept Sketch Bottom">
+              <div class="zoom-overlay">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <span class="card-badge badge-final">Final Design</span>
+            <h3>Executed Campaign</h3>
+            <p>
+              The polished design creates instant recognition and increases perceived value of the promotional offer.
+            </p>
+            <div class="media-container" onclick="openPopup(this)">
+              <img src="A-Coupon-Revamp-14.gif" alt="Final Wallet Design">
+              <div class="zoom-overlay">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+            <p class="designer-credit">
+              Design executed by <strong>Ivan Castro</strong>, Sr. Graphic Designer
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: LIQUID GLASS DESIGN -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Apple's Liquid Glass Design for Educational Content</h2>
+        <p>
+          Leveraging Apple's modern liquid glass aesthetic to elevate educational product pages while maintaining focus on conversion-driven campaign metrics.
+        </p>
+      </div>
+
+      <div class="ui-highlight">
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <span class="card-badge badge-concept">Concept</span>
+            <h3>Initial Mock-Up</h3>
+            <p>
+              Exploring how Apple's liquid glass design language could enhance product education without detracting from email campaign performance.
+            </p>
+            <div class="media-container expanded" onclick="openPopup(this)">
+              <img src="Screen Shot 2025-10-30 at 11.31.15 PM.png" alt="Liquid Glass Concept">
+              <div class="zoom-overlay">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <span class="card-badge badge-final">Final Design</span>
+            <h3>Executed Design</h3>
+            <p>
+              The polished implementation brings a premium, modern feel to educational content while preserving the clarity needed for conversion optimization.
+            </p>
+            <div class="media-container expanded" onclick="openPopup(this)">
+              <img src="Screen Shot 2025-10-30 at 11.30.35 PM.png" alt="Final Liquid Glass Design">
+              <div class="zoom-overlay">
+                <i class="fas fa-search-plus"></i>
+              </div>
+            </div>
+            <p class="designer-credit">
+              Design executed by <strong>Doug Rodas</strong>, Sr. Graphic Designer
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SMS FILTERING WORKAROUNDS -->
+    <section class="section">
+      <div class="section-header">
+        <h2>SMS Flow Design & iOS 16 Filter Bypass</h2>
+        <p>
+          To counter iOS 16's new AI filtering (which hides promotional messages in iMessage), I built multiple workarounds
+          through the deployment of intermediary landing pages to bypass the filter and encourage users to mark us as a known contact.
+        </p>
+      </div>
+
+      <div class="sms-highlight">
+        <div class="sms-grid">
+          <div class="sms-card">
+            <h3><i class="fas fa-mobile-alt"></i>Stealth Landing Page</h3>
+            <p>
+              Built a stealth landing page to send pre-filled contact cards to RCS users, bypassing Klaviyo's restriction
+              to non-RCS recipients.
+            </p>
+            <div class="video-container">
+              <video autoplay muted loop playsinline>
+                <source src="ScreenRecording_10-27-2025 17-35-10_1.MP4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+          <div class="sms-card">
+            <h3><i class="fas fa-envelope"></i>Email Banner Workaround</h3>
+            <p>
+              Executed the deploy of an email banner as our new point of SMS collection while our website's collection
+              point was down.
+            </p>
+            <div class="video-container">
+              <video autoplay muted loop playsinline>
+                <source src="ScreenRecording_11-05-2025 21-56-13_1.mov" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- POPUP MODAL -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-content">
+      <button class="popup-close" onclick="closePopup()">&times;</button>
+      <img id="popupImage" src="" alt="Zoomed Image">
+    </div>
+  </div>
+
+  <script>
+    function openPopup(container) {
+      const img = container.querySelector('img');
+      const popup = document.getElementById('popupOverlay');
+      const popupImg = document.getElementById('popupImage');
+
+      popupImg.src = img.src;
+      popupImg.alt = img.alt;
+      popup.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+      const popup = document.getElementById('popupOverlay');
+      popup.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close popup when clicking outside the image
+    document.getElementById('popupOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePopup();
+      }
+    });
+
+    // Close popup with ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closePopup();
+      }
+    });
+  </script>
+
+</body>
+</html>
