@@ -192,7 +192,7 @@
 
   /* ---------- CONTENT CONTAINER ---------- */
   .container {
-    max-width: 1100px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 40px 80px;
   }
@@ -286,7 +286,7 @@
   .media-container {
     background: #fff;
     border-radius: 12px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
@@ -297,11 +297,11 @@
   }
 
   .media-container.expanded {
-    padding: 30px;
+    padding: 10px;
   }
 
   .media-container.expanded img {
-    transform: scale(1.15);
+    transform: scale(1);
     transition: transform 0.3s ease;
   }
 
@@ -395,6 +395,64 @@
     margin-top: 40px;
   }
 
+  /* ---------- CREATIVE GALLERY ---------- */
+  .creative-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .creative-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .creative-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  .creative-image {
+    position: relative;
+    width: 100%;
+    background: #f8f9fa;
+    overflow: hidden;
+  }
+
+  .creative-image img,
+  .creative-image video {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s;
+  }
+
+  .creative-card:hover .creative-image img,
+  .creative-card:hover .creative-image video {
+    transform: scale(1.05);
+  }
+
+  .creative-info {
+    padding: 20px;
+  }
+
+  .creative-info h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .creative-info p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
   /* ---------- ZOOM OVERLAY ---------- */
   .media-container {
     position: relative;
@@ -418,7 +476,8 @@
     pointer-events: none;
   }
 
-  .media-container:hover .zoom-overlay {
+  .media-container:hover .zoom-overlay,
+  .creative-image:hover .zoom-overlay {
     opacity: 1;
   }
 
@@ -481,6 +540,12 @@
   }
 
   /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .creative-gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 768px) {
     .hero h1 {
       font-size: 1.8rem;
@@ -501,6 +566,10 @@
 
     .section-header h2 {
       font-size: 1.4rem;
+    }
+
+    .creative-gallery {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -644,9 +713,9 @@
     <!-- SECTION 3: LIQUID GLASS DESIGN -->
     <section class="section">
       <div class="section-header">
-        <h2>Apple's Liquid Glass Design for Educational Content</h2>
+        <h2>Associative Design to Communicate Product Power</h2>
         <p>
-          Leveraging Apple's modern liquid glass aesthetic to elevate educational product pages while maintaining focus on conversion-driven campaign metrics.
+          Using associative psychology to visually represent new ideas — connecting universally recognized symbols with product messaging to drive instant understanding and stronger engagement.
         </p>
       </div>
 
@@ -656,10 +725,10 @@
             <span class="card-badge badge-concept">Concept</span>
             <h3>Initial Mock-Up</h3>
             <p>
-              Exploring how Apple's liquid glass design language could enhance product education without detracting from email campaign performance.
+              Leveraged yin and yang symbolism to trigger subconscious recognition that these two formulas are designed as balancing counterparts, engineered to work together.
             </p>
             <div class="media-container expanded" onclick="openPopup(this)">
-              <img src="Screen Shot 2025-10-30 at 11.31.15 PM.png" alt="Liquid Glass Concept">
+              <img src="Screen Shot 2026-02-16 at 8.21.54 PM.png" alt="Liquid Glass Concept">
               <div class="zoom-overlay">
                 <i class="fas fa-search-plus"></i>
               </div>
@@ -670,16 +739,18 @@
             <span class="card-badge badge-final">Final Design</span>
             <h3>Executed Design</h3>
             <p>
-              The polished implementation brings a premium, modern feel to educational content while preserving the clarity needed for conversion optimization.
+              The final design brings the yin and yang concept to life — visually communicating product balance and complementary formulas to drive bundle conversion.
             </p>
             <div class="media-container expanded" onclick="openPopup(this)">
-              <img src="Screen Shot 2025-10-30 at 11.30.35 PM.png" alt="Final Liquid Glass Design">
+              <video autoplay muted loop playsinline style="width:100%; border-radius:8px;">
+                <source src="Screen Recording 2026-02-16 at 4.19.03 PM.mov" type="video/mp4">
+              </video>
               <div class="zoom-overlay">
                 <i class="fas fa-search-plus"></i>
               </div>
             </div>
             <p class="designer-credit">
-              Design executed by <strong>Doug Rodas</strong>, Sr. Graphic Designer
+              Design executed by <strong>Ramon Magaña</strong>, Graphic Designer
             </p>
           </div>
         </div>
@@ -727,30 +798,274 @@
       </div>
     </section>
 
+    <!-- SECTION 5: CREATIVE CONCEPTS GALLERY -->
+    <section class="section">
+      <div class="section-header">
+        <h2>Additional Creative Concepts</h2>
+        <p>
+          A collection of campaign creatives I ideated and developed end-to-end, with final mockups executed by graphic designers to drive engagement and conversion.
+
+        </p>
+      </div>
+
+      <div class="creative-gallery">
+        <!-- Creative Card 1 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-01-28 at 10.08.15 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Match + Gift Offer - Loading</h4>
+            <p><strong>Idea:</strong> Blurred quiz interface creates visual continuity, bridging the transition from quiz completion to receiving personalized match and gift offer.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 2 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-01-28 at 10.40.19 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4> Post Quiz Match - Reveal</h4>
+            <p><strong>Idea:</strong> Non-gift offer version using the recognized quiz interface to portray the next step in the consumer journey after completing the quiz to discover their perfect product match.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 3 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 4.07.34 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Free Gift as Gift Card</h4>
+            <p><strong>Idea:</strong> Presenting the free gift as a gift card increased perceived value and customer engagement.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 4 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 4.09.41 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Scratch-Off Lottery Ticket</h4>
+            <p><strong>Idea:</strong> Designed campaign using scratch-off lottery ticket format to trigger anticipation and reward psychology.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 5 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 4.11.06 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Partiful-Inspired VIP Guest List</h4>
+            <p><strong>Idea:</strong> Inspired by Partiful — framing the free gift offer as an exclusive invite-only guest list, introducing VIP status without a formal VIP program.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 6 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 4.14.13 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Breakthrough Formula Reveal</h4>
+            <p><strong>Idea:</strong> Product breaks through paper to symbolize that our quiz algorithm has found your skin's breakthrough formula.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 7 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 8.46.53 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Airdrop Product Match</h4>
+            <p><strong>Idea:</strong> Mimicking iPhone's AirDrop interface to deliver your personalized product match.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 8 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 4.24.22 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>TSA-Inspired Holiday Travel</h4>
+            <p><strong>Idea:</strong> Inspired by TSA, sent during the busiest travel season (December holidays).</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 9 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 4.28.00 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Frozen Match Reveal</h4>
+            <p><strong>Idea:</strong> Click-bait frozen theme timed with winter weather — unfreeze your progress to reveal your match.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 10 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 4.29.26 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Color Wheel Shade Match</h4>
+            <p><strong>Idea:</strong> A color wheel displaying multiple shades to show we picked this one specifically because of your undertone.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 11 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image" style="max-height: 580px; overflow: hidden;">
+            <video autoplay muted loop playsinline style="object-fit: cover; object-position: top;">
+              <source src="Screen Recording 2026-02-16 at 9.32.58 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Testimonial + Product Powers</h4>
+            <p><strong>Idea:</strong> To showcase a strong video before and after asset and pair it with a short but powerful customer testimonial to further support the product powers listed below.</p>
+          </div>
+        </div>
+
+        <!-- Creative Card 12 -->
+        <div class="creative-card" onclick="openCreativePopup(this)">
+          <div class="creative-image">
+            <video autoplay muted loop playsinline>
+              <source src="Screen Recording 2026-02-16 at 9.37.34 PM.mov" type="video/mp4">
+            </video>
+            <div class="zoom-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="creative-info">
+            <h4>Timelapse Before + After Asset</h4>
+            <p><strong>Idea:</strong> Timelapsed before-and-after visual paired with a testimonial that targets a common consumer pain point to drive conversion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
   <!-- POPUP MODAL -->
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup-content">
       <button class="popup-close" onclick="closePopup()">&times;</button>
-      <img id="popupImage" src="" alt="Zoomed Image">
+      <img id="popupImage" src="" alt="Zoomed Image" style="display:none;">
+      <video id="popupVideo" src="" autoplay loop muted playsinline style="display:none; max-width:100%; max-height:90vh; border-radius:8px; box-shadow:0 8px 32px rgba(0,0,0,0.5);"></video>
     </div>
   </div>
 
   <script>
     function openPopup(container) {
-      const img = container.querySelector('img');
-      const popup = document.getElementById('popupOverlay');
-      const popupImg = document.getElementById('popupImage');
+      var img = container.querySelector('img');
+      var video = container.querySelector('video');
+      var popup = document.getElementById('popupOverlay');
+      var popupImg = document.getElementById('popupImage');
+      var popupVideo = document.getElementById('popupVideo');
 
-      popupImg.src = img.src;
-      popupImg.alt = img.alt;
+      popupImg.style.display = 'none';
+      popupVideo.style.display = 'none';
+
+      if (video) {
+        popupVideo.src = video.querySelector('source').src;
+        popupVideo.style.display = 'block';
+        popupVideo.play();
+      } else if (img) {
+        popupImg.src = img.src;
+        popupImg.alt = img.alt;
+        popupImg.style.display = 'block';
+      }
+      popup.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openCreativePopup(card) {
+      var video = card.querySelector('.creative-image video');
+      var img = card.querySelector('.creative-image img');
+      var popup = document.getElementById('popupOverlay');
+      var popupImg = document.getElementById('popupImage');
+      var popupVideo = document.getElementById('popupVideo');
+
+      popupImg.style.display = 'none';
+      popupVideo.style.display = 'none';
+
+      if (video) {
+        popupVideo.src = video.querySelector('source').src;
+        popupVideo.style.display = 'block';
+        popupVideo.play();
+      } else if (img) {
+        popupImg.src = img.src;
+        popupImg.alt = img.alt;
+        popupImg.style.display = 'block';
+      }
       popup.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
     function closePopup() {
-      const popup = document.getElementById('popupOverlay');
+      var popup = document.getElementById('popupOverlay');
+      var popupVideo = document.getElementById('popupVideo');
+      popupVideo.pause();
+      popupVideo.src = '';
       popup.classList.remove('active');
       document.body.style.overflow = 'auto';
     }
@@ -767,6 +1082,39 @@
       if (e.key === 'Escape') {
         closePopup();
       }
+    });
+
+    // Force all videos to autoplay and loop
+    document.addEventListener('DOMContentLoaded', function() {
+      var videos = document.querySelectorAll('video');
+      videos.forEach(function(video) {
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.play().catch(function() {
+          // Retry on user interaction if autoplay blocked
+          document.addEventListener('click', function retry() {
+            video.play();
+            document.removeEventListener('click', retry);
+          }, { once: true });
+        });
+      });
+    });
+
+    // Also try playing when videos become visible (for lazy loading)
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var video = entry.target;
+          video.muted = true;
+          video.loop = true;
+          video.play().catch(function() {});
+        }
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('video').forEach(function(video) {
+      observer.observe(video);
     });
   </script>
 
