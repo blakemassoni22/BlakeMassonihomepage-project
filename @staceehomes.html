@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@StaceeHomes - Coming Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #fff;
+    color: #202124;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ---------- BLURRED BACKGROUND ---------- */
+  .blur-wrapper {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blurred-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(8px);
+    opacity: 0.4;
+    z-index: 1;
+    overflow: hidden;
+    padding: 40px 80px;
+    box-sizing: border-box;
+  }
+
+  .blurred-bg .fake-result {
+    margin-bottom: 30px;
+  }
+
+  .blurred-bg .fake-link {
+    width: 220px;
+    height: 12px;
+    background: #34a853;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .blurred-bg .fake-title {
+    width: 380px;
+    height: 18px;
+    background: #1a0dab;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .blurred-bg .fake-snippet {
+    width: 500px;
+    height: 12px;
+    background: #dadce0;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+
+  .blurred-bg .fake-snippet.short {
+    width: 350px;
+  }
+
+  /* ---------- COMING SOON OVERLAY ---------- */
+  .coming-soon {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+  }
+
+  .coming-soon h1 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.5px;
+  }
+
+  .coming-soon h1 .blue { color: #4285F4; }
+  .coming-soon h1 .red { color: #EA4335; }
+  .coming-soon h1 .yellow { color: #FBBC05; }
+  .coming-soon h1 .green { color: #34A853; }
+
+  .coming-soon p {
+    color: #5f6368;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 30px 0;
+  }
+
+  .back-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: #4285F4;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  .back-btn:hover {
+    background: #3367d6;
+    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Blurred Background + Coming Soon -->
+  <div class="blur-wrapper">
+    <div class="blurred-bg">
+      <div class="fake-result">
+        <div class="fake-link"></div>
+        <div class="fake-title"></div>
+        <div class="fake-snippet"></div>
+        <div class="fake-snippet short"></div>
+      </div>
+      <div class="fake-result">
+        <div class="fake-link"></div>
+        <div class="fake-title"></div>
+        <div class="fake-snippet"></div>
+        <div class="fake-snippet short"></div>
+      </div>
+      <div class="fake-result">
+        <div class="fake-link"></div>
+        <div class="fake-title"></div>
+        <div class="fake-snippet"></div>
+        <div class="fake-snippet short"></div>
+      </div>
+      <div class="fake-result">
+        <div class="fake-link"></div>
+        <div class="fake-title"></div>
+        <div class="fake-snippet"></div>
+        <div class="fake-snippet short"></div>
+      </div>
+    </div>
+
+    <div class="coming-soon">
+      <h1>
+        <span class="blue">C</span><span class="red">o</span><span class="yellow">m</span><span class="blue">i</span><span class="green">n</span><span class="red">g</span>
+        <span class="yellow">S</span><span class="blue">o</span><span class="green">o</span><span class="red">n</span>
+      </h1>
+      <p>This project is currently in progress. Check back soon to explore Blake's social media campaigns and website redesign for @StaceeHomes.</p>
+      <a href="projects.html" class="back-btn">Back to Projects</a>
+    </div>
+  </div>
+
+</body>
+</html>
