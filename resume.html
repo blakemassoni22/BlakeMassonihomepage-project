@@ -402,17 +402,16 @@
       // Reset scroll position
       document.getElementById('image-container').scrollTop = 0;
     }
-             function downloadResume() {
-        // Create a temporary link element
+      
+      function downloadResume() {
         const link = document.createElement('a');
         link.href = 'BM Final Resume 2026.pdf';
         link.download = 'BM Final Resume 2026.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-      }
-    
     }
+    
 
     // Keyboard shortcuts
     document.addEventListener('keydown', function(e) {
