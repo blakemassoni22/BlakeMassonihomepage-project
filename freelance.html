@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freelance Web Design | Blake Massoni</title>
+<meta name="description" content="Websites Blake Massoni has designed and built for freelance clients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block" rel="stylesheet">
+
+<style>
+  /* Google-style dark theme (Material 3 components and Material Symbols, set in Poppins).
+     Same near-black canvas; each site keeps its own accent color. */
+  :root {
+    --bg: #0b0b0c;
+    --surface: #1b1b1d;
+    --surface-2: #232325;
+    --surface-3: #2c2c2f;
+    --fg: #e3e3e3;
+    --fg-strong: #ffffff;
+    --muted: #a8abad;
+    --outline: #444746;
+    --outline-strong: #8e918f;
+    --primary: #a8c7fa;          /* Google blue, dark theme */
+    --on-primary: #062e6f;
+    --primary-container: #004a77;
+    --on-primary-container: #c2e7ff;
+    --green: #6dd58c;
+    --yellow: #fdd663;
+    --red: #f28b82;
+    --ease: cubic-bezier(0.2, 0, 0, 1);  /* Material standard easing */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--primary-container); color: var(--on-primary-container); }
+
+  a { color: inherit; }
+
+  .msi {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1;
+    display: inline-block;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    flex-shrink: 0;
+  }
+
+  /* ---------- HEADER ---------- */
+  .topbar {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--outline);
+  }
+
+  .logo-section { display: flex; align-items: center; gap: 14px; }
+
+  .logo { font-size: 1.3rem; font-weight: 600; cursor: pointer; white-space: nowrap; letter-spacing: -0.2px; }
+  .logo span:nth-child(1) { color: #4285F4; }
+  .logo span:nth-child(2) { color: #EA4335; }
+  .logo span:nth-child(3) { color: #FBBC05; }
+  .logo span:nth-child(4) { color: #4285F4; }
+  .logo span:nth-child(5) { color: #34A853; }
+  .logo span:nth-child(6) { color: #EA4335; }
+  .logo span:nth-child(7) { color: #FBBC05; }
+  .logo span:nth-child(8) { color: #4285F4; }
+  .logo span:nth-child(9) { color: #34A853; }
+  .logo span:nth-child(10){ color: #EA4335; }
+  .logo span:nth-child(11){ color: #FBBC05; }
+  .logo span:nth-child(12){ color: #4285F4; }
+
+  .page-title { font-size: 16px; color: var(--muted); padding-left: 14px; border-left: 1px solid var(--outline); line-height: 24px; }
+
+  .topbar-actions { display: flex; gap: 8px; align-items: center; }
+
+  .icon-btn {
+    width: 40px; height: 40px;
+    display: grid; place-items: center;
+    border: none; border-radius: 50%;
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .icon-btn:hover { background: rgba(227, 227, 227, 0.08); }
+  .icon-btn .msi { font-size: 24px; }
+
+  .profile-avatar {
+    width: 32px; height: 32px; margin: 0 4px; border-radius: 50%;
+    background: #1e8e3e;
+    display: grid; place-items: center;
+    color: #fff; font-weight: 500; font-size: 15px;
+  }
+
+  /* ---------- BUTTONS (Material 3) ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 20px;
+    font: 500 14px/1 'Poppins', Arial, sans-serif;
+    letter-spacing: 0.1px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+  }
+
+  .btn .msi { font-size: 18px; }
+  .btn-filled { background: var(--primary); color: var(--on-primary); }
+  .btn-filled:hover { background: #b9d3fb; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
+  .btn-outlined { border: 1px solid var(--outline-strong); color: var(--primary); background: none; padding: 0 20px; }
+  .btn-outlined:hover { background: rgba(168, 199, 250, 0.08); }
+  .btn-text { color: var(--primary); background: none; padding: 0 12px; }
+  .btn-text:hover { background: rgba(168, 199, 250, 0.08); }
+  .btn.with-icon { padding-left: 16px; }
+
+  /* ---------- LAYOUT ---------- */
+  /* one gutter for the whole page so titles, windows, tracker and form share the same edges */
+  .container { width: 100%; padding: 0 24px; }
+
+  .label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent, var(--primary));
+    flex-wrap: wrap;
+  }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- HERO ---------- */
+  .hero { padding-top: 96px; padding-bottom: 24px; }
+
+  .hero h1 {
+    margin: 14px 0 22px;
+    font-size: clamp(2.8rem, 7vw, 5.6rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--fg-strong);
+  }
+
+  .hero-sub {
+    max-width: 640px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+  /* ---------- PROJECT SECTIONS ---------- */
+  .project {
+    --accent: var(--primary);
+    position: relative;
+    padding: 96px 0 104px;
+    isolation: isolate;
+  }
+
+  /* faint wash of the site's color behind its window */
+  .project::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(55% 40% at 50% 40%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%);
+  }
+
+  .project-grid { display: grid; gap: 40px; }
+
+  .project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+  }
+
+  .project h2 {
+    margin-top: 10px;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.045em;
+    color: var(--fg-strong);
+  }
+
+  .project-head .tagline { max-width: 420px; color: var(--muted); font-size: 16px; text-align: right; }
+
+  /* status chips (Live / In progress) */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+    padding: 0 10px 0 6px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    background: rgba(109, 213, 140, 0.14);
+    color: var(--green);
+    white-space: nowrap;
+  }
+
+  .status .msi { font-size: 16px; }
+  .status.wip { background: rgba(253, 214, 99, 0.13); color: var(--yellow); }
+
+  /* ---------- PREVIEW TOOLBAR ---------- */
+  .preview-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  /* Material 3 segmented button */
+  .segmented { display: inline-flex; border: 1px solid var(--outline-strong); border-radius: 20px; overflow: hidden; }
+
+  .segmented button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 18px;
+    border: none;
+    background: none;
+    color: var(--fg);
+    font: 500 14px 'Poppins', Arial, sans-serif;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .segmented button + button { border-left: 1px solid var(--outline-strong); }
+  .segmented button:hover { background: rgba(227, 227, 227, 0.08); }
+  .segmented button.active { background: var(--primary-container); color: var(--on-primary-container); }
+  .segmented .check { display: none; }
+  .segmented button.active .check { display: inline-block; }
+  .segmented button.active .device { display: none; }
+
+  /* ---------- WINDOW: Chrome-style browser window with the live site ---------- */
+  .preview { width: 100%; }
+
+  .stage { position: relative; }
+  .computer { transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+
+  .browser {
+    display: flex;
+    flex-direction: column;
+    height: max(480px, calc(100vh - 64px - 40px));
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid var(--outline);
+    box-shadow: 0 24px 64px -24px rgba(0, 0, 0, 0.8), 0 24px 120px -48px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  .browser-bar {
+    flex-shrink: 0;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    background: var(--surface-2);
+    border-bottom: 1px solid #000;
+  }
+
+  .dots { display: flex; gap: 8px; margin-right: 12px; }
+  .dots i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+  .dots i:nth-child(2) { background: #febc2e; }
+  .dots i:nth-child(3) { background: #28c840; }
+
+  .nav-icons { display: flex; gap: 2px; color: #7c7f82; }
+  .nav-icons .msi { width: 32px; height: 32px; display: grid; place-items: center; font-size: 20px; }
+
+  /* omnibox */
+  .url {
+    flex: 1;
+    max-width: 720px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 8px;
+    padding: 0 14px;
+    border-radius: 17px;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .url .msi { font-size: 16px; color: var(--muted); }
+
+  .viewport {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    background: #000 center top / cover no-repeat;
+  }
+
+  /* the site renders at real desktop width, then scales down to fit the window */
+  .viewport iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    transform-origin: 0 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .viewport iframe.loaded { opacity: 1; }
+
+  /* snackbar-style hint */
+  .live-hint {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    background: #e3e3e3;
+    color: #1f1f1f;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .live-hint .msi { font-size: 18px; }
+  .viewport:hover .live-hint { opacity: 0; }
+
+  /* full screen: the window pops out and fills the screen */
+  .browser.fullscreen {
+    position: fixed;
+    inset: 12px;
+    z-index: 500;
+    height: auto;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.8);
+  }
+
+  .browser-close { display: none; margin-left: auto; }
+  .browser.fullscreen .browser-close { display: inline-flex; }
+  .project.has-fullscreen { z-index: 600; }
+  body.no-scroll { overflow: hidden; }
+
+  /* ---------- PHONE VIEW (reuses the iPhone outline from the Van Wagner page) ---------- */
+  .phone {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    aspect-ratio: 1350 / 2760;
+    transform: translateX(-50%) translateY(24px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.8));
+  }
+
+  .phone img { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+
+  .phone .screen {
+    position: absolute;
+    left: 5.3%;
+    top: 2.5%;
+    width: 89.3%;
+    height: 95%;
+    border-radius: 18% / 8.5%;
+    overflow: hidden;
+    background: #000;
+    z-index: 1;
+  }
+
+  .phone iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; }
+
+  .stage.mobile .computer { opacity: 0; transform: scale(0.98); pointer-events: none; }
+  .stage.mobile .phone { opacity: 1; transform: translateX(-50%); pointer-events: auto; }
+
+  /* in-progress site with no preview link */
+  .wip-screen {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 8px;
+    text-align: center;
+    background: var(--surface);
+  }
+
+  .wip-screen .msi { font-size: 40px; color: var(--accent); margin-bottom: 8px; }
+  .wip-screen b { font-size: 22px; font-weight: 600; color: var(--fg-strong); }
+  .wip-screen span { color: var(--muted); }
+
+  /* ---------- PROJECT DETAILS (Material card) ---------- */
+  .project-info {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 48px;
+    padding: 32px;
+    border-radius: 24px;
+    background: var(--surface);
+  }
+
+  .project .desc { color: var(--fg); font-size: 16px; line-height: 1.65; }
+
+  .meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .meta dt { font-size: 12px; font-weight: 500; letter-spacing: 0.2px; color: var(--muted); margin-bottom: 2px; }
+  .meta dd { font-size: 15px; color: var(--fg-strong); }
+
+  /* Material assist chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+
+  .chips span {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 12px;
+    border: 1px solid var(--outline);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fg);
+  }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* ---------- TRACKER (Google-style table) ---------- */
+  .tracker { padding-top: 104px; }
+
+  .tracker h2,
+  .inquiry h2 {
+    margin-top: 10px;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    color: var(--fg-strong);
+  }
+
+  .tracker-sub { margin-top: 8px; color: var(--muted); }
+
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .summary div {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border-radius: 16px;
+    background: var(--surface);
+  }
+
+  .summary .msi {
+    width: 40px; height: 40px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+    background: rgba(168, 199, 250, 0.12);
+    color: var(--primary);
+  }
+
+  .summary .ok .msi { background: rgba(109, 213, 140, 0.14); color: var(--green); }
+  .summary .wip .msi { background: rgba(253, 214, 99, 0.13); color: var(--yellow); }
+  .summary b { display: block; font-size: 30px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; color: var(--fg-strong); }
+  .summary small { color: var(--muted); font-size: 14px; }
+
+  .table {
+    margin-top: 16px;
+    border-radius: 16px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr) 80px 130px 40px;
+    align-items: center;
+    gap: 16px;
+    min-height: 64px;
+    padding: 0 16px 0 24px;
+    text-decoration: none;
+    border-top: 1px solid var(--outline);
+  }
+
+  .table-head {
+    min-height: 48px;
+    border-top: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    color: var(--muted);
+  }
+
+  a.table-row { transition: background-color 0.15s; }
+  a.table-row:hover { background: rgba(227, 227, 227, 0.05); }
+
+  .site { display: flex; align-items: center; gap: 14px; font-size: 16px; color: var(--fg-strong); min-width: 0; }
+  .site span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* letter avatar in the site's color */
+  .avatar {
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: 500;
+    background: color-mix(in srgb, var(--c) 22%, #1b1b1d);
+    color: var(--c);
+  }
+
+  .table-row .type, .table-row .year { color: var(--muted); font-size: 14px; }
+  .table-row .go { color: var(--muted); justify-self: end; }
+
+  /* ---------- INQUIRY ---------- */
+  .inquiry { padding-top: 104px; padding-bottom: 120px; }
+
+  .inquiry-card {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 56px;
+    padding: 48px;
+    border-radius: 28px;
+    background: var(--surface);
+  }
+
+  .inquiry-intro p { color: var(--muted); margin: 12px 0 24px; line-height: 1.6; }
+
+  .inquiry-form { display: grid; gap: 20px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* Material outlined text fields */
+  .field { display: grid; gap: 6px; border: none; min-width: 0; }
+  .field > span { font-size: 14px; font-weight: 500; color: var(--fg); }
+  .field em { font-style: normal; color: var(--muted); font-weight: 400; }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--outline-strong);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--fg-strong);
+    font: 400 16px 'Poppins', Arial, sans-serif;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    resize: vertical;
+  }
+
+  .field input:hover,
+  .field textarea:hover { border-color: var(--fg); }
+
+  .field input::placeholder,
+  .field textarea::placeholder { color: #7c7f82; }
+
+  .field input:focus,
+  .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: inset 0 0 0 1px var(--primary); }
+
+  .field .invalid { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+
+  /* Material filter chips */
+  .pick { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pick label { cursor: pointer; }
+  .pick input { position: absolute; opacity: 0; pointer-events: none; }
+
+  .pick b {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 16px;
+    border: 1px solid var(--outline-strong);
+    border-radius: 8px;
+    color: var(--fg);
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.15s;
+  }
+
+  .pick b .msi { display: none; font-size: 18px; margin-left: -6px; }
+  .pick label:hover b { background: rgba(227, 227, 227, 0.08); }
+  .pick input:checked + b { background: var(--primary-container); color: var(--on-primary-container); border-color: var(--primary-container); }
+  .pick input:checked + b .msi { display: inline-block; }
+  .pick input:focus-visible + b { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+  .trap { position: absolute; left: -9999px; }
+
+  .form-foot { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 4px; }
+  .form-foot .btn[disabled] { opacity: 0.6; cursor: wait; }
+  .form-status { color: var(--muted); font-size: 14px; }
+  .form-status.error { color: var(--red); }
+
+  .inquiry-done { grid-column: 2; align-self: center; text-align: center; padding: 40px 0; }
+
+  .inquiry-done .msi {
+    width: 56px; height: 56px;
+    display: inline-grid; place-items: center;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background: rgba(109, 213, 140, 0.14);
+    color: var(--green);
+    font-size: 28px;
+  }
+
+  .inquiry-done h3 { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; color: var(--fg-strong); margin-bottom: 4px; }
+  .inquiry-done p { color: var(--muted); }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 960px) {
+    .project-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .project-head .tagline { text-align: left; }
+    .project-info { grid-template-columns: 1fr; gap: 28px; }
+    .browser { height: 72vh; }
+    .nav-icons { display: none; }
+    .inquiry-card { grid-template-columns: 1fr; gap: 32px; padding: 32px 24px; }
+    .inquiry-done { grid-column: 1; }
+    .table-row { grid-template-columns: minmax(0, 1fr) 130px 40px; }
+    .table-row .type, .table-row .year { display: none; }
+  }
+
+  @media (max-width: 700px) {
+    .container { padding: 0 16px; }
+    .topbar { padding: 0 8px 0 16px; }
+    .page-title, .apps-btn, .profile-avatar { display: none; }
+    .hero { padding-top: 64px; padding-bottom: 8px; }
+    .project { padding: 72px 0 80px; }
+    .summary { grid-template-columns: 1fr; }
+    .meta { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .project-info { padding: 24px; }
+    .segmented button { padding: 0 14px; }
+    .tool-label { display: none; }
+    .table-row { padding: 0 8px 0 16px; grid-template-columns: minmax(0, 1fr) auto 32px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="logo-section">
+      <div class="logo" onclick="window.location.href='googleHomepage.html'">
+        <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span>
+        <span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+      </div>
+      <span class="page-title">Freelance</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn apps-btn" title="Google apps" aria-label="Apps"><span class="msi">apps</span></button>
+      <div class="profile-avatar" title="Blake Massoni">B</div>
+      <a href="projects.html" class="btn btn-filled">Back to Projects</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container">
+      <p class="label reveal">Freelance web design &amp; development</p>
+      <h1 class="reveal">Websites, designed<br>and built.</h1>
+      <p class="hero-sub reveal">Sites for clients in fashion, events and culture. Every site below runs live in its own browser window. Scroll, click around and switch to mobile to see each one the way visitors do.</p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-filled with-icon" href="#projects"><span class="msi">arrow_downward</span>See the work</a>
+        <a class="btn btn-outlined with-icon" href="#inquire"><span class="msi">mail</span>Inquire</a>
+      </div>
+    </section>
+
+    <!-- one section per website, built from the list below -->
+    <div id="projects"></div>
+
+    <!-- TRACKER: every site with its live / in progress status -->
+    <section class="tracker container">
+      <p class="label reveal">Overview</p>
+      <h2 class="reveal">Project tracker</h2>
+      <p class="tracker-sub reveal">Status of every site, updated as projects launch.</p>
+      <div class="summary reveal" id="stats"></div>
+      <div class="table reveal" id="index" role="table" aria-label="Websites"></div>
+    </section>
+
+    <!-- INQUIRY -->
+    <section class="inquiry container" id="inquire">
+      <div class="inquiry-card reveal">
+        <div class="inquiry-intro">
+          <p class="label">Work together</p>
+          <h2>Have a website in mind?</h2>
+          <p>Blake designs and builds sites end to end, from the first layout to launch. Share a few details and Blake will be in touch.</p>
+          <a class="btn btn-text with-icon" href="projects.html"><span class="msi">arrow_back</span>All projects</a>
+        </div>
+
+        <form class="inquiry-form" id="inquiryForm" novalidate>
+          <div class="field-row">
+            <label class="field"><span>Name</span><input name="name" type="text" autocomplete="name" required></label>
+            <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+          </div>
+          <label class="field"><span>Company or project <em>(optional)</em></span><input name="company" type="text" autocomplete="organization"></label>
+
+          <fieldset class="field">
+            <span>What do you need?</span>
+            <div class="pick">
+              <label><input type="radio" name="project_type" value="New website" checked><b><span class="msi">check</span>New website</b></label>
+              <label><input type="radio" name="project_type" value="Launch / event page"><b><span class="msi">check</span>Launch or event page</b></label>
+              <label><input type="radio" name="project_type" value="Redesign"><b><span class="msi">check</span>Redesign</b></label>
+              <label><input type="radio" name="project_type" value="Something else"><b><span class="msi">check</span>Something else</b></label>
+            </div>
+          </fieldset>
+
+          <label class="field"><span>Tell Blake about it</span><textarea name="message" rows="5" required placeholder="Goals, timeline, sites you like"></textarea></label>
+
+          <!-- spam trap: real visitors never see or fill this -->
+          <input type="text" name="_gotcha" class="trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form-foot">
+            <button class="btn btn-filled with-icon" type="submit" id="inquirySubmit"><span class="msi">send</span>Send inquiry</button>
+            <p class="form-status" id="formStatus" role="status"></p>
+          </div>
+        </form>
+
+        <div class="inquiry-done" id="inquiryDone" hidden>
+          <span class="msi">check</span>
+          <h3>Thank you</h3>
+          <p>Your inquiry is on its way. Blake will be in touch soon.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<script>
+  // --- Websites ---
+  // To add a site, copy one block and fill it in.
+  // status: 'live' or 'wip' (in progress)
+  // preview: true on an in-progress site runs its preview link in the window; without it, an "in progress" screen shows
+  // accent: the site's signature color, used for its glow, avatar and labels
+  const sites = [
+    {
+      id: 'frontrow',
+      name: 'Front Row Live Productions',
+      type: 'Production company website',
+      year: '2026',
+      status: 'live',
+      url: 'https://www.frontrowlive.productions/',
+      poster: 'freelance/frontrow-desktop.jpg',
+      tagline: 'The cultural moments of fashion week and beyond.',
+      description: 'Website for Front Row Live Productions, a full-service event and experiential production company in New York and Los Angeles. The site walks through its full capabilities, from runway shows and brand activations to retail pop-ups, private events and live programming, alongside selected projects.',
+      meta: [
+        ['Client', 'Front Row Live Productions'],
+        ['Role', 'Design & Development'],
+        ['Type', 'Company / Services site'],
+        ['Status', 'Live']
+      ],
+      features: ['Services overview', 'Selected projects', 'Photo gallery'],
+      accent: '#c9a23a'
+    },
+    {
+      id: 'lafw',
+      name: 'LAFW LIVE',
+      type: 'Event launch site',
+      year: '2026',
+      status: 'live',
+      url: 'https://www.lafw.live/',
+      poster: 'freelance/lafw-desktop.jpg',
+      tagline: 'Los Angeles culture, through the lens of fashion.',
+      description: 'Launch site for LAFW LIVE, a weekend-long Los Angeles festival where fashion, music, sports and art collide, curated by Russell Westbrook. The site builds anticipation for Summer 2027 with a live countdown, captures early ticket interest and gives brands a direct line to partnerships.',
+      meta: [
+        ['Client', 'LAFW LIVE · N4XT Inc.'],
+        ['Role', 'Design & Development'],
+        ['Type', 'Launch / Coming soon'],
+        ['Launch', 'Summer 2027 event']
+      ],
+      features: ['Live countdown', 'Ticket waitlist sign-up', 'Partnerships inquiry form', 'Photo gallery'],
+      accent: '#d08b6c'
+    },
+    {
+      id: 'n4xt',
+      name: 'N4XT',
+      type: 'Company website',
+      year: '2026',
+      status: 'live',
+      url: 'https://n4xt-six.vercel.app/',
+      poster: 'freelance/n4xt-desktop.jpg',
+      tagline: 'We shape what’s next in culture.',
+      description: 'Company site for N4XT, which owns and operates New York Fashion Week Collections and LA Fashion Week. The site brings its platforms together, from the shows and experiential work to partners, press and the upcoming .FW app launching February 2027.',
+      meta: [
+        ['Client', 'N4XT Inc.'],
+        ['Role', 'Design & Development'],
+        ['Type', 'Company / Brand site'],
+        ['Status', 'Live']
+      ],
+      features: ['Brand platform overview', 'Partners & press', 'Press quote carousel', '.FW app preview'],
+      accent: '#aab4c3'
+    },
+    {
+      id: 'nyfw',
+      name: 'NYFW LIVE',
+      type: 'Event launch site',
+      year: '2026',
+      status: 'live',
+      url: 'https://www.nyfw.live/',
+      poster: 'freelance/nyfw-desktop.jpg',
+      tagline: 'New York culture, through the lens of fashion.',
+      description: 'Launch site for NYFW LIVE, two days of fashion, sports, music and culture in New York City on September 10–11, 2027.',
+      meta: [
+        ['Client', 'NYFW LIVE · N4XT Inc.'],
+        ['Role', 'Design & Development'],
+        ['Type', 'Launch / Coming soon'],
+        ['Event', 'September 10–11, 2027']
+      ],
+      features: ['Live countdown', 'Photo gallery', 'Ticket list sign-up', 'Partnerships inquiry form'],
+      accent: '#4fd6c4'
+    }
+  ];
+
+  const pad = n => String(n).padStart(2, '0');
+  const host = url => new URL(url).hostname.replace(/^www\./, '');
+
+  // --- tracker: summary + table ---
+  const liveCount = sites.filter(s => s.status === 'live').length;
+  const wipCount = sites.length - liveCount;
+  document.getElementById('stats').innerHTML = `
+    <div><span class="msi">language</span><span><b>${sites.length}</b><small>Websites</small></span></div>
+    <div class="ok"><span class="msi">check_circle</span><span><b>${liveCount}</b><small>Live</small></span></div>
+    <div class="wip"><span class="msi">pending</span><span><b>${wipCount}</b><small>In progress</small></span></div>`;
+
+  const statusChip = s => s.status === 'live'
+    ? '<span class="status"><span class="msi">check</span>Live</span>'
+    : '<span class="status wip"><span class="msi">schedule</span>In progress</span>';
+
+  document.getElementById('index').innerHTML = `
+    <div class="table-row table-head" role="row">
+      <span role="columnheader">Website</span>
+      <span role="columnheader" class="type">Type</span>
+      <span role="columnheader" class="year">Year</span>
+      <span role="columnheader">Status</span>
+      <span></span>
+    </div>` + sites.map(s => `
+    <a class="table-row" href="#${s.id}" role="row">
+      <span class="site" role="cell"><i class="avatar" style="--c:${s.accent}">${s.name.replace(/[^A-Za-z0-9]/g, '').charAt(0)}</i><span>${s.name}</span></span>
+      <span class="type" role="cell">${s.type}</span>
+      <span class="year" role="cell">${s.year}</span>
+      <span role="cell">${statusChip(s)}</span>
+      <span class="msi go">chevron_right</span>
+    </a>`).join('');
+
+  // --- one section per site, with the site running in a browser window ---
+  document.getElementById('projects').innerHTML = sites.map((s, i) => {
+    // "live" here means: the real site runs in the window (live sites, and in-progress sites with a preview link)
+    const live = s.status === 'live' || !!s.preview;
+    const wip = s.status === 'wip';
+    const screen = live
+      ? `<div class="viewport" style="background-image:url('${s.poster}')">
+           <iframe data-src="${s.url}" data-width="1440" title="${s.name} live preview" loading="lazy"></iframe>
+           <span class="live-hint"><span class="msi">swipe_vertical</span>${wip ? 'In-progress preview' : 'Live site'}. Scroll to explore.</span>
+         </div>`
+      : `<div class="viewport">
+           <div class="wip-screen"><span class="msi">design_services</span><b>Redesign in progress</b><span>Launching soon</span></div>
+         </div>`;
+    return `
+    <section class="project" id="${s.id}" style="--accent:${s.accent}">
+      <div class="container project-grid">
+        <header class="project-head reveal">
+          <div>
+            <p class="label">${s.type} ${statusChip(s)}</p>
+            <h2>${s.name}</h2>
+          </div>
+          <p class="tagline">${s.tagline}</p>
+        </header>
+
+        <div class="preview reveal">
+          ${live ? `<div class="preview-tools">
+            <div class="segmented view-toggle" role="group" aria-label="Preview size">
+              <button class="active" data-view="desktop"><span class="msi check">check</span><span class="msi device">computer</span>Desktop</button>
+              <button data-view="mobile"><span class="msi check">check</span><span class="msi device">smartphone</span>Mobile</button>
+            </div>
+            <button class="btn btn-outlined with-icon fs-open"><span class="msi">fullscreen</span><span class="tool-label">Full screen</span></button>
+          </div>` : ''}
+          <div class="stage">
+            <div class="computer">
+              <div class="browser">
+                <div class="browser-bar">
+                  <span class="dots"><i></i><i></i><i></i></span>
+                  <span class="nav-icons" aria-hidden="true"><span class="msi">arrow_back</span><span class="msi">arrow_forward</span><span class="msi">refresh</span></span>
+                  <span class="url">${live ? `<span class="msi">lock</span>${host(s.url)}` : 'Coming soon'}</span>
+                  ${live ? `<button class="btn btn-filled with-icon browser-close" aria-label="Close full screen"><span class="msi">close</span>Close</button>` : ''}
+                </div>
+                ${screen}
+              </div>
+            </div>
+            ${live ? `<div class="phone">
+              <div class="screen"><iframe data-src="${s.url}" data-width="390" title="${s.name} mobile preview" loading="lazy"></iframe></div>
+              <img src="vanwagner/iphone-17.svg" alt="">
+            </div>` : ''}
+          </div>
+        </div>
+
+        <div class="project-info reveal">
+          <div>
+            <p class="desc">${s.description}</p>
+            <div class="chips">${s.features.map(f => `<span>${f}</span>`).join('')}</div>
+          </div>
+          <div>
+            <dl class="meta">${s.meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+            <div class="actions">
+              <a class="btn btn-filled with-icon" href="${s.url}" target="_blank" rel="noopener"><span class="msi">open_in_new</span>${s.urlLabel || (wip ? 'View preview' : 'Visit live site')}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>`;
+  }).join('');
+
+  // --- scale each iframe so the site renders at its real width, then shrinks to fit the screen ---
+  function fit(frame) {
+    const box = frame.parentElement;
+    if (!box.clientWidth) return;
+    const w = +frame.dataset.width;
+    const scale = box.clientWidth / w;
+    frame.style.width = w + 'px';
+    frame.style.height = (box.clientHeight / scale) + 'px';
+    frame.style.transform = `scale(${scale})`;
+  }
+
+  const frames = [...document.querySelectorAll('iframe[data-src]')];
+  const resizer = new ResizeObserver(entries => entries.forEach(e => e.target.querySelectorAll('iframe').forEach(fit)));
+  frames.forEach(f => {
+    fit(f);
+    resizer.observe(f.parentElement);
+    f.addEventListener('load', () => f.classList.add('loaded'));
+  });
+
+  // only load a live site when its section is close to the screen
+  const loader = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('iframe[data-src]').forEach(f => { f.src = f.dataset.src; f.removeAttribute('data-src'); });
+    loader.unobserve(e.target);
+  }), { rootMargin: '400px' });
+  document.querySelectorAll('.project').forEach(p => loader.observe(p));
+
+  // desktop / mobile toggle
+  document.querySelectorAll('.view-toggle').forEach(toggle => {
+    const stage = toggle.closest('.preview').querySelector('.stage');
+    toggle.querySelectorAll('button').forEach(btn => btn.addEventListener('click', () => {
+      toggle.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+      stage.classList.toggle('mobile', btn.dataset.view === 'mobile');
+      stage.querySelectorAll('iframe').forEach(fit);
+    }));
+  });
+
+  // full screen: the window pops out and fills the screen
+  function setFullscreen(browser, on) {
+    browser.classList.toggle('fullscreen', on);
+    browser.closest('.project').classList.toggle('has-fullscreen', on);
+    document.body.classList.toggle('no-scroll', on);
+    browser.querySelectorAll('iframe').forEach(fit);
+  }
+
+  document.querySelectorAll('.fs-open').forEach(btn => btn.addEventListener('click', () => {
+    const preview = btn.closest('.preview');
+    preview.querySelector('[data-view="desktop"]').click();
+    setFullscreen(preview.querySelector('.browser'), true);
+  }));
+
+  document.querySelectorAll('.browser-close').forEach(btn =>
+    btn.addEventListener('click', () => setFullscreen(btn.closest('.browser'), false)));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.browser.fullscreen').forEach(b => setFullscreen(b, false));
+  });
+
+  // --- Inquiry form (sends through Formspree) ---
+  // 1. Make a free account at formspree.io and create a form that delivers to your email
+  // 2. Paste the form's ID (the part after formspree.io/f/) below
+  const FORMSPREE_ID = 'YOUR_FORM_ID';
+
+  const form = document.getElementById('inquiryForm');
+  const statusEl = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('inquirySubmit');
+
+  function showStatus(text, isError) {
+    statusEl.textContent = text;
+    statusEl.classList.toggle('error', !!isError);
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    // check the required fields
+    let ok = true;
+    form.querySelectorAll('[required]').forEach(el => {
+      const bad = !el.value.trim() || (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+      el.classList.toggle('invalid', bad);
+      if (bad) ok = false;
+    });
+    if (!ok) return showStatus('Please fill in your name, a valid email and a message.', true);
+
+    if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+      return showStatus('The inquiry form isn\'t connected yet.', true);
+    }
+
+    submitBtn.disabled = true;
+    showStatus('Sending…');
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form)
+      });
+      if (!res.ok) throw new Error();
+      form.hidden = true;
+      document.getElementById('inquiryDone').hidden = false;
+    } catch {
+      showStatus('Something went wrong. Please try again in a moment.', true);
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  form.querySelectorAll('[required]').forEach(el => el.addEventListener('input', () => el.classList.remove('invalid')));
+
+  // fade sections in on scroll
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
