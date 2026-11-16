@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Van Wagner | Social Media</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block" rel="stylesheet">
 <style>
@@ -347,10 +347,11 @@
   /* spins up from below into place */
   .phone-slot.in { animation: spinUp 1.8s cubic-bezier(.16, .84, .44, 1) forwards; }
 
+  /* no opacity in the spin: fading a 3D object makes browsers flatten it, so it rises in from below instead */
+  .phone-slot.in { opacity: 1; }
   @keyframes spinUp {
-    0% { opacity: 0; transform: translateY(45vh) rotateY(-540deg) rotateZ(-12deg) scale(0.5); }
-    25% { opacity: 1; }
-    100% { opacity: 1; transform: none; }
+    0% { transform: translateY(60vh) rotateY(-540deg) rotateZ(-12deg) scale(0.5); }
+    100% { transform: none; }
   }
 
   /* ground shadow to sell the depth */
@@ -366,14 +367,35 @@
     z-index: 0;
   }
 
-  .phone-slot { filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.6)); }
+  .phone-slot { filter: none; }
   .phone-slot::after { transition: opacity 0.5s; }
 
   .phone-frame {
     position: relative;
     width: 100%;
     height: 100%;
+    transform-style: preserve-3d;
     transition: transform 0.9s var(--ease);
+  }
+  /* ---------- 3D BODY: metal edge layers + a phone back, so the spin shows real depth ---------- */
+  .vw-slab { position: absolute; inset: 0.5% 1.1%; border-radius: 18.5% / 9%; background: var(--c); transform: translateZ(var(--z)); pointer-events: none; }
+  .vw-slab.back {
+    background: radial-gradient(120% 80% at 30% 15%, #3a4356, #1c2230 60%, #12161f);
+    box-shadow: inset 0 0 0 3px #4a5262;
+  }
+  /* camera bump on the back */
+  .vw-slab.back::before {
+    content: ''; position: absolute; left: 8%; top: 4%; width: 40%; aspect-ratio: 1; border-radius: 26%;
+    background: linear-gradient(145deg, #2a3140, #171b24); box-shadow: inset 0 0 0 2px #475064;
+  }
+  .vw-slab.back::after {
+    content: ''; position: absolute; left: 14%; top: 7%; width: 13%; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #5d6a86, #0b0d12 60%); box-shadow: 34px 0 0 0 #0b0d12, 0 34px 0 0 #0b0d12;
+  }
+  /* the screen and its bezel sit on the front face and hide when the phone turns around */
+  .phone-frame > .phone-screen, .phone-frame > .phone-outline {
+    transform: translateZ(calc(var(--t, 20px) / 2 + 0.5px));
+    -webkit-backface-visibility: hidden; backface-visibility: hidden;
   }
 
   /* ---------- LANDSCAPE: phone turns on its side for horizontal videos ---------- */
@@ -1122,9 +1144,9 @@
     .reels-side .eyebrow { justify-content: center; }
     .section-blurb { margin-left: auto; margin-right: auto; }
     .pile { height: min(82vh, 720px); }
-    .paper { grid-template-columns: 1fr; grid-template-rows: 160px 1fr; }
+    .paper { display: block; }
     .paper-inner { padding: 26px 24px 32px; }
-    .paper .body img { float: none; width: 100%; margin: 18px 0; }
+
   }
 
   @media (max-width: 700px) {
@@ -1305,7 +1327,7 @@
 
   .scroll-cue { margin-top: 26px; }
 
-  .phone-col { position: relative; display: flex; justify-content: center; }
+  .phone-col { position: relative; display: flex; justify-content: center; perspective: 1600px; filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5)); }
   .phone-col::before {
     content: ''; position: absolute; left: 50%; top: 50%;
     width: min(760px, 100vw); height: min(760px, 100vw); transform: translate(-50%, -50%);
@@ -1352,6 +1374,121 @@
 
   /* ---------- phones: never let anything make the page scroll sideways ---------- */
   body { overflow-x: clip; }
+
+  /* ---------- BLOG POSTS AS NEWSPAPER FRONT PAGES ---------- */
+  .paper {
+    display: block;
+    border-radius: 3px;
+    background: #f6f1e4;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 .4  0 0 0 0 .36  0 0 0 0 .28  0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>");
+    color: #1b1b1b;
+    box-shadow: 0 1px 0 #e3dccb, 0 30px 60px -18px rgba(0, 0, 0, 0.55);
+  }
+  .paper-inner { height: 100%; padding: 30px clamp(20px, 4vw, 52px) 40px; scrollbar-color: #bdb4a0 transparent; }
+  .masthead { text-align: center; margin-bottom: 22px; }
+  .mast-top, .mast-rule { display: flex; justify-content: space-between; gap: 12px; font: 600 0.68rem/1 'Source Serif 4', Georgia, serif; letter-spacing: 1.4px; text-transform: uppercase; color: #3c3c3c; }
+  .mast-top { padding-bottom: 10px; border-bottom: 1px solid #1b1b1b; }
+  .mast-name { padding: 12px 0 10px; font: 900 clamp(2rem, 4.6vw, 3.6rem)/1 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; color: #111; }
+  .mast-rule { padding: 8px 0; border-top: 3px double #1b1b1b; border-bottom: 1px solid #1b1b1b; font-weight: 400; font-style: italic; text-transform: none; letter-spacing: 0.2px; font-size: 0.8rem; }
+  .paper h3 { margin: 0 0 18px; text-align: center; font: 700 clamp(1.6rem, 3vw, 2.5rem)/1.12 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; color: #111; }
+  .lead-photo { margin: 0 0 22px; }
+  .paper .lead-photo .cover { width: 100%; height: clamp(180px, 30vh, 320px); object-fit: cover; border-radius: 0; filter: saturate(0.85) contrast(1.05); }
+  /* two newspaper columns with a thin rule between them */
+  .paper .body { columns: 2 300px; column-gap: 38px; column-rule: 1px solid #cfc6b1; font: 400 1.02rem/1.68 'Source Serif 4', Georgia, serif; }
+  .paper .body p { margin: 0 0 12px; color: #262626; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+  .paper .body > p:first-of-type::first-letter { float: left; margin: 6px 8px 0 0; font: 900 3.6em/0.78 'Playfair Display', Georgia, serif; color: #111; }
+  .paper .body h4 { margin: 18px 0 8px; font: 700 1.12rem/1.25 'Playfair Display', Georgia, serif; color: #111; break-after: avoid; }
+  .paper .body img { float: none; display: block; width: 100%; margin: 6px 0 14px; border-radius: 0; filter: saturate(0.85); break-inside: avoid; }
+  .paper .body a { color: #111; text-decoration: underline; text-underline-offset: 2px; }
+  .paper .read-more { display: flex; justify-content: center; margin: 24px 0 0; padding: 14px 0 0; border-top: 1px solid #1b1b1b; border-radius: 0; background: none; color: #111; font: 600 0.82rem 'Source Serif 4', Georgia, serif; letter-spacing: 1.2px; text-transform: uppercase; }
+  .paper .read-more:hover { background: none; text-decoration: underline; }
+  @media (max-width: 760px) {
+    .paper .body { columns: 1; font-size: 1rem; }
+    .paper .body p { text-align: left; }
+    .mast-top span:nth-child(2) { display: none; }
+    .mast-rule span:last-child { display: none; }
+    .mast-rule { justify-content: center; }
+  }
+
+  /* ---------- BLOG POSTS AS A PACKET (one post per sheet, scroll to read, flip to the next) ---------- */
+  .chapters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 0 34px; }
+  .chapters button { max-width: 340px; padding: 10px 18px; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; background: none; color: rgba(255, 255, 255, 0.85); font: 500 13px/1.3 'Poppins', sans-serif; text-align: left; cursor: pointer; transition: background-color 0.25s, color 0.25s; }
+  .chapters button b { display: block; font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; opacity: 0.7; }
+  .chapters button:hover { border-color: #fff; color: #fff; }
+  .chapters button.on { background: #fff; border-color: #fff; color: var(--vw-navy); }
+
+  .packet {
+    position: relative; width: min(680px, calc(100vw - 48px)); height: min(1040px, calc(100vh - 70px)); margin: 0 auto;
+    perspective: 2200px; perspective-origin: 50% -20%;
+  }
+  .packet::before { content: ''; position: absolute; left: 4%; right: -2%; bottom: -26px; height: 60px; background: radial-gradient(closest-side, rgba(0,0,0,0.55), transparent); filter: blur(6px); }
+  .sheet {
+    position: absolute; inset: 0; border-radius: 2px;
+    background: #fdfcf8; color: #262626;
+    box-shadow: 0 1px 0 #e8e4da, 0 2px 6px rgba(0, 0, 0, 0.18);
+    transform-origin: 50% 0;
+    transition: transform 0.45s cubic-bezier(.3, .7, .3, 1);
+  }
+  .sheet.flipping { transform-style: preserve-3d; }
+  .sheet .face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: inherit; background: inherit; }
+  .sheet .rear { position: absolute; inset: 0; transform: rotateX(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: inherit; background: linear-gradient(180deg, #ece8de, #f6f3eb 60%, #fbfaf6); }
+  .sheet .face::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(0deg, rgba(0,0,0,0.22), rgba(0,0,0,0) 60%); opacity: 0; }
+  .sheet.flipping .face::after { animation: liftShade 0.8s ease forwards; }
+  .sheet.flipping.rev .face::after { animation-direction: reverse; }
+  @keyframes liftShade { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 1; } }
+  .sheet.gone { visibility: hidden; }
+  .sheet.flipping { visibility: visible; animation: flipUp 0.8s cubic-bezier(.45, .05, .3, 1) forwards; }
+  .sheet.flipping.rev { animation: flipDown 0.8s cubic-bezier(.45, .05, .3, 1) forwards; }
+  @keyframes flipUp { 0% { transform: rotateX(0deg); } 70% { transform: rotateX(150deg); opacity: 1; } 100% { transform: rotateX(178deg); opacity: 0; } }
+  @keyframes flipDown { 0% { transform: rotateX(178deg); opacity: 0; } 30% { transform: rotateX(150deg); opacity: 1; } 100% { transform: rotateX(0deg); } }
+
+  /* the post scrolls inside its sheet */
+  .sheet .scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 54px 48px 64px; scrollbar-width: thin; scrollbar-color: #c9c3b5 transparent; }
+  .sheet .scroll::-webkit-scrollbar { width: 6px; }
+  .sheet .scroll::-webkit-scrollbar-thumb { background: #c9c3b5; border-radius: 3px; }
+  .sheet .scroll { font: 400 0.92rem/1.68 'Source Serif 4', Georgia, serif; color: #2a2a2a; }
+  .sheet .ch-kicker { display: flex; justify-content: space-between; gap: 12px; font: 600 0.64rem/1 'Poppins', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #1b4388; }
+  .sheet h3 { margin: 14px 0 10px; font: 700 clamp(1.3rem, 2.4vw, 1.65rem)/1.2 'Playfair Display', Georgia, serif; color: #111; }
+  .sheet .ch-by { margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1.5px solid #111; font-style: italic; color: #555; font-size: 0.85rem; }
+  .sheet .ch-cover { display: block; width: 100%; height: auto; max-height: 300px; object-fit: cover; margin-bottom: 18px; }
+  .sheet .body p { margin: 0 0 12px; }
+  .sheet .body > p:first-of-type::first-letter { float: left; margin: 5px 7px 0 0; font: 900 3.1em/0.8 'Playfair Display', Georgia, serif; color: #1b4388; }
+  .sheet .body h4 { margin: 18px 0 6px; font: 700 1.02rem/1.3 'Playfair Display', Georgia, serif; color: #111; }
+  .sheet .body ul { padding-left: 20px; margin-bottom: 12px; }
+  /* never stretch a photo past its real size (that is what made small ones blurry) */
+  .sheet .body img { display: block; width: auto; max-width: 100%; height: auto; max-height: 560px; margin: 8px auto 16px; }
+  .sheet .body a { color: #1b4388; }
+  .sheet .end { margin-top: 22px; text-align: center; font: 600 0.66rem 'Poppins', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #1b4388; }
+  /* fade at the bottom hints there is more to scroll */
+  .sheet .face .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 56px; z-index: 2; pointer-events: none; background: linear-gradient(rgba(253,252,248,0), #fdfcf8 75%); }
+
+  /* make it obvious the post scrolls: a pill that bounces until you start, plus a reading-progress bar */
+  .sheet .scroll-cue { position: absolute; left: 50%; bottom: 18px; z-index: 3; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: #1b4388; color: #fff; font: 600 11px 'Poppins', sans-serif; letter-spacing: 1.5px; text-transform: uppercase; box-shadow: 0 6px 18px rgba(27, 67, 136, 0.35); pointer-events: none; transition: opacity 0.35s, transform 0.35s; animation: cueBob 1.6s ease-in-out infinite; }
+  .sheet .scroll-cue i { font-size: 12px; }
+  @keyframes cueBob { 0%, 100% { margin-bottom: 0; } 50% { margin-bottom: -6px; } }
+  .sheet.read .scroll-cue { opacity: 0; transform: translate(-50%, 10px); animation: none; }
+  .sheet .progress { position: absolute; top: 0; left: 0; z-index: 3; height: 4px; width: 0; background: #1b4388; transition: width 0.1s linear; }
+  .sheet .scroll { scrollbar-width: auto; scrollbar-color: #1b4388 #ece8de; }
+  .sheet .scroll::-webkit-scrollbar { width: 8px; }
+  .sheet .scroll::-webkit-scrollbar-track { background: #ece8de; }
+  .sheet .scroll::-webkit-scrollbar-thumb { background: #1b4388; border-radius: 4px; }
+  /* bottom-right corner fold: click it to flip */
+  .sheet .corner { position: absolute; right: 0; bottom: 0; z-index: 4; width: 36px; height: 36px; padding: 0; border: none; cursor: pointer; background: linear-gradient(315deg, #0f1726 0 50%, #e4dfd2 50%, #f7f5ef 100%); box-shadow: -2px -2px 5px rgba(0,0,0,0.12); transition: width 0.25s, height 0.25s; }
+  .sheet .corner:hover { width: 54px; height: 54px; }
+
+  .pile-nav .book-count { min-width: 140px; color: rgba(255, 255, 255, 0.75); font: 500 13px 'Poppins', sans-serif; }
+  .packet-btns { display: flex; gap: 10px; min-width: 140px; justify-content: flex-end; }
+  .packet-btns button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); background: none; color: #fff; font-size: 15px; cursor: pointer; transition: background-color 0.2s, color 0.2s; }
+  .packet-btns button:hover:not(:disabled) { background: #fff; color: var(--vw-navy); }
+  .packet-btns button:disabled { opacity: 0.3; cursor: default; }
+
+  @media (max-width: 760px) {
+    .packet { height: calc(100svh - 90px); }
+    .sheet .scroll { padding: 46px 22px 60px; font-size: 0.9rem; }
+    .chapters button { max-width: none; flex: 1 1 100%; }
+    .pile-nav { flex-wrap: wrap; gap: 14px; }
+    .pile-nav .vw-btn { order: 3; width: 100%; text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -1400,7 +1537,7 @@
       <div class="container social-grid">
         <div class="reveal">
           <h2 class="vw-title">Social Content</h2>
-          <p class="vw-text">Blake manages Van Wagner's Instagram, LinkedIn and Facebook across all five divisions, creating event recaps, announcements, capabilities overviews and more. That includes building monthly content calendars for each platform and planning shot lists for on-site content capture at live sporting events and activations.</p>
+          <p class="vw-text">Blake manages Van Wagner's Instagram, LinkedIn and Facebook across all five divisions, creating event recaps, announcements, capabilities overviews and more. That includes building monthly content calendars for each platform and planning shot lists for on-site content capture at live sporting events and activations, then editing the footage together in CapCut.</p>
 
           <div class="app-switch" role="tablist">
             <button class="active" data-app="reels" role="tab"><i class="fab fa-instagram"></i>Instagram Reels</button>
@@ -1409,7 +1546,7 @@
           <div class="vw-card" id="appCard">
             <h3 id="appCardTitle">Instagram Reels</h3>
             <span class="count" id="appCardCount">01/02</span>
-            <p id="appCardText">Short-form video from the biggest moments: event recaps, launch videos and on-site content captured at live sporting events and activations.</p>
+            <p id="appCardText">Short-form video from the biggest moments: event recaps, launch videos and on-site content captured at live sporting events and activations, all edited together by Blake in CapCut.</p>
             <div class="card-foot"><i class="fas fa-mobile-screen"></i>Scroll inside the phone to view</div>
           </div>
         </div>
@@ -1474,15 +1611,15 @@
       <div class="container">
         <div class="work-head reveal">
           <h2 class="vw-title">Blog Posts</h2>
-          <p class="vw-text">SEO-focused articles and case studies Blake wrote for the Van Wagner News page, documenting client activation results from college football's most famous nets to the FIFA Fan Festival. Scroll the top page to read it, then flip to the next.</p>
+          <p class="vw-text">SEO-focused articles and case studies Blake wrote for the Van Wagner News page, documenting client activation results from college football's most famous nets to the FIFA Fan Festival. Scroll the page to read, then flip to the next post.</p>
         </div>
-        <div class="blog-layout">
-          <div class="pile" id="pile"></div>
+        <div class="chapters" id="chapters" role="tablist" aria-label="Blog posts"></div>
+        <div class="packet" id="packet" aria-live="polite">
         </div>
         <div class="pile-nav">
-          <button class="icon-btn" id="paperPrev" aria-label="Previous blog post"><i class="fas fa-arrow-left"></i></button>
-          <a class="vw-btn" href="https://www.vanwagner.com/news/" target="_blank" rel="noopener">Van Wagner News</a>
-          <button class="icon-btn" id="paperNext" aria-label="Next blog post"><i class="fas fa-arrow-right"></i></button>
+          <span class="book-count" id="bookCount"></span>
+          <a class="vw-btn" id="bookLink" href="https://www.vanwagner.com/news/" target="_blank" rel="noopener">Read on vanwagner.com</a>
+          <span class="packet-btns"><button id="bookPrev" aria-label="Previous page"><i class="fas fa-arrow-left"></i></button><button id="bookNext" aria-label="Next page"><i class="fas fa-arrow-right"></i></button></span>
         </div>
       </div>
     </section>
@@ -1493,7 +1630,6 @@
   // --- Posts: videos live in the "vanwagner" folder ---
   // landscape: true turns the phone on its side to play horizontal videos
   const posts = [
-    { src: 'vanwagner/launch.mp4', title: 'Launch Video', caption: '' },
     { src: 'vanwagner/frozen-four.mp4', title: 'Frozen Four', caption: '' },
     { src: 'vanwagner/derby.mp4', title: 'The Derby', caption: '' },
     { src: 'vanwagner/june-recap.mp4', title: 'June Recap', caption: '' },
@@ -1515,7 +1651,7 @@
       date: "June 16, 2026",
       image: "vanwagner/blog/PB1.jpg",
       url: "https://www.vanwagner.com/pickleball-is-scaling-van-wagner-brings-tv-visible-signage-to-the-fastest-growing-sport-in-america/",
-      html: "<p style=\"text-align: left;\"><b><em>Pickleball is growing fast. The advertising opportunity is growing with it.</em></b></p><p style=\"text-align: left;\">________________________________________</p><p>Pickleball has graduated from backyard courts and recreational leagues to primetime television. The 2026 SFIA annual report confirms pickleball as America&#8217;s fastest-growing sport for the fifth consecutive year — now the fourth-most played sport in the country, with 24.3 million Americans playing in 2025, a 171.8% increase since 2022. The professional game is catching up fast, and with it, a serious sports marketing opportunity is taking shape.</p><p>Van Wagner is now offering TV-visible signage opportunities across the top two professional pickleball tours — the Carvana PPA Tour and Major League Pickleball (MLP) presented by DoorDash. Across both tours, the schedule includes 30 tour stops, giving brands consistent, repeatable exposure throughout the season.</p><p>________________________________________</p><h4><strong>What This Means for Advertisers</strong></h4><img src=\"vanwagner/blog/PB-graphic-201x300.jpg\" alt=\"\"><p>For advertisers, this presents an opportunity to reach an engaged, rapidly growing, and increasingly mainstream sports audience through efficient, high-impact marketing inventory built for live broadcasts, streaming coverage, highlights, and social amplification. For brands looking to build awareness with passionate sports audiences without the long-term commitment of an official team or league partnership, TV-visible signage offers a flexible, high-impact alternative.</p><p><a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">Van Wagner’s Dorna division</a> specializes in TV-visible signage that places brands directly within game broadcasts, integrating advertisers’ brands and messaging into pickleball coverage. This tried-and-true format has already delivered measurable results across MLB, NHL, NBA, NCAA, MLS, and now professional pickleball.</p><p>The signage appears naturally within the broadcast frame through Sidewall LED, Backwall LED, and Virtual On-Court Signage — captured consistently throughout live coverage, highlight packages, and social content. Rather than a single impression, advertisers benefit from sustained brand visibility across every platform the sport reaches.</p><p>________________________________________</p><h4><strong>A Sport with Serious Media Infrastructure</strong></h4><p><img src=\"vanwagner/blog/PB3-263x300.jpg\" alt=\"\">What separates pickleball from many emerging sports is how quickly it has established a legitimate broadcast ecosystem. The Carvana PPA Tour and MLP presented by DoorDash now reach audiences across linear television, streaming, and digital platforms, including CBS, FOX, ESPN, Tennis Channel, PickleballTV, and YouTube. That growth is already translating into viewership. The 2026 Carvana PPA Masters on CBS averaged 791,000 viewers[JP1.1] and surpassed 1 million peak viewers, signaling pickleball’s continued rise into the mainstream sports landscape.</p><img src=\"vanwagner/blog/PB4-264x300.jpg\" alt=\"\"><p>The momentum is also being reflected at the industry level. Earlier this year, United Pickleball Association (UPA) — the parent company of both the PPA Tour and MLP — secured $225 million in funding, reinforcing long-term investment in pickleball’s professional infrastructure. Nike also signed Anna Leigh Waters, the sport’s biggest star, to its first-ever pickleball endorsement deal, further signaling growing confidence in the sport’s future and commercial potential.</p><p>________________________________________</p><h4 style=\"text-align: left;\">Why TV-Visible Signage Works in Pickleball</h4><p>Pickleball broadcasts naturally create strong visibility for signage. The sport’s compact court, consistent camera angles, and fast-paced action ensure courtside and sideline branding stays in frame throughout rallies, replays, and the highlight moments that live far beyond the broadcast itself.</p><p>In many ways, it mirrors what has made TV-visible signage so effective in established sports — but with added upside. For advertisers, pickleball offers:</p><ul><li>Sustained on-screen exposure across live coverage, replays, and highlight programming</li><li>Cross-platform longevity as content is clipped, shared, and redistributed across social and digital channels</li><li>An engaged, fast-growing audience that skews active, health-conscious, and highly valuable to brands across categories</li><li>Early-entry inventory in a sport still early in its professional lifecycle, giving advertisers a chance to build presence ahead of increased competition</li></ul><p>________________________________________</p><h4>What Dorna Does — Across Every Sport</h4><p>TV-visible signage is one of the most efficient and durable formats in sports advertising, and as the industry leader, Dorna has been building and managing this inventory across professional sports for more than four decades. Working with us, advertisers have access to the largest network of brand-building opportunities in sports, including behind home plate, courtside, and along fields of play across more than 500 professional and collegiate sports teams and events. Dorna specializes in identifying the right placements, negotiating the right inventory, and delivering measurable results in-broadcast, highlights, and across the social and digital content that surrounds every major sporting event.</p><p>________________________________________</p><h4><strong>The Takeaway</strong></h4><p>Pickleball is no longer a question of whether it belongs alongside established professional sports. The audience is real, the media distribution is substantial, and the advertising opportunity will only continue to grow as the sport’s professional ecosystem matures.</p><p>Van Wagner is positioned to help brands move now — before the space becomes crowded — and deliver the same sustained, cross-platform visibility that TV-visible signage has generated across decades of professional sports broadcasting.</p><p style=\"text-align: center;\"><b><a href=\"https://www.vanwagner.com/contact-us/\" target=\"_blank\" rel=\"noopener\">Contact our team today</a></b></p>"
+      html: "<p style=\"text-align: left;\"><b><em>Pickleball is growing fast. The advertising opportunity is growing with it.</em></b></p><p style=\"text-align: left;\">________________________________________</p><p>Pickleball has graduated from backyard courts and recreational leagues to primetime television. The 2026 SFIA annual report confirms pickleball as America&#8217;s fastest-growing sport for the fifth consecutive year — now the fourth-most played sport in the country, with 24.3 million Americans playing in 2025, a 171.8% increase since 2022. The professional game is catching up fast, and with it, a serious sports marketing opportunity is taking shape.</p><p>Van Wagner is now offering TV-visible signage opportunities across the top two professional pickleball tours — the Carvana PPA Tour and Major League Pickleball (MLP) presented by DoorDash. Across both tours, the schedule includes 30 tour stops, giving brands consistent, repeatable exposure throughout the season.</p><p>________________________________________</p><h4><strong>What This Means for Advertisers</strong></h4><img src=\"vanwagner/blog/PB-graphic.jpg\" alt=\"\"><p>For advertisers, this presents an opportunity to reach an engaged, rapidly growing, and increasingly mainstream sports audience through efficient, high-impact marketing inventory built for live broadcasts, streaming coverage, highlights, and social amplification. For brands looking to build awareness with passionate sports audiences without the long-term commitment of an official team or league partnership, TV-visible signage offers a flexible, high-impact alternative.</p><p><a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">Van Wagner’s Dorna division</a> specializes in TV-visible signage that places brands directly within game broadcasts, integrating advertisers’ brands and messaging into pickleball coverage. This tried-and-true format has already delivered measurable results across MLB, NHL, NBA, NCAA, MLS, and now professional pickleball.</p><p>The signage appears naturally within the broadcast frame through Sidewall LED, Backwall LED, and Virtual On-Court Signage — captured consistently throughout live coverage, highlight packages, and social content. Rather than a single impression, advertisers benefit from sustained brand visibility across every platform the sport reaches.</p><p>________________________________________</p><h4><strong>A Sport with Serious Media Infrastructure</strong></h4><p><img src=\"vanwagner/blog/PB3.jpg\" alt=\"\">What separates pickleball from many emerging sports is how quickly it has established a legitimate broadcast ecosystem. The Carvana PPA Tour and MLP presented by DoorDash now reach audiences across linear television, streaming, and digital platforms, including CBS, FOX, ESPN, Tennis Channel, PickleballTV, and YouTube. That growth is already translating into viewership. The 2026 Carvana PPA Masters on CBS averaged 791,000 viewers and surpassed 1 million peak viewers, signaling pickleball’s continued rise into the mainstream sports landscape.</p><img src=\"vanwagner/blog/PB4.jpg\" alt=\"\"><p>The momentum is also being reflected at the industry level. Earlier this year, United Pickleball Association (UPA) — the parent company of both the PPA Tour and MLP — secured $225 million in funding, reinforcing long-term investment in pickleball’s professional infrastructure. Nike also signed Anna Leigh Waters, the sport’s biggest star, to its first-ever pickleball endorsement deal, further signaling growing confidence in the sport’s future and commercial potential.</p><p>________________________________________</p><h4 style=\"text-align: left;\">Why TV-Visible Signage Works in Pickleball</h4><p>Pickleball broadcasts naturally create strong visibility for signage. The sport’s compact court, consistent camera angles, and fast-paced action ensure courtside and sideline branding stays in frame throughout rallies, replays, and the highlight moments that live far beyond the broadcast itself.</p><p>In many ways, it mirrors what has made TV-visible signage so effective in established sports — but with added upside. For advertisers, pickleball offers:</p><ul><li>Sustained on-screen exposure across live coverage, replays, and highlight programming</li><li>Cross-platform longevity as content is clipped, shared, and redistributed across social and digital channels</li><li>An engaged, fast-growing audience that skews active, health-conscious, and highly valuable to brands across categories</li><li>Early-entry inventory in a sport still early in its professional lifecycle, giving advertisers a chance to build presence ahead of increased competition</li></ul><p>________________________________________</p><h4>What Dorna Does — Across Every Sport</h4><p>TV-visible signage is one of the most efficient and durable formats in sports advertising, and as the industry leader, Dorna has been building and managing this inventory across professional sports for more than four decades. Working with us, advertisers have access to the largest network of brand-building opportunities in sports, including behind home plate, courtside, and along fields of play across more than 500 professional and collegiate sports teams and events. Dorna specializes in identifying the right placements, negotiating the right inventory, and delivering measurable results in-broadcast, highlights, and across the social and digital content that surrounds every major sporting event.</p><p>________________________________________</p><h4><strong>The Takeaway</strong></h4><p>Pickleball is no longer a question of whether it belongs alongside established professional sports. The audience is real, the media distribution is substantial, and the advertising opportunity will only continue to grow as the sport’s professional ecosystem matures.</p><p>Van Wagner is positioned to help brands move now — before the space becomes crowded — and deliver the same sustained, cross-platform visibility that TV-visible signage has generated across decades of professional sports broadcasting.</p><p style=\"text-align: center;\"><b><a href=\"https://www.vanwagner.com/contact-us/\" target=\"_blank\" rel=\"noopener\">Contact our team today</a></b></p>"
     },
     {
       title: "Beyond the Match: Delivering a World-Class FIFA Fan Festival™ Experience in Kansas City",
@@ -1798,6 +1934,29 @@
 
   muteBtn.addEventListener('click', toggleMute);
 
+  // --- 3D phone body: 16 shaded edge layers + a back plate behind the screen ---
+  (function build3DPhone() {
+    const frame = phoneSlot.querySelector('.phone-frame');
+    const LAYERS = 16;
+    const slabs = [];
+    for (let i = 0; i < LAYERS; i++) {
+      const sl = document.createElement('span');
+      sl.className = 'vw-slab' + (i === LAYERS - 1 ? ' back' : '');
+      const t = i / (LAYERS - 1);
+      sl.style.setProperty('--c', `hsl(220, 10%, ${(30 + 42 * Math.sin(Math.PI * t)).toFixed(1)}%)`);   // brushed metal: bright band mid-edge
+      frame.insertBefore(sl, frame.firstChild);
+      slabs.push(sl);
+    }
+    function size() {
+      const t = Math.max(14, phoneSlot.offsetWidth * 0.085);   // about as thick as a real iPhone
+      phoneSlot.style.setProperty('--t', t + 'px');
+      // slab 0 sits at the front edge, the last one (the back plate) at the very back
+      slabs.forEach((sl, k) => sl.style.setProperty('--z', (t / 2 - (t * k) / (LAYERS - 1)).toFixed(2) + 'px'));
+    }
+    size();
+    window.addEventListener('resize', size);
+  })();
+
   // --- Phone slides in when scrolled to, and only plays while on screen ---
   const phoneObserver = new IntersectionObserver(entries => {
     phoneVisible = entries[0].isIntersecting;
@@ -1808,84 +1967,99 @@
 
   renderList();
 
-  // ============ BLOG PILE ============
-  const pile = document.getElementById('pile');
-  let order = blogPosts.map((_, i) => i); // order[0] is the paper on top
+  // ============ BLOG PACKET: one post per sheet; scroll to read, flip up to the next ============
+  const packet = document.getElementById('packet');
+  const chaptersEl = document.getElementById('chapters');
+  const bookPrev = document.getElementById('bookPrev'), bookNext = document.getElementById('bookNext');
+  const bookCount = document.getElementById('bookCount'), bookLink = document.getElementById('bookLink');
+  let page = 0, turning = false;
 
-  const papers = blogPosts.map((post, i) => {
-    const paper = document.createElement('article');
-    paper.className = 'paper';
-    paper.innerHTML = `
-      <img class="cover" src="${post.image}" alt="">
-      <div class="paper-inner">
-        <div class="meta"><span>${post.date}</span></div>
+  // newest first
+  const chapterOrder = blogPosts.map((p, i) => i).sort((a, b) => new Date(blogPosts[b].date) - new Date(blogPosts[a].date));
+  chaptersEl.innerHTML = chapterOrder.map((idx, n) => `<button role="tab" data-n="${n}"><b>Post ${n + 1} · ${blogPosts[idx].date}</b></button>`).join('');
+  chapterOrder.forEach((idx, n) => { chaptersEl.children[n].append(blogPosts[idx].title); });
+
+  const sheets = chapterOrder.map((idx, n) => {
+    const post = blogPosts[idx];
+    const sh = document.createElement('div');
+    sh.className = 'sheet';
+    sh.innerHTML = `<div class="face"><div class="scroll">
+        <div class="ch-kicker"><span>Van Wagner News</span><span>${post.date}</span></div>
         <h3>${post.title}</h3>
+        <p class="ch-by">Written by Blake Massoni</p>
+        <img class="ch-cover" src="${post.image}" alt="" loading="lazy">
         <div class="body">${post.html}</div>
-        <a class="read-more" href="${post.url}" target="_blank" rel="noopener">Read on vanwagner.com <i class="fas fa-arrow-up-right-from-square"></i></a>
-      </div>`;
-    // each paper lands slightly askew, like a real stack
-    paper.style.setProperty('--x', (Math.random() * 20 - 10) + 'px');
-    paper.style.setProperty('--y', (Math.random() * 14 - 7) + 'px');
-    paper.style.setProperty('--r', (Math.random() * 8 - 4) + 'deg');
-    pile.appendChild(paper);
-    return paper;
+        <p class="end">— End of post ${n + 1} of ${chapterOrder.length} —</p>
+      </div><div class="fade"></div><div class="progress"></div><span class="scroll-cue"><i class="fas fa-arrow-down"></i> Scroll to read</span>${n < chapterOrder.length - 1 ? '<button class="corner" aria-label="Flip to the next post"></button>' : ''}</div><div class="rear"></div>`;
+    packet.appendChild(sh);
+    return sh;
+  });
+  packet.querySelectorAll('.sheet .body img').forEach(im => im.loading = 'lazy');
+  sheets.forEach(sh => {
+    const sc = sh.querySelector('.scroll'), bar = sh.querySelector('.progress');
+    sc.addEventListener('scroll', () => {
+      const max = sc.scrollHeight - sc.clientHeight;
+      bar.style.width = (max > 0 ? Math.min(100, sc.scrollTop / max * 100) : 100) + '%';
+      sh.classList.toggle('read', sc.scrollTop > 40);
+    }, { passive: true });
   });
 
-  function stackPapers() {
-    order.forEach((idx, pos) => {
-      const paper = papers[idx];
-      paper.style.zIndex = papers.length - pos;
-      paper.classList.toggle('top', pos === 0);
-      if (pos === 0) {
-        paper.querySelector('.paper-inner').scrollTop = 0;
-        paper.style.setProperty('--r', '0deg');
-        paper.style.setProperty('--x', '0px');
-        paper.style.setProperty('--y', '0px');
-      }
+  // posts already flipped are hidden; the rest sit stacked with their edges peeking out
+  function layout() {
+    sheets.forEach((sh, i) => {
+      const d = i - page;
+      sh.style.zIndex = 500 - i;
+      sh.classList.toggle('gone', d < 0 && !sh.classList.contains('flipping'));
+      sh.inert = d !== 0;
+      const k = Math.min(Math.max(d, 0), 4);
+      if (!sh.classList.contains('flipping')) sh.style.transform = k ? `translate(${k * 3}px, ${k * 4}px) rotate(${k % 2 ? 0.35 : -0.25}deg)` : 'none';   // the page you read has no transform so text and photos stay sharp
     });
+    bookCount.textContent = `Post ${page + 1} of ${sheets.length}`;
+    bookLink.href = blogPosts[chapterOrder[page]].url;
+    [...chaptersEl.children].forEach((b, n) => b.classList.toggle('on', n === page));
+    bookPrev.disabled = page === 0;
+    bookNext.disabled = page === sheets.length - 1;
   }
 
-  let tossing = false;
+  function goTo(target) {
+    target = Math.max(0, Math.min(sheets.length - 1, target));
+    if (turning || target === page) return;
+    turning = true;
+    const fwd = target > page;
+    const sh = fwd ? sheets[page] : sheets[target];
+    // skipped sheets just disappear/appear underneath the one that flips
+    sheets[target].querySelector('.scroll').scrollTop = 0; sheets[target].classList.remove('read'); sheets[target].querySelector('.progress').style.width = '0';
+    sh.style.transform = '';
+    sh.classList.add('flipping');
+    if (!fwd) sh.classList.add('rev');
+    page = target; layout();
+    setTimeout(() => { sh.classList.remove('flipping', 'rev'); turning = false; layout(); }, 800);
+  }
 
-  // top paper flies off, then slides back under the stack
-  document.getElementById('paperNext').addEventListener('click', () => {
-    if (tossing) return;
-    tossing = true;
-    const top = papers[order[0]];
-    top.classList.add('toss');
-    setTimeout(() => {
-      order.push(order.shift());
-      top.style.setProperty('--r', (Math.random() * 8 - 4) + 'deg');
-      top.classList.remove('toss');
-      stackPapers();
-      tossing = false;
-    }, 450);
+  bookNext.addEventListener('click', () => goTo(page + 1));
+  bookPrev.addEventListener('click', () => goTo(page - 1));
+  packet.addEventListener('click', e => { if (e.target.closest('.corner')) goTo(page + 1); });
+  chaptersEl.addEventListener('click', e => { const b = e.target.closest('button'); if (b) goTo(+b.dataset.n); });
+  document.addEventListener('keydown', e => {
+    const r = packet.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) return;   // only when the packet is on screen
+    if (e.key === 'ArrowRight') goTo(page + 1);
+    if (e.key === 'ArrowLeft') goTo(page - 1);
   });
-
-  // bottom paper comes back in from the side onto the top
-  document.getElementById('paperPrev').addEventListener('click', () => {
-    if (tossing) return;
-    order.unshift(order.pop());
-    const top = papers[order[0]];
-    top.classList.add('toss');
-    stackPapers();
-    void top.offsetWidth;
-    top.classList.remove('toss');
+  // sideways swipe on phones flips; up/down still scrolls the post
+  let sx = null, sy = null;
+  packet.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  packet.addEventListener('touchend', e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(page + (dx < 0 ? 1 : -1));
+    sx = null;
   });
+  layout();
 
-  // drop the papers in one by one when the section scrolls into view
-  stackPapers();
-  const pileObserver = new IntersectionObserver(entries => {
-    if (!entries[0].isIntersecting) return;
-    pileObserver.disconnect();
-    [...order].reverse().forEach((idx, i) => {
-      setTimeout(() => papers[idx].classList.add('landed'), i * 220);
-    });
-  }, { threshold: 0.3 });
-  pileObserver.observe(pile);
   // ============ BLUE CARD follows the Instagram / LinkedIn tabs ============
   const appCopy = {
-    reels: ['Instagram Reels', '01/02', 'Short-form video from the biggest moments: event recaps, launch videos and on-site content captured at live sporting events and activations.'],
+    reels: ['Instagram Reels', '01/02', 'Short-form video from the biggest moments: event recaps, launch videos and on-site content captured at live sporting events and activations, all edited together by Blake in CapCut.'],
     linkedin: ['LinkedIn', '02/02', 'Company announcements, partnerships, capabilities overviews and thought leadership, written and designed for Van Wagner\'s LinkedIn audience.']
   };
   document.querySelectorAll('.app-switch button').forEach(btn => btn.addEventListener('click', () => {
@@ -2015,3 +2189,4 @@
 
 </body>
 </html>
+
