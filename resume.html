@@ -318,6 +318,15 @@
   .resume-viewer {
     animation: fadeIn 0.5s ease-out;
   }
+
+  @media (max-width: 600px) {
+    .topbar { padding: 0 12px; gap: 8px; }
+    .page-title, .apps-menu, .profile-avatar { display: none; }
+    .back-btn { padding: 8px 14px; white-space: nowrap; }
+  }
+
+  /* ---------- phones: never let anything make the page scroll sideways ---------- */
+  body { overflow-x: clip; }
 </style>
 </head>
 <body>
@@ -360,7 +369,7 @@
 
       <!-- Image Container -->
       <div class="image-container" id="image-container">
-        <img id="resume-image" src="BM Final Resume 2026.png" alt="Blake Massoni Resume">
+        <img id="resume-image" src="Blake_Massoni_Resume_November_2026.png" alt="Blake Massoni resume, November 2026">
       </div>
 
       <!-- Action Buttons -->
@@ -402,16 +411,17 @@
       // Reset scroll position
       document.getElementById('image-container').scrollTop = 0;
     }
-      
-      function downloadResume() {
-        const link = document.createElement('a');
-        link.href = 'Blake Massoni 2026 FINAL RESUME.pdf';
-        link.download = 'Blake Massoni 2026 FINAL RESUME.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-}
-    
+
+    function downloadResume() {
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = 'Blake_Massoni_Resume_November_2026.pdf';
+      link.download = 'Blake_Massoni_Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
     // Keyboard shortcuts
     document.addEventListener('keydown', function(e) {
       if (e.key === '+' || e.key === '=') {
