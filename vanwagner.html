@@ -1430,8 +1430,11 @@
     transition: transform 0.45s cubic-bezier(.3, .7, .3, 1);
   }
   .sheet.flipping { transform-style: preserve-3d; }
-  .sheet .face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: inherit; background: inherit; }
-  .sheet .rear { position: absolute; inset: 0; transform: rotateX(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: inherit; background: linear-gradient(180deg, #ece8de, #f6f3eb 60%, #fbfaf6); }
+  .sheet .face { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; background: inherit; }
+  /* 3D-only settings switch on just while a page is flipping: Safari won't scroll a layer that has them */
+  .sheet.flipping .face { backface-visibility: hidden; -webkit-backface-visibility: hidden; pointer-events: none; }
+  .sheet .rear { display: none; position: absolute; inset: 0; pointer-events: none; transform: rotateX(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: inherit; background: linear-gradient(180deg, #ece8de, #f6f3eb 60%, #fbfaf6); }
+  .sheet.flipping .rear { display: block; }
   .sheet .face::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(0deg, rgba(0,0,0,0.22), rgba(0,0,0,0) 60%); opacity: 0; }
   .sheet.flipping .face::after { animation: liftShade 0.8s ease forwards; }
   .sheet.flipping.rev .face::after { animation-direction: reverse; }
@@ -1467,7 +1470,7 @@
   .sheet .scroll-cue i { font-size: 12px; }
   @keyframes cueBob { 0%, 100% { margin-bottom: 0; } 50% { margin-bottom: -6px; } }
   .sheet.read .scroll-cue { opacity: 0; transform: translate(-50%, 10px); animation: none; }
-  .sheet .progress { position: absolute; top: 0; left: 0; z-index: 3; height: 4px; width: 0; background: #1b4388; transition: width 0.1s linear; }
+  .sheet .progress { position: absolute; top: 0; left: 0; z-index: 3; pointer-events: none; height: 4px; width: 0; background: #1b4388; transition: width 0.1s linear; }
   .sheet .scroll { scrollbar-width: auto; scrollbar-color: #1b4388 #ece8de; }
   .sheet .scroll::-webkit-scrollbar { width: 8px; }
   .sheet .scroll::-webkit-scrollbar-track { background: #ece8de; }
