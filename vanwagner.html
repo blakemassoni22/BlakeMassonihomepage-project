@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Van Wagner | Social Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block" rel="stylesheet">
+<style>
+  :root {
+    --darkBlue: #08101d;
+    --darkBlueAlt: #0e1a2e;
+    --blue: #1b4388;
+    --blueAlt: #18284d;
+    --lightBlue: #84aaeb;
+    --white: #fff;
+    --muted: rgba(255, 255, 255, 0.55);
+    --line: 1px solid rgba(255, 255, 255, 0.08);
+    --glass: rgba(255, 255, 255, 0.05);
+    --radius: 10px;
+    --google-blue: #1b4388;              /* VW --blue (buttons, highlights) */
+    --link-blue: #84aaeb;                /* VW --lightBlue (eyebrows, links) */
+    --text-primary: #fff;
+    --text-secondary: rgba(255, 255, 255, 0.72);
+    --border-color: rgba(255, 255, 255, 0.16);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--darkBlue);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--lightBlue); color: var(--darkBlue); }
+
+  h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+
+  .container {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--link-blue);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  .eyebrow::before { /* VW dot */
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--link-blue);
+  }
+
+  main { position: relative; z-index: 1; }
+
+  /* ---------- HEADER (same topbar as the other project pages) ---------- */
+  .topbar {
+    height: 72px;
+    background: var(--darkBlue);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo-section { display: flex; align-items: center; gap: 12px; }
+
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .logo span:nth-child(1) { color: #4285F4; }
+  .logo span:nth-child(2) { color: #EA4335; }
+  .logo span:nth-child(3) { color: #FBBC05; }
+  .logo span:nth-child(4) { color: #4285F4; }
+  .logo span:nth-child(5) { color: #34A853; }
+  .logo span:nth-child(6) { color: #EA4335; }
+  .logo span:nth-child(7) { color: #FBBC05; }
+  .logo span:nth-child(8) { color: #4285F4; }
+  .logo span:nth-child(9) { color: #34A853; }
+  .logo span:nth-child(10){ color: #EA4335; }
+  .logo span:nth-child(11){ color: #FBBC05; }
+  .logo span:nth-child(12){ color: #4285F4; }
+
+  .page-title { font-size: 16px; color: var(--text-secondary); font-weight: 400; font-family: 'Poppins', sans-serif; display: flex; align-items: center; gap: 12px; }
+  .page-title img { height: 26px; display: block; }
+  .logo { font-family: 'Poppins', sans-serif; }
+
+  .topbar-actions { display: flex; gap: 12px; align-items: center; }
+
+  .apps-menu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .apps-menu:hover { background-color: rgba(255,255,255,0.08); }
+
+  .apps-icon {
+    width: 20px;
+    height: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 6px);
+    grid-gap: 1px;
+    opacity: 0.6;
+  }
+
+  .apps-icon span { width: 6px; height: 6px; background-color: var(--text-secondary); border-radius: 1px; }
+
+  .profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .back-btn {
+    padding: 10px 26px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 100px;
+    font: 500 14px 'Poppins', sans-serif;
+    text-decoration: none;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    transition: 0.3s ease-in-out all;
+  }
+
+  .back-btn:hover { background: #fff; color: var(--darkBlue); }
+
+  .text-link {
+    color: var(--link-blue);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .text-link i { transition: transform 0.3s var(--ease); }
+  .text-link:hover i { transform: translateX(4px); }
+
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  }
+
+  .icon-btn:hover { background: #fff; color: var(--darkBlue); border-color: #fff; }
+  .topbar .icon-btn { width: 40px; height: 40px; border: none; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(2.8rem, 7.5vw, 5.8rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--lightBlue);
+  }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  .section-head { padding-top: 90px; }
+  .hero-bottom p {
+    max-width: 500px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1.08rem;
+    font-weight: 400;
+    line-height: 1.75;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(6px);
+    transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease);
+  }
+
+  .reveal.in { opacity: 1; transform: none; filter: none; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 90px 0 20px;
+  }
+
+  .section-head h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+
+  /* ---------- SECTION BANDS (vanwagner.com alternates solid navy / blue blocks) ---------- */
+  .band { position: relative; }
+  .band-alt { background: var(--darkBlueAlt); }
+  .band-blue { background: var(--blue); }
+  .band-blue .eyebrow { color: #fff; }
+  .band-blue .eyebrow::before { background: #fff; }
+
+  /* ---------- REELS SECTION: title on the left, phone on the right ---------- */
+  .reels-layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 1fr);
+    align-items: center;
+    gap: 40px;
+    padding: 90px 0 110px;
+    perspective: 2000px;
+  }
+
+  .reels-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reels-side .section-head { padding: 0 0 32px; }
+  .reels-side .app-switch { margin-bottom: 24px; }
+
+  .section-blurb {
+    max-width: 440px;
+    margin: 18px 0 0;
+    color: var(--text-secondary);
+    font-size: 1.02rem;
+    line-height: 1.75;
+  }
+
+  .phone-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* quiet "scroll to view" cue: a little mouse with a moving wheel */
+  .scroll-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  .scroll-icon {
+    position: relative;
+    width: 18px;
+    height: 28px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+  }
+
+  .scroll-icon::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    width: 3px;
+    height: 6px;
+    margin-left: -1.5px;
+    border-radius: 2px;
+    background: var(--lightBlue);
+    animation: wheel 1.6s ease-in-out infinite;
+  }
+
+  @keyframes wheel {
+    0% { opacity: 0; transform: translateY(0); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(9px); }
+  }
+
+  /* ---------- PHONE (same build as the .FW mockup: real device outline over a screen layer) ---------- */
+  .phone-slot {
+    position: relative;
+    height: clamp(540px, 84vh, 820px);
+    aspect-ratio: 1350 / 2760;
+    opacity: 0;
+    transform-style: preserve-3d;
+  }
+
+  /* spins up from below into place */
+  .phone-slot.in { animation: spinUp 1.8s cubic-bezier(.16, .84, .44, 1) forwards; }
+
+  @keyframes spinUp {
+    0% { opacity: 0; transform: translateY(45vh) rotateY(-540deg) rotateZ(-12deg) scale(0.5); }
+    25% { opacity: 1; }
+    100% { opacity: 1; transform: none; }
+  }
+
+  /* ground shadow to sell the depth */
+  .phone-slot::after {
+    content: '';
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: -4%;
+    height: 24px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), transparent 72%);
+    filter: blur(4px);
+    z-index: 0;
+  }
+
+  .phone-slot { filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.6)); }
+  .phone-slot::after { transition: opacity 0.5s; }
+
+  .phone-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.9s var(--ease);
+  }
+
+  /* ---------- LANDSCAPE: phone turns on its side for horizontal videos ---------- */
+  .phone-slot.landscape::after { opacity: 0; }
+  .phone-slot.landscape .phone-frame { transform: rotate(-90deg) scale(var(--land-scale, 0.72)); }
+
+  .phone-slot.landscape .feed { inset: 0; }
+
+  .app-reels .status,
+  .reels-top,
+  .reels-nav,
+  .reel-shade,
+  .reel-actions,
+  .reel-info,
+  .reel-progress { transition: opacity 0.4s; }
+
+  .phone-slot.landscape .app-reels .status,
+  .phone-slot.landscape .reels-top,
+  .phone-slot.landscape .reels-nav,
+  .phone-slot.landscape .reel-shade,
+  .phone-slot.landscape .reel-actions,
+  .phone-slot.landscape .reel-info,
+  .phone-slot.landscape .reel-progress {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* counter-rotate the video so it plays upright across the sideways screen */
+  .phone-slot.landscape .reel.current video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100cqh;
+    height: 100cqw;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  /* real device outline (vanwagner/iphone-17.svg) sits above the screen so its bezel covers the edges */
+  .phone-outline {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* matches the transparent screen cutout inside iphone-17.svg */
+  .phone-screen {
+    position: absolute;
+    left: 5.3%;
+    top: 2.5%;
+    width: 89.3%;
+    height: 95%;
+    border-radius: 18% / 8.5%;
+    background: #000;
+    overflow: hidden;
+    z-index: 1;
+    container-type: size; /* lets the app UI scale with the phone via cqw units */
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* glass highlight sweeping across the screen */
+  .phone-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, rgba(255, 255, 255, 0.10) 0%, transparent 18%, transparent 82%, rgba(255, 255, 255, 0.05) 100%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* ---------- REELS APP UI ---------- */
+  .app-reels { color: #fff; }
+  .feed {
+    position: absolute;
+    inset: 0 0 15cqw 0;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+  }
+
+  .feed::-webkit-scrollbar { display: none; }
+
+  .reel {
+    position: relative;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow: hidden;
+    background: #000;
+    cursor: pointer;
+  }
+
+  .reel video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .reel video.contain { object-fit: contain; }
+
+  .reel-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.35), transparent 22%, transparent 60%, rgba(0, 0, 0, 0.7));
+    pointer-events: none;
+  }
+
+  .status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 12cqw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1cqw 9cqw 0;
+    font-size: 3.8cqw;
+    font-weight: 600;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .status .icons { display: flex; gap: 1.5cqw; }
+
+  .reels-top {
+    position: absolute;
+    top: 13cqw;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5cqw;
+    font: 700 5.8cqw 'Poppins', sans-serif;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .reels-top .fa-chevron-down { font-size: 3.4cqw; margin-left: 1cqw; }
+
+  .reel-actions {
+    position: absolute;
+    right: 3cqw;
+    bottom: 6cqw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5.5cqw;
+    font-size: 6.6cqw;
+    z-index: 3;
+  }
+
+  .reel-actions .act {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    font-size: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1cqw;
+  }
+
+  .reel-actions .act span { font-size: 3cqw; font-weight: 500; }
+  .reel-actions .like.liked i { color: #ff3040; animation: pop 0.4s; }
+
+  @keyframes pop {
+    50% { transform: scale(1.35); }
+  }
+
+  .audio-thumb {
+    width: 7.5cqw;
+    height: 7.5cqw;
+    border-radius: 1.8cqw;
+    border: 0.6cqw solid #fff;
+    background: #003595 url(Van_Wagner_Logo.svg) center / 96% auto no-repeat;
+  }
+
+  .reel-info {
+    position: absolute;
+    left: 4cqw;
+    right: 18cqw;
+    bottom: 6cqw;
+    z-index: 3;
+    font-size: 3.6cqw;
+    pointer-events: none;
+  }
+
+  .reel-user {
+    display: flex;
+    align-items: center;
+    gap: 2.4cqw;
+    margin-bottom: 2.4cqw;
+  }
+
+  .avatar {
+    width: 8.5cqw;
+    height: 8.5cqw;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #003595 url(Van_Wagner_Logo.svg) center / 96% auto no-repeat; /* Van Wagner logo */
+    border: 0.4cqw solid rgba(255, 255, 255, 0.8);
+  }
+
+  .follow {
+    border: 0.3cqw solid rgba(255, 255, 255, 0.7);
+    border-radius: 2cqw;
+    padding: 0.6cqw 2.6cqw;
+    font-size: 3.2cqw;
+    font-weight: 600;
+  }
+
+  .reel-caption {
+    line-height: 1.4;
+    margin-bottom: 2.4cqw;
+  }
+
+  .reel-audio {
+    font-size: 3.2cqw;
+    opacity: 0.9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .reel-audio i { margin-right: 1.5cqw; }
+
+  .reel-progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0.6cqw;
+    background: rgba(255, 255, 255, 0.25);
+    z-index: 4;
+  }
+
+  .reel-progress div {
+    width: 0;
+    height: 100%;
+    background: #fff;
+  }
+
+  /* big heart on double-tap */
+  .heart-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 24cqw;
+    color: #ff3040;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 4;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.4));
+  }
+
+  .heart-burst.show { animation: burst 0.9s var(--ease); }
+
+  @keyframes burst {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    20% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+    40% { transform: translate(-50%, -50%) scale(0.95); }
+    80% { opacity: 1; }
+    100% { transform: translate(-50%, -60%) scale(1); opacity: 0; }
+  }
+
+  /* sound on/off indicator after tapping a reel */
+  .mute-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16cqw;
+    height: 16cqw;
+    margin: -8cqw 0 0 -8cqw;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, 0.55);
+    font-size: 6cqw;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.25s, transform 0.25s;
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  .mute-flash.show { opacity: 1; transform: scale(1); }
+
+  .reels-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 15cqw;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-top: 3.2cqw;
+    background: #000;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 5.6cqw;
+    color: rgba(255, 255, 255, 0.9);
+    z-index: 5;
+  }
+
+  /* iOS home indicator */
+  .reels-nav::after {
+    content: '';
+    position: absolute;
+    bottom: 1.6cqw;
+    left: 50%;
+    width: 34cqw;
+    height: 1.2cqw;
+    margin-left: -17cqw;
+    border-radius: 1cqw;
+    background: #fff;
+  }
+
+  /* ---------- BLOG PILE ---------- */
+  .blog-layout { padding: 10px 0 140px; }
+
+  /* intro line + arrows sit in a row above the pile */
+  .blog-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  .blog-intro p {
+    max-width: 560px;
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .blog-intro .arrows { display: flex; gap: 10px; }
+  .band-blue .icon-btn { border-color: rgba(255, 255, 255, 0.4); }
+  .band-blue .blog-intro p { color: rgba(255, 255, 255, 0.85); }
+
+  /* big, wide papers so a lot more of each article fits on screen */
+  .pile {
+    position: relative;
+    width: 100%;
+    height: clamp(600px, 84vh, 860px);
+    margin: 0 auto;
+  }
+
+  .paper {
+    --x: 0px;
+    --y: 0px;
+    --r: 0deg;
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    color: var(--darkBlue);
+    border-radius: 16px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 36% 1fr; /* cover photo left, article right */
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.45);
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(var(--x), -130vh) rotate(calc(var(--r) * 5));
+    transition: transform 1s cubic-bezier(0.2, 1.15, 0.4, 1), opacity 0.4s;
+  }
+
+  .paper.landed {
+    opacity: 1;
+    transform: translate(var(--x), var(--y)) rotate(var(--r));
+  }
+
+  /* only clickable once it has landed; before that it hangs invisibly above the pile (over the phone) */
+  .paper.top.landed { pointer-events: auto; }
+  .paper.top.landed .paper-inner { overflow-y: auto; }
+
+  .paper.toss {
+    transform: translate(130%, -40px) rotate(16deg);
+    transition: transform 0.45s ease-in;
+  }
+
+  .paper .meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    padding-bottom: 18px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e4e7ee;
+  }
+
+  .paper h3 {
+    margin: 0 0 20px;
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .paper .cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .paper-inner {
+    overflow: hidden;
+    padding: 44px 56px 48px;
+    scrollbar-width: thin;
+    scrollbar-color: #c9cfdb transparent;
+  }
+
+  .paper .body { font-size: 0.97rem; }
+  .paper .body::after { content: ''; display: block; clear: both; }
+
+  .paper .body p {
+    margin: 0 0 14px;
+    line-height: 1.7;
+    color: #393e46;
+  }
+
+  .paper .body h4 {
+    margin: 26px 0 8px;
+    font: 600 1.08rem 'Poppins', sans-serif;
+    color: var(--darkBlue);
+  }
+
+  /* inline photos float beside the text instead of taking a full row */
+  .paper .body img {
+    float: right;
+    width: 44%;
+    height: auto;
+    margin: 6px 0 14px 26px;
+    border-radius: 10px;
+  }
+
+  .paper .body a { color: var(--blue); }
+
+  .paper .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 12px 20px;
+    border-radius: 100px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .paper .read-more:hover { background: var(--darkBlue); }
+  .paper .read-more i { font-size: 0.7rem; }
+
+  /* ---------- APP SWITCHER ---------- */
+  .app-switch {
+    display: inline-flex;
+    padding: 4px;
+    margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+  }
+
+  .app-switch button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font: 500 0.9rem 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .app-switch button:hover { color: var(--text-primary); }
+  .app-switch button.active { background: var(--blue); color: #fff; }
+
+  /* each app fills the screen; switching zooms like opening an iOS app */
+  .app {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  }
+
+  .app.hidden {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+  }
+
+  /* ---------- LINKEDIN APP UI ---------- */
+  .app-linkedin {
+    background: #f4f2ee;
+    color: #191919;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  }
+
+  .app-linkedin .status { color: #000; background: #fff; }
+
+  .li-top {
+    position: absolute;
+    top: 12cqw;
+    left: 0;
+    right: 0;
+    height: 12cqw;
+    display: flex;
+    align-items: center;
+    gap: 3cqw;
+    padding: 0 4cqw;
+    background: #fff;
+    border-bottom: 1px solid #e0dfdc;
+    z-index: 5;
+  }
+
+  .li-me {
+    width: 8cqw;
+    height: 8cqw;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--lightBlue), var(--blue));
+    flex-shrink: 0;
+  }
+
+  .li-search {
+    flex: 1;
+    height: 8cqw;
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+    padding: 0 3cqw;
+    border-radius: 1.6cqw;
+    background: #edf3f8;
+    color: #666;
+    font-size: 3.4cqw;
+  }
+
+  .li-top .fa-comment-dots { font-size: 5.4cqw; color: #666; }
+
+  .li-feed {
+    position: absolute;
+    top: 24cqw;
+    bottom: 15cqw;
+    left: 0;
+    right: 0;
+    padding-top: 2cqw;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .li-feed::-webkit-scrollbar { display: none; }
+
+  .li-post {
+    margin-bottom: 2cqw;
+    padding-top: 4cqw;
+    background: #fff;
+    font-size: 3.5cqw;
+  }
+
+  .li-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.6cqw;
+    padding: 0 4cqw;
+  }
+
+  .li-logo {
+    width: 11cqw;
+    height: 11cqw;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 1.2cqw;
+    background: #003595 url(Van_Wagner_Logo.svg) center / 96% auto no-repeat; /* Van Wagner logo */
+  }
+
+  .li-name { font-size: 3.6cqw; font-weight: 600; }
+
+  .li-sub {
+    color: #666;
+    font-size: 3cqw;
+    line-height: 1.4;
+  }
+
+  .li-follow {
+    margin-left: auto;
+    color: #0a66c2;
+    font-size: 3.4cqw;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .li-text {
+    padding: 3cqw 4cqw;
+    line-height: 1.45;
+    white-space: pre-line;
+  }
+
+  .li-text a,
+  .li-tag { color: #0a66c2; font-weight: 600; text-decoration: none; }
+
+  /* LinkedIn-style photo grids: 1 full width, 2 side by side, 3 = one big + two, 4 = 2x2 */
+  .li-media[class*="li-grid"] {
+    display: grid;
+    gap: 0.6cqw;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .li-media[class*="li-grid"] img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .li-grid-1 { grid-template-columns: 1fr !important; }
+  .li-grid-1 img { aspect-ratio: auto !important; }
+  .li-grid-3 img:first-child { grid-column: span 2; aspect-ratio: 16 / 9; }
+
+  .li-media img,
+  .li-media video {
+    width: 100%;
+    display: block;
+  }
+
+  .li-stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.4cqw 4cqw;
+    color: #666;
+    font-size: 3cqw;
+  }
+
+  .li-reacts { display: flex; align-items: center; }
+
+  .li-reacts i {
+    width: 4.4cqw;
+    height: 4.4cqw;
+    margin-right: -0.8cqw;
+    display: grid;
+    place-items: center;
+    border: 0.4cqw solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2.2cqw;
+  }
+
+  .li-reacts .r-like { background: #378fe9; }
+  .li-reacts .r-clap { background: #6dae4f; }
+  .li-reacts .r-love { background: #df704d; }
+  .li-reacts span { margin-left: 2cqw; }
+
+  .li-actions {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 4cqw;
+    padding: 2.4cqw 0 3cqw;
+    border-top: 1px solid #e8e8e8;
+    color: #666;
+    font-size: 2.8cqw;
+    font-weight: 600;
+  }
+
+  .li-actions button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1cqw;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .li-actions i { font-size: 4.6cqw; }
+  .li-actions .liked { color: #0a66c2; }
+  .li-actions .liked i { animation: pop 0.4s; }
+
+  .li-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 15cqw;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 2.4cqw;
+    background: #fff;
+    border-top: 1px solid #e0dfdc;
+    color: #666;
+    font-size: 2.4cqw;
+    z-index: 5;
+  }
+
+  .li-nav div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8cqw;
+  }
+
+  .li-nav i { font-size: 5cqw; }
+  .li-nav .on { color: #191919; }
+
+  .li-nav::after {
+    content: '';
+    position: absolute;
+    bottom: 1.6cqw;
+    left: 50%;
+    width: 34cqw;
+    height: 1.2cqw;
+    margin-left: -17cqw;
+    border-radius: 1cqw;
+    background: #000;
+  }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 860px) {
+    .container { padding: 0 20px; }
+    .hero { padding-top: 50px; padding-bottom: 30px; }
+    .section-head { padding-top: 70px; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; }
+    .blog-intro { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .phone-slot { height: min(82vh, 680px); }
+    .reels-layout { grid-template-columns: 1fr; padding: 70px 0 90px; }
+    .reels-side { align-items: center; text-align: center; }
+    .reels-side .section-head { padding-bottom: 24px; }
+    .reels-side .eyebrow { justify-content: center; }
+    .section-blurb { margin-left: auto; margin-right: auto; }
+    .pile { height: min(82vh, 720px); }
+    .paper { grid-template-columns: 1fr; grid-template-rows: 160px 1fr; }
+    .paper-inner { padding: 26px 24px 32px; }
+    .paper .body img { float: none; width: 100%; margin: 18px 0; }
+  }
+
+  @media (max-width: 700px) {
+    .topbar { padding: 0 16px; }
+    .page-title, .apps-menu, .profile-avatar { display: none; }
+    .back-btn { padding: 8px 14px; }
+  }
+
+  /* =====================================================================
+     BROWSER BAR: a Chrome-style address bar that works as a search engine for the site
+     ===================================================================== */
+  .omnibar {
+    position: sticky; top: 0; z-index: 200;
+    width: 100%;
+    box-sizing: border-box;
+    height: 60px;
+    display: flex; align-items: center; gap: 6px;
+    padding: 0 12px;
+    background: #fff;
+    border-bottom: 1px solid #dadce0;
+    font-family: 'Inter', Arial, sans-serif;
+  }
+  .ob-btn {
+    width: 36px; height: 36px; flex-shrink: 0;
+    display: grid; place-items: center;
+    border: none; border-radius: 50%;
+    background: none; color: #5f6368;
+    cursor: pointer; text-decoration: none;
+    transition: background-color 0.15s;
+  }
+  .ob-btn:hover { background: rgba(31, 31, 31, 0.07); }
+  .ob-btn .msi { font-size: 22px; }
+  .ob-btn i { font-size: 15px; }
+
+  .msi {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal; font-style: normal; font-size: 20px; line-height: 1;
+    display: inline-block; white-space: nowrap; direction: ltr;
+    -webkit-font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased;
+  }
+
+  /* the address field stretches across the whole bar at every screen width */
+  .ob-search { position: relative; flex: 1 1 0; min-width: 0; margin: 0 8px; }
+  .ob-field {
+    height: 40px;
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 8px 0 14px;
+    border-radius: 20px;
+    background: #f1f3f4;
+    border: 1px solid transparent;
+    transition: background-color 0.15s, box-shadow 0.15s;
+  }
+  .ob-field:hover { background: #e8eaed; }
+  .ob-search.open .ob-field,
+  .ob-field:focus-within { background: #fff; box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); }
+  .ob-search.open .ob-field { border-radius: 20px 20px 0 0; box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); }
+  .ob-field .msi { color: #5f6368; font-size: 18px; }
+  .ob-field input {
+    flex: 1; min-width: 0;
+    border: none; outline: none; background: none;
+    font: 400 15px 'Inter', Arial, sans-serif; color: #202124;
+  }
+  .ob-field input::placeholder { color: #5f6368; }
+  .ob-clear { display: none; width: 30px; height: 30px; }
+  .ob-search.typing .ob-clear { display: grid; }
+
+  /* suggestions dropdown */
+  .ob-menu {
+    position: absolute; left: 0; right: 0; top: 100%;
+    display: none;
+    padding: 6px 0 10px;
+    background: #fff;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 6px 12px -2px rgba(32, 33, 36, 0.28);
+    border-top: 1px solid #e8eaed;
+  }
+  .ob-search.open .ob-menu { display: block; }
+  .ob-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 8px 16px;
+    color: #202124; text-decoration: none;
+    cursor: pointer;
+  }
+  .ob-item.sel, .ob-item:hover { background: #f1f3f4; }
+  .ob-item .msi { color: #5f6368; font-size: 20px; }
+  .ob-item .ob-text { min-width: 0; }
+  .ob-item b { display: block; font-weight: 500; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ob-item small { display: block; color: #188038; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ob-item mark { background: none; color: inherit; font-weight: 700; }
+  .ob-empty { padding: 10px 16px; color: #5f6368; font-size: 14px; }
+
+  .ob-avatar { width: 30px; height: 30px; margin: 0 6px; flex-shrink: 0; border-radius: 50%; background: #1e8e3e; color: #fff; display: grid; place-items: center; font: 500 14px 'Inter', sans-serif; }
+
+  /* =====================================================================
+     VAN WAGNER THEME (matches vanwagner.com: navy canvas, VW blue blocks, Poppins + Inter)
+     ===================================================================== */
+  :root {
+    --vw-navy: #08101d;
+    --vw-navy-alt: #0e1a2e;
+    --vw-blue: #1b4388;
+    --vw-light: #84aaeb;
+  }
+
+  body { background: var(--vw-navy); color: #fff; font-family: 'Inter', sans-serif; }
+  h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+  ::selection { background: var(--vw-light); color: var(--vw-navy); }
+
+  /* hero: photo banner with rounded bottom corners sitting on the VW blue band */
+  .vw-top { background: var(--vw-blue); }
+  .vw-hero {
+    position: relative;
+    min-height: clamp(440px, 70vh, 700px);
+    display: grid; place-items: center;
+    padding: 80px 24px;
+    text-align: center;
+    border-radius: 0 0 64px 64px;
+    overflow: hidden;
+    background: var(--vw-navy-alt) url('vanwagner/blog/AS-Field-goal-1.jpg') center / cover no-repeat;
+  }
+  .vw-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 16, 29, 0.55), rgba(8, 16, 29, 0.78)); }
+  .vw-hero-inner { position: relative; max-width: 900px; }
+  .vw-hero .role { margin: 0 0 16px; color: var(--vw-light); font: 500 15px 'Poppins', sans-serif; }
+  .vw-hero h1 { margin: 0; font-size: clamp(2.6rem, 6vw, 4.6rem); font-weight: 700; line-height: 1.08; }
+  .vw-hero p.lead { max-width: 640px; margin: 22px auto 0; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: rgba(255, 255, 255, 0.9); }
+
+  .vw-stats {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 44px 40px 52px;
+    text-align: center;
+  }
+  .vw-stats b { display: block; font: 700 clamp(28px, 3.2vw, 40px)/1.1 'Poppins', sans-serif; }
+  .vw-stats span { display: block; margin-top: 6px; color: rgba(255, 255, 255, 0.82); font-size: 14px; }
+
+  /* shared section pieces */
+  .vw-section { position: relative; padding: 110px 0; }
+  .vw-title { margin: 0; font: 700 clamp(2.2rem, 4.4vw, 3.2rem)/1.1 'Poppins', sans-serif; }
+  .vw-text { max-width: 520px; margin: 22px 0 0; color: rgba(255, 255, 255, 0.85); font-size: 15px; line-height: 1.7; }
+  .vw-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    height: 46px; padding: 0 30px;
+    border: 1.5px solid #fff; border-radius: 999px;
+    background: none; color: #fff;
+    font: 500 14px 'Poppins', sans-serif; text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .vw-btn:hover { background: #fff; color: var(--vw-navy); }
+
+  /* social: copy + tabs + blue card on the left, phone on the right */
+  .social-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+
+  .app-switch { display: flex; flex-wrap: wrap; gap: 12px; margin: 34px 0 0; padding: 0; background: none; border: none; border-radius: 0; }
+  .app-switch button {
+    display: inline-flex; align-items: center; gap: 10px;
+    height: 54px; padding: 0 24px;
+    border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 4px;
+    background: var(--vw-navy-alt); color: #fff;
+    font: 600 14px 'Poppins', sans-serif;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  .app-switch button:hover { border-color: #fff; color: #fff; }
+  .app-switch button.active { background: var(--vw-blue); border-color: var(--vw-blue); }
+
+  .vw-card {
+    margin-top: 12px;
+    max-width: 440px;
+    padding: 30px 30px 24px;
+    border-radius: 4px;
+    background: var(--vw-blue);
+  }
+  .vw-card h3 { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.2; }
+  .vw-card .count { display: block; margin-top: 4px; font-size: 13px; color: rgba(255, 255, 255, 0.75); }
+  .vw-card p { margin: 16px 0 0; font-size: 14px; line-height: 1.65; color: rgba(255, 255, 255, 0.92); }
+  .vw-card .card-foot { display: flex; align-items: center; gap: 12px; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.35); font-size: 13px; color: rgba(255, 255, 255, 0.85); }
+
+  .scroll-cue { margin-top: 26px; }
+
+  .phone-col { position: relative; display: flex; justify-content: center; }
+  .phone-col::before {
+    content: ''; position: absolute; left: 50%; top: 50%;
+    width: 760px; height: 760px; transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(27, 67, 136, 0.55), transparent 62%);
+    pointer-events: none;
+  }
+
+  /* blog: title left + copy right, like "Our Work" on vanwagner.com */
+  .writing { overflow: hidden; }
+  .writing::before {   /* the thin arc line vanwagner.com uses between sections */
+    content: ''; position: absolute; left: -10%; right: -10%; top: 40px; height: 320px;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    pointer-events: none;
+  }
+  .work-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; margin-bottom: 64px; }
+  .work-head .vw-text { margin: 0; }
+  .writing .blog-layout { padding: 0; }
+  .pile-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; }
+  .pile-nav .icon-btn {
+    width: 70px; height: 32px;
+    border: 1.5px solid rgba(255, 255, 255, 0.75); border-radius: 999px;
+    background: none; color: #fff; font-size: 0.8rem;
+  }
+  .pile-nav .icon-btn:hover { background: #fff; color: var(--vw-navy); border-color: #fff; }
+
+  @media (max-width: 960px) {
+    .social-grid, .work-head { grid-template-columns: 1fr; }
+    .vw-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .vw-card { max-width: none; }
+  }
+
+  @media (max-width: 700px) {
+    .omnibar { gap: 2px; padding: 0 6px; height: 56px; }
+    .ob-hide-sm { display: none; }
+    .ob-search { margin: 0 4px; }
+    .ob-field { height: 38px; padding: 0 4px 0 12px; gap: 8px; }
+    .ob-field input { font-size: 16px; }   /* 16px stops iPhone from zooming in on tap */
+    .ob-item { padding: 10px 14px; }
+    .vw-hero { border-radius: 0 0 32px 32px; }
+    .vw-section { padding: 80px 0; }
+    .vw-stats { padding: 36px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- BROWSER BAR: the address bar doubles as a search engine for the whole site -->
+  <header class="omnibar">
+    <a class="ob-btn" href="projects.html" title="Back to Projects" aria-label="Back to Projects"><span class="msi">arrow_back</span></a>
+    <button class="ob-btn ob-hide-sm" onclick="history.forward()" title="Forward" aria-label="Forward"><span class="msi">arrow_forward</span></button>
+    <button class="ob-btn ob-hide-sm" onclick="location.reload()" title="Reload" aria-label="Reload"><span class="msi">refresh</span></button>
+
+    <div class="ob-search" id="obSearch">
+      <form class="ob-field" id="obForm" role="search" autocomplete="off">
+        <span class="msi" id="obIcon">lock</span>
+        <input id="obInput" type="text" spellcheck="false" aria-label="Search or type a URL"
+               aria-autocomplete="list" aria-controls="obMenu" value="VanWagner-Social.com/blakemassoni">
+        <button type="button" class="ob-btn ob-clear" id="obClear" aria-label="Clear"><span class="msi">close</span></button>
+      </form>
+      <div class="ob-menu" id="obMenu" role="listbox"></div>
+    </div>
+
+    <button class="ob-btn" id="muteBtn" aria-label="Toggle sound"><i class="fas fa-volume-xmark"></i></button>
+    <a class="ob-btn ob-hide-sm" href="googleHomepage.html" title="Home" aria-label="Home"><span class="msi">apps</span></a>
+    <span class="ob-avatar ob-hide-sm" title="Blake Massoni">B</span>
+  </header>
+
+  <main>
+    <!-- Hero + VW blue band -->
+    <div class="vw-top">
+      <section class="vw-hero">
+        <div class="vw-hero-inner">
+          <p class="role reveal">Marketing &amp; Business Development Coordinator · Apr 2026 – Present</p>
+          <h1 class="reveal">Content built for the biggest stages in sports.</h1>
+          <p class="lead reveal">At Van Wagner, a full-service sports advertising and entertainment agency, Blake creates social content, writes blog posts and case studies, and builds research decks that support client proposals.</p>
+        </div>
+      </section>
+      <div class="vw-stats">
+        <div class="reveal"><b>5</b><span>Divisions covered on social</span></div>
+        <div class="reveal"><b>3</b><span>Platforms: Instagram, LinkedIn, Facebook</span></div>
+        <div class="reveal"><b>Monthly</b><span>Content calendars for every platform</span></div>
+        <div class="reveal"><b>On-site</b><span>Shot lists for live events</span></div>
+      </div>
+    </div>
+
+    <!-- Social -->
+    <section class="vw-section" id="social">
+      <div class="container social-grid">
+        <div class="reveal">
+          <h2 class="vw-title">Social Content</h2>
+          <p class="vw-text">Blake manages Van Wagner's Instagram, LinkedIn and Facebook across all five divisions, creating event recaps, announcements, capabilities overviews and more. That includes building monthly content calendars for each platform and planning shot lists for on-site content capture at live sporting events and activations.</p>
+
+          <div class="app-switch" role="tablist">
+            <button class="active" data-app="reels" role="tab"><i class="fab fa-instagram"></i>Instagram Reels</button>
+            <button data-app="linkedin" role="tab"><i class="fab fa-linkedin"></i>LinkedIn</button>
+          </div>
+          <div class="vw-card" id="appCard">
+            <h3 id="appCardTitle">Instagram Reels</h3>
+            <span class="count" id="appCardCount">01/02</span>
+            <p id="appCardText">Short-form video from the biggest moments: event recaps, launch videos and on-site content captured at live sporting events and activations.</p>
+            <div class="card-foot"><i class="fas fa-mobile-screen"></i>Scroll inside the phone to view</div>
+          </div>
+        </div>
+
+        <div class="phone-col">
+        <div class="phone-slot" id="phoneSlot">
+          <div class="phone-frame">
+            <div class="phone-screen">
+
+              <!-- Instagram Reels app -->
+              <div class="app app-reels" id="appReels">
+                <div class="feed" id="feed"></div>
+                <div class="status">
+                  <span>9:41</span>
+                  <span class="icons"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></span>
+                </div>
+                <div class="reels-top">
+                  <span>Reels<i class="fas fa-chevron-down"></i></span>
+                  <i class="fas fa-camera"></i>
+                </div>
+                <div class="mute-flash" id="muteFlash"><i class="fas fa-volume-xmark"></i></div>
+                <nav class="reels-nav" aria-hidden="true">
+                  <i class="fas fa-house"></i>
+                  <i class="fas fa-magnifying-glass"></i>
+                  <i class="far fa-square-plus"></i>
+                  <i class="fas fa-clapperboard"></i>
+                  <i class="far fa-circle-user"></i>
+                </nav>
+              </div>
+
+              <!-- LinkedIn app -->
+              <div class="app app-linkedin hidden" id="appLinkedin">
+                <div class="status">
+                  <span>9:41</span>
+                  <span class="icons"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></span>
+                </div>
+                <div class="li-top">
+                  <span class="li-me"></span>
+                  <span class="li-search"><i class="fas fa-magnifying-glass"></i>Search</span>
+                  <i class="far fa-comment-dots"></i>
+                </div>
+                <div class="li-feed" id="liFeed"></div>
+                <nav class="li-nav" aria-hidden="true">
+                  <div class="on"><i class="fas fa-house"></i>Home</div>
+                  <div><i class="fas fa-user-group"></i>Network</div>
+                  <div><i class="fas fa-square-plus"></i>Post</div>
+                  <div><i class="fas fa-bell"></i>Alerts</div>
+                  <div><i class="fas fa-briefcase"></i>Jobs</div>
+                </nav>
+              </div>
+
+            </div>
+            <img class="phone-outline" src="vanwagner/iphone-17.svg" alt="">
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog posts -->
+    <section class="vw-section writing" id="writing">
+      <div class="container">
+        <div class="work-head reveal">
+          <h2 class="vw-title">Blog Posts</h2>
+          <p class="vw-text">SEO-focused articles and case studies Blake wrote for the Van Wagner News page, documenting client activation results from college football's most famous nets to the FIFA Fan Festival. Scroll the top page to read it, then flip to the next.</p>
+        </div>
+        <div class="blog-layout">
+          <div class="pile" id="pile"></div>
+        </div>
+        <div class="pile-nav">
+          <button class="icon-btn" id="paperPrev" aria-label="Previous blog post"><i class="fas fa-arrow-left"></i></button>
+          <a class="vw-btn" href="https://www.vanwagner.com/news/" target="_blank" rel="noopener">Van Wagner News</a>
+          <button class="icon-btn" id="paperNext" aria-label="Next blog post"><i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+<script>
+  // --- Posts: videos live in the "vanwagner" folder ---
+  // landscape: true turns the phone on its side to play horizontal videos
+  const posts = [
+    { src: 'vanwagner/launch.mp4', title: 'Launch Video', caption: '' },
+    { src: 'vanwagner/frozen-four.mp4', title: 'Frozen Four', caption: '' },
+    { src: 'vanwagner/derby.mp4', title: 'The Derby', caption: '' },
+    { src: 'vanwagner/june-recap.mp4', title: 'June Recap', caption: '' },
+    { src: 'vanwagner/aerial.mp4', title: 'Aerial Advertising', caption: '' , landscape: true },
+    { src: 'vanwagner/blog-video.mp4', title: 'Blog Feature', caption: '' , landscape: true }
+  ];
+
+  // --- Blog posts Blake wrote for the Van Wagner News page ---
+  const blogPosts = [
+    {
+      title: "The Net That Became an Icon: Allstate’s Good Hands® Field Goal Nets",
+      date: "August 28, 2026",
+      image: "vanwagner/blog/AS-Field-goal-1.jpg",
+      url: "https://www.vanwagner.com/the-net-that-became-an-icon-allstates-good-hands-field-goal-nets/",
+      html: "<p>More than two decades ago, Allstate and Van Wagner saw an opportunity in one of the most familiar pieces of equipment on a football field: the field goal net.</p><p>The idea was simple: transform the field goal net into a highly visible branding platform, placing Allstate’s iconic Good Hands® mark directly behind the goalposts during field goals and extra points. That vision has since become one of the most recognizable <a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">TV-visible sponsorship</a> platforms in college football. As the 2026 college football season begins, the Allstate Good Hands® Field Goal Net Program continues its long-standing tradition, following a strong 2025 season.</p><h4>The Opportunity Behind the Net</h4><p>During field goals and extra points, cameras and viewers are naturally focused on the uprights, bringing the branded net into view during key moments in the game. Its position also creates a relevant connection to Allstate’s Good Hands® identity, making the sponsorship distinctive and easy to recognize.</p><p>The strength of the concept lies in its combination of visibility, brand relevance and consistency. It could be scaled across stadiums without losing its visual impact from one game and broadcast to the next.</p><h4>From 30 Stadiums to 96</h4><p>The program launched with branded nets at more than 30 NCAA Division I football stadiums. Today, that footprint has grown to 96 college stadiums nationwide. During the 2025 season alone, the nets appeared across 631 games, extending beyond the regular season to neutral-site matchups and more than 25 bowl games.</p><p>More than two decades of growth have transformed a single sponsorship concept into a nationwide college football platform.</p><img src=\"vanwagner/blog/AS-Field-goal-2-1024x574.png\" alt=\"\"><h4>Reaching College Football’s Largest Audiences</h4><p>Scale is one measure of the program’s impact. Its presence during college football’s biggest games is another.</p><p>During the 2025 regular season, Allstate Field Goal Nets appeared in 22 of the 25 most-watched games, including the season’s three largest audiences. Ohio State–Michigan led with 18.42 million viewers, followed by Texas–Ohio State at 16.6 million and Texas A&amp;M–Texas at more than 13 million.</p><p>That visibility carried into the postseason, with Allstate Field Goal Nets featured in all 25 of the most-watched games, including the College Football Playoff National Championship, which drew 30.1 million viewers.</p><p>College football audiences also grew during the 2025 season. Average regular-season viewership across major networks increased approximately 10 percent year over year, including gains of 19 percent on ABC, 14 percent on ESPN and 12 percent on FOX. As college football audiences grow, so does the visibility generated by the nets.</p><img src=\"vanwagner/blog/AS-Field-goal-3.jpg\" alt=\"\"><h4>Connecting Brand Visibility to Student Support</h4><p>The program’s value extends beyond the visibility it generates for Allstate. Since its launch, Allstate has donated millions of dollars to scholarship funds at participating schools, extending the program’s impact to college communities nationwide.</p><p>By combining national brand exposure with meaningful support for students, the program creates value both on and off the field.</p><h4>Still the Standard</h4><p>The program’s longevity reflects the strength of the collaboration between Allstate and Van Wagner, and the continued effectiveness of a sponsorship concept designed specifically for college football.</p><p>As another season begins, the nets will rise behind the goalposts once again. And when the game turns toward the uprights, the Good Hands® will be there.</p>"
+    },
+    {
+      title: "Pickleball Is Scaling: Van Wagner Brings TV-Visible Signage to the Fastest-Growing Sport in America",
+      date: "June 16, 2026",
+      image: "vanwagner/blog/PB1.jpg",
+      url: "https://www.vanwagner.com/pickleball-is-scaling-van-wagner-brings-tv-visible-signage-to-the-fastest-growing-sport-in-america/",
+      html: "<p style=\"text-align: left;\"><b><em>Pickleball is growing fast. The advertising opportunity is growing with it.</em></b></p><p style=\"text-align: left;\">________________________________________</p><p>Pickleball has graduated from backyard courts and recreational leagues to primetime television. The 2026 SFIA annual report confirms pickleball as America&#8217;s fastest-growing sport for the fifth consecutive year — now the fourth-most played sport in the country, with 24.3 million Americans playing in 2025, a 171.8% increase since 2022. The professional game is catching up fast, and with it, a serious sports marketing opportunity is taking shape.</p><p>Van Wagner is now offering TV-visible signage opportunities across the top two professional pickleball tours — the Carvana PPA Tour and Major League Pickleball (MLP) presented by DoorDash. Across both tours, the schedule includes 30 tour stops, giving brands consistent, repeatable exposure throughout the season.</p><p>________________________________________</p><h4><strong>What This Means for Advertisers</strong></h4><img src=\"vanwagner/blog/PB-graphic-201x300.jpg\" alt=\"\"><p>For advertisers, this presents an opportunity to reach an engaged, rapidly growing, and increasingly mainstream sports audience through efficient, high-impact marketing inventory built for live broadcasts, streaming coverage, highlights, and social amplification. For brands looking to build awareness with passionate sports audiences without the long-term commitment of an official team or league partnership, TV-visible signage offers a flexible, high-impact alternative.</p><p><a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">Van Wagner’s Dorna division</a> specializes in TV-visible signage that places brands directly within game broadcasts, integrating advertisers’ brands and messaging into pickleball coverage. This tried-and-true format has already delivered measurable results across MLB, NHL, NBA, NCAA, MLS, and now professional pickleball.</p><p>The signage appears naturally within the broadcast frame through Sidewall LED, Backwall LED, and Virtual On-Court Signage — captured consistently throughout live coverage, highlight packages, and social content. Rather than a single impression, advertisers benefit from sustained brand visibility across every platform the sport reaches.</p><p>________________________________________</p><h4><strong>A Sport with Serious Media Infrastructure</strong></h4><p><img src=\"vanwagner/blog/PB3-263x300.jpg\" alt=\"\">What separates pickleball from many emerging sports is how quickly it has established a legitimate broadcast ecosystem. The Carvana PPA Tour and MLP presented by DoorDash now reach audiences across linear television, streaming, and digital platforms, including CBS, FOX, ESPN, Tennis Channel, PickleballTV, and YouTube. That growth is already translating into viewership. The 2026 Carvana PPA Masters on CBS averaged 791,000 viewers[JP1.1] and surpassed 1 million peak viewers, signaling pickleball’s continued rise into the mainstream sports landscape.</p><img src=\"vanwagner/blog/PB4-264x300.jpg\" alt=\"\"><p>The momentum is also being reflected at the industry level. Earlier this year, United Pickleball Association (UPA) — the parent company of both the PPA Tour and MLP — secured $225 million in funding, reinforcing long-term investment in pickleball’s professional infrastructure. Nike also signed Anna Leigh Waters, the sport’s biggest star, to its first-ever pickleball endorsement deal, further signaling growing confidence in the sport’s future and commercial potential.</p><p>________________________________________</p><h4 style=\"text-align: left;\">Why TV-Visible Signage Works in Pickleball</h4><p>Pickleball broadcasts naturally create strong visibility for signage. The sport’s compact court, consistent camera angles, and fast-paced action ensure courtside and sideline branding stays in frame throughout rallies, replays, and the highlight moments that live far beyond the broadcast itself.</p><p>In many ways, it mirrors what has made TV-visible signage so effective in established sports — but with added upside. For advertisers, pickleball offers:</p><ul><li>Sustained on-screen exposure across live coverage, replays, and highlight programming</li><li>Cross-platform longevity as content is clipped, shared, and redistributed across social and digital channels</li><li>An engaged, fast-growing audience that skews active, health-conscious, and highly valuable to brands across categories</li><li>Early-entry inventory in a sport still early in its professional lifecycle, giving advertisers a chance to build presence ahead of increased competition</li></ul><p>________________________________________</p><h4>What Dorna Does — Across Every Sport</h4><p>TV-visible signage is one of the most efficient and durable formats in sports advertising, and as the industry leader, Dorna has been building and managing this inventory across professional sports for more than four decades. Working with us, advertisers have access to the largest network of brand-building opportunities in sports, including behind home plate, courtside, and along fields of play across more than 500 professional and collegiate sports teams and events. Dorna specializes in identifying the right placements, negotiating the right inventory, and delivering measurable results in-broadcast, highlights, and across the social and digital content that surrounds every major sporting event.</p><p>________________________________________</p><h4><strong>The Takeaway</strong></h4><p>Pickleball is no longer a question of whether it belongs alongside established professional sports. The audience is real, the media distribution is substantial, and the advertising opportunity will only continue to grow as the sport’s professional ecosystem matures.</p><p>Van Wagner is positioned to help brands move now — before the space becomes crowded — and deliver the same sustained, cross-platform visibility that TV-visible signage has generated across decades of professional sports broadcasting.</p><p style=\"text-align: center;\"><b><a href=\"https://www.vanwagner.com/contact-us/\" target=\"_blank\" rel=\"noopener\">Contact our team today</a></b></p>"
+    },
+    {
+      title: "Beyond the Match: Delivering a World-Class FIFA Fan Festival™ Experience in Kansas City",
+      date: "July 23, 2026",
+      image: "vanwagner/blog/KCff1.png",
+      url: "https://www.vanwagner.com/beyond-the-match-delivering-a-world-class-fifa-fan-festival-experience-in-kansas-city/",
+      html: "<p>Fifty acres. Nineteen days. Hundreds of thousands of fans. That&#8217;s what it took to turn the National WWI Museum and Memorial grounds into one of the country&#8217;s largest free summer events.</p><p>Creating a successful FIFA Fan Festival™ requires more than giant screens and room to gather. The vision for <a href=\"https://www.kc2026.com/\" target=\"_blank\" rel=\"noopener\"><strong>FIFA Fan Festival™ Kansas City</strong></a> was never just about scale. It was about holding two things at once: an experience big enough to match the world&#8217;s largest sporting event, and one that still felt unmistakably like Kansas City, down to details like the KC Heart Gateway, a massive entry installation framing the National WWI Museum&#8217;s tower beyond it.</p><p>To bring that vision to life, KC2026 brought together a consortium of industry-leading partners. <strong>Populous</strong> led the project, overseeing project management, venue planning and development, and brand design. <strong>TEG Sport</strong> handled ticketing, marketing, and front-of-house operations.</p><p><a href=\"https://www.vanwagner.com/services/productions/\" target=\"_blank\" rel=\"noopener\"><strong>Van Wagner Productions</strong></a> was the team behind the scenes making it all run: site operations, vendor management, production and entertainment, and VIP hospitality, the connective tissue that turned a nationally significant landmark into a world-class destination for fans from around the globe.</p><p><strong> </strong></p><h4><strong>FIFA Fan Festival™ Kansas City By The Numbers</strong></h4><ul><li>19 operational event days</li><li>Hundreds of thousands of attendees</li><li>50+ acre festival footprint</li><li>250+ semi-trucks required to build the event</li><li>42+ vendors and suppliers</li><li>11+ FIFA Commercial Partners and Host City Supporters</li><li>100+ artists, bands, DJs, and performers on stage</li></ul><h4><strong>The Work Nobody Sees</strong></h4><p>None of Van Wagner&#8217;s work was visible to attendees, and that was the point. The festival grounds functioned less like a single event site and more like a small city, distinct zones for the Live Stage, Legacy Lounge, Premium Garden, and sponsor activations, each running independently but wired together as one operation. Behind the scenes, the team coordinated 42-plus vendors, 11-plus FIFA Commercial Partners and Host City Supporters, more than 250 semi-trucks of equipment, and hundreds of skilled craftspeople from IATSE Local 31, turning 50 acres into that fully functioning temporary city.</p><p><b>Mallory Cage, Director of FIFA Fan Festival &amp; Events KC2026, felt that reliability firsthand:</b></p><p><b><em>“I never worried that things were not being handled and I never had to follow up on an ask I made. This level of comfort changed the way I could handle and experience everything else occurring, and I am so grateful for that.”</em></b></p><p><strong> </strong></p><h4><strong>Where the Festival Came Alive</strong></h4><p>At the center of it all sat the Live Stage, 60 feet tall and 140 feet wide, anchored by a 50-by-25-foot LED screen, with the Live Plus canopy, roughly the size of an NFL football field, stretched alongside it to give fans shade and gathering space through the summer heat. Together, they became the emotional center of the event, where fans celebrated and Kansas City showed its culture to the world</p><img src=\"vanwagner/blog/KCFF2.jpg\" alt=\"\"><p>Behind that stage was the talent to fill it. Working with local vendors, Van Wagner booked more than 100 artists, bands, and DJs across the run, while a 15-plus person production crew show-called, stage-managed, and programmed every talent, video, and audio element in real time.</p><h4><strong>Hospitality as Experience</strong></h4><p>The Legacy Lounge, designed by Van Wagner with Renegade Design and Infinite Structures, felt less like a temporary build and more like a permanent one, a custom two-story viewing patio, a 6,000-square-foot climate-controlled club, and premium finishes throughout. The Premium Garden offered a more accessible upgrade with dedicated entry, private bar service, and premium viewing, its own reason to stay a little longer.</p><h4><strong>The Finale</strong></h4><p>Leadership challenged the team to give fans a reason to stay after the final whistle. In under 48 hours, they built an entire closing set from scratch: local artists performing stadium anthems for 30 minutes, capped with fireworks. It&#8217;s the moment Keli O&#8217;Neill Wenzel, CEO/President/CFEE at O&#8217;Neill Events &amp; Marketing, calls the one that stood out most.</p><p>&#8220;We pulled together the concept, the artists, and the marketing pieces on the fly, and Van Wagner was right there at every step,&#8221; Wenzel said. &#8220;They quickly advanced all the artists involved and produced a two-minute wrap-up video that played at the close of the final match. The moment was electric. Fans loved it, and the production was absolutely flawless. That&#8217;s what this team does. They find a way, fast, and make it look effortless.&#8221;</p><h4><strong>A Legacy Beyond the Final Whistle</strong></h4><p>None of that work stayed on the festival grounds. Across the full World Cup tournament, <strong>Fan Festival content generated over 700 million video views and is approaching 35 million engagements</strong>.</p><p>A 50-acre festival, dozens of vendors, 100-plus performers, and a hospitality program built to permanent-venue standards, all running on logistics fans never saw. That invisibility was the goal: build something people could lose themselves in, and let the people who trusted Van Wagner with it feel that trust was well placed.</p><img src=\"vanwagner/blog/KC-Fan-Fest-Crowd-Close-up.jpg\" alt=\"\"><p><b>About Van Wagner</b><br />Van Wagner is a leading sports advertising and entertainment agency, with global expertise in live events, sponsorship sales, multimedia rights and aerial advertising. Van Wagner creates, advises and sells on behalf of world-class teams, leagues, brands and properties. An innovator in the sports and media business, Van Wagner is a global leader in high-impact <a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">broadcast visible signage</a> throughout the NCAA, MLB, NBA, and international soccer, as well as <a href=\"https://www.vanwagner.com/services/college/\" target=\"_blank\" rel=\"noopener\">collegiate multimedia rights</a> and <a href=\"https://www.vanwagner.com/services/productions/\" target=\"_blank\" rel=\"noopener\">production</a> of the world’s biggest sporting events. For more information, visit <a href=\"http://www.vanwagner.com\" target=\"_blank\" rel=\"noopener\">www.vanwagner.com</a>.</p><img src=\"vanwagner/blog/KC-Fan-Fest-2026-VW-Team-1024x810.jpg\" alt=\"\">"
+    },
+    {
+      title: "Why AI Companies Are Betting on TV-Visible Signage in Live Sports",
+      date: "July 21, 2026",
+      image: "vanwagner/blog/legora.png",
+      url: "https://www.vanwagner.com/why-ai-companies-are-betting-on-tv-visible-signage-in-live-sports/",
+      html: "<h4>In a Crowded Category, Performance Marketing Isn&#8217;t Enough</h4><p>The fastest-growing technology category in the world has a branding problem.</p><p>AI companies are multiplying faster than buyers can evaluate them. Every platform claims to be the most intelligent, the most efficient, the most transformative. In a category this crowded and this abstract, it&#8217;s becoming harder to stand out, and performance marketing alone may not be enough to build the kind of trust that closes enterprise deals.</p><p>The companies that recognize this are making a move that might seem counterintuitive for a technology brand: they&#8217;re showing up in live sports through <a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">TV-visible signage</a> placed directly inside the broadcast frame, in front of millions of engaged viewers, integrated naturally into the game itself.</p><p>The results are already visible across every major league.</p><p>Behind home plate at MLB stadiums. Courtside at NBA arenas. Along the boards at NHL games. The brands showcased in these placements used to primarily consist of beer companies, financial institutions, and telecom giants. Increasingly, they&#8217;re AI companies and the shift is accelerating fast. Van Wagner&#8217;s Dorna division has been placing brands inside live sports broadcasts for 30 years. We&#8217;re watching this category emerge in real time.</p><p>________________________________________</p><h4>The Brands Making the Move</h4><p>The examples are mounting fast. In MLB stadiums, Harvey, a legal AI platform, executed a rapid-fire expansion across some of the country&#8217;s most-watched sports markets, securing broadcast-visible signage at Wrigley Field with the Chicago Cubs and at Globe Life Field with the Texas Rangers as part of nine major sports deals announced since March 2026. Legora, another legal AI platform, made a similarly deliberate choice, placing its logo on rotation behind home plate at Yankee Stadium, one of the most consistently broadcast locations in American sports.</p><img src=\"vanwagner/blog/harvey.jpg\" alt=\"\"><p>In NBA arenas, the same play is unfolding. Harvey extended its expansion to American Airlines Center with the Dallas Mavericks, while Perplexity, an AI search platform, secured courtside LED signage with the LA Clippers, placing its brand in the rotating courtside inventory that sits in frame for virtually every broadcast possession.</p><img src=\"vanwagner/blog/perplexity.png\" alt=\"\"><p>The trend extends beyond the pros, and beyond signage. SentinelOne, a cybersecurity AI platform, put its name on the event itself, title-sponsoring the SentinelOne Classic at Madison Square Garden, a recurring high-profile college basketball showcase featuring top programs like Duke, Illinois, and Texas Tech, broadcast on FOX and ESPN.</p><img src=\"vanwagner/blog/sentinal-one.png\" alt=\"\"><p><strong>What&#8217;s notable is the breadth:</strong> legal AI, search AI, cybersecurity AI. These are companies from across the AI landscape that have independently arrived at the same conclusion: live sports is where you build a brand.</p><p>These aren&#8217;t isolated experiments. This is a category converging on the same strategy.</p><p>________________________________________</p><h4>From the Arena to the Feed</h4><p>TV-visible signage doesn&#8217;t exist in just one place; it exists in three simultaneously.</p><ol><li><strong>The first is the physical venue.</strong> Fans in attendance see the signage courtside, behind home plate, along the boards: in the same space as the athletes they came to watch. That in-person impression carries a weight no digital ad can replicate.</li><li><strong>The second is the broadcast.</strong> Every camera angle, every replay, every slow-motion moment captures the signage as part of the frame, reaching millions watching at home across linear television, streaming, and connected devices simultaneously.</li><li><strong>The third is everything that comes after.</strong> Game-day photography, highlight clips, and viral moments naturally carry in-venue branding with them, and when fan interest peaks, that exposure multiplies across social and earned media channels indefinitely. A single game-winning shot can send clips circling the internet for days with a brand&#8217;s logo embedded in every frame. Studies show advanced broadcast-visible signage can improve brand recall by over 15%, and that recall compounds every time the content is redistributed.</li></ol><p>For AI brands, this three-layer presence delivers exactly what the category needs most right now: credibility from appearing inside one of the most trusted advertising environments in media, scale from reaching millions of decision-makers simultaneously across every platform the sport touches, and amplification that keeps working long after the final buzzer.<br />One placement. Three channels. Indefinite shelf life.</p><p>________________________________________</p><h4>Why AI Brands Need TV-Visible Signage Specifically</h4><p>What makes sports such a powerful brand-building environment isn&#8217;t the logo on the jersey; it&#8217;s the emotional state of the viewer. Research by Mediaprobe found that emotional engagement with content is the single largest predictor of ad recall and that for every measurable increase in emotional engagement, the probability of recalling a brand increases by 10%. Live sports are one of the most emotionally engaging content environments in media. TV-visible signage places a brand inside that environment, absorbed by fans who are fully present, emotionally invested, and primed to form brand associations. Rather than being tied to one team&#8217;s fanbase, one market, and one season&#8217;s worth of wins and losses, <a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">TV-visible signage</a> reaches fans of every team, across every market the broadcast touches, simultaneously.</p><p>________________________________________</p><h4>What Dorna Does</h4><p>TV-visible signage is one of the most efficient and durable formats in sports advertising. As the industry leader, Van Wagner&#8217;s Dorna division has been building and managing this inventory across professional sports for 30 years. Working with us, AI brands have access to the largest network of brand-building opportunities in sports, including behind home plate, courtside, and along fields of play across more than 500 professional and collegiate sports teams and events. Dorna specializes in identifying the right placements, negotiating the right inventory, and delivering measurable results in-broadcast, in highlights, and across the social and digital content that surrounds every major sporting event.</p><p>The brands making this move now are building familiarity before their competitors do. The window to get in ahead of the crowd won&#8217;t stay open forever.</p><p style=\"text-align: center;\"><b><a href=\"https://www.vanwagner.com/contact-us/\" target=\"_blank\" rel=\"noopener\">Contact our team today</a>.</b></p>"
+    }
+  ];
+
+  // --- LinkedIn posts ---
+  // text keeps its line breaks; #hashtags and links turn blue automatically
+  // mentions: tagged (blue) names, like @-tagging a company; the last time each name appears gets tagged
+  // optional: images: ['vanwagner/photo.jpg', ...] (1-4 show as a grid) or video: 'vanwagner/clip.mp4', plus reactions / comments counts
+  const linkedinPosts = [
+    {
+      title: 'AI Brands in Live Sports',
+      date: 'Jul 31',
+      images: ['vanwagner/linkedin/ai-1.jpg', 'vanwagner/linkedin/ai-2.jpg', 'vanwagner/linkedin/ai-3.jpg', 'vanwagner/linkedin/ai-4.jpg'],
+      text: "The fastest-growing tech category in the world has a branding problem.\n\n#AI companies are multiplying faster than buyers can evaluate them. In a market this crowded, performance #marketing alone isn't building the trust needed to close enterprise deals. So a handful of AI brands are making a move that looks counterintuitive for a tech company: showing up inside live sports broadcasts.\n\nBehind home plate. Courtside. Along the stadium LED boards. Inventory that used to belong almost exclusively to beer, finance, and telecom is now going to AI.\n\n➡️ Learn more: https://lnkd.in/ewc53XeP\n\nThe pattern is already visible across leagues:\n✅ Harvey (legal AI) has closed nine major sports deals since March 2026, including broadcast-visible signage at Wrigley Field, Globe Life Field, and American Airlines Center.\n✅ Legora (legal AI) placed its logo behind home plate at Yankee Stadium, one of the most consistently broadcast locations in American sports.\n✅ Perplexity (AI search) secured courtside LED signage with the LA Clippers.\n✅ SentinelOne (cybersecurity AI) title-sponsored the SentinelOne Classic at Madison Square Garden, broadcast on FOX and ESPN.\n\nLegal AI, search AI, cybersecurity AI: different products, same conclusion. Live sports signage delivers three layers of exposure from a single placement: the in-venue audience, the broadcast audience, and the indefinite afterlife in highlight clips and social replays as game moments get redistributed.\n\nVan Wagner's Dorna TV-Visible Signage has built and managed this category of inventory for over 30 years, across 500+ professional and collegiate teams and events. For AI brands trying to build category trust before a competitor gets there first, the time is now.",
+      mentions: ['Van Wagner']
+    },
+    {
+      title: 'Three Events, One Week',
+      date: 'May',
+      images: ['vanwagner/linkedin/events-1.jpg', 'vanwagner/linkedin/events-2.jpg', 'vanwagner/linkedin/events-3.jpg', 'vanwagner/linkedin/events-4.jpg'],
+      text: "NFL Draft. Kentucky Derby. F1 Miami Grand Prix. Three iconic events. One week. Our Van Wagner Productions team was at all three.\n\nShow calling. Content design. Site setup. Implementation. That's us.\n\n805,000 fans at the most-attended NFL Draft in history. The first female trainer to win the Kentucky Derby in its 152-year history. Kimi Antonelli's third straight victory to open his F1 season in Miami.\n\nFor more than 5 decades, Van Wagner has worked behind the scenes of live sports — honored to power moments like these. We’d like to thank our partners at the National Football League (NFL), Churchill Downs Incorporated, and F1 Miami Grand Prix for an unforgettable week.\n\n#NFLDraft2026 #KentuckyDerby2026 #MiamiGP #VanWagnerOnSite #Productions #LiveEvents #SportsBusiness #VanWagner",
+      mentions: ['National Football League (NFL)', 'Churchill Downs Incorporated', 'F1 Miami Grand Prix']
+    }
+  ];
+
+
+  // --- Scroll reveal ---
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i < 3 ? i * 0.15 : 0) + 's';
+    revealObserver.observe(el);
+  });
+
+
+  // ============ PHONE (Reels + LinkedIn) ============
+  const feed = document.getElementById('feed');
+  const liFeed = document.getElementById('liFeed');
+  const phoneSlot = document.getElementById('phoneSlot');
+  const muteBtn = document.getElementById('muteBtn');
+  const muteFlash = document.getElementById('muteFlash');
+  const apps = { reels: document.getElementById('appReels'), linkedin: document.getElementById('appLinkedin') };
+  let app = 'reels';
+  let currentReel = 0;
+  let currentPost = 0;
+  let muted = true;
+  let phoneVisible = false;
+  let listButtons = [];
+
+  // --- Build reels ---
+  const reels = posts.map((post, i) => {
+    const reel = document.createElement('div');
+    reel.className = 'reel';
+    reel.innerHTML = `
+      <video src="${post.src}" class="${post.landscape ? 'contain' : ''}" muted loop playsinline preload="${i === 0 ? 'auto' : 'metadata'}"></video>
+      <div class="reel-shade"></div>
+      <div class="heart-burst"><i class="fas fa-heart"></i></div>
+      <div class="reel-actions">
+        <button class="act like" aria-label="Like"><i class="far fa-heart"></i>${post.likes ? `<span>${post.likes}</span>` : ''}</button>
+        <div class="act"><i class="far fa-comment"></i>${post.comments ? `<span>${post.comments}</span>` : ''}</div>
+        <div class="act"><i class="far fa-paper-plane"></i></div>
+        <div class="act"><i class="fas fa-ellipsis"></i></div>
+        <div class="audio-thumb"></div>
+      </div>
+      <div class="reel-info">
+        <div class="reel-user"><span class="avatar" role="img" aria-label="Van Wagner"></span><b>vanwagner</b><span class="follow">Follow</span></div>
+        <div class="reel-caption">${post.caption || post.title}</div>
+        <div class="reel-audio"><i class="fas fa-music"></i>vanwagner · Original audio</div>
+      </div>
+      <div class="reel-progress"><div></div></div>`;
+
+    const video = reel.querySelector('video');
+    const likeBtn = reel.querySelector('.like');
+    const burst = reel.querySelector('.heart-burst');
+
+    video.addEventListener('timeupdate', () => {
+      if (video.duration) {
+        reel.querySelector('.reel-progress div').style.width = (video.currentTime / video.duration * 100) + '%';
+      }
+    });
+
+    const setLiked = liked => {
+      likeBtn.classList.toggle('liked', liked);
+      likeBtn.querySelector('i').className = liked ? 'fas fa-heart' : 'far fa-heart';
+    };
+
+    likeBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      setLiked(!likeBtn.classList.contains('liked'));
+    });
+
+    // tap = sound on/off, double-tap = like (like Instagram)
+    reel.addEventListener('click', () => toggleMute());
+    reel.addEventListener('dblclick', () => {
+      setLiked(true);
+      burst.classList.remove('show');
+      void burst.offsetWidth;
+      burst.classList.add('show');
+    });
+
+    feed.appendChild(reel);
+    return reel;
+  });
+
+  // --- Build LinkedIn posts ---
+  // escape the text, then color #hashtags and links like LinkedIn does
+  function linkify(text, mentions = []) {
+    let out = text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+      .replace(/(^|\s)#(\w+)/g, '$1<span class="li-tag">#$2</span>');
+    mentions.forEach(m => {
+      const at = out.lastIndexOf(m);
+      if (at !== -1) out = out.slice(0, at) + `<span class="li-tag">${m}</span>` + out.slice(at + m.length);
+    });
+    return out;
+  }
+
+  const liCards = linkedinPosts.map(post => {
+    const card = document.createElement('article');
+    card.className = 'li-post';
+    let media = '';
+    if (post.video) media = `<div class="li-media"><video src="${post.video}" muted loop playsinline autoplay></video></div>`;
+    else if (post.images) media = `<div class="li-media li-grid-${Math.min(post.images.length, 4)}">${post.images.slice(0, 4).map(src => `<img src="${src}" alt="">`).join('')}</div>`;
+
+    card.innerHTML = `
+      <div class="li-head">
+        <span class="li-logo" role="img" aria-label="Van Wagner"></span>
+        <div>
+          <div class="li-name">Van Wagner</div>
+          <div class="li-sub">Sports Advertising &amp; Entertainment</div>
+          <div class="li-sub">${post.date} · <i class="fas fa-earth-americas"></i></div>
+        </div>
+        <span class="li-follow">+ Follow</span>
+      </div>
+      <div class="li-text">${linkify(post.text, post.mentions)}</div>
+      ${media}
+      ${post.reactions ? `
+      <div class="li-stats">
+        <span class="li-reacts"><i class="fas fa-thumbs-up r-like"></i><i class="fas fa-hands-clapping r-clap"></i><i class="fas fa-heart r-love"></i><span>${post.reactions}</span></span>
+        <span>${post.comments ? post.comments + ' comments' : ''}</span>
+      </div>` : ''}
+      <div class="li-actions">
+        <button class="li-like"><i class="far fa-thumbs-up"></i>Like</button>
+        <button><i class="far fa-comment"></i>Comment</button>
+        <button><i class="fas fa-retweet"></i>Repost</button>
+        <button><i class="fas fa-paper-plane"></i>Send</button>
+      </div>`;
+
+    const like = card.querySelector('.li-like');
+    like.addEventListener('click', () => {
+      const on = !like.classList.contains('liked');
+      like.classList.toggle('liked', on);
+      like.querySelector('i').className = on ? 'fas fa-thumbs-up' : 'far fa-thumbs-up';
+    });
+
+    liFeed.appendChild(card);
+    return card;
+  });
+
+  // --- Side list + counter ---
+  function renderList() {
+    highlight();
+  }
+
+  function highlight() {
+    const i = app === 'reels' ? currentReel : currentPost;
+    listButtons.forEach((b, j) => b.classList.toggle('active', j === i));
+    updateOrientation();
+  }
+
+  // turn the phone sideways while a horizontal reel is playing
+  function updateOrientation() {
+    reels.forEach((reel, i) => reel.classList.toggle('current', i === currentReel));
+    const landscape = app === 'reels' && !!posts[currentReel].landscape;
+    if (landscape === phoneSlot.classList.contains('landscape')) return;
+
+    // shrink the sideways phone enough to fit its column
+    const fit = (phoneSlot.parentElement.clientWidth - 16) / phoneSlot.offsetHeight;
+    phoneSlot.style.setProperty('--land-scale', Math.min(0.95, fit).toFixed(3));
+    phoneSlot.classList.toggle('landscape', landscape);
+    // the feed changes height, so keep the same reel lined up
+    feed.scrollTop = currentReel * feed.clientHeight;
+  }
+
+  function goTo(i) {
+    if (app === 'reels') {
+      i = Math.max(0, Math.min(posts.length - 1, i));
+      feed.scrollTo({ top: i * feed.clientHeight, behavior: 'smooth' });
+    } else {
+      i = Math.max(0, Math.min(liCards.length - 1, i));
+      liFeed.scrollTo({ top: liCards[i].offsetTop - liFeed.firstElementChild.offsetTop, behavior: 'smooth' });
+    }
+  }
+
+  document.getElementById('prevBtn')?.addEventListener('click', () => goTo((app === 'reels' ? currentReel : currentPost) - 1));
+  document.getElementById('nextBtn')?.addEventListener('click', () => goTo((app === 'reels' ? currentReel : currentPost) + 1));
+
+  // --- Playback: only the reel on screen plays, and only while Reels is open ---
+  function playCurrent() {
+    reels.forEach((reel, i) => {
+      const video = reel.querySelector('video');
+      video.muted = muted;
+      if (i === currentReel && phoneVisible && app === 'reels') {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }
+
+  // whichever reel fills most of the screen is the active one
+  const reelObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        currentReel = reels.indexOf(entry.target);
+        highlight();
+        playCurrent();
+      }
+    });
+  }, { root: feed, threshold: 0.6 });
+  reels.forEach(reel => reelObserver.observe(reel));
+
+  // the LinkedIn post nearest the top of the feed is the active one
+  liFeed.addEventListener('scroll', () => {
+    const top = liFeed.scrollTop + liFeed.clientHeight * 0.3;
+    let i = 0;
+    liCards.forEach((card, j) => { if (card.offsetTop - liFeed.firstElementChild.offsetTop <= top) i = j; });
+    if (i !== currentPost) {
+      currentPost = i;
+      highlight();
+    }
+  });
+
+  // --- App switcher ---
+  document.querySelectorAll('.app-switch button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      app = btn.dataset.app;
+      document.querySelectorAll('.app-switch button').forEach(b => b.classList.toggle('active', b === btn));
+      apps.reels.classList.toggle('hidden', app !== 'reels');
+      apps.linkedin.classList.toggle('hidden', app !== 'linkedin');
+      updateOrientation();
+      renderList();
+      playCurrent();
+    });
+  });
+
+  // --- Sound ---
+  let flashTimer;
+  function toggleMute() {
+    muted = !muted;
+    const icon = muted ? '<i class="fas fa-volume-xmark"></i>' : '<i class="fas fa-volume-high"></i>';
+    muteBtn.innerHTML = icon;
+    muteFlash.innerHTML = icon;
+    muteFlash.classList.add('show');
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(() => muteFlash.classList.remove('show'), 700);
+    playCurrent();
+  }
+
+  muteBtn.addEventListener('click', toggleMute);
+
+  // --- Phone slides in when scrolled to, and only plays while on screen ---
+  const phoneObserver = new IntersectionObserver(entries => {
+    phoneVisible = entries[0].isIntersecting;
+    if (phoneVisible) phoneSlot.classList.add('in');
+    playCurrent();
+  }, { threshold: 0.25 });
+  phoneObserver.observe(phoneSlot);
+
+  renderList();
+
+  // ============ BLOG PILE ============
+  const pile = document.getElementById('pile');
+  let order = blogPosts.map((_, i) => i); // order[0] is the paper on top
+
+  const papers = blogPosts.map((post, i) => {
+    const paper = document.createElement('article');
+    paper.className = 'paper';
+    paper.innerHTML = `
+      <img class="cover" src="${post.image}" alt="">
+      <div class="paper-inner">
+        <div class="meta"><span>${post.date}</span></div>
+        <h3>${post.title}</h3>
+        <div class="body">${post.html}</div>
+        <a class="read-more" href="${post.url}" target="_blank" rel="noopener">Read on vanwagner.com <i class="fas fa-arrow-up-right-from-square"></i></a>
+      </div>`;
+    // each paper lands slightly askew, like a real stack
+    paper.style.setProperty('--x', (Math.random() * 20 - 10) + 'px');
+    paper.style.setProperty('--y', (Math.random() * 14 - 7) + 'px');
+    paper.style.setProperty('--r', (Math.random() * 8 - 4) + 'deg');
+    pile.appendChild(paper);
+    return paper;
+  });
+
+  function stackPapers() {
+    order.forEach((idx, pos) => {
+      const paper = papers[idx];
+      paper.style.zIndex = papers.length - pos;
+      paper.classList.toggle('top', pos === 0);
+      if (pos === 0) {
+        paper.querySelector('.paper-inner').scrollTop = 0;
+        paper.style.setProperty('--r', '0deg');
+        paper.style.setProperty('--x', '0px');
+        paper.style.setProperty('--y', '0px');
+      }
+    });
+  }
+
+  let tossing = false;
+
+  // top paper flies off, then slides back under the stack
+  document.getElementById('paperNext').addEventListener('click', () => {
+    if (tossing) return;
+    tossing = true;
+    const top = papers[order[0]];
+    top.classList.add('toss');
+    setTimeout(() => {
+      order.push(order.shift());
+      top.style.setProperty('--r', (Math.random() * 8 - 4) + 'deg');
+      top.classList.remove('toss');
+      stackPapers();
+      tossing = false;
+    }, 450);
+  });
+
+  // bottom paper comes back in from the side onto the top
+  document.getElementById('paperPrev').addEventListener('click', () => {
+    if (tossing) return;
+    order.unshift(order.pop());
+    const top = papers[order[0]];
+    top.classList.add('toss');
+    stackPapers();
+    void top.offsetWidth;
+    top.classList.remove('toss');
+  });
+
+  // drop the papers in one by one when the section scrolls into view
+  stackPapers();
+  const pileObserver = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    pileObserver.disconnect();
+    [...order].reverse().forEach((idx, i) => {
+      setTimeout(() => papers[idx].classList.add('landed'), i * 220);
+    });
+  }, { threshold: 0.3 });
+  pileObserver.observe(pile);
+  // ============ BLUE CARD follows the Instagram / LinkedIn tabs ============
+  const appCopy = {
+    reels: ['Instagram Reels', '01/02', 'Short-form video from the biggest moments: event recaps, launch videos and on-site content captured at live sporting events and activations.'],
+    linkedin: ['LinkedIn', '02/02', 'Company announcements, partnerships, capabilities overviews and thought leadership, written and designed for Van Wagner\'s LinkedIn audience.']
+  };
+  document.querySelectorAll('.app-switch button').forEach(btn => btn.addEventListener('click', () => {
+    const [t, c, d] = appCopy[btn.dataset.app];
+    document.getElementById('appCardTitle').textContent = t;
+    document.getElementById('appCardCount').textContent = c;
+    document.getElementById('appCardText').textContent = d;
+  }));
+
+  // ============ ADDRESS BAR SEARCH ENGINE ============
+  // Every page on the site, with the words that should find it.
+  const sitePages = [
+    { title: 'Blake Massoni', url: 'googleHomepage.html', display: 'blakemassoni.com', icon: 'home',
+      keys: ['home', 'homepage', 'main', 'blake', 'massoni', 'start'] },
+    { title: 'About Me', url: 'Aboutme.html', display: 'blakemassoni.com/about', icon: 'person',
+      keys: ['about', 'about me', 'bio', 'who', 'blake'] },
+    { title: 'Projects', url: 'projects.html', display: 'blakemassoni.com/projects', icon: 'folder',
+      keys: ['projects', 'work', 'portfolio', 'case studies', 'design'] },
+    { title: 'Resume', url: 'resume.html', display: 'blakemassoni.com/resume', icon: 'description',
+      keys: ['resume', 'cv', 'experience', 'skills', 'jobs', 'past work'] },
+    { title: 'Van Wagner | Social Media', url: 'vanwagner.html', display: 'VanWagner-Social.com/blakemassoni', icon: 'sports_football',
+      keys: ['van wagner', 'vanwagner', 'social', 'social media', 'instagram', 'linkedin', 'reels', 'blog', 'blog posts', 'sports', 'marketing'] },
+    { title: 'Freelance | Website Designs', url: 'freelance.html', display: 'FreelanceWebDesign.com/blakemassoni', icon: 'language',
+      keys: ['freelance', 'websites', 'web design', 'website', 'nyfw', 'lafw', 'n4xt', 'fashion week', 'front row', '.fw', 'fw app'] },
+    { title: 'IL MAKIAGE | Visual Campaigns', url: 'imemails.html', display: "ILMAKIAGE-Blake'sVisuals.com/blakemassoni", icon: 'mail',
+      keys: ['il makiage', 'makiage', 'emails', 'email', 'campaigns', 'visuals', 'beauty'] },
+    { title: 'UPenn | Student Portal Redesign', url: 'studentportal.html', display: 'UPennPortalRedesign.com/blakemassoni', icon: 'school',
+      keys: ['upenn', 'penn', 'path@penn', 'student portal', 'portal', 'redesign', 'ux', 'ui'] },
+    { title: 'Direct Chef App | UX/UI Class Project', url: 'firstmobiledesign.html', display: 'UniversityProjects.net/blakemassoni', icon: 'smartphone',
+      keys: ['direct chef', 'chef', 'app', 'mobile', 'class project', 'ux', 'ui', 'university'] },
+    { title: 'Spread of Activation', url: 'aboutblakemassoni.html', display: 'blakemassoni.com/spread-of-activation', icon: 'hub',
+      keys: ['spread of activation', 'activation', 'psychology', 'research'] }
+  ];
+
+  const pageUrl = 'VanWagner-Social.com/blakemassoni';
+  const obSearch = document.getElementById('obSearch');
+  const obInput = document.getElementById('obInput');
+  const obMenu = document.getElementById('obMenu');
+  const obIcon = document.getElementById('obIcon');
+  let obResults = [];
+  let obSel = 0;
+
+  const esc = t => t.replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  const norm = t => t.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9@.' ]+/g, ' ').trim();
+
+  // score each page: whole-phrase hits count most, then word starts, then partial matches
+  function searchSite(q) {
+    const query = norm(q);
+    if (!query) return [];
+    const words = query.split(/\s+/);
+    return sitePages.map(page => {
+      const hay = [page.title, page.display, ...page.keys].map(norm);
+      let score = 0;
+      if (hay.some(h => h === query)) score += 10;
+      if (hay.some(h => h.includes(query))) score += 5;
+      words.forEach(w => {
+        if (hay.some(h => h.split(' ').some(x => x.startsWith(w)))) score += 2;
+        else if (w.length > 2 && hay.some(h => h.includes(w))) score += 1;
+      });
+      return { page, score };
+    }).filter(r => r.score > 0).sort((a, b) => b.score - a.score).map(r => r.page).slice(0, 6);
+  }
+
+  function highlightMatch(text, q) {
+    const i = text.toLowerCase().indexOf(q.toLowerCase().trim());
+    if (!q.trim() || i < 0) return esc(text);
+    return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + q.trim().length)) + '</mark>' + esc(text.slice(i + q.trim().length));
+  }
+
+  function renderMenu() {
+    const q = obInput.value;
+    obResults = q.trim() && q !== pageUrl ? searchSite(q) : sitePages.slice(0, 6);
+    const google = { title: `Search Google for "${q.trim()}"`, url: 'https://www.google.com/search?q=' + encodeURIComponent(q.trim()), display: 'google.com', icon: 'search', external: true };
+    if (q.trim() && q !== pageUrl) obResults.push(google);
+    obSel = Math.min(obSel, obResults.length - 1);
+    obMenu.innerHTML = obResults.map((r, i) => `
+      <a class="ob-item${i === obSel ? ' sel' : ''}" role="option" href="${r.url}" data-i="${i}" ${r.external ? 'target="_blank" rel="noopener"' : ''}>
+        <span class="msi">${r.icon}</span>
+        <span class="ob-text"><b>${r.external ? esc(r.title) : highlightMatch(r.title, q)}</b><small>${esc(r.display)}</small></span>
+      </a>`).join('') || '<div class="ob-empty">No results</div>';
+    obSearch.classList.add('open');
+    obSearch.classList.toggle('typing', !!q);
+  }
+
+  function closeMenu() { obSearch.classList.remove('open'); }
+
+  function go(r) {
+    if (!r) return;
+    if (r.external) window.open(r.url, '_blank', 'noopener');
+    else window.location.href = r.url;
+  }
+
+  obInput.addEventListener('focus', () => {
+    obIcon.textContent = 'search';
+    if (obInput.value === pageUrl) obInput.select();
+    obSel = 0;
+    renderMenu();
+  });
+  obInput.addEventListener('input', () => { obSel = 0; renderMenu(); });
+  obInput.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); obSel = (obSel + 1) % obResults.length; renderMenu(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); obSel = (obSel - 1 + obResults.length) % obResults.length; renderMenu(); }
+    if (e.key === 'Escape') { obInput.value = pageUrl; obInput.blur(); }
+  });
+  document.getElementById('obForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (obInput.value === pageUrl) return closeMenu();
+    go(obResults[obSel]);
+  });
+  document.getElementById('obClear').addEventListener('click', () => { obInput.value = ''; obInput.focus(); renderMenu(); });
+  obMenu.addEventListener('mousedown', e => e.preventDefault());   // keep focus while clicking a result
+
+  obInput.addEventListener('blur', () => {
+    closeMenu();
+    obIcon.textContent = 'lock';
+    if (!obInput.value.trim()) obInput.value = pageUrl;
+    obSearch.classList.remove('typing');
+  });
+
+  // "/" jumps to the address bar, like on Google
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== obInput && !/input|textarea/i.test(document.activeElement.tagName)) {
+      e.preventDefault(); obInput.focus();
+    }
+  });
+</script>
+
+</body>
+</html>
