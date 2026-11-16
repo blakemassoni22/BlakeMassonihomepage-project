@@ -666,7 +666,7 @@
     .project-info { grid-template-columns: 1fr; gap: 28px; }
     .browser { height: 72vh; }
     .nav-icons { display: none; }
-    .inquiry-card { grid-template-columns: 1fr; gap: 32px; padding: 32px 24px; }
+    .inquiry-card { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 32px 24px; }
     .inquiry-done { grid-column: 1; }
     .table-row { grid-template-columns: minmax(0, 1fr) 130px 40px; }
     .table-row .type, .table-row .year { display: none; }
@@ -680,12 +680,19 @@
     .project { padding: 72px 0 80px; }
     .summary { grid-template-columns: 1fr; }
     .meta { grid-template-columns: 1fr; }
-    .field-row { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: minmax(0, 1fr); }
+    .field input, .field textarea { font-size: 16px; }
     .project-info { padding: 24px; }
     .segmented button { padding: 0 14px; }
     .tool-label { display: none; }
     .table-row { padding: 0 8px 0 16px; grid-template-columns: minmax(0, 1fr) auto 32px; }
   }
+
+  /* ---------- phones: never let anything make the page scroll sideways ---------- */
+  body { overflow-x: clip; }
+  /* the hidden radio buttons in the project-type chips stay inside their chip */
+  .pick label { position: relative; }
+  .pick input { width: 1px; height: 1px; left: 0; top: 0; }
 </style>
 </head>
 <body>
@@ -859,6 +866,44 @@
       ],
       features: ['Live countdown', 'Photo gallery', 'Ticket list sign-up', 'Partnerships inquiry form'],
       accent: '#4fd6c4'
+    },
+    {
+      id: 'nyfwcollections',
+      name: 'NYFW Collections Vol. 01',
+      type: 'Event RSVP site',
+      year: '2026',
+      status: 'live',
+      url: 'https://nyfw.n4xt.com/',
+      poster: 'freelance/nyfwcollections-desktop.jpg',
+      tagline: 'New York Fashion Week Collections, Vol. 01.',
+      description: 'RSVP site for New York Fashion Week Collections Vol. 01, an evening event at Lancey on Delancey Street in New York. A pared-back black-and-white page built around the NY.FW Collections identity, letting guests confirm whether they will attend in a few seconds.',
+      meta: [
+        ['Client', 'NYFW Collections · N4XT Inc.'],
+        ['Role', 'Design & Development'],
+        ['Type', 'Event / RSVP'],
+        ['Venue', 'Lancey, New York']
+      ],
+      features: ['RSVP form', 'Attendance response', 'Event details'],
+      accent: '#7a7a7a'
+    },
+    {
+      id: 'thefw',
+      name: '.FW',
+      type: 'App launch site',
+      year: '2026',
+      status: 'live',
+      url: 'https://thefw.app/',
+      poster: 'freelance/thefw-desktop.jpg',
+      tagline: 'Fashion Week, all in one place.',
+      description: 'Early-access site for .FW, the official digital platform for New York Fashion Week and beyond. Ahead of its February 2027 launch in New York and Los Angeles, the site introduces the app, where people will watch shows live, shop collections and discover designers, and builds an invite-only waitlist.',
+      meta: [
+        ['Client', '.FW · N4XT Inc.'],
+        ['Role', 'Design & Development'],
+        ['Type', 'App launch / Early access'],
+        ['Launch', 'February 2027']
+      ],
+      features: ['Early-access sign-up', 'Email & SMS opt-in', 'App preview', 'Photo collage'],
+      accent: '#e4331f'
     }
   ];
 
