@@ -337,14 +337,26 @@
   .split.in .wi { transform: none; }
 
   @media (max-width: 900px) {
+    /* phones & tablets: copy on top, the bowl fills whatever height is left, everything stays on screen */
     .recipe { height: 520vh; }
-    .recipe-stage { grid-template-columns: 1fr; gap: 10px; padding: 80px 20px 20px; align-content: center; }
+    .recipe-stage { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 4px; height: 100vh; height: 100svh; padding: 78px 16px 14px; align-content: stretch; }
     .recipe-copy { text-align: center; }
-    .step-box { margin: 18px auto 0; }
-    .step-dots { justify-content: center; }
-    .kitchen { height: 46vh; }
-    .bowl-wrap { width: min(80%, 320px); }
-    .ing { font-size: 14px; }
+    .recipe-copy .kicker { margin-bottom: 6px; }
+    .recipe-copy h2 { font-size: clamp(1.9rem, 8vw, 2.8rem); }
+    .step-box { margin: 12px auto 0; padding: 12px 18px 14px; max-width: 460px; }
+    .step-text { font-size: 19px; min-height: 2.6em; }
+    .step-dots { justify-content: center; margin-top: 10px; }
+    .dish { margin-top: 8px; }
+    .dish b { font-size: 24px; }
+    .kitchen { height: 100%; min-height: 0; }
+    .kitchen .bowl-wrap { width: min(80%, 340px, 44vh); margin-top: 10%; }
+    .ing { font-size: 12.5px; padding: 6px 12px 6px 6px; gap: 8px; border-radius: 14px; }
+    .ing-ph { width: 34px; height: 40px; border-radius: 9px; }
+    /* start the ingredient cards inside the screen on narrow phones */
+    .kitchen .ing:nth-child(1) { --x0: 32% !important; --y0: 6% !important; }
+    .kitchen .ing:nth-child(2) { --x0: 68% !important; --y0: 16% !important; }
+    .kitchen .ing:nth-child(3) { --x0: 33% !important; --y0: 86% !important; }
+    .kitchen .ing:nth-child(4) { --x0: 67% !important; --y0: 95% !important; }
   }
   @media (prefers-reduced-motion: reduce) {
     .split .wi { transform: none; }
@@ -1252,3 +1264,4 @@
 </script>
 </body>
 </html>
+
