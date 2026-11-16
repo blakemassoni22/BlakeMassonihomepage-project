@@ -4,584 +4,302 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Path@Penn Redesign | Blake Massoni</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block" rel="stylesheet">
 <style>
+  /* Path@Penn look: Penn navy bar, campus photo, frosted panels with serif titles,
+     Penn-red title bars and navy "›" buttons (colors sampled from Blake's portal screenshots) */
   :root {
-    --google-blue: #4285f4;
-    --google-red: #ea4335;
-    --google-yellow: #fbbc04;
-    --google-green: #34a853;
-    --text-primary: #202124;
-    --text-secondary: #5f6368;
-    --border-color: #dadce0;
-    --upenn-blue: #011F5B;
+    --navy: #021f5c;
+    --navy-dark: #011847;
+    --red: #910a09;
+    --link: #2a5ca8;
+    --ink: #1b1b1b;
+    --text: #3d3d3d;
+    --muted: #6b6f76;
+    --gray: #eceef2;
+    --gray-2: #f5f6f6;
+    --line: #d7dae0;
+    --serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+    --sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body { margin: 0; background: var(--gray-2); color: var(--text); font: 400 15px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+
+  .msi {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal; font-style: normal; font-size: 24px; line-height: 1;
+    display: inline-block; white-space: nowrap; direction: ltr;
+    -webkit-font-feature-settings: 'liga'; font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased;
   }
 
-  body {
-    margin: 0;
-    font-family: 'Poppins', Arial, sans-serif;
-    background: #fff;
-    color: var(--text-primary);
-    line-height: 1.6;
+  /* ---------- NAVY BAR ---------- */
+  .pp-bar {
+    position: sticky; top: 0; z-index: 300;
+    height: 56px;
+    display: flex; align-items: center; gap: 14px;
+    padding: 0 20px 0 12px;
+    background: var(--navy);
+    color: #fff;
   }
+  .bar-btn { width: 40px; height: 40px; display: grid; place-items: center; border: none; border-radius: 4px; background: none; color: #fff; cursor: pointer; text-decoration: none; }
+  .bar-btn:hover { background: rgba(255, 255, 255, 0.1); }
+  .bar-divider { width: 1px; height: 30px; background: rgba(255, 255, 255, 0.35); }
+  .bar-logo img { height: 34px; width: auto; }
+  .bar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 
-  /* ---------- HEADER ---------- */
-  .topbar {
-    height: 64px;
-    background: #fff;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    justify-content: space-between;
+  /* search: collapses to an icon like the portal, expands to a field */
+  .ob-search { position: relative; }
+  .ob-field { display: flex; align-items: center; gap: 6px; height: 36px; margin: 0; padding: 0 6px 0 10px; border-radius: 4px; background: rgba(255, 255, 255, 0.12); transition: background-color 0.2s; }
+  .ob-field:focus-within, .ob-search.open .ob-field { background: #fff; color: var(--ink); }
+  .ob-field .msi { font-size: 22px; }
+  .ob-field input { width: clamp(120px, 22vw, 280px); border: none; outline: none; background: none; color: inherit; font: 400 14px/1 var(--sans); }
+  .ob-field input::placeholder { color: rgba(255, 255, 255, 0.8); }
+  .ob-field:focus-within input::placeholder { color: var(--muted); }
+  .ob-clear { display: none; border: none; background: none; padding: 0; color: var(--muted); cursor: pointer; }
+  .ob-search.typing .ob-clear { display: block; }
+  #obIcon { display: none; }
+  .ob-menu {
+    position: absolute; right: 0; top: calc(100% + 8px);
+    width: min(400px, calc(100vw - 24px));
+    display: none; padding: 6px 0;
+    background: #fff; color: var(--ink);
+    border-top: 4px solid var(--red);
+    box-shadow: 0 12px 30px rgba(1, 24, 71, 0.25);
   }
+  .ob-search.open .ob-menu { display: block; }
+  .ob-item { display: flex; align-items: center; gap: 12px; padding: 9px 14px; text-decoration: none; cursor: pointer; }
+  .ob-item.sel, .ob-item:hover { background: var(--gray); }
+  .ob-item .msi { color: var(--navy); font-size: 20px; }
+  .ob-item .ob-text { min-width: 0; }
+  .ob-item b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--link); font-weight: 600; font-size: 14px; }
+  .ob-item small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 12px; }
+  .ob-item mark { background: none; color: var(--red); }
+  .ob-empty { padding: 10px 14px; color: var(--muted); font-size: 13px; }
 
-  .logo-section {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  /* profile menu */
+  .profile { position: relative; }
+  .profile > button { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 6px; border: none; border-radius: 4px; background: none; color: #fff; font: 400 14px/1 var(--sans); cursor: pointer; }
+  .profile > button:hover { background: rgba(255, 255, 255, 0.1); }
+  .avatar { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--navy); font: 700 14px/1 var(--sans); }
+  .profile-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 220px; display: none; padding: 6px 0; background: #fff; border-top: 4px solid var(--red); box-shadow: 0 12px 30px rgba(1, 24, 71, 0.25); }
+  .profile.open .profile-menu { display: block; }
+  .profile-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: var(--link); font-size: 14px; text-decoration: none; }
+  .profile-menu a:hover { background: var(--gray); }
+  .profile-menu a::before { content: '›'; color: var(--navy); font-weight: 700; }
+
+  /* side menu (hamburger) */
+  .drawer { position: fixed; top: 56px; left: 0; bottom: 0; z-index: 250; width: 290px; padding: 18px 0; background: #fff; box-shadow: 8px 0 30px rgba(1, 24, 71, 0.2); transform: translateX(-105%); transition: transform 0.25s ease; }
+  .drawer.open { transform: none; }
+  .drawer h4 { margin: 6px 22px 10px; color: var(--navy); font: 700 20px/1.2 var(--serif); }
+  .drawer a { display: block; padding: 9px 22px; color: var(--link); font-size: 14px; text-decoration: none; }
+  .drawer a::before { content: '›  '; color: var(--navy); font-weight: 700; }
+  .drawer a:hover { background: var(--gray); }
+  .drawer hr { margin: 12px 22px; border: none; border-top: 1px solid var(--line); }
+
+  /* ---------- HERO: campus photo + frosted panels, like the Path@Penn home screen ---------- */
+  .hero { position: relative; overflow: hidden; padding: 64px 24px 72px; color: #fff; background: var(--navy-dark); }
+  .hero::before {
+    content: ''; position: absolute; inset: -20px;
+    background: url('penn/campus.jpg') center 30% / cover no-repeat;
+    filter: blur(3px) saturate(1.05);
   }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(1, 24, 71, 0.72) 0%, rgba(1, 24, 71, 0.45) 45%, rgba(1, 24, 71, 0.78) 100%); }
+  .hero-inner { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; text-align: center; }
+  .hero-logo { height: 64px; width: auto; margin: 0 auto 22px; }
+  .hero .eyebrow { margin: 0 0 6px; font: 600 12px/1 var(--sans); letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.85); }
+  .hero h1 { margin: 0; font: 600 clamp(2.4rem, 5vw, 3.8rem)/1.05 var(--serif); }
+  .hero .lead { max-width: 700px; margin: 16px auto 0; color: rgba(255, 255, 255, 0.92); font-size: 17px; line-height: 1.6; }
+  .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
-  .logo {
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0;
-    cursor: pointer;
-    white-space: nowrap;
+  .btn-navy {
+    display: inline-flex; align-items: center; gap: 14px;
+    height: 42px; padding: 0 22px 0 14px;
+    border: none; border-radius: 3px;
+    background: var(--navy); color: #fff;
+    font: 700 12px/1 var(--sans); letter-spacing: 1.2px; text-transform: uppercase; text-decoration: none;
+    cursor: pointer; transition: background-color 0.2s;
   }
+  .btn-navy::before { content: '›'; font-size: 18px; font-weight: 400; line-height: 0; }
+  .btn-navy:hover { background: #0a3483; }
+  .btn-light { background: #fff; color: var(--navy); }
+  .btn-light:hover { background: var(--gray); }
 
-  .logo span:nth-child(1) { color: #4285F4; }
-  .logo span:nth-child(2) { color: #EA4335; }
-  .logo span:nth-child(3) { color: #FBBC05; }
-  .logo span:nth-child(4) { color: #4285F4; }
-  .logo span:nth-child(5) { color: #34A853; }
-  .logo span:nth-child(6) { color: #EA4335; }
-  .logo span:nth-child(7) { color: #FBBC05; }
-  .logo span:nth-child(8) { color: #4285F4; }
-  .logo span:nth-child(9) { color: #34A853; }
-  .logo span:nth-child(10){ color: #EA4335; }
-  .logo span:nth-child(11){ color: #FBBC05; }
-  .logo span:nth-child(12){ color: #4285F4; }
+  .panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 52px; text-align: left; }
+  .panel { padding: 18px 22px 20px; background: rgba(240, 241, 245, 0.94); color: var(--text); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18); }
+  .panel h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; color: var(--navy); font: 700 23px/1.2 var(--serif); }
+  .panel h2 .msi { color: var(--red); font-size: 22px; }
+  .panel ul { margin: 0; padding: 0; list-style: none; }
+  .panel li { position: relative; padding: 5px 0 5px 18px; color: var(--link); font-size: 14px; line-height: 1.45; }
+  .panel li::before { content: '›'; position: absolute; left: 2px; top: 3px; color: var(--navy); font-weight: 700; font-size: 16px; }
 
-  .page-title {
-    font-size: 16px;
-    color: var(--text-secondary);
-    font-weight: 400;
+  /* ---------- PORTAL WINDOWS: red title bar + white body ---------- */
+  .wrap { width: min(1180px, 100%); margin: 0 auto; padding: 0 24px; }
+  .block { padding: 72px 0 0; }
+  .block-intro { max-width: 760px; margin: 0 auto 28px; text-align: center; }
+  .block-intro .eyebrow { margin: 0 0 6px; color: var(--red); font: 700 12px/1 var(--sans); letter-spacing: 2px; text-transform: uppercase; }
+  .block-intro h2 { margin: 0; color: var(--navy); font: 600 clamp(2rem, 3.6vw, 2.8rem)/1.1 var(--serif); }
+  .block-intro p { margin: 12px auto 0; color: var(--text); font-size: 15px; }
+
+  .window { background: #fff; box-shadow: 0 2px 10px rgba(1, 24, 71, 0.1); }
+  .redbar { display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px 0 0; background: var(--red); color: #fff; }
+  .redbar .back { width: 44px; height: 44px; display: grid; place-items: center; background: rgba(0, 0, 0, 0.18); }
+  .redbar .back .msi { font-size: 22px; }
+  .redbar h3 { flex: 1; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 19px/1 var(--sans); }
+  .redbar .tools { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; }
+  .redbar .tools .msi { font-size: 20px; }
+
+  .video-body { display: grid; place-items: center; padding: 14px; background: var(--gray); }
+  .video-body video { width: 100%; height: auto; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); }
+  /* the video fills the red bar's width; the window itself narrows on short screens so the whole thing fits
+     (1.554 = the video's width / height, 28px = side padding) */
+  #prototype { max-width: max(480px, calc((100vh - 172px) * 1.554 + 28px)); margin: 0 auto; }
+
+  /* registration-style layout: navy button sidebar + viewer */
+  .reg { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 16px; align-items: start; }
+  .side { padding: 16px 14px 18px; background: var(--gray); }
+  .side-label { margin: 2px 2px 12px; color: var(--navy); font: 700 12px/1 var(--sans); letter-spacing: 1.4px; text-transform: uppercase; }
+  .side-note { margin: 0 2px 16px; color: var(--text); font-size: 13.5px; line-height: 1.5; }
+  .tabs { display: grid; gap: 8px; }
+  .tab { justify-content: flex-start; width: 100%; height: auto; min-height: 42px; padding: 11px 14px; text-align: left; line-height: 1.3; }
+  .tab:not(.on) { background: #fff; color: var(--navy); box-shadow: inset 0 0 0 1px var(--line); }
+  .tab:not(.on):hover { background: #e3e8f2; }
+  .side .count { margin: 14px 2px 0; color: var(--muted); font-size: 12px; }
+
+  .viewer { min-width: 0; }
+  .shot { position: relative; display: grid; place-items: center; height: clamp(320px, 46vw, 600px); padding: 16px; background: var(--gray-2); cursor: zoom-in; }
+  .shot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12); }
+  .shot .zoom { position: absolute; right: 14px; bottom: 14px; display: flex; align-items: center; gap: 6px; padding: 7px 12px; background: var(--navy); color: #fff; font: 700 11px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; opacity: 0; transition: opacity 0.2s; }
+  .shot .zoom .msi { font-size: 16px; }
+  .shot:hover .zoom { opacity: 1; }
+  .viewer-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid var(--line); }
+  .viewer-foot p { margin: 0; color: var(--text); font-size: 13.5px; }
+  .pager { display: flex; gap: 6px; }
+  .pager button { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 3px; background: #fff; color: var(--navy); cursor: pointer; }
+  .pager button:hover { background: var(--gray); }
+
+  /* ---------- FOOTER ---------- */
+  .pp-foot { margin-top: 88px; background: var(--navy); color: #fff; }
+  .foot-inner { display: grid; grid-template-columns: 1.2fr repeat(2, minmax(0, 1fr)); gap: 32px; width: min(1180px, 100%); margin: 0 auto; padding: 44px 24px 36px; }
+  .foot-inner img { height: 36px; width: auto; }
+  .foot-inner p { margin: 14px 0 0; color: rgba(255, 255, 255, 0.75); font-size: 13px; line-height: 1.55; max-width: 340px; }
+  .foot-inner h4 { margin: 4px 0 12px; font: 700 18px/1 var(--serif); }
+  .foot-inner a { display: block; padding: 4px 0; color: rgba(255, 255, 255, 0.85); font-size: 14px; text-decoration: none; }
+  .foot-inner a:hover { color: #fff; text-decoration: underline; }
+  .foot-base { padding: 14px 24px; border-top: 1px solid rgba(255, 255, 255, 0.15); background: var(--navy-dark); color: rgba(255, 255, 255, 0.65); font-size: 12px; text-align: center; }
+
+  /* ---------- zoom pop-up ---------- */
+  .popup { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(1, 24, 71, 0.88); }
+  .popup.active { display: flex; }
+  .popup img { max-width: 94vw; max-height: 88vh; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
+  .popup-close { position: fixed; top: 16px; right: 20px; width: 44px; height: 44px; border: none; background: none; color: #fff; font-size: 34px; line-height: 1; cursor: pointer; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .panels { grid-template-columns: 1fr; }
+    .reg { grid-template-columns: 1fr; }
+    .tabs { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .foot-inner { grid-template-columns: 1fr 1fr; }
+    .foot-inner > div:first-child { grid-column: 1 / -1; }
   }
-
-  .topbar-actions {
-    margin-left: auto;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .apps-menu {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-
-  .apps-menu:hover {
-    background-color: rgba(0,0,0,0.04);
-  }
-
-  .apps-icon {
-    width: 20px;
-    height: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 6px);
-    grid-gap: 1px;
-    opacity: 0.6;
-  }
-
-  .apps-icon span {
-    width: 6px;
-    height: 6px;
-    background-color: var(--text-secondary);
-    border-radius: 1px;
-  }
-
-  .profile-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--google-blue), var(--google-green));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-
-  .profile-avatar:hover {
-    transform: scale(1.05);
-  }
-
-  .back-btn {
-    padding: 8px 20px;
-    background: var(--google-blue);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: box-shadow 0.2s;
-    text-decoration: none;
-  }
-
-  .back-btn:hover {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
-
-  /* ---------- HERO SECTION ---------- */
-  .hero {
-    max-width: 900px;
-    margin: 40px auto 30px;
-    padding: 0 40px;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-
-  .hero .subtitle {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  /* ---------- LAPTOP VIDEO ---------- */
-  .laptop-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto 50px;
-    perspective: 1200px;
-    padding: 0 40px;
-  }
-
-  .laptop {
-    position: relative;
-    width: 700px;
-    max-width: 100%;
-  }
-
-  .screen {
-    background: #111;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.3);
-    border: 6px solid #222;
-  }
-
-  .screen video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .base {
-    position: absolute;
-    bottom: -120px;
-    left: 49.5%;
-    transform: translateX(-50%) rotateX(4deg) skewX(-3deg);
-    width: 101%;
-    height: 140px;
-    background: linear-gradient(59deg, #383535 0%, #5b5757 50%, #413b3b 100%);
-    box-shadow:
-      inset 0 7px 10px rgba(182, 170, 170, 0.08),
-      inset 0 -10px 25px rgba(0, 0, 0, 0.8),
-      0 20px 60px rgba(215, 205, 205, 0.6);
-    border-radius: 12px 12px 24px 24px;
-    border: 1px solid #4b4444;
-    perspective: 1800px;
-    transform-style: preserve-3d;
-    overflow: hidden;
-  }
-
-  .base::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    left: 5%;
-    width: 90%;
-    height: 52%;
-    background: linear-gradient(135deg, #4e4848 25%, #444 25%, #444 50%, #333 50%, #333 75%, #444 75%, #444 100%);
-    background-size: 20px 20px;
-    border-radius: 6px;
-    box-shadow:
-      inset 0 4px 6px rgba(21, 20, 20, 0.05),
-      inset 0 -3px 10px rgba(0, 0, 0, 0.7);
-    transform: translateZ(20px);
-    opacity: 0.85;
-    transform-style: preserve-3d;
-  }
-
-  .base::after {
-    content: "";
-    position: absolute;
-    bottom: 24px;
-    left: 49%;
-    width: 18%;
-    height: 38px;
-    background: linear-gradient(to bottom, rgba(6, 6, 6, 0.6), rgba(82, 82, 82, 0.9));
-    border-radius: 2px;
-    filter: blur(.5px);
-    transform-style: preserve-3d;
-    transform: translateX(-50%) translateZ(-90px);
-  }
-
-  /* ---------- CONTENT CONTAINER ---------- */
-  .container {
-    max-width: 1100px;
-    margin: 180px auto 60px;
-    padding: 0 40px;
-  }
-
-  /* ---------- STORY SECTION ---------- */
-  .story-section {
-    margin-bottom: 50px;
-  }
-
-  .story-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    margin-bottom: 50px;
-  }
-
-  .story-card {
-    background: #f8f9fa;
-    border-radius: 12px;
-    padding: 28px;
-    border-top: 4px solid var(--google-blue);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .story-card:nth-child(2) {
-    border-top-color: var(--google-green);
-  }
-
-  .story-card:nth-child(3) {
-    border-top-color: var(--google-yellow);
-  }
-
-  .story-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  }
-
-  .story-card h2 {
-    font-size: 1.4rem;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .story-card h2 i {
-    font-size: 1.2rem;
-  }
-
-  .story-card:nth-child(1) h2 i { color: var(--google-blue); }
-  .story-card:nth-child(2) h2 i { color: var(--google-green); }
-  .story-card:nth-child(3) h2 i { color: var(--google-yellow); }
-
-  .story-card ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .story-card li {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    padding: 8px 0;
-    padding-left: 24px;
-    position: relative;
-  }
-
-  .story-card li::before {
-    content: "•";
-    position: absolute;
-    left: 8px;
-    color: var(--google-blue);
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-
-  .story-card:nth-child(2) li::before { color: var(--google-green); }
-  .story-card:nth-child(3) li::before { color: var(--google-yellow); }
-
-  /* ---------- WIREFRAMES SECTION ---------- */
-  .wireframes-section {
-    margin-top: 50px;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 35px;
-  }
-
-  .section-header h2 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-  }
-
-  .section-header p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-  }
-
-  .wireframes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-
-  .wireframe-card {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-
-  .wireframe-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  }
-
-  .wireframe-image {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .wireframe-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .zoom-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .wireframe-card:hover .zoom-overlay {
-    opacity: 1;
-  }
-
-  .zoom-overlay i {
-    color: white;
-    font-size: 2rem;
-  }
-
-  .wireframe-label {
-    padding: 16px;
-    background: #fff;
-  }
-
-  .wireframe-label h3 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .wireframe-label h3 i {
-    color: var(--google-blue);
-    font-size: 0.9rem;
-  }
-
-  /* ---------- POPUP ---------- */
-  .popup-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    padding: 40px;
-  }
-
-  .popup-overlay.active {
-    display: flex;
-  }
-
-  .popup-image {
-    max-width: 90%;
-    max-height: 85%;
-    border-radius: 8px;
-    box-shadow: 0 0 50px rgba(255,255,255,0.1);
-    animation: zoomIn 0.3s ease;
-  }
-
-  @keyframes zoomIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    background: rgba(0,0,0,0.5);
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-  }
-
-  .close-btn:hover {
-    background: rgba(255,255,255,0.2);
-  }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 1.6rem;
-    }
-
-    .hero .subtitle {
-      font-size: 0.9rem;
-    }
-
-    .container {
-      padding: 0 20px;
-      margin-top: 120px;
-    }
-
-    .story-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .wireframes-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .laptop {
-      width: 90%;
-    }
+  @media (max-width: 640px) {
+    .pp-bar { gap: 6px; padding: 0 8px 0 4px; }
+    .bar-divider, .profile .name { display: none; }
+    .bar-logo img { height: 28px; }
+    .ob-field input { width: 110px; font-size: 16px; }
+    .hero { padding: 44px 16px 48px; }
+    .hero-logo { height: 46px; }
+    .wrap { padding: 0 16px; }
+    .redbar h3 { font-size: 16px; }
+    .redbar .tools span:not(.msi) { display: none; }
+    .viewer-foot { flex-direction: column; align-items: flex-start; }
+    .foot-inner { grid-template-columns: 1fr; }
   }
 </style>
 </head>
-
 <body>
-  <!-- HEADER -->
-  <div class="topbar">
-    <div class="logo-section">
-      <div class="logo" onclick="window.location.href='googleHomepage.html'">
-        <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span>
-        <span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+
+  <!-- NAVY BAR -->
+  <header class="pp-bar">
+    <button class="bar-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span class="msi">menu</span></button>
+    <span class="bar-divider" aria-hidden="true"></span>
+    <a class="bar-logo" href="#top" aria-label="Back to top"><img src="penn/path-at-penn-logo.png" alt="Path@Penn"></a>
+
+    <div class="bar-right">
+      <div class="ob-search" id="obSearch">
+        <form class="ob-field" id="obForm" role="search" autocomplete="off">
+          <span class="msi">search</span>
+          <span id="obIcon"></span>
+          <input id="obInput" type="text" spellcheck="false" placeholder="Search Blake's site" aria-label="Search Blake's site" aria-autocomplete="list" aria-controls="obMenu">
+          <button type="button" class="ob-clear" id="obClear" aria-label="Clear"><span class="msi">close</span></button>
+        </form>
+        <div class="ob-menu" id="obMenu" role="listbox"></div>
       </div>
-      <span class="page-title">Path@Penn Redesign</span>
-    </div>
-    <div class="topbar-actions">
-      <div class="apps-menu" title="Google apps">
-        <div class="apps-icon">
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
+
+      <div class="profile" id="profile">
+        <button id="profileBtn" aria-haspopup="true" aria-expanded="false"><span class="avatar">B</span><span class="name">Blake Massoni</span><span class="msi">expand_more</span></button>
+        <div class="profile-menu">
+          <a href="projects.html">Back to projects</a>
+          <a href="googleHomepage.html">Home</a>
+          <a href="resume.html">Resume</a>
+          <a href="Aboutme.html">About Blake</a>
         </div>
       </div>
-      <div class="profile-avatar" title="Blake Massoni">B</div>
-      <a href="projects.html" class="back-btn">Back to Projects</a>
     </div>
-  </div>
+  </header>
+
+  <nav class="drawer" id="drawer" aria-label="Page menu">
+    <h4>This redesign</h4>
+    <a href="#top">Overview</a>
+    <a href="#prototype">Interactive prototype</a>
+    <a href="#original">The original portal</a>
+    <a href="#process">Design process</a>
+    <hr>
+    <h4>Blake's work</h4>
+    <a href="projects.html">All projects</a>
+    <a href="vanwagner.html">Van Wagner</a>
+    <a href="imemails.html">IL MAKIAGE</a>
+    <a href="freelance.html">Freelance websites</a>
+  </nav>
 
   <!-- HERO -->
-  <div class="hero">
-    <h1>Path@Penn Student Portal Redesign</h1>
-    <p class="subtitle">
-      Redesigning UPenn's student portal to create a more navigable experience that streamlines course registration and addresses key student pain points.
-    </p>
-  </div>
-
-  <!-- LAPTOP VIDEO -->
-  <div class="laptop-container">
-    <div class="laptop">
-      <div class="screen">
-        <video autoplay muted loop playsinline>
-          <source src="video1173945155.mp4.mov" type="video/mp4">
-        </video>
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <img class="hero-logo" src="penn/path-at-penn-logo.png" alt="">
+      <p class="eyebrow">UX/UI redesign concept</p>
+      <h1>Student Portal Redesign</h1>
+      <p class="lead">Redesigning UPenn's student portal to create a more navigable experience that streamlines course registration and addresses key student pain points.</p>
+      <div class="hero-actions">
+        <a class="btn-navy btn-light" href="#prototype">View the prototype</a>
+        <a class="btn-navy" href="#original">See the original portal</a>
       </div>
-      <div class="base"></div>
-    </div>
-  </div>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
-
-    <!-- PROJECT STORY -->
-    <section class="story-section">
-      <div class="story-grid">
-        <div class="story-card">
-          <h2><i class="fas fa-exclamation-triangle"></i>The Challenge</h2>
+      <div class="panels">
+        <div class="panel">
+          <h2><span class="msi">error</span>The Challenge</h2>
           <ul>
             <li>Students struggled with confusing navigation and couldn't easily find key portal features</li>
             <li>Course information lacked transparency about difficulty, workload, and requirements</li>
             <li>Permission request process was cumbersome with multiple unclear steps</li>
           </ul>
         </div>
-
-        <div class="story-card">
-          <h2><i class="fas fa-bullseye"></i>The Goals</h2>
+        <div class="panel">
+          <h2><span class="msi">flag</span>The Goals</h2>
           <ul>
             <li>Improve navigation with intuitive information architecture and minimal clicks</li>
             <li>Enhance course details with difficulty ratings, workload estimates, and reviews</li>
             <li>Streamline permission request workflow with clear steps and status tracking</li>
           </ul>
         </div>
-
-        <div class="story-card">
-          <h2><i class="fas fa-lightbulb"></i>The Solution</h2>
+        <div class="panel">
+          <h2><span class="msi">lightbulb</span>The Solution</h2>
           <ul>
             <li>Clean, consistent layout with balanced scaling and friendly typography</li>
             <li>Comprehensive course information displayed in an accessible format</li>
@@ -589,159 +307,293 @@
           </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ORIGINAL DESIGN -->
-    <section class="wireframes-section">
-      <div class="section-header">
-        <h2>The Original Portal</h2>
-        <p>Understanding the existing interface and its pain points</p>
+  <!-- PROTOTYPE -->
+  <section class="block wrap">
+    <div class="block-intro">
+      <p class="eyebrow">Walkthrough</p>
+      <h2>Interactive Prototype</h2>
+      <p>A click-through of the redesigned portal, from the new home dashboard to registration.</p>
+    </div>
+    <div class="window" id="prototype">
+      <div class="redbar">
+        <span class="back"><span class="msi">play_arrow</span></span>
+        <h3>Path@Penn Redesign — Prototype</h3>
+        <span class="tools"><span class="msi">calendar_month</span><span>Fall 2025</span></span>
       </div>
-
-      <div class="wireframes-grid">
-        <div class="wireframe-card" onclick="openPopup(this)">
-          <div class="wireframe-image">
-            <img src="IMG_4766.png" alt="Original Home Page">
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="wireframe-label">
-            <h3><i class="fas fa-home"></i> Home Dashboard </h3>
-          </div>
-        </div>
-
-        <div class="wireframe-card" onclick="openPopup(this)">
-          <div class="wireframe-image">
-            <img src="IMG_0658.png" alt="Schedule & Permission Requests">
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="wireframe-label">
-            <h3><i class="fas fa-calendar-check"></i>Schedule & Permission Requests</h3>
-          </div>
-        </div>
-
-        <div class="wireframe-card" onclick="openPopup(this)">
-          <div class="wireframe-image">
-            <img src="IMG_4566.png" alt="Course Description">
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="wireframe-label">
-            <h3><i class="fas fa-book-open"></i>Course Description Page</h3>
-          </div>
-        </div>
+      <div class="video-body">
+        <video autoplay muted loop playsinline preload="metadata"><source src="video1173945155.mp4.mov" type="video/mp4"></video>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- WIREFRAMES -->
-    <section class="wireframes-section">
-      <div class="section-header">
-        <h2>Design Process</h2>
-        <p> Some of my Low-fidelity wireframes mapping the user flow and interface structure</p>
-      </div>
-
-      <div class="wireframes-grid">
-        <div class="wireframe-card" onclick="openPopup(this)">
-          <div class="wireframe-image">
-            <img src="Screen Shot 2025-10-28 at 11.29.40 PM.png" alt="Home Dashboard">
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="wireframe-label">
-            <h3><i class="fas fa-home"></i>Home Dashboard</h3>
-          </div>
+  <!-- ORIGINAL PORTAL -->
+  <section class="block wrap" id="original">
+    <div class="block-intro">
+      <p class="eyebrow">Research</p>
+      <h2>The Original Portal</h2>
+      <p>Understanding the existing interface and its pain points.</p>
+    </div>
+    <div class="reg" data-gallery>
+      <aside class="side">
+        <p class="side-label">Screens</p>
+        <p class="side-note">Select a screen to view it. Click the image to see it full size.</p>
+        <div class="tabs">
+          <button class="btn-navy tab" data-src="IMG_4766.png" data-alt="Original home page">Home Dashboard</button>
+          <button class="btn-navy tab" data-src="IMG_0658.png" data-alt="Original schedule and permission requests">Schedule &amp; Permission Requests</button>
+          <button class="btn-navy tab" data-src="IMG_4566.png" data-alt="Original course description page">Course Description Page</button>
         </div>
-
-        <div class="wireframe-card" onclick="openPopup(this)">
-          <div class="wireframe-image">
-            <img src="Screen Shot 2025-10-28 at 11.33.04 PM.png" alt="Schedule View">
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="wireframe-label">
-            <h3><i class="fas fa-calendar-alt"></i>Schedule & Courses</h3>
-          </div>
+        <p class="count"></p>
+      </aside>
+      <div class="window viewer">
+        <div class="redbar">
+          <span class="back"><span class="msi">arrow_back</span></span>
+          <h3 class="viewer-title"></h3>
+          <span class="tools"><span class="msi">history</span><span>Original</span></span>
         </div>
-
-        <div class="wireframe-card" onclick="openPopup(this)">
-          <div class="wireframe-image">
-            <img src="Screen Shot 2025-10-28 at 11.33.45 PM.png" alt="Profile Section">
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="wireframe-label">
-            <h3><i class="fas fa-user"></i>Registration Hold</h3>
-          </div>
-        </div>
-
-        <div class="wireframe-card" onclick="openPopup(this)">
-          <div class="wireframe-image">
-            <img src="Screen Shot 2025-10-28 at 11.31.06 PM.png" alt="Grades Overview">
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="wireframe-label">
-            <h3><i class="fas fa-graduation-cap"></i>Degree Audit</h3>
-          </div>
-        </div>
-
-        <div class="wireframe-card" onclick="openPopup(this)">
-          <div class="wireframe-image">
-            <img src="Screen Shot 2025-10-28 at 9.27.46 PM.png" alt="Degree Fufillment Progress">
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="wireframe-label">
-            <h3><i class="fas fa-sign-in-alt"></i>Course Fufillment Towards Degree</h3>
-          </div>
+        <div class="shot"><img alt=""><span class="zoom"><span class="msi">zoom_in</span>Full size</span></div>
+        <div class="viewer-foot">
+          <p class="viewer-caption"></p>
+          <div class="pager"><button class="prev" aria-label="Previous screen"><span class="msi">chevron_left</span></button><button class="next" aria-label="Next screen"><span class="msi">chevron_right</span></button></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
+  <!-- DESIGN PROCESS -->
+  <section class="block wrap" id="process">
+    <div class="block-intro">
+      <p class="eyebrow">Wireframes</p>
+      <h2>Design Process</h2>
+      <p>Some of my low-fidelity wireframes mapping the user flow and interface structure.</p>
+    </div>
+    <div class="reg" data-gallery>
+      <aside class="side">
+        <p class="side-label">Wireframes</p>
+        <p class="side-note">Select a wireframe to view it. Click the image to see it full size.</p>
+        <div class="tabs">
+          <button class="btn-navy tab" data-src="Screen Shot 2025-10-28 at 11.29.40 PM.png" data-alt="Home dashboard wireframe">Home Dashboard</button>
+          <button class="btn-navy tab" data-src="Screen Shot 2025-10-28 at 11.33.04 PM.png" data-alt="Schedule view wireframe">Schedule &amp; Courses</button>
+          <button class="btn-navy tab" data-src="Screen Shot 2025-10-28 at 11.33.45 PM.png" data-alt="Registration hold wireframe">Registration Hold</button>
+          <button class="btn-navy tab" data-src="Screen Shot 2025-10-28 at 9.27.46 PM.png" data-alt="Course fulfillment towards degree wireframe">Course Fulfillment Towards Degree</button>
+        </div>
+        <p class="count"></p>
+      </aside>
+      <div class="window viewer">
+        <div class="redbar">
+          <span class="back"><span class="msi">arrow_back</span></span>
+          <h3 class="viewer-title"></h3>
+          <span class="tools"><span class="msi">edit_note</span><span>Wireframe</span></span>
+        </div>
+        <div class="shot"><img alt=""><span class="zoom"><span class="msi">zoom_in</span>Full size</span></div>
+        <div class="viewer-foot">
+          <p class="viewer-caption"></p>
+          <div class="pager"><button class="prev" aria-label="Previous wireframe"><span class="msi">chevron_left</span></button><button class="next" aria-label="Next wireframe"><span class="msi">chevron_right</span></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="pp-foot">
+    <div class="foot-inner">
+      <div>
+        <img src="penn/path-at-penn-logo.png" alt="Path@Penn">
+        <p>A student UX/UI redesign concept by Blake Massoni. Not an official University of Pennsylvania site.</p>
+      </div>
+      <div>
+        <h4>This redesign</h4>
+        <a href="#prototype">Interactive prototype</a>
+        <a href="#original">The original portal</a>
+        <a href="#process">Design process</a>
+      </div>
+      <div>
+        <h4>Blake's work</h4>
+        <a href="projects.html">All projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="googleHomepage.html">Home</a>
+      </div>
+    </div>
+    <div class="foot-base">Path@Penn Redesign · Blake Massoni</div>
+  </footer>
+
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+    <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
+    <img id="popupImage" src="" alt="">
   </div>
 
-  <!-- POPUP OVERLAY -->
-  <div class="popup-overlay" id="popup">
-    <div class="close-btn" onclick="closePopup()">×</div>
-    <img src="" alt="Zoomed Frame" class="popup-image" id="popupImage">
-  </div>
+<script>
+  // ============ MENUS ============
+  const drawer = document.getElementById('drawer');
+  const menuBtn = document.getElementById('menuBtn');
+  const profile = document.getElementById('profile');
+  const profileBtn = document.getElementById('profileBtn');
+  function setDrawer(open) { drawer.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); }
+  menuBtn.addEventListener('click', e => { e.stopPropagation(); setDrawer(!drawer.classList.contains('open')); });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setDrawer(false)));
+  profileBtn.addEventListener('click', e => { e.stopPropagation(); const open = !profile.classList.contains('open'); profile.classList.toggle('open', open); profileBtn.setAttribute('aria-expanded', open); });
+  document.addEventListener('click', e => {
+    if (!drawer.contains(e.target)) setDrawer(false);
+    if (!profile.contains(e.target)) { profile.classList.remove('open'); profileBtn.setAttribute('aria-expanded', false); }
+  });
 
-  <script>
-    function openPopup(card) {
-      const img = card.querySelector('.wireframe-image img');
-      const imgSrc = img.src;
-      const popup = document.getElementById("popup");
-      const popupImg = document.getElementById("popupImage");
-      popupImg.src = imgSrc;
-      popup.classList.add("active");
+  // ============ SCREEN VIEWERS (sidebar buttons switch the screenshot) ============
+  const popup = document.getElementById('popup');
+  const popupImg = document.getElementById('popupImage');
+  function openPopup(src, alt) { popupImg.src = src; popupImg.alt = alt; popup.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closePopup() { popup.classList.remove('active'); document.body.style.overflow = ''; }
+  document.getElementById('popupClose').addEventListener('click', closePopup);
+  popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+
+  document.querySelectorAll('[data-gallery]').forEach(gallery => {
+    const tabs = [...gallery.querySelectorAll('.tab')];
+    const img = gallery.querySelector('.shot img');
+    const title = gallery.querySelector('.viewer-title');
+    const caption = gallery.querySelector('.viewer-caption');
+    const count = gallery.querySelector('.count');
+    let current = 0;
+    function show(i) {
+      current = (i + tabs.length) % tabs.length;
+      const t = tabs[current];
+      tabs.forEach((b, j) => { b.classList.toggle('on', j === current); b.setAttribute('aria-pressed', j === current); });
+      img.src = t.dataset.src;
+      img.alt = t.dataset.alt;
+      title.textContent = t.textContent;
+      caption.textContent = `${current + 1} of ${tabs.length} · ${t.textContent}`;
+      count.textContent = `${tabs.length} screens`;
     }
+    tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+    gallery.querySelector('.prev').addEventListener('click', () => show(current - 1));
+    gallery.querySelector('.next').addEventListener('click', () => show(current + 1));
+    gallery.querySelector('.shot').addEventListener('click', () => openPopup(img.src, img.alt));
+    show(0);
+  });
 
-    function closePopup() {
-      document.getElementById("popup").classList.remove("active");
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closePopup(); setDrawer(false); profile.classList.remove('open'); }
+  });
+
+  // ============ SEARCH: finds any page on Blake's site ============
+  // Every page on the site, with the words that should find it.
+  const sitePages = [
+    { title: 'Blake Massoni', url: 'googleHomepage.html', display: 'blakemassoni.com', icon: 'home',
+      keys: ['home', 'homepage', 'main', 'blake', 'massoni', 'start'] },
+    { title: 'About Me', url: 'Aboutme.html', display: 'blakemassoni.com/about', icon: 'person',
+      keys: ['about', 'about me', 'bio', 'who', 'blake'] },
+    { title: 'Projects', url: 'projects.html', display: 'blakemassoni.com/projects', icon: 'folder',
+      keys: ['projects', 'work', 'portfolio', 'case studies', 'design'] },
+    { title: 'Resume', url: 'resume.html', display: 'blakemassoni.com/resume', icon: 'description',
+      keys: ['resume', 'cv', 'experience', 'skills', 'jobs', 'past work'] },
+    { title: 'Van Wagner | Social Media', url: 'vanwagner.html', display: 'VanWagner-Social.com/blakemassoni', icon: 'sports_football',
+      keys: ['van wagner', 'vanwagner', 'social', 'social media', 'instagram', 'linkedin', 'reels', 'blog', 'blog posts', 'sports', 'marketing'] },
+    { title: 'Freelance | Website Designs', url: 'freelance.html', display: 'FreelanceWebDesign.com/blakemassoni', icon: 'language',
+      keys: ['freelance', 'websites', 'web design', 'website', 'nyfw', 'lafw', 'n4xt', 'fashion week', 'front row', '.fw', 'fw app'] },
+    { title: 'IL MAKIAGE | Visual Campaigns', url: 'imemails.html', display: "ILMAKIAGE-Blake'sVisuals.com/blakemassoni", icon: 'mail',
+      keys: ['il makiage', 'makiage', 'emails', 'email', 'campaigns', 'visuals', 'beauty'] },
+    { title: 'UPenn | Student Portal Redesign', url: 'studentportal.html', display: 'UPennPortalRedesign.com/blakemassoni', icon: 'school',
+      keys: ['upenn', 'penn', 'path@penn', 'student portal', 'portal', 'redesign', 'ux', 'ui'] },
+    { title: 'Direct Chef App | UX/UI Class Project', url: 'firstmobiledesign.html', display: 'UniversityProjects.net/blakemassoni', icon: 'smartphone',
+      keys: ['direct chef', 'chef', 'app', 'mobile', 'class project', 'ux', 'ui', 'university'] },
+    { title: 'Spread of Activation', url: 'aboutblakemassoni.html', display: 'blakemassoni.com/spread-of-activation', icon: 'hub',
+      keys: ['spread of activation', 'activation', 'psychology', 'research'] }
+  ];
+
+  const pageUrl = '';
+  const obSearch = document.getElementById('obSearch');
+  const obInput = document.getElementById('obInput');
+  const obMenu = document.getElementById('obMenu');
+  const obIcon = document.getElementById('obIcon');
+  let obResults = [];
+  let obSel = 0;
+
+  const esc = t => t.replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  const norm = t => t.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9@.' ]+/g, ' ').trim();
+
+  // score each page: whole-phrase hits count most, then word starts, then partial matches
+  function searchSite(q) {
+    const query = norm(q);
+    if (!query) return [];
+    const words = query.split(/\s+/);
+    return sitePages.map(page => {
+      const hay = [page.title, page.display, ...page.keys].map(norm);
+      let score = 0;
+      if (hay.some(h => h === query)) score += 10;
+      if (hay.some(h => h.includes(query))) score += 5;
+      words.forEach(w => {
+        if (hay.some(h => h.split(' ').some(x => x.startsWith(w)))) score += 2;
+        else if (w.length > 2 && hay.some(h => h.includes(w))) score += 1;
+      });
+      return { page, score };
+    }).filter(r => r.score > 0).sort((a, b) => b.score - a.score).map(r => r.page).slice(0, 6);
+  }
+
+  function highlightMatch(text, q) {
+    const i = text.toLowerCase().indexOf(q.toLowerCase().trim());
+    if (!q.trim() || i < 0) return esc(text);
+    return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + q.trim().length)) + '</mark>' + esc(text.slice(i + q.trim().length));
+  }
+
+  function renderMenu() {
+    const q = obInput.value;
+    obResults = q.trim() && q !== pageUrl ? searchSite(q) : sitePages.slice(0, 6);
+    const google = { title: `Search Google for "${q.trim()}"`, url: 'https://www.google.com/search?q=' + encodeURIComponent(q.trim()), display: 'google.com', icon: 'search', external: true };
+    if (q.trim() && q !== pageUrl) obResults.push(google);
+    obSel = Math.min(obSel, obResults.length - 1);
+    obMenu.innerHTML = obResults.map((r, i) => `
+      <a class="ob-item${i === obSel ? ' sel' : ''}" role="option" href="${r.url}" data-i="${i}" ${r.external ? 'target="_blank" rel="noopener"' : ''}>
+        <span class="msi">${r.icon}</span>
+        <span class="ob-text"><b>${r.external ? esc(r.title) : highlightMatch(r.title, q)}</b><small>${esc(r.display)}</small></span>
+      </a>`).join('') || '<div class="ob-empty">No results</div>';
+    obSearch.classList.add('open');
+    obSearch.classList.toggle('typing', !!q);
+  }
+
+  function closeMenu() { obSearch.classList.remove('open'); }
+
+  function go(r) {
+    if (!r) return;
+    if (r.external) window.open(r.url, '_blank', 'noopener');
+    else window.location.href = r.url;
+  }
+
+  obInput.addEventListener('focus', () => {
+    obIcon.textContent = 'search';
+    if (obInput.value === pageUrl) obInput.select();
+    obSel = 0;
+    renderMenu();
+  });
+  obInput.addEventListener('input', () => { obSel = 0; renderMenu(); });
+  obInput.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); obSel = (obSel + 1) % obResults.length; renderMenu(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); obSel = (obSel - 1 + obResults.length) % obResults.length; renderMenu(); }
+    if (e.key === 'Escape') { obInput.value = pageUrl; obInput.blur(); }
+  });
+  document.getElementById('obForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (obInput.value === pageUrl) return closeMenu();
+    go(obResults[obSel]);
+  });
+  document.getElementById('obClear').addEventListener('click', () => { obInput.value = ''; obInput.focus(); renderMenu(); });
+  obMenu.addEventListener('mousedown', e => e.preventDefault());   // keep focus while clicking a result
+
+  obInput.addEventListener('blur', () => {
+    closeMenu();
+    obIcon.textContent = 'lock';
+    if (!obInput.value.trim()) obInput.value = pageUrl;
+    obSearch.classList.remove('typing');
+  });
+
+  // "/" jumps to the address bar, like on Google
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== obInput && !/input|textarea/i.test(document.activeElement.tagName)) {
+      e.preventDefault(); obInput.focus();
     }
+  });
 
-    // Close popup on escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closePopup();
-      }
-    });
-
-    // Close popup on background click
-    document.getElementById('popup').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closePopup();
-      }
-    });
-  </script>
+</script>
 </body>
 </html>
+
