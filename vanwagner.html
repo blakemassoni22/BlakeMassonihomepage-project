@@ -1308,7 +1308,7 @@
   .phone-col { position: relative; display: flex; justify-content: center; }
   .phone-col::before {
     content: ''; position: absolute; left: 50%; top: 50%;
-    width: 760px; height: 760px; transform: translate(-50%, -50%);
+    width: min(760px, 100vw); height: min(760px, 100vw); transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(27, 67, 136, 0.55), transparent 62%);
     pointer-events: none;
   }
@@ -1349,6 +1349,9 @@
     .vw-section { padding: 80px 0; }
     .vw-stats { padding: 36px 20px 40px; }
   }
+
+  /* ---------- phones: never let anything make the page scroll sideways ---------- */
+  body { overflow-x: clip; }
 </style>
 </head>
 <body>
