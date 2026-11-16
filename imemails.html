@@ -48,7 +48,7 @@
     position: relative;
     height: 64px;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     gap: 16px;
     padding: 0 40px;
@@ -278,7 +278,11 @@
     .look { flex-basis: 70%; }
     .hero::after { background: linear-gradient(0deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.6) 42%, rgba(255, 255, 255, 0) 70%); }
     .hero-img img { object-position: center top; }
-    .hero-copy { left: 16px; right: 16px; bottom: 32px; }
+    /* let the banner grow to fit the words instead of cutting the headline off */
+    .hero { height: auto; min-height: clamp(440px, 100vw, 620px); display: flex; align-items: flex-end; }
+    .hero-copy { position: relative; left: auto; right: auto; bottom: auto; width: 100%; max-width: none; padding: 140px 16px 32px; }
+    .hero-copy::before { left: 0; right: 0; top: 0; bottom: 0; }
+    .hero h1 { font-size: clamp(2.3rem, 9vw, 3.4rem); }
     .hero .hero-kicker { white-space: normal; line-height: 1.4; }
     .shots, .shots.pair { grid-template-columns: 1fr; gap: 12px; }
     .shots { --mh: clamp(320px, 92vw, 520px); }
@@ -292,6 +296,8 @@
     .strategies.container { padding: 72px 16px; }
     .ob-field input { font-size: 16px; }
     .logo img { height: 28px; }
+    .header-main { gap: 10px; }
+    .ob-search { min-width: 0; }
     .look { flex-basis: 82%; }
     .btn-black { width: 100%; min-width: 0; }
     .shot-media { padding: 16px; }
