@@ -222,6 +222,9 @@
     .viewer-foot { flex-direction: column; align-items: flex-start; }
     .foot-inner { grid-template-columns: 1fr; }
   }
+
+  /* ---------- phones: never let anything make the page scroll sideways ---------- */
+  body { overflow-x: clip; }
 </style>
 </head>
 <body>
@@ -596,4 +599,3 @@
 </script>
 </body>
 </html>
-
