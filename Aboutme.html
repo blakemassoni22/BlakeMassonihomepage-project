@@ -231,6 +231,30 @@
     font-size: 0.9rem;
     margin-top: 50px;
   }
+
+  /* ---------- PHONES & TABLETS ---------- */
+  @media (max-width: 900px) {
+    .search-header { padding: 12px 16px 0; align-items: center; }
+    .left-container { padding-top: 0; min-width: 0; }
+    .top-row { flex-wrap: wrap; gap: 12px; }
+    .logo { padding-right: 0; }
+    .search-box { flex: 1 1 100%; max-width: none; order: 2; }
+    .tabs { margin-left: 0; gap: 26px; overflow-x: auto; scrollbar-width: none; white-space: nowrap; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .apps-menu, .profile { margin-top: 0; align-self: flex-start; flex-shrink: 0; }
+    .results { margin: 24px 16px; max-width: none; }
+    .result .link { overflow-wrap: anywhere; }
+    .people-also-ask { margin-top: 40px; }
+    .question { gap: 12px; }
+  }
+  @media (max-width: 480px) {
+    .apps-menu { display: none; }
+    .tabs { gap: 20px; }
+    .search-box input { font-size: 16px; }   /* stops iPhone zooming in when you tap the search box */
+  }
+
+  /* ---------- phones: never let anything make the page scroll sideways ---------- */
+  body { overflow-x: clip; }
 </style>
 </head>
 <body>
@@ -324,7 +348,7 @@
 
   <!-- Footer -->
   <div class="footer">
-    &copy; 2026 Blake Massoni – My Portfolio
+    &copy; 2025 Blake Massoni – My Portfolio
   </div>
 
   <!-- Scripts -->
@@ -383,3 +407,4 @@
   </script>
 </body>
 </html>
+
