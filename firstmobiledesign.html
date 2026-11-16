@@ -86,9 +86,9 @@
     transition: opacity 0.3s;
   }
   .nav.scrolled { top: 10px; width: min(860px, calc(100% - 24px)); height: 52px; }
-  .nav.scrolled .brand img { height: 28px; }
-  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--slate-deep); }
-  .brand img { height: 32px; width: auto; transition: height 0.5s var(--ease); }
+  .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; color: var(--slate-deep); }
+  /* logo keeps one fixed size and its true proportions: never shrinks on scroll or gets squeezed by the bar */
+  .brand img { height: 30px; width: auto; max-width: none; flex-shrink: 0; aspect-ratio: 467 / 120; object-fit: contain; }
   .nav-links { display: flex; gap: 26px; margin: 0 auto; }
   .nav-links { position: relative; }
   .nav-links a { position: relative; white-space: nowrap; padding: 7px 14px; border-radius: 16px; color: var(--slate-ink); font-size: 14px; font-weight: 400; text-decoration: none; opacity: 0.78; transition: opacity 0.2s, background-color 0.3s, box-shadow 0.3s; }
@@ -377,7 +377,6 @@
     .nav { gap: 10px; padding: 0 6px 0 16px; width: calc(100% - 16px); top: 8px; }
     .nav.scrolled { width: calc(100% - 16px); top: 8px; }
     .hero { padding-top: 120px; }
-    .brand img { height: 26px; }
     .ob-field input { width: 90px; font-size: 16px; }
     .nav .pill .txt { display: none; }
     .fan .p-left { margin-left: calc(var(--w) / -2 - 120px); }
@@ -1264,3 +1263,4 @@
 </script>
 </body>
 </html>
+
