@@ -4,1119 +4,814 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IL MAKIAGE Campaign Creatives | Blake Massoni</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- ilmakiage.com uses Noe Display Bold + Maison Neue (both licensed); Playfair Display + Work Sans are the closest free matches -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,0..1,0&display=block" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
   :root {
-    --google-blue: #4285f4;
-    --google-red: #ea4335;
-    --google-yellow: #fbbc04;
-    --google-green: #34a853;
-    --text-primary: #202124;
-    --text-secondary: #5f6368;
-    --border-color: #dadce0;
+    --ink: #0d0c0c;
+    --text: #403d3c;
+    --muted: #727272;
+    --line: #d9d9d9;
+    --line-soft: #e8e8e8;
+    --soft: #f5f5f5;
+    --pink: #e5097f;
+    --blush: #fbe3ea;
+    --blush-bg: #fdf1f4;
+    --serif: 'Noe Display Bold', 'Playfair Display', Georgia, serif;
+    --sans: 'Maison Neue Book', 'Work Sans', 'Helvetica Neue', Arial, sans-serif;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+  body { margin: 0; background: #fff; color: var(--ink); font-family: var(--sans); font-size: 15px; -webkit-font-smoothing: antialiased; }
+  img, video { display: block; }
+  a { color: inherit; }
+  ::selection { background: var(--pink); color: #fff; }
+
+  .msi {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal; font-style: normal; font-size: 24px; line-height: 1;
+    display: inline-block; white-space: nowrap; direction: ltr;
+    -webkit-font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
   }
 
-  body {
-    margin: 0;
-    font-family: 'Poppins', Arial, sans-serif;
-    background: #fff;
-    color: var(--text-primary);
-    line-height: 1.6;
-  }
+  .serif-title { margin: 0; font: 900 clamp(2.2rem, 4.4vw, 3.4rem)/1 var(--serif); letter-spacing: -0.01em; text-transform: uppercase; text-align: center; color: var(--ink); }
 
-  /* ---------- HEADER ---------- */
-  .topbar {
+  /* ---------- HEADER: search · logo · links, then the category row ---------- */
+  .site-header { position: sticky; top: 0; z-index: 200; background: #fff; }
+  .header-main {
+    position: relative;
     height: 64px;
-    background: #fff;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    justify-content: space-between;
-  }
-
-  .logo-section {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .logo {
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 0;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .logo span:nth-child(1) { color: #4285F4; }
-  .logo span:nth-child(2) { color: #EA4335; }
-  .logo span:nth-child(3) { color: #FBBC05; }
-  .logo span:nth-child(4) { color: #4285F4; }
-  .logo span:nth-child(5) { color: #34A853; }
-  .logo span:nth-child(6) { color: #EA4335; }
-  .logo span:nth-child(7) { color: #FBBC05; }
-  .logo span:nth-child(8) { color: #4285F4; }
-  .logo span:nth-child(9) { color: #34A853; }
-  .logo span:nth-child(10){ color: #EA4335; }
-  .logo span:nth-child(11){ color: #FBBC05; }
-  .logo span:nth-child(12){ color: #4285F4; }
-
-  .page-title {
-    font-size: 16px;
-    color: var(--text-secondary);
-    font-weight: 400;
-  }
-
-  .topbar-actions {
-    margin-left: auto;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .apps-menu {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-
-  .apps-menu:hover {
-    background-color: rgba(0,0,0,0.04);
-  }
-
-  .apps-icon {
-    width: 20px;
-    height: 20px;
     display: grid;
-    grid-template-columns: repeat(3, 6px);
-    grid-gap: 1px;
-    opacity: 0.6;
-  }
-
-  .apps-icon span {
-    width: 6px;
-    height: 6px;
-    background-color: var(--text-secondary);
-    border-radius: 1px;
-  }
-
-  .profile-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--google-blue), var(--google-green));
-    display: flex;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-
-  .profile-avatar:hover {
-    transform: scale(1.05);
-  }
-
-  .back-btn {
-    padding: 8px 20px;
-    background: var(--google-blue);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: box-shadow 0.2s;
-    text-decoration: none;
-  }
-
-  .back-btn:hover {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  }
-
-  /* ---------- HERO SECTION ---------- */
-  .hero {
-    max-width: 900px;
-    margin: 60px auto 50px;
+    gap: 16px;
     padding: 0 40px;
-    text-align: center;
+    border-bottom: 1px solid var(--line-soft);
   }
+  .logo { justify-self: center; display: block; text-decoration: none; }
+  .logo img { height: 34px; width: auto; }
+  .header-right { justify-self: end; display: flex; align-items: center; gap: 22px; }
+  .header-right a { font: 500 14px/1 var(--sans); letter-spacing: 0.4px; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+  .header-right a:hover { color: var(--pink); }
+  .header-right .bag .msi { font-size: 26px; }
 
-  .hero h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    line-height: 1.2;
+  /* search (works as a search engine for the whole site) */
+  .ob-search { position: relative; justify-self: start; width: min(320px, 100%); }
+  .ob-field { display: flex; align-items: center; gap: 10px; height: 36px; margin: 0; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .ob-search.open .ob-field, .ob-field:focus-within { border-bottom-color: var(--ink); }
+  .ob-field .msi { font-size: 22px; }
+  .ob-field input { flex: 1; min-width: 0; border: none; outline: none; background: none; font: 500 14px/1 var(--sans); letter-spacing: 0.4px; text-transform: uppercase; color: var(--ink); }
+  .ob-field input::placeholder { color: var(--ink); opacity: 1; }
+  .ob-field input:focus::placeholder { color: #a3a3a3; }
+  .ob-clear { display: none; border: none; background: none; padding: 0; cursor: pointer; color: var(--ink); }
+  .ob-search.typing .ob-clear { display: block; }
+  #obIcon { display: none; }
+  .ob-menu {
+    position: absolute; left: 0; top: calc(100% + 14px);
+    width: min(420px, calc(100vw - 32px));
+    display: none; padding: 8px 0;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.22);
   }
+  .ob-search.open .ob-menu { display: block; }
+  .ob-item { display: flex; align-items: center; gap: 14px; padding: 10px 16px; text-decoration: none; cursor: pointer; }
+  .ob-item.sel, .ob-item:hover { background: var(--soft); }
+  .ob-item .msi { font-size: 20px; }
+  .ob-item .ob-text { min-width: 0; }
+  .ob-item b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 13px/1.3 var(--sans); letter-spacing: 0.8px; text-transform: uppercase; }
+  .ob-item small { display: block; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 12px; }
+  .ob-item mark { background: none; color: var(--pink); }
+  .ob-empty { padding: 10px 16px; color: var(--muted); font-size: 13px; text-transform: uppercase; }
 
-  .hero h1 .brand {
-    background: linear-gradient(135deg, #000 0%, #333 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
+  .catnav { display: flex; justify-content: center; gap: 24px; height: 54px; align-items: center; padding: 0 16px; border-bottom: 1px solid var(--line-soft); overflow-x: auto; scrollbar-width: none; }
+  .catnav::-webkit-scrollbar { display: none; }
+  .catnav a { flex-shrink: 0; font: 400 15px/1 var(--sans); text-transform: uppercase; text-decoration: none; padding: 6px 0; border-bottom: 1px solid transparent; }
+  .catnav a:hover, .catnav a.on { border-bottom-color: var(--ink); }
 
-  .hero h1 .highlight {
-    color: var(--google-blue);
-    font-weight: 700;
-  }
-
-  .hero .subtitle {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 750px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-  /* ---------- CONTENT CONTAINER ---------- */
-  .container {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 40px 80px;
-  }
-
-  /* ---------- SECTION ---------- */
-  .section {
-    margin-bottom: 80px;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 40px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    border-left: 4px solid var(--google-blue);
-    border-radius: 12px;
-    padding: 32px 40px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-
-  .section-header h2 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-  }
-
-  .section-header p {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
-
-  /* ---------- COMPARISON GRID ---------- */
-  .comparison-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    margin-top: 40px;
-  }
-
-  .comparison-card {
-    background: #f8f9fa;
-    border-radius: 16px;
-    padding: 24px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .comparison-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-  }
-
-  .card-badge {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .badge-concept {
-    background: #e3f2fd;
-    color: var(--google-blue);
-  }
-
-  .badge-final {
-    background: #e8f5e9;
-    color: var(--google-green);
-  }
-
-  .comparison-card h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-  }
-
-  .comparison-card p {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  .media-container {
-    background: #fff;
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-
-  .media-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-
-  .media-container.expanded {
-    padding: 10px;
-  }
-
-  .media-container.expanded img {
-    transform: scale(1);
-    transition: transform 0.3s ease;
-  }
-
-  .media-container.equal-height img {
-    height: 300px;
-    width: 100%;
-    object-fit: contain;
-  }
-
-  .designer-credit {
-    margin-top: 12px;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-style: italic;
-  }
-
-  .designer-credit strong {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  /* ---------- SMS SECTION ---------- */
-  .sms-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    margin-top: 40px;
-  }
-
-  .sms-card {
-    background: #f8f9fa;
-    border-radius: 16px;
-    padding: 24px;
-    text-align: center;
-  }
-
-  .sms-card h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .sms-card h3 i {
-    color: var(--google-blue);
-  }
-
-  .sms-card p {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  .video-container {
-    background: #000;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-
-  .video-container video {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  /* ---------- HIGHLIGHT CONTAINERS ---------- */
-  .ui-highlight {
-    background: linear-gradient(135deg, #e3f2fd 0%, #fff4e6 100%);
-    border-radius: 20px;
-    padding: 50px 40px;
-    margin-top: 40px;
-  }
-
-  .sms-highlight {
-    background: linear-gradient(135deg, #e8f5e9 0%, #fce4ec 100%);
-    border-radius: 20px;
-    padding: 50px 40px;
-    margin-top: 40px;
-  }
-
-  .wallet-highlight {
-    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
-    border-radius: 20px;
-    padding: 50px 40px;
-    margin-top: 40px;
-  }
-
-  /* ---------- CREATIVE GALLERY ---------- */
-  .creative-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 40px;
-  }
-
-  .creative-card {
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .creative-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-  }
-
-  .creative-image {
-    position: relative;
-    width: 100%;
-    background: #f8f9fa;
-    overflow: hidden;
-  }
-
-  .creative-image img,
-  .creative-image video {
-    width: 100%;
-    display: block;
-    transition: transform 0.3s;
-  }
-
-  .creative-card:hover .creative-image img,
-  .creative-card:hover .creative-image video {
-    transform: scale(1.05);
-  }
-
-  .creative-info {
-    padding: 20px;
-  }
-
-  .creative-info h4 {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-  }
-
-  .creative-info p {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  /* ---------- ZOOM OVERLAY ---------- */
-  .media-container {
-    position: relative;
-    cursor: pointer;
-  }
-
-  .zoom-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(66, 133, 244, 0.9);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  /* ---------- HERO: full-width banner, headline bottom-left ---------- */
+  .hero { position: relative; height: clamp(380px, 46vw, 560px); overflow: hidden; background: #ece7e4; }
+  .hero-img, .hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-img img { object-fit: cover; object-position: center 60%; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.62) 34%, rgba(255, 255, 255, 0) 58%); }
+  .hero-copy { position: absolute; left: 34px; bottom: 52px; z-index: 1; max-width: 640px; isolation: isolate; }
+  /* legibility: a soft haze only behind the words, plus a white halo on the letters */
+  .hero-copy::before {
+    content: ''; position: absolute; z-index: -1;
+    left: -34px; right: -60px; top: -40px; bottom: -52px;
+    background: radial-gradient(ellipse 75% 70% at 30% 55%, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0) 72%);
     pointer-events: none;
   }
-
-  .media-container:hover .zoom-overlay,
-  .creative-image:hover .zoom-overlay {
-    opacity: 1;
+  .hero-copy h1 { text-shadow: 0 0 22px rgba(255, 255, 255, 0.85); }
+  .hero-copy p, .hero-copy .hero-stat span, .hero .hero-kicker {
+    color: var(--ink) !important;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.95), 0 0 10px rgba(255, 255, 255, 0.95), 0 0 18px rgba(255, 255, 255, 0.8);
   }
+  .hero-copy > p:not(.hero-kicker) { font-weight: 500; }
+  .hero-stat b { text-shadow: 0 0 14px rgba(255, 255, 255, 0.9); }
+  .hero h1 { margin: 0 0 22px; font: 900 clamp(2.6rem, 5vw, 4.2rem)/0.98 var(--serif); letter-spacing: -0.01em; text-transform: uppercase; }
+  .hero p { max-width: 440px; margin: -6px 0 24px; color: var(--text); font-size: 15px; line-height: 1.55; }
+  .hero .hero-kicker { margin: 0 0 14px; color: var(--ink); font: 500 13px/1 var(--sans); letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+  .hero-stat { display: flex; align-items: center; gap: 14px; margin: 0 0 26px; }
+  .hero-stat b { font: 900 clamp(2rem, 3.2vw, 2.6rem)/1 var(--serif); color: var(--pink); }
+  .hero-stat span { color: var(--text); font-size: 13px; font-weight: 500; line-height: 1.35; text-transform: uppercase; letter-spacing: 0.4px; }
 
-  .zoom-overlay i {
-    color: white;
-    font-size: 20px;
+  .btn-black {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 255px; height: 48px; padding: 0 24px;
+    border: 1px solid var(--ink); background: var(--ink); color: #fff;
+    font: 400 16px/1 var(--sans); text-transform: uppercase; text-decoration: none;
+    cursor: pointer; transition: background-color 0.2s, color 0.2s;
   }
+  .btn-black:hover { background: #fff; color: var(--ink); }
 
-  /* ---------- POPUP MODAL ---------- */
-  .popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
+  /* ---------- VIEW BY CREATIVE STRATEGY: calm still tiles, pink on hover ---------- */
+  .lede { max-width: 620px; margin: 16px auto 0; text-align: center; color: var(--text); font-size: 15px; line-height: 1.6; }
+  .strat-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 40px; }
+  .strat-tile { display: block; text-align: center; text-decoration: none; }
+  .st-img { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--blush); }
+  .st-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.7s ease; }
+  .st-img::after {
+    content: 'View strategy';
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    background: rgba(229, 9, 127, 0.86);
+    color: #fff; font: 500 15px/1 var(--sans); letter-spacing: 1.4px; text-transform: uppercase;
+    opacity: 0; transition: opacity 0.35s ease;
   }
+  .strat-tile:hover .st-img img, .strat-tile:focus-visible .st-img img { transform: scale(1.06); }
+  .strat-tile:hover .st-img::after, .strat-tile:focus-visible .st-img::after { opacity: 1; }
+  .st-num { display: block; margin-top: 18px; color: var(--pink); font: 900 22px/1 var(--serif); }
+  .strat-tile b { display: block; margin-top: 8px; font: 500 15px/1.3 var(--sans); letter-spacing: 1.4px; text-transform: uppercase; }
 
-  .popup-overlay.active {
-    display: flex;
+  /* ---------- STRATEGY SECTIONS: centered heading, concept → final side by side ---------- */
+  .container { width: min(1240px, 100%); margin: 0 auto; padding: 0 32px; }
+  .strategy { padding: 96px 0; }
+  .strategy.blush { background: var(--blush-bg); }
+  .strategies.container { padding: 104px 32px 96px; }
+  .shots.pair { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+  .strat-head { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+  .strat-num { display: block; color: var(--pink); font: 900 clamp(3rem, 6vw, 4.6rem)/0.9 var(--serif); }
+  .strat-kicker { margin: 14px 0 12px; font: 500 13px/1 var(--sans); letter-spacing: 1.6px; text-transform: uppercase; }
+  .strat-head h2 { margin: 0; font: 900 clamp(2rem, 4vw, 3.1rem)/1.02 var(--serif); letter-spacing: -0.01em; text-transform: uppercase; }
+  .strat-head p { margin: 18px auto 0; color: var(--text); font-size: 15px; line-height: 1.65; }
+
+  .shots { --mh: clamp(380px, 40vw, 560px); display: grid; grid-template-columns: minmax(0, 1fr) 56px minmax(0, 1fr); align-items: start; max-width: 1120px; margin: 0 auto; }
+  .shots .arrow { align-self: start; justify-self: center; margin-top: calc(var(--mh) / 2 - 20px); color: var(--pink); font-size: 40px; }
+  .shot { margin: 0; text-align: center; }
+  /* every image box is the same height so all captions line up */
+  .shot-media { height: var(--mh); display: grid; place-items: center; padding: 28px; overflow: hidden; background: #fff; cursor: zoom-in; transition: box-shadow 0.3s; }
+  .strategy:not(.blush) .shot-media { background: var(--blush-bg); }
+  .shot-media:hover { box-shadow: 0 18px 40px -18px rgba(229, 9, 127, 0.45); }
+  .shot-media img, .shot-media video { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; min-height: 0; }
+  .shot-media .phone-vid { width: auto; height: 100%; max-width: 100%; border-radius: 24px; }
+  .shot figcaption { padding: 22px 12px 0; }
+  .tag { display: inline-flex; align-items: center; height: 26px; padding: 0 14px; border: 1px solid var(--pink); border-radius: 13px; color: var(--pink); font: 500 11px/1 var(--sans); letter-spacing: 1.2px; text-transform: uppercase; }
+  .shot.final .tag { background: var(--pink); color: #fff; }
+  .shot figcaption b { display: block; margin-top: 14px; font: 500 15px/1.35 var(--sans); letter-spacing: 1.4px; text-transform: uppercase; }
+  .shot figcaption p { max-width: 440px; margin: 10px auto 0; color: var(--text); font-size: 14px; line-height: 1.6; }
+  .shot .credit { color: var(--muted); font-size: 13px; }
+  .shot .credit strong { color: var(--ink); font-weight: 500; }
+
+  /* ---------- CAROUSEL: "Beauty Simplified" creator cards ---------- */
+  .looks { padding: 72px 0 0; }
+  .looks .section-head .kicker { max-width: none; margin: 0 auto 12px; text-align: center; color: var(--pink); font: 500 14px/1 var(--sans); letter-spacing: 1.6px; text-transform: uppercase; }
+  .looks .section-head p:not(.kicker) { max-width: 600px; color: var(--ink); font-size: 17px; line-height: 1.45; }
+  .section-head { max-width: 780px; margin: 0 auto 34px; text-align: center; }
+  .section-head p { margin: 16px auto 0; }
+  .carousel { position: relative; max-width: 1360px; margin: 0 auto; padding: 0 84px; }
+  .track { display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 10px 2px 22px; scrollbar-width: none; }
+  .track::-webkit-scrollbar { display: none; }
+  .look {
+    position: relative; flex: 0 0 calc((100% - 56px) / 3);
+    aspect-ratio: 9 / 15.5;
+    overflow: hidden; border-radius: 12px;
+    background: var(--soft);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+    scroll-snap-align: start;
+    cursor: zoom-in;
   }
-
-  .popup-content {
-    max-width: 90%;
-    max-height: 90%;
-    position: relative;
+  .look video { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .look-band {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: center;
+    padding: 14px 14px 16px;
+    background: rgba(255, 255, 255, 0.86);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   }
+  .look-band i { width: 52px; height: 52px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1px var(--line-soft); display: grid; place-items: center; font: 900 18px/1 var(--serif); font-style: normal; color: var(--pink); }
+  .look-band b { display: block; font: 500 13px/1.3 var(--sans); letter-spacing: 0.6px; text-transform: uppercase; }
+  .look-band u { display: inline-block; margin-top: 8px; color: var(--pink); font: 500 12px/1 var(--sans); text-transform: uppercase; text-underline-offset: 3px; }
+  .look:hover { box-shadow: 0 14px 34px -10px rgba(229, 9, 127, 0.45); }
+  .look { transition: box-shadow 0.3s; }
+  .car-arrow { position: absolute; top: calc(50% - 30px); width: 44px; height: 44px; display: grid; place-items: center; border: none; background: none; color: var(--ink); cursor: pointer; }
+  .car-arrow .msi { font-size: 34px; }
+  .car-arrow:disabled { opacity: 0.25; cursor: default; }
+  .car-arrow:not(:disabled):hover { color: var(--pink); }
+  .car-prev { left: 20px; }
+  .car-next { right: 20px; }
+  .dots { display: flex; justify-content: center; gap: 10px; margin-top: 8px; }
+  .dots button { width: 8px; height: 8px; padding: 0; border: none; border-radius: 50%; background: #d0d0d0; cursor: pointer; }
+  .dots button.on { background: var(--pink); }
 
-  .popup-content img {
-    max-width: 100%;
-    max-height: 90vh;
-    border-radius: 8px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  /* ---------- LOOKING FOR MORE? ---------- */
+  .more { padding: 52px 24px 60px; background: var(--soft); }
+  .more h2 { margin: 0 0 28px; text-align: center; font: 500 16px/1 var(--sans); letter-spacing: 0.4px; text-transform: uppercase; }
+  .more-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; max-width: 760px; margin: 0 auto; }
+  .more-grid a { display: grid; grid-template-columns: 28px 1fr 22px; gap: 14px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+  .more-grid a:hover b { color: var(--pink); }
+  .more-grid .msi { font-size: 24px; }
+  .more-grid b { display: block; font: 500 14px/1.2 var(--sans); }
+  .more-grid small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+  .more-grid em { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: var(--pink); color: #fff; font-style: normal; font-size: 13px; }
+
+  /* ---------- FOOTER ---------- */
+  .site-footer { background: #000; color: #fff; }
+  .want { padding: 88px 24px 72px; text-align: center; }
+  .want h2 { margin: 0; font: 900 clamp(2.6rem, 5vw, 3.8rem)/1 var(--serif); text-transform: uppercase; }
+  .want .sub { margin: 24px auto 12px; font: 500 14px/1 var(--sans); letter-spacing: 1.2px; text-transform: uppercase; color: var(--pink); }
+  .want .blurb { max-width: 520px; margin: 0 auto; color: #a3a3a3; font-size: 15px; line-height: 1.55; }
+  .want-row { display: flex; max-width: 520px; margin: 36px auto 0; border: 1px solid #fff; }
+  .want-row a { flex: 1; display: grid; place-items: center; height: 56px; font: 500 14px/1 var(--sans); letter-spacing: 0.4px; text-transform: uppercase; text-decoration: none; transition: background-color 0.2s, color 0.2s; }
+  .want-row a:first-child:hover { background: #1a1a1a; }
+  .want-row a + a { background: #fff; color: #000; }
+  .want-row a + a:hover { background: var(--pink); color: #fff; }
+
+  .foot-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; max-width: 900px; margin: 0 auto; padding: 48px 24px; border-top: 1px solid #262626; text-align: center; }
+  .foot-cols h4 { margin: 0 0 16px; font: 500 13px/1 var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: var(--pink); }
+  .foot-cols a { display: block; padding: 6px 0; color: #cfcfcf; font-size: 14px; text-decoration: none; }
+  .foot-cols a:hover { color: #fff; }
+
+  .foot-bottom { display: grid; justify-items: center; gap: 14px; padding: 28px 24px 36px; border-top: 1px solid #262626; text-align: center; }
+  .foot-bottom img { width: 104px; filter: invert(1); }
+  .foot-bottom span { color: #8a8a8a; font-size: 12px; letter-spacing: 0.4px; }
+
+  /* ---------- zoom pop-up ---------- */
+  .popup-overlay { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(255, 255, 255, 0.94); }
+  .popup-overlay.active { display: flex; }
+  .popup-content { position: relative; display: grid; justify-items: center; gap: 18px; max-width: min(92vw, 900px); }
+  .popup-content img, .popup-content video { max-width: 100%; max-height: 78vh; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.35); }
+  .popup-caption { max-width: 560px; text-align: center; }
+  .popup-caption:empty { display: none; }
+  .popup-caption b { display: block; font: 500 15px/1.3 var(--sans); letter-spacing: 1.4px; text-transform: uppercase; }
+  .popup-caption span { display: block; margin-top: 8px; color: var(--text); font-size: 14px; line-height: 1.55; }
+  .popup-caption span:empty { display: none; }
+  .popup-close { position: fixed; top: 20px; right: 24px; width: 44px; height: 44px; border: none; background: none; color: var(--ink); font-size: 34px; line-height: 1; cursor: pointer; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 1100px) {
+    .look { flex-basis: calc((100% - 28px) / 2); }
+    .strat-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-
-  .popup-close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    background: var(--google-blue);
-    color: white;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
+  @media (max-width: 860px) {
+    .header-main { padding: 0 16px; }
+    .header-right .txt { display: none; }
+    .ob-search { width: 100%; }
+    .catnav { justify-content: flex-start; }
+    .carousel { padding: 0 16px; }
+    .car-arrow { display: none; }
+    .look { flex-basis: 70%; }
+    .hero::after { background: linear-gradient(0deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.6) 42%, rgba(255, 255, 255, 0) 70%); }
+    .hero-img img { object-position: center top; }
+    .hero-copy { left: 16px; right: 16px; bottom: 32px; }
+    .hero .hero-kicker { white-space: normal; line-height: 1.4; }
+    .shots, .shots.pair { grid-template-columns: 1fr; gap: 12px; }
+    .shots { --mh: clamp(320px, 92vw, 520px); }
+    .shots .arrow { margin-top: 0; transform: rotate(90deg); }
+    .strategy { padding: 72px 0; }
+    .more-grid { grid-template-columns: 1fr; }
+    .foot-cols { grid-template-columns: 1fr; gap: 28px; }
   }
-
-  .popup-close:hover {
-    background: #1557b0;
-  }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 1024px) {
-    .creative-gallery {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 1.8rem;
-    }
-
-    .hero .subtitle {
-      font-size: 0.95rem;
-    }
-
-    .container {
-      padding: 0 20px 60px;
-    }
-
-    .comparison-grid,
-    .sms-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .section-header h2 {
-      font-size: 1.4rem;
-    }
-
-    .creative-gallery {
-      grid-template-columns: 1fr;
-    }
+  @media (max-width: 560px) {
+    .container { padding: 0 16px; }
+    .strategies.container { padding: 72px 16px; }
+    .ob-field input { font-size: 16px; }
+    .logo img { height: 28px; }
+    .look { flex-basis: 82%; }
+    .btn-black { width: 100%; min-width: 0; }
+    .shot-media { padding: 16px; }
+    .want-row { flex-direction: column; }
   }
 </style>
 </head>
-
 <body>
+
   <!-- HEADER -->
-  <div class="topbar">
-    <div class="logo-section">
-      <div class="logo" onclick="window.location.href='googleHomepage.html'">
-        <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span>
-        <span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+  <header class="site-header">
+    <div class="header-main">
+      <div class="ob-search" id="obSearch">
+        <form class="ob-field" id="obForm" role="search" autocomplete="off">
+          <span class="msi">search</span>
+          <span id="obIcon"></span>
+          <input id="obInput" type="text" spellcheck="false" placeholder="Search" aria-label="Search Blake's site" aria-autocomplete="list" aria-controls="obMenu">
+          <button type="button" class="ob-clear" id="obClear" aria-label="Clear"><span class="msi">close</span></button>
+        </form>
+        <div class="ob-menu" id="obMenu" role="listbox"></div>
       </div>
-      <span class="page-title">IL MAKIAGE Campaign Work</span>
-    </div>
-    <div class="topbar-actions">
-      <div class="apps-menu" title="Google apps">
-        <div class="apps-icon">
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-        </div>
+
+      <a class="logo" href="#top" aria-label="IL MAKIAGE campaign work, back to top">
+        <img src="Logo_of_Il_makiage.svg" alt="IL MAKIAGE New York">
+      </a>
+
+      <div class="header-right">
+        <a class="txt" href="projects.html">Back to projects</a>
+        <a class="bag" href="projects.html" aria-label="All projects" title="All projects"><span class="msi">shopping_bag</span></a>
       </div>
-      <div class="profile-avatar" title="Blake Massoni">B</div>
-      <a href="projects.html" class="back-btn">Back to Projects</a>
     </div>
-  </div>
+
+    <nav class="catnav" aria-label="Sections">
+      <a href="#concepts">Campaign Concepts</a>
+      <a href="#ui">Familiar UI</a>
+      <a href="#wallet">Apple Wallet</a>
+      <a href="#associative">Associative Design</a>
+      <a href="#sms">SMS Flows</a>
+      <a href="projects.html">All Projects</a>
+    </nav>
+  </header>
 
   <!-- HERO -->
-  <div class="hero">
-    <h1><span class="highlight">Email Campaign Creatives</span> for <span class="brand">IL MAKIAGE</span></h1>
-    <p class="subtitle">
-      From ideation sketches to final executions — exploring how recognizable digital patterns
-      can emotionally connect users to new product experiences.
-    </p>
-  </div>
+  <section class="hero" id="top">
+    <picture class="hero-img">
+      <source media="(max-width: 860px)" srcset="ilmakiage/banner-mobile.jpg">
+      <img src="ilmakiage/banner-desktop.jpg" alt="Rows of IL MAKIAGE foundation bottles in every shade">
+    </picture>
+    <div class="hero-copy">
+      <p class="hero-kicker">Retention Marketing Coordinator · June 2024 – April 2026</p>
+      <h1>Blake's Creative<br>Strategy</h1>
+      <p>Blake concepted, briefed and launched IL MAKIAGE's email and SMS campaigns, using familiar digital patterns to make every product match feel personal.</p>
+      <div class="hero-stat"><b>$2M+</b><span>in revenue generated through<br>email &amp; SMS campaigns</span></div>
+      <a class="btn-black" href="#concepts">See the campaigns</a>
+    </div>
+  </section>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
+  <!-- 5: CAMPAIGN CAROUSEL ("Beauty Simplified") -->
+  <section class="looks" id="concepts">
+    <div class="container section-head">
+      <p class="kicker">A sample of 12 out of many</p>
+      <h2 class="serif-title">Email Campaign Creatives</h2>
+      <p>Just a sample of the many email campaigns Blake ideated and developed end-to-end, with final mockups executed by graphic designers to drive engagement and conversion.</p>
+    </div>
 
-    <!-- SECTION 1: UI MIMICKING -->
-    <section class="section">
-      <div class="section-header">
+    <div class="carousel">
+      <button class="car-arrow car-prev" id="carPrev" aria-label="Previous campaigns"><span class="msi">arrow_back</span></button>
+      <div class="track" id="track">
+        <div class="look" data-src="Screen Recording 2026-01-28 at 10.08.15 PM.mov" data-title="Match + Gift Offer - Loading" data-idea="Blurred quiz interface creates visual continuity, bridging the transition from quiz completion to receiving personalized match and gift offer."></div>
+        <div class="look" data-src="Screen Recording 2026-01-28 at 10.40.19 PM.mov" data-title="Post Quiz Match - Reveal" data-idea="Non-gift offer version using the recognized quiz interface to portray the next step in the consumer journey after completing the quiz to discover their perfect product match."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 4.07.34 PM.mov" data-title="Free Gift as Gift Card" data-idea="Presenting the free gift as a gift card increased perceived value and customer engagement."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 4.09.41 PM.mov" data-title="Scratch-Off Lottery Ticket" data-idea="Designed campaign using scratch-off lottery ticket format to trigger anticipation and reward psychology."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 4.11.06 PM.mov" data-title="Partiful-Inspired VIP Guest List" data-idea="Inspired by Partiful — framing the free gift offer as an exclusive invite-only guest list, introducing VIP status without a formal VIP program."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 4.14.13 PM.mov" data-title="Breakthrough Formula Reveal" data-idea="Product breaks through paper to symbolize that our quiz algorithm has found your skin's breakthrough formula."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 8.46.53 PM.mov" data-title="Airdrop Product Match" data-idea="Mimicking iPhone's AirDrop interface to deliver your personalized product match."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 4.24.22 PM.mov" data-title="TSA-Inspired Holiday Travel" data-idea="Inspired by TSA, sent during the busiest travel season (December holidays)."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 4.28.00 PM.mov" data-title="Frozen Match Reveal" data-idea="Click-bait frozen theme timed with winter weather — unfreeze your progress to reveal your match."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 4.29.26 PM.mov" data-title="Color Wheel Shade Match" data-idea="A color wheel displaying multiple shades to show we picked this one specifically because of your undertone."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 9.32.58 PM.mov" data-title="Testimonial + Product Powers" data-idea="To showcase a strong video before and after asset and pair it with a short but powerful customer testimonial to further support the product powers listed below."></div>
+        <div class="look" data-src="Screen Recording 2026-02-16 at 9.37.34 PM.mov" data-title="Timelapse Before + After Asset" data-idea="Timelapsed before-and-after visual paired with a testimonial that targets a common consumer pain point to drive conversion."></div>
+      </div>
+      <button class="car-arrow car-next" id="carNext" aria-label="Next campaigns"><span class="msi">arrow_forward</span></button>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+
+  <!-- VIEW BY CREATIVE STRATEGY -->
+  <section class="strategies container">
+    <h2 class="serif-title">View by creative strategy</h2>
+    <p class="lede">Four ideas Blake used again and again to make campaigns feel familiar, exclusive and personal.</p>
+    <div class="strat-tiles">
+      <a class="strat-tile" href="#ui"><div class="st-img"><img src="ilmakiage/strategy-unlock.jpg" alt=""></div><span class="st-num">01</span><b>Familiar UI</b></a>
+      <a class="strat-tile" href="#wallet"><div class="st-img"><img src="ilmakiage/strategy-wallet.jpg" alt=""></div><span class="st-num">02</span><b>Apple Wallet</b></a>
+      <a class="strat-tile" href="#associative"><div class="st-img"><img src="ilmakiage/strategy-balance.jpg" alt=""></div><span class="st-num">03</span><b>Associative Design</b></a>
+      <a class="strat-tile" href="#sms"><div class="st-img"><img src="ilmakiage/strategy-sms.jpg" alt=""></div><span class="st-num">04</span><b>SMS Flows</b></a>
+    </div>
+  </section>
+
+  <section class="strategy" id="ui">
+    <div class="container">
+      <div class="strat-head">
+        <span class="strat-num">01</span>
+        <p class="strat-kicker">Creative strategy</p>
         <h2>Mimicking Universally Recognized UI</h2>
-        <p>
-          Aligning new products with familiar interfaces builds trust and recognition — reinforcing that each user's skin concerns
-          are understood by our AI-Powered Algorithm and their product match is truly personalized.
-        </p>
+        <p>Aligning new products with familiar interfaces builds trust and recognition — reinforcing that each user's skin concerns are understood by our AI-Powered Algorithm and their product match is truly personalized.</p>
       </div>
-
-      <div class="ui-highlight">
-        <div class="comparison-grid">
-          <div class="comparison-card">
-            <span class="card-badge badge-concept">Concept</span>
-            <h3>Ideation Mock-Up Sketch</h3>
-            <p>
-              A blurred product hides behind the familiar Face ID lock screen — symbolizing that your match is exclusive,
-              made only for your face.
-            </p>
-            <div class="media-container" onclick="openPopup(this)">
-              <img src="Screen Shot 2025-11-01 at 5.31.15 PM.png" alt="Mock-Up Sketch">
-              <div class="zoom-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="comparison-card">
-            <span class="card-badge badge-final">Final Design</span>
-            <h3>Campaign Visual Execution</h3>
-            <p>
-              The final graphic brings together motion, familiarity, and sophistication to make each skincare match
-              feel uniquely personal.
-            </p>
-            <div class="media-container" onclick="openPopup(this)">
-              <img src="slice1.gif" alt="Final Design Animation">
-              <div class="zoom-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-            <p class="designer-credit">
-              Design executed by <strong>Doug Rodas</strong>, Sr. Graphic Designer
-            </p>
-          </div>
-        </div>
+      <div class="shots">
+          <figure class="shot concept">
+            <div class="shot-media" onclick="openPopup(this)"><img src="Screen Shot 2025-11-01 at 5.31.15 PM.png" alt="Mock-Up Sketch"></div>
+            <figcaption>
+              <span class="tag">Concept</span>
+              <b>Ideation Mock-Up Sketch</b>
+              <p>A blurred product hides behind the familiar Face ID lock screen — symbolizing that your match is exclusive, made only for your face.</p>
+            </figcaption>
+          </figure>
+          <span class="msi arrow" aria-hidden="true">arrow_forward</span>
+          <figure class="shot final">
+            <div class="shot-media" onclick="openPopup(this)"><img src="slice1.gif" alt="Final Design Animation"></div>
+            <figcaption>
+              <span class="tag">Final design</span>
+              <b>Campaign Visual Execution</b>
+              <p>The final graphic brings together motion, familiarity, and sophistication to make each skincare match feel uniquely personal.</p>
+              <p class="credit">Design executed by <strong>Doug Rodas</strong>, Sr. Graphic Designer</p>
+            </figcaption>
+          </figure>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SECTION 2: APPLE WALLET CONCEPT -->
-    <section class="section">
-      <div class="section-header">
+  <section class="strategy blush" id="wallet">
+    <div class="container">
+      <div class="strat-head">
+        <span class="strat-num">02</span>
+        <p class="strat-kicker">Creative strategy</p>
         <h2>Apple Wallet Concept for Coupon Performance</h2>
-        <p>
-          Leveraging the familiar Apple Wallet interface to increase coupon engagement and create a sense of exclusivity
-          around promotional offers.
-        </p>
+        <p>Leveraging the familiar Apple Wallet interface to increase coupon engagement and create a sense of exclusivity around promotional offers.</p>
       </div>
-
-      <div class="wallet-highlight">
-        <div class="comparison-grid">
-          <div class="comparison-card">
-            <span class="card-badge badge-concept">Initial Draft</span>
-            <h3>Concept Sketch</h3>
-            <p>
-              My first draft outlining the idea of advertising our coupons in a universally recognized UI: Apple Wallet.
-            </p>
-            <div class="media-container expanded equal-height" onclick="openPopup(this)">
-              <img src="Screen Shot 2025-11-04 at 9.18.01 PM.png" alt="Wallet Concept Sketch Top">
-              <div class="zoom-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-            <div class="media-container expanded equal-height" style="margin-top: 20px;" onclick="openPopup(this)">
-              <img src="Screen Shot 2025-11-04 at 9.16.51 PM.png" alt="Wallet Concept Sketch Bottom">
-              <div class="zoom-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="comparison-card">
-            <span class="card-badge badge-final">Final Design</span>
-            <h3>Executed Campaign</h3>
-            <p>
-              The polished design creates instant recognition and increases perceived value of the promotional offer.
-            </p>
-            <div class="media-container" onclick="openPopup(this)">
-              <img src="A-Coupon-Revamp-14.gif" alt="Final Wallet Design">
-              <div class="zoom-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-            <p class="designer-credit">
-              Design executed by <strong>Ivan Castro</strong>, Sr. Graphic Designer
-            </p>
-          </div>
-        </div>
+      <div class="shots">
+          <figure class="shot concept">
+            <div class="shot-media" onclick="openPopup(this)"><img src="Screen Shot 2025-11-04 at 9.18.01 PM.png" alt="Wallet concept sketch"></div>
+            <figcaption>
+              <span class="tag">Initial draft</span>
+              <b>Concept Sketch</b>
+              <p>My first draft outlining the idea of advertising our coupons in a universally recognized UI: Apple Wallet.</p>
+            </figcaption>
+          </figure>
+          <span class="msi arrow" aria-hidden="true">arrow_forward</span>
+          <figure class="shot final">
+            <div class="shot-media" onclick="openPopup(this)"><img src="A-Coupon-Revamp-14.gif" alt="Final Wallet Design"></div>
+            <figcaption>
+              <span class="tag">Final design</span>
+              <b>Executed Campaign</b>
+              <p>The polished design creates instant recognition and increases perceived value of the promotional offer.</p>
+              <p class="credit">Design executed by <strong>Ivan Castro</strong>, Sr. Graphic Designer</p>
+            </figcaption>
+          </figure>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SECTION 3: LIQUID GLASS DESIGN -->
-    <section class="section">
-      <div class="section-header">
+  <section class="strategy" id="associative">
+    <div class="container">
+      <div class="strat-head">
+        <span class="strat-num">03</span>
+        <p class="strat-kicker">Creative strategy</p>
         <h2>Associative Design to Communicate Product Power</h2>
-        <p>
-          Using associative psychology to visually represent new ideas — connecting universally recognized symbols with product messaging to drive instant understanding and stronger engagement.
-        </p>
+        <p>Using associative psychology to visually represent new ideas — connecting universally recognized symbols with product messaging to drive instant understanding and stronger engagement.</p>
       </div>
-
-      <div class="ui-highlight">
-        <div class="comparison-grid">
-          <div class="comparison-card">
-            <span class="card-badge badge-concept">Concept</span>
-            <h3>Initial Mock-Up</h3>
-            <p>
-              Leveraged yin and yang symbolism to trigger subconscious recognition that these two formulas are designed as balancing counterparts, engineered to work together.
-            </p>
-            <div class="media-container expanded" onclick="openPopup(this)">
-              <img src="Screen Shot 2026-02-16 at 8.21.54 PM.png" alt="Liquid Glass Concept">
-              <div class="zoom-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="comparison-card">
-            <span class="card-badge badge-final">Final Design</span>
-            <h3>Executed Design</h3>
-            <p>
-              The final design brings the yin and yang concept to life — visually communicating product balance and complementary formulas to drive bundle conversion.
-            </p>
-            <div class="media-container expanded" onclick="openPopup(this)">
-              <video autoplay muted loop playsinline style="width:100%; border-radius:8px;">
-                <source src="Screen Recording 2026-02-16 at 4.19.03 PM.mov" type="video/mp4">
-              </video>
-              <div class="zoom-overlay">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-            <p class="designer-credit">
-              Design executed by <strong>Ramon Magaña</strong>, Graphic Designer
-            </p>
-          </div>
-        </div>
+      <div class="shots">
+          <figure class="shot concept">
+            <div class="shot-media" onclick="openPopup(this)"><img src="Screen Shot 2026-02-16 at 8.21.54 PM.png" alt="Liquid Glass Concept"></div>
+            <figcaption>
+              <span class="tag">Concept</span>
+              <b>Initial Mock-Up</b>
+              <p>Leveraged yin and yang symbolism to trigger subconscious recognition that these two formulas are designed as balancing counterparts, engineered to work together.</p>
+            </figcaption>
+          </figure>
+          <span class="msi arrow" aria-hidden="true">arrow_forward</span>
+          <figure class="shot final">
+            <div class="shot-media" onclick="openPopup(this)"><video autoplay muted loop playsinline><source src="Screen Recording 2026-02-16 at 4.19.03 PM.mov" type="video/mp4"></video></div>
+            <figcaption>
+              <span class="tag">Final design</span>
+              <b>Executed Design</b>
+              <p>The final design brings the yin and yang concept to life — visually communicating product balance and complementary formulas to drive bundle conversion.</p>
+              <p class="credit">Design executed by <strong>Ramon Magaña</strong>, Graphic Designer</p>
+            </figcaption>
+          </figure>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SECTION 4: SMS FILTERING WORKAROUNDS -->
-    <section class="section">
-      <div class="section-header">
-        <h2>SMS Flow Design & iOS 16 Filter Bypass</h2>
-        <p>
-          To counter iOS 16's new AI filtering (which hides promotional messages in iMessage), I built multiple workarounds
-          through the deployment of intermediary landing pages to bypass the filter and encourage users to mark us as a known contact.
-        </p>
+  <section class="strategy blush" id="sms">
+    <div class="container">
+      <div class="strat-head">
+        <span class="strat-num">04</span>
+        <p class="strat-kicker">Creative strategy</p>
+        <h2>SMS Flow Design &amp; iOS 16 Filter Bypass</h2>
+        <p>To counter iOS 16's new AI filtering (which hides promotional messages in iMessage), I built multiple workarounds through the deployment of intermediary landing pages to bypass the filter and encourage users to mark us as a known contact.</p>
       </div>
-
-      <div class="sms-highlight">
-        <div class="sms-grid">
-          <div class="sms-card">
-            <h3><i class="fas fa-mobile-alt"></i>Stealth Landing Page</h3>
-            <p>
-              Built a stealth landing page to send pre-filled contact cards to RCS users, bypassing Klaviyo's restriction
-              to non-RCS recipients.
-            </p>
-            <div class="video-container">
-              <video autoplay muted loop playsinline>
-                <source src="ScreenRecording_10-27-2025 17-35-10_1.MP4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-
-          <div class="sms-card">
-            <h3><i class="fas fa-envelope"></i>Email Banner Workaround</h3>
-            <p>
-              Executed the deploy of an email banner as our new point of SMS collection while our website's collection
-              point was down.
-            </p>
-            <div class="video-container">
-              <video autoplay muted loop playsinline>
-                <source src="ScreenRecording_11-05-2025 21-56-13_1.mov" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
+      <div class="shots pair">
+          <figure class="shot concept">
+            <div class="shot-media" onclick="openPopup(this)"><video class="phone-vid" autoplay muted loop playsinline><source src="ScreenRecording_10-27-2025 17-35-10_1.MP4" type="video/mp4"></video></div>
+            <figcaption>
+              <span class="tag">SMS flow</span>
+              <b>Stealth Landing Page</b>
+              <p>Built a stealth landing page to send pre-filled contact cards to RCS users, bypassing Klaviyo's restriction to non-RCS recipients.</p>
+            </figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="shot-media" onclick="openPopup(this)"><video class="phone-vid" autoplay muted loop playsinline><source src="ScreenRecording_11-05-2025 21-56-13_1.mov" type="video/mp4"></video></div>
+            <figcaption>
+              <span class="tag">Email</span>
+              <b>Email Banner Workaround</b>
+              <p>Executed the deploy of an email banner as our new point of SMS collection while our website's collection point was down.</p>
+            </figcaption>
+          </figure>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SECTION 5: CREATIVE CONCEPTS GALLERY -->
-    <section class="section">
-      <div class="section-header">
-        <h2>Additional Creative Concepts</h2>
-        <p>
-          A collection of campaign creatives I ideated and developed end-to-end, with final mockups executed by graphic designers to drive engagement and conversion.
+  <!-- LOOKING FOR MORE? -->
+  <section class="more">
+    <h2>Looking for more?</h2>
+    <div class="more-grid">
+      <a href="projects.html"><span class="msi">folder_open</span><span><b>All projects</b><small>Every campaign, site and design in one place</small></span><em>›</em></a>
+      <a href="resume.html"><span class="msi">description</span><span><b>Resume</b><small>Experience, skills and past roles</small></span><em>›</em></a>
+      <a href="Aboutme.html"><span class="msi">person</span><span><b>About Blake</b><small>Background and how Blake works</small></span><em>›</em></a>
+      <a href="freelance.html"><span class="msi">language</span><span><b>Freelance websites</b><small>Sites designed and built for clients</small></span><em>›</em></a>
+    </div>
+  </section>
 
-        </p>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="want">
+      <h2>Want more?</h2>
+      <p class="sub">See the rest of Blake's work</p>
+      <p class="blurb">Campaigns across beauty, sports and fashion, from first sketch to final send.</p>
+      <div class="want-row">
+        <a href="projects.html">All projects</a>
+        <a href="resume.html">View resume</a>
       </div>
+    </div>
 
-      <div class="creative-gallery">
-        <!-- Creative Card 1 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-01-28 at 10.08.15 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Match + Gift Offer - Loading</h4>
-            <p><strong>Idea:</strong> Blurred quiz interface creates visual continuity, bridging the transition from quiz completion to receiving personalized match and gift offer.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 2 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-01-28 at 10.40.19 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4> Post Quiz Match - Reveal</h4>
-            <p><strong>Idea:</strong> Non-gift offer version using the recognized quiz interface to portray the next step in the consumer journey after completing the quiz to discover their perfect product match.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 3 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 4.07.34 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Free Gift as Gift Card</h4>
-            <p><strong>Idea:</strong> Presenting the free gift as a gift card increased perceived value and customer engagement.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 4 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 4.09.41 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Scratch-Off Lottery Ticket</h4>
-            <p><strong>Idea:</strong> Designed campaign using scratch-off lottery ticket format to trigger anticipation and reward psychology.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 5 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 4.11.06 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Partiful-Inspired VIP Guest List</h4>
-            <p><strong>Idea:</strong> Inspired by Partiful — framing the free gift offer as an exclusive invite-only guest list, introducing VIP status without a formal VIP program.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 6 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 4.14.13 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Breakthrough Formula Reveal</h4>
-            <p><strong>Idea:</strong> Product breaks through paper to symbolize that our quiz algorithm has found your skin's breakthrough formula.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 7 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 8.46.53 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Airdrop Product Match</h4>
-            <p><strong>Idea:</strong> Mimicking iPhone's AirDrop interface to deliver your personalized product match.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 8 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 4.24.22 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>TSA-Inspired Holiday Travel</h4>
-            <p><strong>Idea:</strong> Inspired by TSA, sent during the busiest travel season (December holidays).</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 9 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 4.28.00 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Frozen Match Reveal</h4>
-            <p><strong>Idea:</strong> Click-bait frozen theme timed with winter weather — unfreeze your progress to reveal your match.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 10 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 4.29.26 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Color Wheel Shade Match</h4>
-            <p><strong>Idea:</strong> A color wheel displaying multiple shades to show we picked this one specifically because of your undertone.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 11 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image" style="max-height: 580px; overflow: hidden;">
-            <video autoplay muted loop playsinline style="object-fit: cover; object-position: top;">
-              <source src="Screen Recording 2026-02-16 at 9.32.58 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Testimonial + Product Powers</h4>
-            <p><strong>Idea:</strong> To showcase a strong video before and after asset and pair it with a short but powerful customer testimonial to further support the product powers listed below.</p>
-          </div>
-        </div>
-
-        <!-- Creative Card 12 -->
-        <div class="creative-card" onclick="openCreativePopup(this)">
-          <div class="creative-image">
-            <video autoplay muted loop playsinline>
-              <source src="Screen Recording 2026-02-16 at 9.37.34 PM.mov" type="video/mp4">
-            </video>
-            <div class="zoom-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-          </div>
-          <div class="creative-info">
-            <h4>Timelapse Before + After Asset</h4>
-            <p><strong>Idea:</strong> Timelapsed before-and-after visual paired with a testimonial that targets a common consumer pain point to drive conversion.</p>
-          </div>
-        </div>
+    <div class="foot-cols">
+      <div>
+        <h4>Projects</h4>
+        <a href="vanwagner.html">Van Wagner</a>
+        <a href="#top">IL MAKIAGE</a>
+        <a href="freelance.html">Freelance websites</a>
+        <a href="studentportal.html">UPenn student portal</a>
+        <a href="firstmobiledesign.html">Direct Chef app</a>
       </div>
-    </section>
+      <div>
+        <h4>Blake</h4>
+        <a href="googleHomepage.html">Home</a>
+        <a href="Aboutme.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html">All projects</a>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <a href="#concepts">Email campaign creatives</a>
+        <a href="#ui">Familiar UI</a>
+        <a href="#wallet">Apple Wallet</a>
+        <a href="#associative">Associative design</a>
+        <a href="#sms">SMS flows</a>
+      </div>
+    </div>
 
-  </div>
+    <div class="foot-bottom">
+      <img src="Logo_of_Il_makiage.svg" alt="IL MAKIAGE">
+      <span>Campaign work by Blake Massoni · Retention Marketing, 2024 – 2026</span>
+    </div>
+  </footer>
 
-  <!-- POPUP MODAL -->
+  <!-- POPUP -->
   <div class="popup-overlay" id="popupOverlay">
+    <button class="popup-close" onclick="closePopup()" aria-label="Close">&times;</button>
     <div class="popup-content">
-      <button class="popup-close" onclick="closePopup()">&times;</button>
-      <img id="popupImage" src="" alt="Zoomed Image" style="display:none;">
-      <video id="popupVideo" src="" autoplay loop muted playsinline style="display:none; max-width:100%; max-height:90vh; border-radius:8px; box-shadow:0 8px 32px rgba(0,0,0,0.5);"></video>
+      <img id="popupImage" src="" alt="" style="display:none;">
+      <video id="popupVideo" autoplay loop muted playsinline style="display:none;"></video>
+      <div class="popup-caption" id="popupCaption"></div>
     </div>
   </div>
 
-  <script>
-    function openPopup(container) {
-      var img = container.querySelector('img');
-      var video = container.querySelector('video');
-      var popup = document.getElementById('popupOverlay');
-      var popupImg = document.getElementById('popupImage');
-      var popupVideo = document.getElementById('popupVideo');
+<script>
+  // ============ POP-UP ============
+  const popup = document.getElementById('popupOverlay');
+  const popupImg = document.getElementById('popupImage');
+  const popupVideo = document.getElementById('popupVideo');
+  const popupCaption = document.getElementById('popupCaption');
 
-      popupImg.style.display = 'none';
-      popupVideo.style.display = 'none';
-
-      if (video) {
-        popupVideo.src = video.querySelector('source').src;
-        popupVideo.style.display = 'block';
-        popupVideo.play();
-      } else if (img) {
-        popupImg.src = img.src;
-        popupImg.alt = img.alt;
-        popupImg.style.display = 'block';
-      }
-      popup.classList.add('active');
-      document.body.style.overflow = 'hidden';
+  function showPopup({ img, video, title, idea }) {
+    popupImg.style.display = 'none';
+    popupVideo.style.display = 'none';
+    if (video) {
+      popupVideo.src = video;
+      popupVideo.style.display = 'block';
+      popupVideo.play().catch(() => {});
+    } else if (img) {
+      popupImg.src = img.src;
+      popupImg.alt = img.alt;
+      popupImg.style.display = 'block';
     }
-
-    function openCreativePopup(card) {
-      var video = card.querySelector('.creative-image video');
-      var img = card.querySelector('.creative-image img');
-      var popup = document.getElementById('popupOverlay');
-      var popupImg = document.getElementById('popupImage');
-      var popupVideo = document.getElementById('popupVideo');
-
-      popupImg.style.display = 'none';
-      popupVideo.style.display = 'none';
-
-      if (video) {
-        popupVideo.src = video.querySelector('source').src;
-        popupVideo.style.display = 'block';
-        popupVideo.play();
-      } else if (img) {
-        popupImg.src = img.src;
-        popupImg.alt = img.alt;
-        popupImg.style.display = 'block';
-      }
-      popup.classList.add('active');
-      document.body.style.overflow = 'hidden';
+    popupCaption.innerHTML = '';
+    if (title) {
+      const b = document.createElement('b'); b.textContent = title;
+      const s = document.createElement('span'); s.textContent = idea || '';
+      popupCaption.append(b, s);
     }
+    popup.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
 
-    function closePopup() {
-      var popup = document.getElementById('popupOverlay');
-      var popupVideo = document.getElementById('popupVideo');
-      popupVideo.pause();
-      popupVideo.src = '';
-      popup.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Close popup when clicking outside the image
-    document.getElementById('popupOverlay').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closePopup();
-      }
+  // strategy shots: open the media (the last image if there are two)
+  function openPopup(media) {
+    const video = media.querySelector('video');
+    const imgs = media.querySelectorAll('img');
+    const fig = media.closest('.shot');
+    showPopup({
+      video: video ? (video.currentSrc || video.querySelector('source').src) : null,
+      img: imgs[imgs.length - 1],
+      title: fig ? fig.querySelector('figcaption b').textContent : ''
     });
+  }
 
-    // Close popup with ESC key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closePopup();
-      }
-    });
+  function closePopup() {
+    popupVideo.pause();
+    popupVideo.removeAttribute('src');
+    popup.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 
-    // Force all videos to autoplay and loop
-    document.addEventListener('DOMContentLoaded', function() {
-      var videos = document.querySelectorAll('video');
-      videos.forEach(function(video) {
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.play().catch(function() {
-          // Retry on user interaction if autoplay blocked
-          document.addEventListener('click', function retry() {
-            video.play();
-            document.removeEventListener('click', retry);
-          }, { once: true });
-        });
+  popup.addEventListener('click', e => { if (e.target === popup || e.target.classList.contains('popup-content')) closePopup(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+  // ============ CAMPAIGN CAROUSEL ============
+  const track = document.getElementById('track');
+  const looks = [...track.querySelectorAll('.look')];
+  looks.forEach((look, i) => {
+    const v = document.createElement('video');
+    v.src = look.dataset.src;
+    v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
+    v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    look.appendChild(v);
+    const band = document.createElement('div');
+    band.className = 'look-band';
+    band.innerHTML = `<i>${String(i + 1).padStart(2, '0')}</i><span><b></b><u>View the campaign</u></span>`;
+    band.querySelector('b').textContent = look.dataset.title;
+    look.appendChild(band);
+    look.setAttribute('role', 'button');
+    look.setAttribute('tabindex', '0');
+    look.setAttribute('aria-label', look.dataset.title);
+    const open = () => showPopup({ video: look.dataset.src, title: look.dataset.title, idea: look.dataset.idea });
+    look.addEventListener('click', open);
+    look.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  });
+
+  const dotsEl = document.getElementById('dots');
+  const prev = document.getElementById('carPrev');
+  const next = document.getElementById('carNext');
+  const perPage = () => Math.max(1, Math.round(track.clientWidth / looks[0].getBoundingClientRect().width));
+  const pages = () => Math.ceil(looks.length / perPage());
+  const page = () => Math.round(track.scrollLeft / track.clientWidth);
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < pages(); i++) {
+      const b = document.createElement('button');
+      b.setAttribute('aria-label', 'Go to set ' + (i + 1));
+      b.addEventListener('click', () => track.scrollTo({ left: i * track.clientWidth }));
+      dotsEl.appendChild(b);
+    }
+    syncCarousel();
+  }
+  function syncCarousel() {
+    const p = page();
+    [...dotsEl.children].forEach((d, i) => d.classList.toggle('on', i === p));
+    prev.disabled = track.scrollLeft < 4;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  }
+  prev.addEventListener('click', () => track.scrollBy({ left: -track.clientWidth }));
+  next.addEventListener('click', () => track.scrollBy({ left: track.clientWidth }));
+  track.addEventListener('scroll', () => requestAnimationFrame(syncCarousel), { passive: true });
+  window.addEventListener('resize', buildDots);
+  buildDots();
+
+  // ============ VIDEOS: play only while on screen ============
+  const vidObserver = new IntersectionObserver(entries => entries.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { v.muted = true; v.play().catch(() => {}); } else { v.pause(); }
+  }), { threshold: 0.15 });
+  document.querySelectorAll('video:not(#popupVideo)').forEach(v => vidObserver.observe(v));
+
+  // ============ CATEGORY ROW: underline the section you're reading ============
+  const navLinks = document.querySelectorAll('.catnav a[href^="#"]');
+  const navObserver = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
+
+  // ============ SEARCH: finds any page on Blake's site ============
+  // Every page on the site, with the words that should find it.
+  const sitePages = [
+    { title: 'Blake Massoni', url: 'googleHomepage.html', display: 'blakemassoni.com', icon: 'home',
+      keys: ['home', 'homepage', 'main', 'blake', 'massoni', 'start'] },
+    { title: 'About Me', url: 'Aboutme.html', display: 'blakemassoni.com/about', icon: 'person',
+      keys: ['about', 'about me', 'bio', 'who', 'blake'] },
+    { title: 'Projects', url: 'projects.html', display: 'blakemassoni.com/projects', icon: 'folder',
+      keys: ['projects', 'work', 'portfolio', 'case studies', 'design'] },
+    { title: 'Resume', url: 'resume.html', display: 'blakemassoni.com/resume', icon: 'description',
+      keys: ['resume', 'cv', 'experience', 'skills', 'jobs', 'past work'] },
+    { title: 'Van Wagner | Social Media', url: 'vanwagner.html', display: 'VanWagner-Social.com/blakemassoni', icon: 'sports_football',
+      keys: ['van wagner', 'vanwagner', 'social', 'social media', 'instagram', 'linkedin', 'reels', 'blog', 'blog posts', 'sports', 'marketing'] },
+    { title: 'Freelance | Website Designs', url: 'freelance.html', display: 'FreelanceWebDesign.com/blakemassoni', icon: 'language',
+      keys: ['freelance', 'websites', 'web design', 'website', 'nyfw', 'lafw', 'n4xt', 'fashion week', 'front row', '.fw', 'fw app'] },
+    { title: 'IL MAKIAGE | Visual Campaigns', url: 'imemails.html', display: "ILMAKIAGE-Blake'sVisuals.com/blakemassoni", icon: 'mail',
+      keys: ['il makiage', 'makiage', 'emails', 'email', 'campaigns', 'visuals', 'beauty'] },
+    { title: 'UPenn | Student Portal Redesign', url: 'studentportal.html', display: 'UPennPortalRedesign.com/blakemassoni', icon: 'school',
+      keys: ['upenn', 'penn', 'path@penn', 'student portal', 'portal', 'redesign', 'ux', 'ui'] },
+    { title: 'Direct Chef App | UX/UI Class Project', url: 'firstmobiledesign.html', display: 'UniversityProjects.net/blakemassoni', icon: 'smartphone',
+      keys: ['direct chef', 'chef', 'app', 'mobile', 'class project', 'ux', 'ui', 'university'] },
+    { title: 'Spread of Activation', url: 'aboutblakemassoni.html', display: 'blakemassoni.com/spread-of-activation', icon: 'hub',
+      keys: ['spread of activation', 'activation', 'psychology', 'research'] }
+  ];
+
+  const pageUrl = '';   // empty: the field shows the SEARCH placeholder like ilmakiage.com
+  const obSearch = document.getElementById('obSearch');
+  const obInput = document.getElementById('obInput');
+  const obMenu = document.getElementById('obMenu');
+  const obIcon = document.getElementById('obIcon');
+  let obResults = [];
+  let obSel = 0;
+
+  const esc = t => t.replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  const norm = t => t.toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9@.' ]+/g, ' ').trim();
+
+  // score each page: whole-phrase hits count most, then word starts, then partial matches
+  function searchSite(q) {
+    const query = norm(q);
+    if (!query) return [];
+    const words = query.split(/\s+/);
+    return sitePages.map(page => {
+      const hay = [page.title, page.display, ...page.keys].map(norm);
+      let score = 0;
+      if (hay.some(h => h === query)) score += 10;
+      if (hay.some(h => h.includes(query))) score += 5;
+      words.forEach(w => {
+        if (hay.some(h => h.split(' ').some(x => x.startsWith(w)))) score += 2;
+        else if (w.length > 2 && hay.some(h => h.includes(w))) score += 1;
       });
-    });
+      return { page, score };
+    }).filter(r => r.score > 0).sort((a, b) => b.score - a.score).map(r => r.page).slice(0, 6);
+  }
 
-    // Also try playing when videos become visible (for lazy loading)
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var video = entry.target;
-          video.muted = true;
-          video.loop = true;
-          video.play().catch(function() {});
-        }
-      });
-    }, { threshold: 0.25 });
+  function highlightMatch(text, q) {
+    const i = text.toLowerCase().indexOf(q.toLowerCase().trim());
+    if (!q.trim() || i < 0) return esc(text);
+    return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + q.trim().length)) + '</mark>' + esc(text.slice(i + q.trim().length));
+  }
 
-    document.querySelectorAll('video').forEach(function(video) {
-      observer.observe(video);
-    });
-  </script>
+  function renderMenu() {
+    const q = obInput.value;
+    obResults = q.trim() && q !== pageUrl ? searchSite(q) : sitePages.slice(0, 6);
+    const google = { title: `Search Google for "${q.trim()}"`, url: 'https://www.google.com/search?q=' + encodeURIComponent(q.trim()), display: 'google.com', icon: 'search', external: true };
+    if (q.trim() && q !== pageUrl) obResults.push(google);
+    obSel = Math.min(obSel, obResults.length - 1);
+    obMenu.innerHTML = obResults.map((r, i) => `
+      <a class="ob-item${i === obSel ? ' sel' : ''}" role="option" href="${r.url}" data-i="${i}" ${r.external ? 'target="_blank" rel="noopener"' : ''}>
+        <span class="msi">${r.icon}</span>
+        <span class="ob-text"><b>${r.external ? esc(r.title) : highlightMatch(r.title, q)}</b><small>${esc(r.display)}</small></span>
+      </a>`).join('') || '<div class="ob-empty">No results</div>';
+    obSearch.classList.add('open');
+    obSearch.classList.toggle('typing', !!q);
+  }
 
+  function closeMenu() { obSearch.classList.remove('open'); }
+
+  function go(r) {
+    if (!r) return;
+    if (r.external) window.open(r.url, '_blank', 'noopener');
+    else window.location.href = r.url;
+  }
+
+  obInput.addEventListener('focus', () => {
+    obIcon.textContent = 'search';
+    if (obInput.value === pageUrl) obInput.select();
+    obSel = 0;
+    renderMenu();
+  });
+  obInput.addEventListener('input', () => { obSel = 0; renderMenu(); });
+  obInput.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); obSel = (obSel + 1) % obResults.length; renderMenu(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); obSel = (obSel - 1 + obResults.length) % obResults.length; renderMenu(); }
+    if (e.key === 'Escape') { obInput.value = pageUrl; obInput.blur(); }
+  });
+  document.getElementById('obForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (obInput.value === pageUrl) return closeMenu();
+    go(obResults[obSel]);
+  });
+  document.getElementById('obClear').addEventListener('click', () => { obInput.value = ''; obInput.focus(); renderMenu(); });
+  obMenu.addEventListener('mousedown', e => e.preventDefault());   // keep focus while clicking a result
+
+  obInput.addEventListener('blur', () => {
+    closeMenu();
+    obIcon.textContent = 'lock';
+    if (!obInput.value.trim()) obInput.value = pageUrl;
+    obSearch.classList.remove('typing');
+  });
+
+  // "/" jumps to the address bar, like on Google
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== obInput && !/input|textarea/i.test(document.activeElement.tagName)) {
+      e.preventDefault(); obInput.focus();
+    }
+  });
+
+</script>
 </body>
 </html>
+
