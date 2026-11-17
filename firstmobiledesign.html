@@ -3,2076 +3,1154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Van Wagner | Social Media</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0&display=block" rel="stylesheet">
+<title>DirectChef App | Blake Massoni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Jost: the thin, rounded geometric type used in the DirectChef app -->
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300,0..1,0&display=block" rel="stylesheet">
 <style>
+  /* DirectChef palette, sampled from the app screens */
   :root {
-    --darkBlue: #08101d;
-    --darkBlueAlt: #0e1a2e;
-    --blue: #1b4388;
-    --blueAlt: #18284d;
-    --lightBlue: #84aaeb;
-    --white: #fff;
-    --muted: rgba(255, 255, 255, 0.55);
-    --line: 1px solid rgba(255, 255, 255, 0.08);
-    --glass: rgba(255, 255, 255, 0.05);
-    --radius: 10px;
-    --google-blue: #1b4388;              /* VW --blue (buttons, highlights) */
-    --link-blue: #84aaeb;                /* VW --lightBlue (eyebrows, links) */
-    --text-primary: #fff;
-    --text-secondary: rgba(255, 255, 255, 0.72);
-    --border-color: rgba(255, 255, 255, 0.16);
+    --slate: #a3aec1;
+    --slate-2: #939cb0;
+    --slate-deep: #6f7a90;
+    --slate-ink: #3f4859;
+    --mist: #f4f5f7;
+    --mist-2: #eceef2;
+    --matcha: #c6d79c;
+    --matcha-deep: #8fa860;
+    --text: #5b6375;
+    --white: #ffffff;
+    --font: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+    --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+    --paper: #f6f5f0;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   * { box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--darkBlue);
-    color: var(--text-primary);
-    min-height: 100vh;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  ::selection { background: var(--lightBlue); color: var(--darkBlue); }
-
-  h1, h2, h3 { font-family: 'Poppins', sans-serif; }
-
-  .container {
-    width: min(1200px, 100%);
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--link-blue);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    margin: 0 0 16px;
-  }
-
-  .eyebrow::before { /* VW dot */
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--link-blue);
-  }
-
-  main { position: relative; z-index: 1; }
-
-  /* ---------- HEADER (same topbar as the other project pages) ---------- */
-  .topbar {
-    height: 72px;
-    background: var(--darkBlue);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  .logo-section { display: flex; align-items: center; gap: 12px; }
-
-  .logo {
-    font-size: 1.3rem;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .logo span:nth-child(1) { color: #4285F4; }
-  .logo span:nth-child(2) { color: #EA4335; }
-  .logo span:nth-child(3) { color: #FBBC05; }
-  .logo span:nth-child(4) { color: #4285F4; }
-  .logo span:nth-child(5) { color: #34A853; }
-  .logo span:nth-child(6) { color: #EA4335; }
-  .logo span:nth-child(7) { color: #FBBC05; }
-  .logo span:nth-child(8) { color: #4285F4; }
-  .logo span:nth-child(9) { color: #34A853; }
-  .logo span:nth-child(10){ color: #EA4335; }
-  .logo span:nth-child(11){ color: #FBBC05; }
-  .logo span:nth-child(12){ color: #4285F4; }
-
-  .page-title { font-size: 16px; color: var(--text-secondary); font-weight: 400; font-family: 'Poppins', sans-serif; display: flex; align-items: center; gap: 12px; }
-  .page-title img { height: 26px; display: block; }
-  .logo { font-family: 'Poppins', sans-serif; }
-
-  .topbar-actions { display: flex; gap: 12px; align-items: center; }
-
-  .apps-menu {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-
-  .apps-menu:hover { background-color: rgba(255,255,255,0.08); }
-
-  .apps-icon {
-    width: 20px;
-    height: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 6px);
-    grid-gap: 1px;
-    opacity: 0.6;
-  }
-
-  .apps-icon span { width: 6px; height: 6px; background-color: var(--text-secondary); border-radius: 1px; }
-
-  .profile-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4285f4, #34a853);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: 500;
-    font-size: 14px;
-    cursor: pointer;
-  }
-
-  .back-btn {
-    padding: 10px 26px;
-    background: var(--blue);
-    color: #fff;
-    border-radius: 100px;
-    font: 500 14px 'Poppins', sans-serif;
-    text-decoration: none;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-    transition: 0.3s ease-in-out all;
-  }
-
-  .back-btn:hover { background: #fff; color: var(--darkBlue); }
-
-  .text-link {
-    color: var(--link-blue);
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .text-link i { transition: transform 0.3s var(--ease); }
-  .text-link:hover i { transform: translateX(4px); }
-
-  .icon-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  }
-
-  .icon-btn:hover { background: #fff; color: var(--darkBlue); border-color: #fff; }
-  .topbar .icon-btn { width: 40px; height: 40px; border: none; }
-
-  /* ---------- HERO ---------- */
-  .hero {
-    padding-top: 80px;
-    padding-bottom: 40px;
-  }
-
-  .hero h1 {
-    margin: 0;
-    font-size: clamp(2.8rem, 7.5vw, 5.8rem);
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: -0.045em;
-  }
-
-  .hero h1 em {
-    font-style: normal;
-    color: var(--lightBlue);
-  }
-
-  .hero-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 40px;
-    margin-top: 48px;
-  }
-
-  .section-head { padding-top: 90px; }
-  .hero-bottom p {
-    max-width: 500px;
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 1.08rem;
-    font-weight: 400;
-    line-height: 1.75;
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    filter: blur(6px);
-    transition: opacity 1s var(--ease), transform 1s var(--ease), filter 1s var(--ease);
-  }
-
-  .reveal.in { opacity: 1; transform: none; filter: none; }
-
-  /* ---------- SECTION HEADERS ---------- */
-  .section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 90px 0 20px;
-  }
-
-  .section-head h2 {
-    margin: 0;
-    font-size: clamp(2rem, 4.5vw, 3rem);
-    font-weight: 600;
-    letter-spacing: -0.035em;
-  }
-
-  /* ---------- SECTION BANDS (vanwagner.com alternates solid navy / blue blocks) ---------- */
-  .band { position: relative; }
-  .band-alt { background: var(--darkBlueAlt); }
-  .band-blue { background: var(--blue); }
-  .band-blue .eyebrow { color: #fff; }
-  .band-blue .eyebrow::before { background: #fff; }
-
-  /* ---------- REELS SECTION: title on the left, phone on the right ---------- */
-  .reels-layout {
-    display: grid;
-    grid-template-columns: 1fr minmax(0, 1fr);
-    align-items: center;
-    gap: 40px;
-    padding: 90px 0 110px;
-    perspective: 2000px;
-  }
-
-  .reels-side {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .reels-side .section-head { padding: 0 0 32px; }
-  .reels-side .app-switch { margin-bottom: 24px; }
-
-  .section-blurb {
-    max-width: 440px;
-    margin: 18px 0 0;
-    color: var(--text-secondary);
-    font-size: 1.02rem;
-    line-height: 1.75;
-  }
-
-  .phone-col {
-    display: flex;
-    justify-content: center;
-  }
-
-  /* quiet "scroll to view" cue: a little mouse with a moving wheel */
-  .scroll-cue {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-  }
-
-  .scroll-icon {
-    position: relative;
-    width: 18px;
-    height: 28px;
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-  }
-
-  .scroll-icon::after {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    width: 3px;
-    height: 6px;
-    margin-left: -1.5px;
-    border-radius: 2px;
-    background: var(--lightBlue);
-    animation: wheel 1.6s ease-in-out infinite;
-  }
-
-  @keyframes wheel {
-    0% { opacity: 0; transform: translateY(0); }
-    30% { opacity: 1; }
-    100% { opacity: 0; transform: translateY(9px); }
-  }
-
-  /* ---------- PHONE (same build as the .FW mockup: real device outline over a screen layer) ---------- */
-  .phone-slot {
-    position: relative;
-    height: clamp(540px, 84vh, 820px);
-    aspect-ratio: 1350 / 2760;
-    opacity: 0;
-    transform-style: preserve-3d;
-  }
-
-  /* spins up from below into place */
-  .phone-slot.in { animation: spinUp 1.8s cubic-bezier(.16, .84, .44, 1) forwards; }
-
-  /* no opacity in the spin: fading a 3D object makes browsers flatten it, so it rises in from below instead */
-  .phone-slot.in { opacity: 1; }
-  @keyframes spinUp {
-    0% { transform: translateY(60vh) rotateY(-540deg) rotateZ(-12deg) scale(0.5); }
-    100% { transform: none; }
-  }
-
-  /* ground shadow to sell the depth */
-  .phone-slot::after {
-    content: '';
-    position: absolute;
-    left: 8%;
-    right: 8%;
-    bottom: -4%;
-    height: 24px;
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), transparent 72%);
-    filter: blur(4px);
-    z-index: 0;
-  }
-
-  .phone-slot { filter: none; }
-  .phone-slot::after { transition: opacity 0.5s; }
-
-  .phone-frame {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.9s var(--ease);
-  }
-  /* ---------- 3D BODY: metal edge layers + a phone back, so the spin shows real depth ---------- */
-  .vw-slab { position: absolute; inset: 0.5% 1.1%; border-radius: 18.5% / 9%; background: var(--c); transform: translateZ(var(--z)); pointer-events: none; }
-  .vw-slab.back {
-    background: radial-gradient(120% 80% at 30% 15%, #3a4356, #1c2230 60%, #12161f);
-    box-shadow: inset 0 0 0 3px #4a5262;
-  }
-  /* camera bump on the back */
-  .vw-slab.back::before {
-    content: ''; position: absolute; left: 8%; top: 4%; width: 40%; aspect-ratio: 1; border-radius: 26%;
-    background: linear-gradient(145deg, #2a3140, #171b24); box-shadow: inset 0 0 0 2px #475064;
-  }
-  .vw-slab.back::after {
-    content: ''; position: absolute; left: 14%; top: 7%; width: 13%; aspect-ratio: 1; border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #5d6a86, #0b0d12 60%); box-shadow: 34px 0 0 0 #0b0d12, 0 34px 0 0 #0b0d12;
-  }
-  /* the screen and its bezel sit on the front face and hide when the phone turns around */
-  .phone-frame > .phone-screen, .phone-frame > .phone-outline {
-    transform: translateZ(calc(var(--t, 20px) / 2 + 0.5px));
-    -webkit-backface-visibility: hidden; backface-visibility: hidden;
-  }
-
-  /* ---------- LANDSCAPE: phone turns on its side for horizontal videos ---------- */
-  .phone-slot.landscape::after { opacity: 0; }
-  .phone-slot.landscape .phone-frame { transform: rotate(-90deg) scale(var(--land-scale, 0.72)); }
-
-  .phone-slot.landscape .feed { inset: 0; }
-
-  .app-reels .status,
-  .reels-top,
-  .reels-nav,
-  .reel-shade,
-  .reel-actions,
-  .reel-info,
-  .reel-progress { transition: opacity 0.4s; }
-
-  .phone-slot.landscape .app-reels .status,
-  .phone-slot.landscape .reels-top,
-  .phone-slot.landscape .reels-nav,
-  .phone-slot.landscape .reel-shade,
-  .phone-slot.landscape .reel-actions,
-  .phone-slot.landscape .reel-info,
-  .phone-slot.landscape .reel-progress {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* counter-rotate the video so it plays upright across the sideways screen */
-  .phone-slot.landscape .reel.current video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100cqh;
-    height: 100cqw;
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
-
-  /* real device outline (iphone-17.svg) sits above the screen so its bezel covers the edges */
-  .phone-outline {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  /* matches the transparent screen cutout inside iphone-17.svg */
-  .phone-screen {
-    position: absolute;
-    left: 5.3%;
-    top: 2.5%;
-    width: 89.3%;
-    height: 95%;
-    border-radius: 18% / 8.5%;
-    background: #000;
-    overflow: hidden;
-    z-index: 1;
-    container-type: size; /* lets the app UI scale with the phone via cqw units */
-    font-family: 'Inter', sans-serif;
-  }
-
-  /* glass highlight sweeping across the screen */
-  .phone-screen::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(115deg, rgba(255, 255, 255, 0.10) 0%, transparent 18%, transparent 82%, rgba(255, 255, 255, 0.05) 100%);
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  /* ---------- REELS APP UI ---------- */
-  .app-reels { color: #fff; }
-  .feed {
-    position: absolute;
-    inset: 0 0 15cqw 0;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none;
-  }
-
-  .feed::-webkit-scrollbar { display: none; }
-
-  .reel {
-    position: relative;
-    height: 100%;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    overflow: hidden;
-    background: #000;
-    cursor: pointer;
-  }
-
-  .reel video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .reel video.contain { object-fit: contain; }
-
-  .reel-shade {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.35), transparent 22%, transparent 60%, rgba(0, 0, 0, 0.7));
-    pointer-events: none;
-  }
-
-  .status {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 12cqw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1cqw 9cqw 0;
-    font-size: 3.8cqw;
-    font-weight: 600;
-    z-index: 5;
-    pointer-events: none;
-  }
-
-  .status .icons { display: flex; gap: 1.5cqw; }
-
-  .reels-top {
-    position: absolute;
-    top: 13cqw;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5cqw;
-    font: 700 5.8cqw 'Poppins', sans-serif;
-    z-index: 5;
-    pointer-events: none;
-  }
-
-  .reels-top .fa-chevron-down { font-size: 3.4cqw; margin-left: 1cqw; }
-
-  .reel-actions {
-    position: absolute;
-    right: 3cqw;
-    bottom: 6cqw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5.5cqw;
-    font-size: 6.6cqw;
-    z-index: 3;
-  }
-
-  .reel-actions .act {
-    background: none;
-    border: none;
-    padding: 0;
-    color: #fff;
-    font-size: inherit;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1cqw;
-  }
-
-  .reel-actions .act span { font-size: 3cqw; font-weight: 500; }
-  .reel-actions .like.liked i { color: #ff3040; animation: pop 0.4s; }
-
-  @keyframes pop {
-    50% { transform: scale(1.35); }
-  }
-
-  .audio-thumb {
-    width: 7.5cqw;
-    height: 7.5cqw;
-    border-radius: 1.8cqw;
-    border: 0.6cqw solid #fff;
-    background: #003595 url(Van_Wagner_Logo.svg) center / 96% auto no-repeat;
-  }
-
-  .reel-info {
-    position: absolute;
-    left: 4cqw;
-    right: 18cqw;
-    bottom: 6cqw;
-    z-index: 3;
-    font-size: 3.6cqw;
-    pointer-events: none;
-  }
-
-  .reel-user {
-    display: flex;
-    align-items: center;
-    gap: 2.4cqw;
-    margin-bottom: 2.4cqw;
-  }
-
-  .avatar {
-    width: 8.5cqw;
-    height: 8.5cqw;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: #003595 url(Van_Wagner_Logo.svg) center / 96% auto no-repeat; /* Van Wagner logo */
-    border: 0.4cqw solid rgba(255, 255, 255, 0.8);
-  }
-
-  .follow {
-    border: 0.3cqw solid rgba(255, 255, 255, 0.7);
-    border-radius: 2cqw;
-    padding: 0.6cqw 2.6cqw;
-    font-size: 3.2cqw;
-    font-weight: 600;
-  }
-
-  .reel-caption {
-    line-height: 1.4;
-    margin-bottom: 2.4cqw;
-  }
-
-  .reel-audio {
-    font-size: 3.2cqw;
-    opacity: 0.9;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .reel-audio i { margin-right: 1.5cqw; }
-
-  .reel-progress {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 0.6cqw;
-    background: rgba(255, 255, 255, 0.25);
-    z-index: 4;
-  }
-
-  .reel-progress div {
-    width: 0;
-    height: 100%;
-    background: #fff;
-  }
-
-  /* big heart on double-tap */
-  .heart-burst {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 24cqw;
-    color: #ff3040;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 4;
-    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.4));
-  }
-
-  .heart-burst.show { animation: burst 0.9s var(--ease); }
-
-  @keyframes burst {
-    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-    20% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
-    40% { transform: translate(-50%, -50%) scale(0.95); }
-    80% { opacity: 1; }
-    100% { transform: translate(-50%, -60%) scale(1); opacity: 0; }
-  }
-
-  /* sound on/off indicator after tapping a reel */
-  .mute-flash {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 16cqw;
-    height: 16cqw;
-    margin: -8cqw 0 0 -8cqw;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: rgba(0, 0, 0, 0.55);
-    font-size: 6cqw;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.25s, transform 0.25s;
-    pointer-events: none;
-    z-index: 6;
-  }
-
-  .mute-flash.show { opacity: 1; transform: scale(1); }
-
-  .reels-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 15cqw;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding-top: 3.2cqw;
-    background: #000;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    font-size: 5.6cqw;
-    color: rgba(255, 255, 255, 0.9);
-    z-index: 5;
-  }
-
-  /* iOS home indicator */
-  .reels-nav::after {
-    content: '';
-    position: absolute;
-    bottom: 1.6cqw;
-    left: 50%;
-    width: 34cqw;
-    height: 1.2cqw;
-    margin-left: -17cqw;
-    border-radius: 1cqw;
-    background: #fff;
-  }
-
-  /* ---------- BLOG PILE ---------- */
-  .blog-layout { padding: 10px 0 140px; }
-
-  /* intro line + arrows sit in a row above the pile */
-  .blog-intro {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 40px;
-  }
-
-  .blog-intro p {
-    max-width: 560px;
-    margin: 0;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .blog-intro .arrows { display: flex; gap: 10px; }
-  .band-blue .icon-btn { border-color: rgba(255, 255, 255, 0.4); }
-  .band-blue .blog-intro p { color: rgba(255, 255, 255, 0.85); }
-
-  /* big, wide papers so a lot more of each article fits on screen */
-  .pile {
-    position: relative;
-    width: 100%;
-    height: clamp(600px, 84vh, 860px);
-    margin: 0 auto;
-  }
-
-  .paper {
-    --x: 0px;
-    --y: 0px;
-    --r: 0deg;
-    position: absolute;
-    inset: 0;
-    background: #fff;
-    color: var(--darkBlue);
-    border-radius: 16px;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 36% 1fr; /* cover photo left, article right */
-    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.45);
-    overflow: hidden;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate(var(--x), -130vh) rotate(calc(var(--r) * 5));
-    transition: transform 1s cubic-bezier(0.2, 1.15, 0.4, 1), opacity 0.4s;
-  }
-
-  .paper.landed {
-    opacity: 1;
-    transform: translate(var(--x), var(--y)) rotate(var(--r));
-  }
-
-  /* only clickable once it has landed; before that it hangs invisibly above the pile (over the phone) */
-  .paper.top.landed { pointer-events: auto; }
-  .paper.top.landed .paper-inner { overflow-y: auto; }
-
-  .paper.toss {
-    transform: translate(130%, -40px) rotate(16deg);
-    transition: transform 0.45s ease-in;
-  }
-
-  .paper .meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--blue);
-    padding-bottom: 18px;
-    margin-bottom: 24px;
-    border-bottom: 1px solid #e4e7ee;
-  }
-
-  .paper h3 {
-    margin: 0 0 20px;
-    font-size: clamp(1.5rem, 2.4vw, 2rem);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-  }
-
-  .paper .cover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .paper-inner {
-    overflow: hidden;
-    padding: 44px 56px 48px;
-    scrollbar-width: thin;
-    scrollbar-color: #c9cfdb transparent;
-  }
-
-  .paper .body { font-size: 0.97rem; }
-  .paper .body::after { content: ''; display: block; clear: both; }
-
-  .paper .body p {
-    margin: 0 0 14px;
-    line-height: 1.7;
-    color: #393e46;
-  }
-
-  .paper .body h4 {
-    margin: 26px 0 8px;
-    font: 600 1.08rem 'Poppins', sans-serif;
-    color: var(--darkBlue);
-  }
-
-  /* inline photos float beside the text instead of taking a full row */
-  .paper .body img {
-    float: right;
-    width: 44%;
-    height: auto;
-    margin: 6px 0 14px 26px;
-    border-radius: 10px;
-  }
-
-  .paper .body a { color: var(--blue); }
-
-  .paper .read-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    padding: 12px 20px;
-    border-radius: 100px;
-    background: var(--blue);
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.3s;
-  }
-
-  .paper .read-more:hover { background: var(--darkBlue); }
-  .paper .read-more i { font-size: 0.7rem; }
-
-  /* ---------- APP SWITCHER ---------- */
-  .app-switch {
-    display: inline-flex;
-    padding: 4px;
-    margin-bottom: 50px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    border-radius: 999px;
-  }
-
-  .app-switch button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: none;
-    border: none;
-    border-radius: 999px;
-    color: var(--text-secondary);
-    font: 500 0.9rem 'Poppins', sans-serif;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-  }
-
-  .app-switch button:hover { color: var(--text-primary); }
-  .app-switch button.active { background: var(--blue); color: #fff; }
-
-  /* each app fills the screen; switching zooms like opening an iOS app */
-  .app {
-    position: absolute;
-    inset: 0;
-    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
-  }
-
-  .app.hidden {
-    opacity: 0;
-    transform: scale(0.9);
-    pointer-events: none;
-  }
-
-  /* ---------- LINKEDIN APP UI ---------- */
-  .app-linkedin {
-    background: #f4f2ee;
-    color: #191919;
-    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-  }
-
-  .app-linkedin .status { color: #000; background: #fff; }
-
-  .li-top {
-    position: absolute;
-    top: 12cqw;
-    left: 0;
-    right: 0;
-    height: 12cqw;
-    display: flex;
-    align-items: center;
-    gap: 3cqw;
-    padding: 0 4cqw;
-    background: #fff;
-    border-bottom: 1px solid #e0dfdc;
-    z-index: 5;
-  }
-
-  .li-me {
-    width: 8cqw;
-    height: 8cqw;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--lightBlue), var(--blue));
-    flex-shrink: 0;
-  }
-
-  .li-search {
-    flex: 1;
-    height: 8cqw;
-    display: flex;
-    align-items: center;
-    gap: 2cqw;
-    padding: 0 3cqw;
-    border-radius: 1.6cqw;
-    background: #edf3f8;
-    color: #666;
-    font-size: 3.4cqw;
-  }
-
-  .li-top .fa-comment-dots { font-size: 5.4cqw; color: #666; }
-
-  .li-feed {
-    position: absolute;
-    top: 24cqw;
-    bottom: 15cqw;
-    left: 0;
-    right: 0;
-    padding-top: 2cqw;
-    overflow-y: auto;
-    scrollbar-width: none;
-  }
-
-  .li-feed::-webkit-scrollbar { display: none; }
-
-  .li-post {
-    margin-bottom: 2cqw;
-    padding-top: 4cqw;
-    background: #fff;
-    font-size: 3.5cqw;
-  }
-
-  .li-head {
-    display: flex;
-    align-items: flex-start;
-    gap: 2.6cqw;
-    padding: 0 4cqw;
-  }
-
-  .li-logo {
-    width: 11cqw;
-    height: 11cqw;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    border-radius: 1.2cqw;
-    background: #003595 url(Van_Wagner_Logo.svg) center / 96% auto no-repeat; /* Van Wagner logo */
-  }
-
-  .li-name { font-size: 3.6cqw; font-weight: 600; }
-
-  .li-sub {
-    color: #666;
-    font-size: 3cqw;
-    line-height: 1.4;
-  }
-
-  .li-follow {
-    margin-left: auto;
-    color: #0a66c2;
-    font-size: 3.4cqw;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .li-text {
-    padding: 3cqw 4cqw;
-    line-height: 1.45;
-    white-space: pre-line;
-  }
-
-  .li-text a,
-  .li-tag { color: #0a66c2; font-weight: 600; text-decoration: none; }
-
-  /* LinkedIn-style photo grids: 1 full width, 2 side by side, 3 = one big + two, 4 = 2x2 */
-  .li-media[class*="li-grid"] {
-    display: grid;
-    gap: 0.6cqw;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .li-media[class*="li-grid"] img {
-    height: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-  }
-
-  .li-grid-1 { grid-template-columns: 1fr !important; }
-  .li-grid-1 img { aspect-ratio: auto !important; }
-  .li-grid-3 img:first-child { grid-column: span 2; aspect-ratio: 16 / 9; }
-
-  .li-media img,
-  .li-media video {
-    width: 100%;
-    display: block;
-  }
-
-  .li-stats {
-    display: flex;
-    justify-content: space-between;
-    padding: 2.4cqw 4cqw;
-    color: #666;
-    font-size: 3cqw;
-  }
-
-  .li-reacts { display: flex; align-items: center; }
-
-  .li-reacts i {
-    width: 4.4cqw;
-    height: 4.4cqw;
-    margin-right: -0.8cqw;
-    display: grid;
-    place-items: center;
-    border: 0.4cqw solid #fff;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 2.2cqw;
-  }
-
-  .li-reacts .r-like { background: #378fe9; }
-  .li-reacts .r-clap { background: #6dae4f; }
-  .li-reacts .r-love { background: #df704d; }
-  .li-reacts span { margin-left: 2cqw; }
-
-  .li-actions {
-    display: flex;
-    justify-content: space-around;
-    margin: 0 4cqw;
-    padding: 2.4cqw 0 3cqw;
-    border-top: 1px solid #e8e8e8;
-    color: #666;
-    font-size: 2.8cqw;
-    font-weight: 600;
-  }
-
-  .li-actions button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1cqw;
-    padding: 0;
-    background: none;
-    border: none;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-  }
-
-  .li-actions i { font-size: 4.6cqw; }
-  .li-actions .liked { color: #0a66c2; }
-  .li-actions .liked i { animation: pop 0.4s; }
-
-  .li-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 15cqw;
-    display: flex;
-    justify-content: space-around;
-    padding-top: 2.4cqw;
-    background: #fff;
-    border-top: 1px solid #e0dfdc;
-    color: #666;
-    font-size: 2.4cqw;
-    z-index: 5;
-  }
-
-  .li-nav div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8cqw;
-  }
-
-  .li-nav i { font-size: 5cqw; }
-  .li-nav .on { color: #191919; }
-
-  .li-nav::after {
-    content: '';
-    position: absolute;
-    bottom: 1.6cqw;
-    left: 50%;
-    width: 34cqw;
-    height: 1.2cqw;
-    margin-left: -17cqw;
-    border-radius: 1cqw;
-    background: #000;
-  }
-
-  /* ---------- MOBILE ---------- */
-  @media (max-width: 860px) {
-    .container { padding: 0 20px; }
-    .hero { padding-top: 50px; padding-bottom: 30px; }
-    .section-head { padding-top: 70px; }
-    .hero-bottom { flex-direction: column; align-items: flex-start; }
-    .blog-intro { flex-direction: column; align-items: flex-start; gap: 20px; }
-    .phone-slot { height: min(82vh, 680px); }
-    .reels-layout { grid-template-columns: 1fr; padding: 70px 0 90px; }
-    .reels-side { align-items: center; text-align: center; }
-    .reels-side .section-head { padding-bottom: 24px; }
-    .reels-side .eyebrow { justify-content: center; }
-    .section-blurb { margin-left: auto; margin-right: auto; }
-    .pile { height: min(82vh, 720px); }
-    .paper { display: block; }
-    .paper-inner { padding: 26px 24px 32px; }
-
-  }
-
-  @media (max-width: 700px) {
-    .topbar { padding: 0 16px; }
-    .page-title, .apps-menu, .profile-avatar { display: none; }
-    .back-btn { padding: 8px 14px; }
-  }
-
-  /* =====================================================================
-     BROWSER BAR: a Chrome-style address bar that works as a search engine for the site
-     ===================================================================== */
-  .omnibar {
-    position: sticky; top: 0; z-index: 200;
-    width: 100%;
-    box-sizing: border-box;
-    height: 60px;
-    display: flex; align-items: center; gap: 6px;
-    padding: 0 12px;
-    background: #fff;
-    border-bottom: 1px solid #dadce0;
-    font-family: 'Inter', Arial, sans-serif;
-  }
-  .ob-btn {
-    width: 36px; height: 36px; flex-shrink: 0;
-    display: grid; place-items: center;
-    border: none; border-radius: 50%;
-    background: none; color: #5f6368;
-    cursor: pointer; text-decoration: none;
-    transition: background-color 0.15s;
-  }
-  .ob-btn:hover { background: rgba(31, 31, 31, 0.07); }
-  .ob-btn .msi { font-size: 22px; }
-  .ob-btn i { font-size: 15px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { margin: 0; background: var(--white); color: var(--slate-ink); font: 300 17px/1.6 var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  ::selection { background: var(--matcha); color: var(--slate-ink); }
 
   .msi {
     font-family: 'Material Symbols Outlined';
-    font-weight: normal; font-style: normal; font-size: 20px; line-height: 1;
+    font-weight: normal; font-style: normal; font-size: 22px; line-height: 1;
     display: inline-block; white-space: nowrap; direction: ltr;
-    -webkit-font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased;
+    -webkit-font-feature-settings: 'liga'; font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased;
   }
 
-  /* the address field stretches across the whole bar at every screen width */
-  .ob-search { position: relative; flex: 1 1 0; min-width: 0; margin: 0 8px; }
-  .ob-field {
-    height: 40px;
-    display: flex; align-items: center; gap: 10px;
-    padding: 0 8px 0 14px;
-    border-radius: 20px;
-    background: #f1f3f4;
-    border: 1px solid transparent;
-    transition: background-color 0.15s, box-shadow 0.15s;
-  }
-  .ob-field:hover { background: #e8eaed; }
-  .ob-search.open .ob-field,
-  .ob-field:focus-within { background: #fff; box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); }
-  .ob-search.open .ob-field { border-radius: 20px 20px 0 0; box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28); }
-  .ob-field .msi { color: #5f6368; font-size: 18px; }
-  .ob-field input {
-    flex: 1; min-width: 0;
-    border: none; outline: none; background: none;
-    font: 400 15px 'Inter', Arial, sans-serif; color: #202124;
-  }
-  .ob-field input::placeholder { color: #5f6368; }
-  .ob-clear { display: none; width: 30px; height: 30px; }
-  .ob-search.typing .ob-clear { display: grid; }
 
-  /* suggestions dropdown */
-  .ob-menu {
-    position: absolute; left: 0; right: 0; top: 100%;
-    display: none;
-    padding: 6px 0 10px;
-    background: #fff;
-    border-radius: 0 0 20px 20px;
-    box-shadow: 0 6px 12px -2px rgba(32, 33, 36, 0.28);
-    border-top: 1px solid #e8eaed;
+  /* ---------- BACKGROUND ---------- */
+  .grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.09; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  body { background: var(--paper); }
+
+  /* ---------- NAV: liquid glass oval floating over the page ---------- */
+  .nav {
+    position: fixed; top: 14px; left: 50%; z-index: 300;
+    width: min(1000px, calc(100% - 24px));
+    height: 58px;
+    display: flex; align-items: center; gap: 22px;
+    padding: 0 8px 0 22px;
+    border-radius: 29px;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.24) 55%, rgba(255, 255, 255, 0.42));
+    -webkit-backdrop-filter: blur(22px) saturate(190%) contrast(1.04); backdrop-filter: blur(22px) saturate(190%) contrast(1.04);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.95),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.4),
+      inset 0 0 22px rgba(255, 255, 255, 0.4),
+      0 16px 44px -14px rgba(63, 72, 89, 0.32),
+      0 2px 8px rgba(63, 72, 89, 0.08);
+    transition: width 0.5s var(--ease), height 0.5s var(--ease), top 0.5s var(--ease), box-shadow 0.5s;
+    isolation: isolate;
   }
+  /* glass rim: bright on the top-left and bottom-right edges, like light bending through the edge */
+  .nav::after {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    border-radius: inherit; padding: 1.2px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.1) 35%, rgba(163, 174, 193, 0.45) 65%, rgba(255, 255, 255, 0.9));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    pointer-events: none;
+  }
+  /* specular highlight that follows the cursor */
+  .nav::before {
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(220px 70px at var(--mx, 28%) -10%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 70%);
+    opacity: 0.75; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .nav.scrolled { top: 10px; width: min(860px, calc(100% - 24px)); height: 52px; }
+  .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; color: var(--slate-deep); }
+  /* logo keeps one fixed size and its true proportions: never shrinks on scroll or gets squeezed by the bar */
+  .brand img { height: 30px; width: auto; max-width: none; flex-shrink: 0; aspect-ratio: 467 / 120; object-fit: contain; }
+  .nav-links { display: flex; gap: 26px; margin: 0 auto; }
+  .nav-links { position: relative; }
+  .nav-links a { position: relative; white-space: nowrap; padding: 7px 14px; border-radius: 16px; color: var(--slate-ink); font-size: 14px; font-weight: 400; text-decoration: none; opacity: 0.78; transition: opacity 0.2s, background-color 0.3s, box-shadow 0.3s; }
+  .nav-links a:hover { opacity: 1; }
+  /* active link sits in its own small glass capsule */
+  .nav-links a.on { opacity: 1; background: rgba(255, 255, 255, 0.6); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95), 0 4px 12px -4px rgba(63, 72, 89, 0.25); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  /* the search box gives up space first, so the Projects button never gets pushed out of the bar */
+  .nav-right { min-width: 0; flex-shrink: 1; }
+  .nav .ob-search, .nav .ob-field { min-width: 0; }
+  .nav .ob-field input { min-width: 0; flex: 1 1 auto; }
+  .nav .pill { flex-shrink: 0; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 40px; padding: 0 18px;
+    border: none; border-radius: 20px;
+    background: var(--slate); color: #fff;
+    font: 400 14px/1 var(--font); letter-spacing: 0.4px; text-decoration: none;
+    cursor: pointer; transition: background-color 0.25s, transform 0.25s var(--ease);
+  }
+  .pill:hover { background: var(--slate-deep); transform: translateY(-1px); }
+  .pill.big { height: 48px; padding: 0 28px; border-radius: 24px; font-size: 16px; }
+  .pill.ghost { background: var(--mist); color: var(--slate-deep); }
+  .pill.ghost:hover { background: var(--mist-2); }
+
+  /* search (searches all of Blake's site) */
+  .ob-search { position: relative; }
+  .ob-field { display: flex; align-items: center; gap: 6px; height: 40px; margin: 0; padding: 0 8px 0 12px; border-radius: 20px; background: rgba(255, 255, 255, 0.45); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9); color: var(--slate-deep); }
+  .ob-field:focus-within, .ob-search.open .ob-field { background: #fff; box-shadow: 0 0 0 1px var(--slate); }
+  .ob-field .msi { font-size: 20px; }
+  .ob-field input { width: clamp(90px, 14vw, 190px); border: none; outline: none; background: none; color: var(--slate-ink); font: 400 14px/1 var(--font); }
+  .ob-field input::placeholder { color: var(--slate-deep); }
+  .ob-clear { display: none; border: none; background: none; padding: 0; color: var(--slate-deep); cursor: pointer; }
+  .ob-search.typing .ob-clear { display: block; }
+  #obIcon { display: none; }
+  .ob-menu { position: absolute; right: 0; top: calc(100% + 14px); width: min(380px, calc(100vw - 24px)); display: none; padding: 8px; border-radius: 22px; background: rgba(255, 255, 255, 0.72); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95), 0 20px 50px -12px rgba(63, 72, 89, 0.35); }
   .ob-search.open .ob-menu { display: block; }
-  .ob-item {
-    display: flex; align-items: center; gap: 14px;
-    padding: 8px 16px;
-    color: #202124; text-decoration: none;
-    cursor: pointer;
-  }
-  .ob-item.sel, .ob-item:hover { background: #f1f3f4; }
-  .ob-item .msi { color: #5f6368; font-size: 20px; }
+  .ob-item { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 12px; text-decoration: none; cursor: pointer; }
+  .ob-item.sel, .ob-item:hover { background: var(--mist); }
+  .ob-item .msi { color: var(--slate-deep); }
   .ob-item .ob-text { min-width: 0; }
-  .ob-item b { display: block; font-weight: 500; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .ob-item small { display: block; color: #188038; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .ob-item mark { background: none; color: inherit; font-weight: 700; }
-  .ob-empty { padding: 10px 16px; color: #5f6368; font-size: 14px; }
+  .ob-item b { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; font-size: 14px; }
+  .ob-item small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); font-size: 12px; }
+  .ob-item mark { background: none; color: var(--matcha-deep); }
+  .ob-empty { padding: 10px 12px; color: var(--text); font-size: 13px; }
 
-  .ob-avatar { width: 30px; height: 30px; margin: 0 6px; flex-shrink: 0; border-radius: 50%; background: #1e8e3e; color: #fff; display: grid; place-items: center; font: 500 14px 'Inter', sans-serif; }
-
-  /* =====================================================================
-     VAN WAGNER THEME (matches vanwagner.com: navy canvas, VW blue blocks, Poppins + Inter)
-     ===================================================================== */
-  :root {
-    --vw-navy: #08101d;
-    --vw-navy-alt: #0e1a2e;
-    --vw-blue: #1b4388;
-    --vw-light: #84aaeb;
-  }
-
-  body { background: var(--vw-navy); color: #fff; font-family: 'Inter', sans-serif; }
-  h1, h2, h3 { font-family: 'Poppins', sans-serif; }
-  ::selection { background: var(--vw-light); color: var(--vw-navy); }
-
-  /* hero: photo banner with rounded bottom corners sitting on the VW blue band */
-  .vw-top { background: var(--vw-blue); }
-  .vw-hero {
+  /* ---------- FLOATING PHONES ---------- */
+  .phone { position: relative; width: var(--w, 280px); }
+  .phone img { position: relative; z-index: 1; width: 100%; }
+  /* ---------- 3D PHONES ----------
+     Built by script: a stack of 16 shaded layers makes a rounded metal frame with real depth
+     (~8.5% of the phone's width, like an iPhone), the screen sits on the front, a matte back plate behind,
+     and a glass glare on top. --p (0 → 1) turns the phone into place as it scrolls in, --spin keeps it
+     turning gently as you scroll past, and --rx / --ry / --rz are its resting product-shot angle. */
+  .phone { perspective: 1800px; filter: drop-shadow(0 50px 40px rgba(46, 54, 70, 0.18)) drop-shadow(0 10px 14px rgba(46, 54, 70, 0.12)); }
+  .device {
     position: relative;
-    min-height: clamp(440px, 70vh, 700px);
-    display: grid; place-items: center;
-    padding: 80px 24px;
-    text-align: center;
-    border-radius: 0 0 64px 64px;
-    overflow: hidden;
-    background: var(--vw-navy-alt) url('AS-Field-goal-1.jpg') center / cover no-repeat;
+    transform-style: preserve-3d;
+    transform:
+      translate3d(0, calc((1 - var(--p, 1)) * 320px), calc((1 - var(--p, 1)) * -620px))
+      rotateX(calc(var(--rx, 8deg) + (1 - var(--p, 1)) * 58deg))
+      rotateY(calc(var(--ry, 0deg) + var(--spin, 0deg) + (1 - var(--p, 1)) * var(--ry-in, -36deg)))
+      rotateZ(var(--rz, 0deg));
+    opacity: clamp(0, calc(var(--p, 1) * 1.8), 1);
+    will-change: transform;
   }
-  .vw-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 16, 29, 0.55), rgba(8, 16, 29, 0.78)); }
-  .vw-hero-inner { position: relative; max-width: 900px; }
-  .vw-hero .role { margin: 0 0 16px; color: var(--vw-light); font: 500 15px 'Poppins', sans-serif; }
-  .vw-hero h1 { margin: 0; font-size: clamp(2.6rem, 6vw, 4.6rem); font-weight: 700; line-height: 1.08; }
-  .vw-hero p.lead { max-width: 640px; margin: 22px auto 0; font-size: clamp(16px, 1.6vw, 19px); line-height: 1.6; color: rgba(255, 255, 255, 0.9); }
-
-  .vw-stats {
-    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 24px;
-    width: min(1200px, 100%);
-    margin: 0 auto;
-    padding: 44px 40px 52px;
-    text-align: center;
-  }
-  .vw-stats b { display: block; font: 700 clamp(28px, 3.2vw, 40px)/1.1 'Poppins', sans-serif; }
-  .vw-stats span { display: block; margin-top: 6px; color: rgba(255, 255, 255, 0.82); font-size: 14px; }
-
-  /* shared section pieces */
-  .vw-section { position: relative; padding: 110px 0; }
-  .vw-title { margin: 0; font: 700 clamp(2.2rem, 4.4vw, 3.2rem)/1.1 'Poppins', sans-serif; }
-  .vw-text { max-width: 520px; margin: 22px 0 0; color: rgba(255, 255, 255, 0.85); font-size: 15px; line-height: 1.7; }
-  .vw-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    height: 46px; padding: 0 30px;
-    border: 1.5px solid #fff; border-radius: 999px;
-    background: none; color: #fff;
-    font: 500 14px 'Poppins', sans-serif; text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  .vw-btn:hover { background: #fff; color: var(--vw-navy); }
-
-  /* social: copy + tabs + blue card on the left, phone on the right */
-  .social-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
-
-  .app-switch { display: flex; flex-wrap: wrap; gap: 12px; margin: 34px 0 0; padding: 0; background: none; border: none; border-radius: 0; }
-  .app-switch button {
-    display: inline-flex; align-items: center; gap: 10px;
-    height: 54px; padding: 0 24px;
-    border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 4px;
-    background: var(--vw-navy-alt); color: #fff;
-    font: 600 14px 'Poppins', sans-serif;
-    transition: background-color 0.3s, border-color 0.3s;
-  }
-  .app-switch button:hover { border-color: #fff; color: #fff; }
-  .app-switch button.active { background: var(--vw-blue); border-color: var(--vw-blue); }
-
-  .vw-card {
-    margin-top: 12px;
-    max-width: 440px;
-    padding: 30px 30px 24px;
-    border-radius: 4px;
-    background: var(--vw-blue);
-  }
-  .vw-card h3 { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.2; }
-  .vw-card .count { display: block; margin-top: 4px; font-size: 13px; color: rgba(255, 255, 255, 0.75); }
-  .vw-card p { margin: 16px 0 0; font-size: 14px; line-height: 1.65; color: rgba(255, 255, 255, 0.92); }
-  .vw-card .card-foot { display: flex; align-items: center; gap: 12px; margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.35); font-size: 13px; color: rgba(255, 255, 255, 0.85); }
-
-  .scroll-cue { margin-top: 26px; }
-
-  .phone-col { position: relative; display: flex; justify-content: center; perspective: 1600px; filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5)); }
-  .phone-col::before {
-    content: ''; position: absolute; left: 50%; top: 50%;
-    width: min(760px, 100vw); height: min(760px, 100vw); transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(27, 67, 136, 0.55), transparent 62%);
+  .device img { position: relative; transform: translateZ(calc(var(--t, 24px) / 2 + 0.5px)); }
+  .slab { position: absolute; inset: var(--in, 3.5% 3.5% 2%); border-radius: 13% / 6.3%; background: var(--c); transform: translateZ(var(--z)); backface-visibility: visible; }
+  .slab.back { background: linear-gradient(150deg, #c9ccd3, #9a9fa9 55%, #7f8590); box-shadow: inset 0 0 0 2px #6d727c; }
+  .glare {
+    position: absolute; inset: var(--in, 3.5% 3.5% 2%); border-radius: 13% / 6.3%;
+    transform: translateZ(calc(var(--t, 24px) / 2 + 1px));
+    background: linear-gradient(118deg, rgba(255, 255, 255, 0.0) 30%, rgba(255, 255, 255, 0.38) 44%, rgba(255, 255, 255, 0.08) 52%, rgba(255, 255, 255, 0) 60%);
+    background-size: 260% 100%;
+    background-position: calc(60% - var(--p, 1) * 40% - var(--spin-n, 0) * 30%) 0;
     pointer-events: none;
   }
-
-  /* blog: title left + copy right, like "Our Work" on vanwagner.com */
-  .writing { overflow: hidden; }
-  .writing::before {   /* the thin arc line vanwagner.com uses between sections */
-    content: ''; position: absolute; left: -10%; right: -10%; top: 40px; height: 320px;
-    border-top: 1.5px solid rgba(255, 255, 255, 0.12);
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-    pointer-events: none;
-  }
-  .work-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; margin-bottom: 64px; }
-  .work-head .vw-text { margin: 0; }
-  .writing .blog-layout { padding: 0; }
-  .pile-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; }
-  .pile-nav .icon-btn {
-    width: 70px; height: 32px;
-    border: 1.5px solid rgba(255, 255, 255, 0.75); border-radius: 999px;
-    background: none; color: #fff; font-size: 0.8rem;
-  }
-  .pile-nav .icon-btn:hover { background: #fff; color: var(--vw-navy); border-color: #fff; }
-
-  @media (max-width: 960px) {
-    .social-grid, .work-head { grid-template-columns: 1fr; }
-    .vw-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .vw-card { max-width: none; }
+  .phone::after {   /* contact shadow on the "floor" */
+    content: ''; position: absolute; left: 10%; right: 10%; bottom: -40px; height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(46, 54, 70, 0.3), transparent);
+    opacity: var(--p, 1);
+    transform: translateX(calc(var(--spin-n, 0) * -18px)) scale(calc(0.55 + var(--p, 1) * 0.45));
+    filter: blur(2px);
   }
 
+  /* ---------- HERO ---------- */
+  .hero { position: relative; padding: 150px 24px 40px; text-align: center; overflow: hidden; }
+  .kicker { margin: 0 0 16px; color: var(--matcha-deep); font: 500 15px/1 var(--font); letter-spacing: 0.2px; }
+  .hero h1 { margin: 0; font: 200 clamp(4rem, 12vw, 9.5rem)/0.95 var(--font); letter-spacing: -0.03em; background: linear-gradient(180deg, var(--slate-deep), var(--slate)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .tagline { margin: 22px 0 0; font: 400 clamp(2.6rem, 6vw, 5rem)/1 var(--serif); letter-spacing: -0.01em; color: var(--slate-ink); }
+  .hero .tagline em { font-style: italic; color: var(--matcha-deep); }
+  .hero .desc { max-width: 640px; margin: 18px auto 0; color: var(--text); font-size: 17px; }
+  .tags { margin: 20px 0 0; color: var(--slate-deep); font: 400 14px/1 var(--font); letter-spacing: 0.3px; }
+  .chips { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .chip { display: inline-flex; align-items: center; height: 30px; padding: 0 16px; border-radius: 15px; background: var(--mist-2); color: var(--slate-deep); font: 400 13px/1 var(--font); letter-spacing: 0.3px; }
+  .chip.on { background: var(--slate); color: #fff; }
+  .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+  .fan { position: relative; display: flex; justify-content: center; align-items: flex-end; height: clamp(480px, 58vw, 720px); margin: 56px auto 0; max-width: 1100px; perspective: 1400px; }
+  .fan-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; }
+  /* positioned with margins so the float animation can own `transform` */
+  .fan .phone { position: absolute; bottom: 40px; left: 50%; margin-left: calc(var(--w) / -2); }
+  .fan .p-center { --w: clamp(230px, 27vw, 330px); --ry: -8deg; --rx: 5deg; --ry-in: 30deg; z-index: 3; }
+  .fan .p-left { --w: clamp(190px, 22vw, 270px); --ry: 16deg; --rx: 6deg; --rz: -2deg; --ry-in: 50deg; margin-left: calc(var(--w) / -2 - clamp(170px, 23vw, 300px)); bottom: 70px; z-index: 2; }
+  .fan .p-right { --w: clamp(190px, 22vw, 270px); --ry: -16deg; --rx: 6deg; --rz: 2deg; --ry-in: -50deg; margin-left: calc(var(--w) / -2 + clamp(170px, 23vw, 300px)); bottom: 70px; z-index: 2; }
+  .fan .p-left img, .fan .p-right img { opacity: 0.96; }
+
+  /* ---------- MACROS BAND (styled like the app's calorie / protein / carbs) ---------- */
+  .macros { padding: 72px 24px 24px; text-align: center; }
+  .macros h2, .section-title { margin: 0; font: 400 clamp(2.8rem, 6vw, 5.2rem)/1 var(--serif); letter-spacing: -0.01em; color: var(--slate-ink); }
+  .macros h2 em, .section-title em { font-style: italic; color: var(--matcha-deep); }
+  .macro-row { display: flex; justify-content: center; gap: clamp(28px, 7vw, 96px); margin-top: 44px; }
+  .macro { text-align: left; }
+  .macro b { display: block; font: 300 clamp(3rem, 7vw, 5rem)/1 var(--font); color: var(--slate-ink); }
+  .macro b small { font-size: 1em; }
+  .macro > span { display: block; margin-top: 4px; color: var(--text); font-size: 16px; }
+  .macro i { display: block; width: clamp(110px, 14vw, 170px); height: 8px; margin-top: 12px; border-radius: 4px; background: var(--c); transform-origin: left; transform: scaleX(0); transition: transform 1.2s var(--ease) 0.2s; }
+  .in .macro i { transform: scaleX(1); }
+  .macros .note { margin: 26px 0 0; color: var(--text); font-size: 15px; }
+
+  /* ---------- FEATURE ROWS ---------- */
+  .feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 96px); width: min(1120px, 100%); margin: 0 auto; padding: 110px 24px 40px; }
+  .feature.flip .feature-media { order: 2; }
+  .feature-media { position: relative; display: flex; justify-content: center; padding-bottom: 40px; }
+  .feature-media::before { content: none; }
+  .feature-media .phone { --w: clamp(220px, 24vw, 300px); --ry: 12deg; --rx: 6deg; --ry-in: 70deg; z-index: 1; }
+  .feature.flip .feature-media .phone { --ry: -12deg; --ry-in: -70deg; }
+  .feature.flip .feature-media .phone.back { --ry: 16deg; --ry-in: 44deg; }
+  .feature-media .phone.back { position: absolute; --w: clamp(190px, 20vw, 250px); left: 50%; top: 40px; margin-left: calc(var(--w) * -1.1); z-index: 0; --ry: 16deg; --rz: -2deg; }
+  .feature-media.duo .phone.front { left: 11%; }
+  .num { display: block; margin-bottom: 14px; color: var(--slate); font: 400 22px/1 var(--serif); font-style: italic; }
+  .num::after { content: ' —'; }
+  .feature h2 { margin: 0; font: 400 clamp(2.6rem, 4.8vw, 4.2rem)/1 var(--serif); letter-spacing: -0.01em; color: var(--slate-ink); }
+  .feature h2 em { font-style: italic; color: var(--matcha-deep); }
+  .feature p { margin: 18px 0 0; max-width: 470px; color: var(--text); font-size: 18px; }
+  .ui-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .ui-chips .chip { height: 34px; padding: 0 14px; gap: 8px; background: var(--mist); }
+  .ui-chips .chip .msi { font-size: 18px; color: var(--slate-deep); }
+  .ui-chips .chip.on { background: var(--slate); color: #fff; }
+  .timeline { display: grid; gap: 10px; margin-top: 24px; max-width: 420px; }
+  .timeline div { display: grid; grid-template-columns: 74px 1fr; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--mist); font-size: 15px; }
+  .timeline b { color: var(--slate-ink); font-weight: 500; }
+
+  /* ---------- ALL SCREENS ---------- */
+  .screens { padding: 120px 0 40px; text-align: center; }
+  .screens .lede { max-width: 560px; margin: 16px auto 0; padding: 0 24px; color: var(--text); font-size: 18px; }
+
+
+  /* ---------- THE JOURNEY (pinned; glides sideways through the flow as you scroll) ---------- */
+  .journey { position: relative; height: 620vh; }
+  .journey-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+  .journey-track { position: relative; display: flex; align-items: center; gap: clamp(60px, 9vw, 150px); width: max-content; padding: 64px 22vw 60px 30vw; will-change: transform; }
+  .journey-line { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .journey-line path { fill: none; stroke-linecap: round; }
+  #jlBase { stroke: rgba(63, 72, 89, 0.14); stroke-width: 2; stroke-dasharray: 2 10; }
+  #jlDraw { stroke: var(--matcha-deep); stroke-width: 2.5; }
+  .stop { position: relative; z-index: 1; margin: 0; display: flex; flex-direction: column; align-items: center; transform: translateY(-4vh); }
+  .stop.low { transform: translateY(4vh); }
+  .stop .phone { --w: min(clamp(170px, 15vw, 240px), 26vh); --ry: 10deg; --rx: 5deg; --ry-in: 70deg; cursor: zoom-in; }
+  .stop.low .phone { --ry: -10deg; --ry-in: -70deg; }
+  /* a node on the line behind each phone */
+  .stop::before { content: ''; position: absolute; left: 50%; top: var(--node-y, 50%); width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--paper); box-shadow: 0 0 0 2px var(--matcha-deep), 0 0 0 8px rgba(143, 168, 96, calc(var(--p, 0) * 0.18)); z-index: -1; opacity: var(--p, 0); }
+  .stop figcaption { margin-top: 34px; text-align: center; max-width: 240px; opacity: var(--p, 0); transform: translateY(calc((1 - var(--p, 0)) * 30px)); }
+  .stop-num { display: block; color: var(--matcha-deep); font: 400 26px/1 var(--serif); font-style: italic; }
+  .stop figcaption b { display: block; margin-top: 4px; font: 400 28px/1.05 var(--serif); color: var(--slate-ink); }
+  .stop-desc { display: block; margin-top: 8px; color: var(--text); font-size: 15px; line-height: 1.5; }
+  .journey-ui { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; color: var(--slate-deep); font: 500 14px/1 var(--font); }
+  .journey-ui i { position: relative; width: min(320px, 40vw); height: 3px; border-radius: 2px; background: rgba(63, 72, 89, 0.14); overflow: hidden; }
+  .journey-ui b { position: absolute; inset: 0; transform-origin: left; transform: scaleX(var(--jp, 0)); background: var(--matcha-deep); }
+  #journeyLabel { min-width: 120px; text-align: right; }
   @media (max-width: 700px) {
-    .omnibar { gap: 2px; padding: 0 6px; height: 56px; }
-    .ob-hide-sm { display: none; }
-    .ob-search { margin: 0 4px; }
-    .ob-field { height: 38px; padding: 0 4px 0 12px; gap: 8px; }
-    .ob-field input { font-size: 16px; }   /* 16px stops iPhone from zooming in on tap */
-    .ob-item { padding: 10px 14px; }
-    .vw-hero { border-radius: 0 0 32px 32px; }
-    .vw-section { padding: 80px 0; }
-    .vw-stats { padding: 36px 20px 40px; }
+    .journey-track { padding: 60px 18vw 40px 18vw; }
+    .stop { transform: none !important; }
+    .stop-desc { font-size: 13px; }
   }
 
-  /* ---------- phones: never let anything make the page scroll sideways ---------- */
-  body { overflow-x: clip; }
+  /* ---------- REFLECTION ---------- */
+  .reflection { width: min(980px, 100%); margin: 0 auto; padding: 110px 24px 120px; text-align: center; }
+  .reflection p.big { margin: 22px 0 0; font: 400 clamp(2rem, 3.8vw, 3.2rem)/1.2 var(--serif); color: var(--slate); }
+  .reflection p.big strong { color: var(--slate-ink); font-weight: 400; font-style: italic; }
 
-  /* ---------- BLOG POSTS AS NEWSPAPER FRONT PAGES ---------- */
-  .paper {
-    display: block;
-    border-radius: 3px;
-    background: #f6f1e4;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 .4  0 0 0 0 .36  0 0 0 0 .28  0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>");
-    color: #1b1b1b;
-    box-shadow: 0 1px 0 #e3dccb, 0 30px 60px -18px rgba(0, 0, 0, 0.55);
+  /* ---------- FOOTER ---------- */
+  .foot { border-top: 1px solid rgba(63, 72, 89, 0.08); background: rgba(244, 245, 247, 0.7); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+  .foot-inner { width: min(1120px, 100%); margin: 0 auto; padding: 40px 24px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .foot-links a { color: var(--slate-deep); font-size: 15px; text-decoration: none; }
+  .foot-links a:hover { color: var(--slate-ink); }
+  .foot small { display: block; width: 100%; color: var(--text); font-size: 13px; }
+
+  /* ---------- zoom ---------- */
+  .popup { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(244, 245, 247, 0.9); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .popup.active { display: flex; }
+  .popup img { max-height: 90vh; width: auto; filter: drop-shadow(0 40px 60px rgba(63, 72, 89, 0.3)); }
+  .popup-close { position: fixed; top: 18px; right: 22px; width: 44px; height: 44px; border: none; border-radius: 50%; background: #fff; color: var(--slate-ink); font-size: 28px; line-height: 1; cursor: pointer; box-shadow: 0 6px 18px rgba(63, 72, 89, 0.18); }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+
+  /* ---------- SCROLL PROGRESS ---------- */
+  .progress { position: fixed; left: 0; right: 0; top: 0; z-index: 400; height: 3px; pointer-events: none; }
+  .progress i { display: block; height: 100%; width: 100%; transform-origin: left; transform: scaleX(var(--sp, 0)); background: var(--slate-ink); }
+
+  /* ---------- HERO EXTRAS ---------- */
+  .hero .hero-logo { position: relative; margin: 0 auto; width: clamp(220px, 26vw, 340px); }
+  .hero-logo img { width: 100%; height: auto; }
+
+  .features-wrap { position: relative; }
+
+  /* ---------- HOW IT COOKS (pinned) ---------- */
+  .recipe { position: relative; height: 480vh; margin-top: 60px; border-top: 1px solid rgba(63, 72, 89, 0.12); border-bottom: 1px solid rgba(63, 72, 89, 0.12); }
+  .recipe-stage { position: sticky; top: 0; height: 100vh; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; gap: 40px; width: min(1180px, 100%); margin: 0 auto; padding: 90px 32px 30px; overflow: hidden; }
+  .recipe-copy h2 { margin: 0; font: 400 clamp(2.8rem, 5vw, 4.4rem)/1 var(--serif); letter-spacing: -0.01em; color: var(--slate-ink); }
+  .recipe-copy h2 em { font-style: italic; color: var(--matcha-deep); }
+  .step-box { margin-top: 32px; padding: 22px 24px; border-radius: 22px; background: #fff; box-shadow: 0 14px 40px -18px rgba(63, 72, 89, 0.3); max-width: 420px; }
+  .step-count { color: var(--matcha-deep); font: 500 14px/1 var(--font); }
+  .step-text { margin: 10px 0 0; min-height: 3.2em; font: 400 26px/1.25 var(--serif); color: var(--slate-ink); transition: opacity 0.35s; }
+  .step-text.swap { animation: stepIn 0.45s var(--ease); }
+  @keyframes stepIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .step-dots { display: flex; gap: 8px; margin-top: 16px; }
+  .step-dots i { width: 28px; height: 4px; border-radius: 2px; background: var(--mist-2); transition: background-color 0.4s; }
+  .step-dots i.on { background: var(--slate); }
+  .dish { margin-top: 22px; opacity: 0; transform: translateY(16px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+  .dish b { display: block; font: 400 34px/1.1 var(--serif); font-style: italic; color: var(--slate-ink); }
+  .dish span { color: var(--matcha-deep); font-size: 15px; }
+  .recipe.done .dish { opacity: 1; transform: none; }
+
+  .kitchen { position: relative; height: min(78vh, 680px); display: grid; place-items: center; }
+  .kitchen .bowl-wrap { width: min(82%, 480px); margin-top: 4%; }
+  .bowl-wrap { position: relative; width: min(100%, 420px); }
+  .bowl { display: block; width: 100%; height: auto; filter: drop-shadow(0 30px 30px rgba(63, 72, 89, 0.18)); }
+  .ing {
+    position: absolute; z-index: 2;
+    left: calc(var(--x0) + (50% - var(--x0)) * var(--t, 0));
+    top: calc(var(--y0) + (16% - var(--y0)) * var(--t, 0));
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 18px 10px 10px; border-radius: 18px;
+    background: #fff; box-shadow: 0 16px 34px -14px rgba(63, 72, 89, 0.35);
+    white-space: nowrap; font: 400 16px/1.2 var(--font); color: var(--slate-ink);
+    transform: translate(-50%, -50%) rotate(calc(var(--sr) * (1 - var(--t, 0)))) scale(calc(1 - var(--t, 0) * 0.75));
+    opacity: calc(1 - var(--gone, 0));
   }
-  .paper-inner { height: 100%; padding: 30px clamp(20px, 4vw, 52px) 40px; scrollbar-color: #bdb4a0 transparent; }
-  .masthead { text-align: center; margin-bottom: 22px; }
-  .mast-top, .mast-rule { display: flex; justify-content: space-between; gap: 12px; font: 600 0.68rem/1 'Source Serif 4', Georgia, serif; letter-spacing: 1.4px; text-transform: uppercase; color: #3c3c3c; }
-  .mast-top { padding-bottom: 10px; border-bottom: 1px solid #1b1b1b; }
-  .mast-name { padding: 12px 0 10px; font: 900 clamp(2rem, 4.6vw, 3.6rem)/1 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; color: #111; }
-  .mast-rule { padding: 8px 0; border-top: 3px double #1b1b1b; border-bottom: 1px solid #1b1b1b; font-weight: 400; font-style: italic; text-transform: none; letter-spacing: 0.2px; font-size: 0.8rem; }
-  .paper h3 { margin: 0 0 18px; text-align: center; font: 700 clamp(1.6rem, 3vw, 2.5rem)/1.12 'Playfair Display', Georgia, serif; letter-spacing: -0.01em; color: #111; }
-  .lead-photo { margin: 0 0 22px; }
-  .paper .lead-photo .cover { width: 100%; height: clamp(180px, 30vh, 320px); object-fit: cover; border-radius: 0; filter: saturate(0.85) contrast(1.05); }
-  /* two newspaper columns with a thin rule between them */
-  .paper .body { columns: 2 300px; column-gap: 38px; column-rule: 1px solid #cfc6b1; font: 400 1.02rem/1.68 'Source Serif 4', Georgia, serif; }
-  .paper .body p { margin: 0 0 12px; color: #262626; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
-  .paper .body > p:first-of-type::first-letter { float: left; margin: 6px 8px 0 0; font: 900 3.6em/0.78 'Playfair Display', Georgia, serif; color: #111; }
-  .paper .body h4 { margin: 18px 0 8px; font: 700 1.12rem/1.25 'Playfair Display', Georgia, serif; color: #111; break-after: avoid; }
-  .paper .body img { float: none; display: block; width: 100%; margin: 6px 0 14px; border-radius: 0; filter: saturate(0.85); break-inside: avoid; }
-  .paper .body a { color: #111; text-decoration: underline; text-underline-offset: 2px; }
-  .paper .read-more { display: flex; justify-content: center; margin: 24px 0 0; padding: 14px 0 0; border-top: 1px solid #1b1b1b; border-radius: 0; background: none; color: #111; font: 600 0.82rem 'Source Serif 4', Georgia, serif; letter-spacing: 1.2px; text-transform: uppercase; }
-  .paper .read-more:hover { background: none; text-decoration: underline; }
-  @media (max-width: 760px) {
-    .paper .body { columns: 1; font-size: 1rem; }
-    .paper .body p { text-align: left; }
-    .mast-top span:nth-child(2) { display: none; }
-    .mast-rule span:last-child { display: none; }
-    .mast-rule { justify-content: center; }
+  .ing-ph { width: 48px; height: 56px; object-fit: cover; border-radius: 12px; }
+
+  /* ---------- WORD REVEALS ---------- */
+  /* headlines rise up out of a mask, word by word */
+  .split .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0.06em 0.02em 0.12em; margin: -0.06em -0.02em -0.12em; }
+  .split .wi { display: inline-block; transform: translateY(115%) rotate(4deg); transform-origin: left bottom; transition: transform 1.25s cubic-bezier(0.19, 1, 0.22, 1); transition-delay: calc(var(--i) * 0.07s); }
+  .split.in .wi { transform: none; }
+
+  @media (max-width: 900px) {
+    /* phones & tablets: copy on top, the bowl fills whatever height is left, everything stays on screen */
+    .recipe { height: 520vh; }
+    .recipe-stage { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 4px; height: 100vh; height: 100svh; padding: 78px 16px 14px; align-content: stretch; }
+    .recipe-copy { text-align: center; }
+    .recipe-copy .kicker { margin-bottom: 6px; }
+    .recipe-copy h2 { font-size: clamp(1.9rem, 8vw, 2.8rem); }
+    .step-box { margin: 12px auto 0; padding: 12px 18px 14px; max-width: 460px; }
+    .step-text { font-size: 19px; min-height: 2.6em; }
+    .step-dots { justify-content: center; margin-top: 10px; }
+    .dish { margin-top: 8px; }
+    .dish b { font-size: 24px; }
+    .kitchen { height: 100%; min-height: 0; }
+    .kitchen .bowl-wrap { width: min(80%, 340px, 44vh); margin-top: 10%; }
+    .ing { font-size: 12.5px; padding: 6px 12px 6px 6px; gap: 8px; border-radius: 14px; }
+    .ing-ph { width: 34px; height: 40px; border-radius: 9px; }
+    /* start the ingredient cards inside the screen on narrow phones */
+    .kitchen .ing:nth-child(1) { --x0: 32% !important; --y0: 6% !important; }
+    .kitchen .ing:nth-child(2) { --x0: 68% !important; --y0: 16% !important; }
+    .kitchen .ing:nth-child(3) { --x0: 33% !important; --y0: 86% !important; }
+    .kitchen .ing:nth-child(4) { --x0: 67% !important; --y0: 95% !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .split .wi { transform: none; }
+    .recipe { height: auto; }
+    .recipe-stage { position: relative; height: auto; }
   }
 
-  /* ---------- BLOG POSTS AS A PACKET (one post per sheet, scroll to read, flip to the next) ---------- */
-  .chapters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 0 34px; }
-  .chapters button { max-width: 340px; padding: 10px 18px; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; background: none; color: rgba(255, 255, 255, 0.85); font: 500 13px/1.3 'Poppins', sans-serif; text-align: left; cursor: pointer; transition: background-color 0.25s, color 0.25s; }
-  .chapters button b { display: block; font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; opacity: 0.7; }
-  .chapters button:hover { border-color: #fff; color: #fff; }
-  .chapters button.on { background: #fff; border-color: #fff; color: var(--vw-navy); }
-
-  .packet {
-    position: relative; width: min(680px, calc(100vw - 48px)); height: min(1040px, calc(100vh - 70px)); margin: 0 auto;
-    perspective: 2200px; perspective-origin: 50% -20%;
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav { justify-content: space-between; }
+    .nav.scrolled { width: calc(100% - 24px); }
+    .feature, .feature.flip { grid-template-columns: 1fr; text-align: center; padding-top: 80px; }
+    .feature.flip .feature-media { order: 0; }
+    .feature p, .timeline { margin-left: auto; margin-right: auto; }
+    .ui-chips { justify-content: center; }
   }
-  .packet::before { content: ''; position: absolute; left: 4%; right: -2%; bottom: -26px; height: 60px; background: radial-gradient(closest-side, rgba(0,0,0,0.55), transparent); filter: blur(6px); }
-  .sheet {
-    position: absolute; inset: 0; border-radius: 2px;
-    background: #fdfcf8; color: #262626;
-    box-shadow: 0 1px 0 #e8e4da, 0 2px 6px rgba(0, 0, 0, 0.18);
-    transform-origin: 50% 0;
-    transition: transform 0.45s cubic-bezier(.3, .7, .3, 1);
+  @media (max-width: 620px) {
+    .nav { gap: 10px; padding: 0 6px 0 16px; width: calc(100% - 16px); top: 8px; }
+    .nav.scrolled { width: calc(100% - 16px); top: 8px; }
+    .hero { padding-top: 120px; }
+    .ob-field input { width: 100%; font-size: 16px; }
+    .nav-right { flex: 1 1 0; justify-content: flex-end; gap: 8px; }
+    .nav .ob-search { flex: 0 1 170px; }
+    .nav .pill .txt { display: none; }
+    .fan .p-left { margin-left: calc(var(--w) / -2 - 120px); }
+    .fan .p-right { margin-left: calc(var(--w) / -2 + 120px); }
+    .macro-row { gap: 22px; }
+    .macro i { width: 80px; }
   }
-  .sheet.flipping { transform-style: preserve-3d; }
-  .sheet .face { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; background: inherit; }
-  /* 3D-only settings switch on just while a page is flipping: Safari won't scroll a layer that has them */
-  .sheet.flipping .face { backface-visibility: hidden; -webkit-backface-visibility: hidden; pointer-events: none; }
-  .sheet .rear { display: none; position: absolute; inset: 0; pointer-events: none; transform: rotateX(180deg); backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: inherit; background: linear-gradient(180deg, #ece8de, #f6f3eb 60%, #fbfaf6); }
-  .sheet.flipping .rear { display: block; }
-  .sheet .face::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 3; background: linear-gradient(0deg, rgba(0,0,0,0.22), rgba(0,0,0,0) 60%); opacity: 0; }
-  .sheet.flipping .face::after { animation: liftShade 0.8s ease forwards; }
-  .sheet.flipping.rev .face::after { animation-direction: reverse; }
-  @keyframes liftShade { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 1; } }
-  .sheet.gone { visibility: hidden; }
-  .sheet.flipping { visibility: visible; animation: flipUp 0.8s cubic-bezier(.45, .05, .3, 1) forwards; }
-  .sheet.flipping.rev { animation: flipDown 0.8s cubic-bezier(.45, .05, .3, 1) forwards; }
-  @keyframes flipUp { 0% { transform: rotateX(0deg); } 70% { transform: rotateX(150deg); opacity: 1; } 100% { transform: rotateX(178deg); opacity: 0; } }
-  @keyframes flipDown { 0% { transform: rotateX(178deg); opacity: 0; } 30% { transform: rotateX(150deg); opacity: 1; } 100% { transform: rotateX(0deg); } }
-
-  /* the post scrolls inside its sheet */
-  .sheet .scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 54px 48px 64px; scrollbar-width: thin; scrollbar-color: #c9c3b5 transparent; }
-  .sheet .scroll::-webkit-scrollbar { width: 6px; }
-  .sheet .scroll::-webkit-scrollbar-thumb { background: #c9c3b5; border-radius: 3px; }
-  .sheet .scroll { font: 400 0.92rem/1.68 'Source Serif 4', Georgia, serif; color: #2a2a2a; }
-  .sheet .ch-kicker { display: flex; justify-content: space-between; gap: 12px; font: 600 0.64rem/1 'Poppins', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #1b4388; }
-  .sheet h3 { margin: 14px 0 10px; font: 700 clamp(1.3rem, 2.4vw, 1.65rem)/1.2 'Playfair Display', Georgia, serif; color: #111; }
-  .sheet .ch-by { margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1.5px solid #111; font-style: italic; color: #555; font-size: 0.85rem; }
-  .sheet .ch-cover { display: block; width: 100%; height: auto; max-height: 300px; object-fit: cover; margin-bottom: 18px; }
-  .sheet .body p { margin: 0 0 12px; }
-  .sheet .body > p:first-of-type::first-letter { float: left; margin: 5px 7px 0 0; font: 900 3.1em/0.8 'Playfair Display', Georgia, serif; color: #1b4388; }
-  .sheet .body h4 { margin: 18px 0 6px; font: 700 1.02rem/1.3 'Playfair Display', Georgia, serif; color: #111; }
-  .sheet .body ul { padding-left: 20px; margin-bottom: 12px; }
-  /* never stretch a photo past its real size (that is what made small ones blurry) */
-  .sheet .body img { display: block; width: auto; max-width: 100%; height: auto; max-height: 560px; margin: 8px auto 16px; }
-  .sheet .body a { color: #1b4388; }
-  .sheet .end { margin-top: 22px; text-align: center; font: 600 0.66rem 'Poppins', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #1b4388; }
-  /* fade at the bottom hints there is more to scroll */
-  .sheet .face .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 56px; z-index: 2; pointer-events: none; background: linear-gradient(rgba(253,252,248,0), #fdfcf8 75%); }
-
-  /* make it obvious the post scrolls: a pill that bounces until you start, plus a reading-progress bar */
-  .sheet .scroll-cue { position: absolute; left: 50%; bottom: 18px; z-index: 3; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: #1b4388; color: #fff; font: 600 11px 'Poppins', sans-serif; letter-spacing: 1.5px; text-transform: uppercase; box-shadow: 0 6px 18px rgba(27, 67, 136, 0.35); pointer-events: none; transition: opacity 0.35s, transform 0.35s; animation: cueBob 1.6s ease-in-out infinite; }
-  .sheet .scroll-cue i { font-size: 12px; }
-  @keyframes cueBob { 0%, 100% { margin-bottom: 0; } 50% { margin-bottom: -6px; } }
-  .sheet.read .scroll-cue { opacity: 0; transform: translate(-50%, 10px); animation: none; }
-  .sheet .progress { position: absolute; top: 0; left: 0; z-index: 3; pointer-events: none; height: 4px; width: 0; background: #1b4388; transition: width 0.1s linear; }
-  .sheet .scroll { scrollbar-width: auto; scrollbar-color: #1b4388 #ece8de; }
-  .sheet .scroll::-webkit-scrollbar { width: 8px; }
-  .sheet .scroll::-webkit-scrollbar-track { background: #ece8de; }
-  .sheet .scroll::-webkit-scrollbar-thumb { background: #1b4388; border-radius: 4px; }
-  /* bottom-right corner fold: click it to flip */
-  .sheet .corner { position: absolute; right: 0; bottom: 0; z-index: 4; width: 36px; height: 36px; padding: 0; border: none; cursor: pointer; background: linear-gradient(315deg, #0f1726 0 50%, #e4dfd2 50%, #f7f5ef 100%); box-shadow: -2px -2px 5px rgba(0,0,0,0.12); transition: width 0.25s, height 0.25s; }
-  .sheet .corner:hover { width: 54px; height: 54px; }
-
-  .pile-nav .book-count { min-width: 140px; color: rgba(255, 255, 255, 0.75); font: 500 13px 'Poppins', sans-serif; }
-  .packet-btns { display: flex; gap: 10px; min-width: 140px; justify-content: flex-end; }
-  .packet-btns button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.4); background: none; color: #fff; font-size: 15px; cursor: pointer; transition: background-color 0.2s, color 0.2s; }
-  .packet-btns button:hover:not(:disabled) { background: #fff; color: var(--vw-navy); }
-  .packet-btns button:disabled { opacity: 0.3; cursor: default; }
-
-  @media (max-width: 760px) {
-    .packet { height: calc(100svh - 90px); }
-    .sheet .scroll { padding: 46px 22px 60px; font-size: 0.9rem; }
-    .chapters button { max-width: none; flex: 1 1 100%; }
-    .pile-nav { flex-wrap: wrap; gap: 14px; }
-    .pile-nav .vw-btn { order: 3; width: 100%; text-align: center; }
+  @media (prefers-reduced-motion: reduce) {
+    .device { transform: rotateX(var(--rx, 8deg)) rotateY(var(--ry, 0deg)) rotateZ(var(--rz, 0deg)) !important; opacity: 1 !important; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
+  <!-- soft drifting glows in the app's colours, behind everything -->
+  <div class="grain" aria-hidden="true"></div>
 
-  <!-- BROWSER BAR: the address bar doubles as a search engine for the whole site -->
-  <header class="omnibar">
-    <a class="ob-btn" href="projects.html" title="Back to Projects" aria-label="Back to Projects"><span class="msi">arrow_back</span></a>
-    <button class="ob-btn ob-hide-sm" onclick="history.forward()" title="Forward" aria-label="Forward"><span class="msi">arrow_forward</span></button>
-    <button class="ob-btn ob-hide-sm" onclick="location.reload()" title="Reload" aria-label="Reload"><span class="msi">refresh</span></button>
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="brand" href="#top" aria-label="DirectChef, back to top"><img src="directchef/directchef-lockup.png" alt="DirectChef"></a>
+    <div class="nav-links">
+      <a href="#recipe">Recipe</a>
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#reflection">Reflection</a>
+    </div>
+    <div class="nav-right">
+      <div class="ob-search" id="obSearch">
+        <form class="ob-field" id="obForm" role="search" autocomplete="off">
+          <span class="msi">search</span>
+          <span id="obIcon"></span>
+          <input id="obInput" type="text" spellcheck="false" placeholder="Search" aria-label="Search Blake's site" aria-autocomplete="list" aria-controls="obMenu">
+          <button type="button" class="ob-clear" id="obClear" aria-label="Clear"><span class="msi">close</span></button>
+        </form>
+        <div class="ob-menu" id="obMenu" role="listbox"></div>
+      </div>
+      <a class="pill" href="projects.html"><span class="msi">arrow_back</span><span class="txt">Projects</span></a>
+    </div>
+  </nav>
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
 
-    <div class="ob-search" id="obSearch">
-      <form class="ob-field" id="obForm" role="search" autocomplete="off">
-        <span class="msi" id="obIcon">lock</span>
-        <input id="obInput" type="text" spellcheck="false" aria-label="Search or type a URL"
-               aria-autocomplete="list" aria-controls="obMenu" value="VanWagner-Social.com/blakemassoni">
-        <button type="button" class="ob-btn ob-clear" id="obClear" aria-label="Clear"><span class="msi">close</span></button>
-      </form>
-      <div class="ob-menu" id="obMenu" role="listbox"></div>
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <p class="kicker reveal">My first Figma mobile app</p>
+    <h1 class="hero-logo reveal">
+      <img src="directchef/directchef-logo.png" alt="DirectChef">
+    </h1>
+    <p class="tagline split">Meal prep, <em>made personal.</em></p>
+    <p class="desc reveal">A personalized meal-prep and recipe tutorial app designed to make cooking intuitive and enjoyable. This project taught me the fundamentals of mobile UI design, user flow, and component consistency.</p>
+    <p class="tags reveal">Mobile design · UI/UX · Recipe app · First project</p>
+    <div class="hero-actions reveal">
+      <a class="pill big" href="#features">Explore the app</a>
+      <a class="pill big ghost" href="#screens">See all screens</a>
     </div>
 
-    <button class="ob-btn" id="muteBtn" aria-label="Toggle sound"><i class="fas fa-volume-xmark"></i></button>
-    <a class="ob-btn ob-hide-sm" href="index.html" title="Home" aria-label="Home"><span class="msi">apps</span></a>
-    <span class="ob-avatar ob-hide-sm" title="Blake Massoni">B</span>
+    <div class="fan" id="fan">
+      <div class="fan-inner" id="fanInner">
+        <div class="phone p-left"><img src="Screen_Shot_2025-10-28_at_5.07.24_PM-removebg-preview.png" alt="DirectChef home screen"></div>
+        <div class="phone p-center"><img src="Screen_Shot_2025-10-28_at_5.06.53_PM-removebg-preview.png" alt="DirectChef log in screen"></div>
+        <div class="phone p-right"><img src="Screen_Shot_2025-10-28_at_5.07.49_PM-removebg-preview.png" alt="DirectChef saved recipes screen"></div>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <!-- Hero + VW blue band -->
-    <div class="vw-top">
-      <section class="vw-hero">
-        <div class="vw-hero-inner">
-          <p class="role reveal">Marketing &amp; Business Development Coordinator · Apr 2026 – Present</p>
-          <h1 class="reveal">Content built for the biggest stages in sports.</h1>
-          <p class="lead reveal">At Van Wagner, a full-service sports advertising and entertainment agency, Blake creates social content, writes blog posts and case studies, and builds research decks that support client proposals.</p>
+  <!-- MACROS -->
+  <section class="macros reveal">
+    <h2 class="split">Every recipe. <em>Every macro.</em></h2>
+    <div class="macro-row">
+      <div class="macro"><b data-count="290">290</b><span>Calories</span><i style="--c: var(--slate-deep)"></i></div>
+      <div class="macro"><b><span data-count="16">16</span><small>g</small></b><span>Protein</span><i style="--c: var(--mist-2)"></i></div>
+      <div class="macro"><b><span data-count="56">56</span><small>g</small></b><span>Carbs</span><i style="--c: var(--matcha)"></i></div>
+    </div>
+    <p class="note">Matcha Overnight Oats, as shown on the DirectChef recipe screen.</p>
+  </section>
+
+
+  <!-- HOW IT COOKS: pinned scene, ingredients drop into the bowl as you scroll -->
+  <section class="recipe" id="recipe" aria-label="Matcha Overnight Oats, step by step">
+    <div class="recipe-stage">
+      <div class="recipe-copy">
+        <p class="kicker">How it cooks</p>
+        <h2 class="split">Step by step, <em>just like the app.</em></h2>
+        <div class="step-box">
+          <span class="step-count" id="stepCount">Step 1 of 5</span>
+          <p class="step-text" id="stepText">Add 1 cup of rolled oats into a large metal bowl.</p>
+          <div class="step-dots" id="stepDots"><i></i><i></i><i></i><i></i><i></i></div>
         </div>
-      </section>
-      <div class="vw-stats">
-        <div class="reveal"><b>5</b><span>Divisions covered on social</span></div>
-        <div class="reveal"><b>3</b><span>Platforms: Instagram, LinkedIn, Facebook</span></div>
-        <div class="reveal"><b>Monthly</b><span>Content calendars for every platform</span></div>
-        <div class="reveal"><b>On-site</b><span>Shot lists for live events</span></div>
+        <div class="dish" id="dish">
+          <b>Matcha Overnight Oats</b>
+          <span>290 Calories · 16g Protein · 56g Carbs</span>
+        </div>
+      </div>
+
+      <div class="kitchen" id="kitchen">
+        <div class="ing" style="--x0:24%; --y0:8%; --sr:-10deg"><img class="ing-ph" src="directchef/ing-oats.png" alt=""><b>1 Cup of Rolled Oats</b></div>
+        <div class="ing" style="--x0:76%; --y0:16%; --sr:9deg"><img class="ing-ph" src="directchef/ing-chia.png" alt=""><b>4 TSP of Chia Seeds</b></div>
+        <div class="ing" style="--x0:22%; --y0:84%; --sr:7deg"><img class="ing-ph" src="directchef/ing-milk.png" alt=""><b>1.5 Cups of Coconut Milk</b></div>
+        <div class="ing" style="--x0:78%; --y0:92%; --sr:-8deg"><img class="ing-ph" src="directchef/ing-matcha.png" alt=""><b>3 TSP of Matcha</b></div>
+
+        <div class="bowl-wrap">
+          <svg class="bowl" viewBox="0 -130 320 340" aria-hidden="true">
+            <defs>
+              <clipPath id="bowlClip"><path d="M24 72H296C296 150 236 196 160 196S24 150 24 72Z"/></clipPath>
+              <linearGradient id="glass" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".16" stop-color="#fff" stop-opacity=".65"/><stop offset=".28" stop-color="#fff" stop-opacity="0"/></linearGradient>
+              <linearGradient id="oatGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe3c2"/><stop offset="1" stop-color="#d9c79a"/></linearGradient>
+              <linearGradient id="milkGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f1efe9"/></linearGradient>
+              <linearGradient id="mixGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe5b8"/><stop offset=".4" stop-color="#cbd59a"/><stop offset="1" stop-color="#aebd78"/></linearGradient>
+              <filter id="mushy" x="-10%" y="-10%" width="120%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.07" numOctaves="2" seed="5" result="n"/>
+                <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+                <feGaussianBlur in="d" stdDeviation="0.7"/>
+              </filter>
+              <radialGradient id="berryGrad" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#a9b6db"/><stop offset=".45" stop-color="#5d6d9f"/><stop offset="1" stop-color="#2f3858"/></radialGradient>
+              <linearGradient id="steel" x1="0" x2="1"><stop offset="0" stop-color="#7d838f"/><stop offset=".5" stop-color="#e3e6ec"/><stop offset="1" stop-color="#868c98"/></linearGradient>
+            </defs>
+
+            <!-- what's in the bowl (clipped to the inside of the glass) -->
+            <g clip-path="url(#bowlClip)">
+              <rect id="oatLayer" x="0" y="196" width="320" height="10" fill="url(#oatGrad)"/>
+              <g id="landed"></g>
+              <path id="milkLayer" d="" fill="url(#milkGrad)" opacity=".93"/>
+              <rect id="matchaTint" x="0" y="0" width="320" height="210" fill="#b5ca84" opacity="0"/>
+              <g filter="url(#mushy)">
+                <path id="mixture" d="" fill="url(#mixGrad)" opacity="0"/>
+                <g id="mush" opacity="0"></g>
+              </g>
+            </g>
+
+            <!-- the pours -->
+            <g id="sources">
+              <g id="srcOats" opacity="0"><path d="M-30 -18h44l-6 36h-32z" fill="#fff" stroke="#a3aec1" stroke-width="3" stroke-linejoin="round"/><path d="M-26 -6h36l-3 20h-30z" fill="#e9dbb5"/><path d="M14 -10h10" stroke="#a3aec1" stroke-width="3" stroke-linecap="round"/></g>
+              <g id="srcChia" opacity="0"><rect x="-16" y="-24" width="32" height="44" rx="6" fill="#fff" stroke="#a3aec1" stroke-width="3"/><rect x="-18" y="-30" width="36" height="9" rx="3" fill="#a3aec1"/><g fill="#3d4352"><circle cx="-6" cy="0" r="2"/><circle cx="5" cy="6" r="2"/><circle cx="-2" cy="12" r="2"/><circle cx="7" cy="-6" r="2"/><circle cx="-8" cy="10" r="2"/></g></g>
+              <g id="srcMilk" opacity="0"><path d="M-18 -40h36v14l8 12v54h-52v-54l8-12z" fill="#fff" stroke="#a3aec1" stroke-width="3" stroke-linejoin="round"/><path d="M-26 6h52" stroke="#a3aec1" stroke-width="2.4"/><text x="0" y="26" text-anchor="middle" font-family="Jost, sans-serif" font-size="11" fill="#6f7a90">MILK</text></g>
+              <g id="srcMatcha" opacity="0"><path d="M-40 6h46" stroke="#a3aec1" stroke-width="4" stroke-linecap="round"/><ellipse cx="18" cy="6" rx="16" ry="9" fill="#fff" stroke="#a3aec1" stroke-width="3"/><ellipse cx="18" cy="2" rx="11" ry="5" fill="#8fa860"/></g>
+            </g>
+            <path id="milkStreamEdge" d="" fill="none" stroke="#d9dee7" stroke-width="10" stroke-linecap="round" opacity="0"/>
+            <path id="milkStream" d="" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity="0"/>
+            <g id="falling"></g>
+            <g id="swirl" opacity="0" fill="none" stroke="#f4f7ea" stroke-width="2.2" stroke-linecap="round">
+              <ellipse id="swirlA" cx="160" cy="0" rx="92" ry="9" pathLength="100" stroke-dasharray="34 66"/>
+              <ellipse id="swirlB" cx="160" cy="0" rx="56" ry="6" pathLength="100" stroke-dasharray="26 74"/>
+            </g>
+            <!-- whisk: wire loops + handle, pivoting at its tip -->
+            <g id="whisk" opacity="0">
+              <g fill="none" stroke="url(#steel)" stroke-width="2.6" stroke-linecap="round">
+                <path d="M0 0C-26 -14 -30 -62 -10 -92"/><path d="M0 0C26 -14 30 -62 10 -92"/>
+                <path d="M0 0C-12 -18 -14 -62 -4 -92"/><path d="M0 0C12 -18 14 -62 4 -92"/>
+              </g>
+              <rect x="-8" y="-170" width="16" height="82" rx="8" fill="url(#steel)" stroke="#7d838f" stroke-width="1.2"/>
+              <rect x="-6" y="-176" width="12" height="10" rx="4" fill="#a3aec1"/>
+            </g>
+            <g id="berriesG"></g>
+
+            <!-- the glass bowl -->
+            <path d="M24 72H296C296 150 236 196 160 196S24 150 24 72Z" fill="url(#glass)" stroke="#a3aec1" stroke-width="3"/>
+            <ellipse cx="160" cy="72" rx="136" ry="16" fill="none" stroke="#a3aec1" stroke-width="3"/>
+            <ellipse cx="160" cy="204" rx="62" ry="5" fill="#a3aec1" opacity=".3"/>
+          </svg>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- Social -->
-    <section class="vw-section" id="social">
-      <div class="container social-grid">
-        <div class="reveal">
-          <h2 class="vw-title">Social Content</h2>
-          <p class="vw-text">Blake manages Van Wagner's Instagram, LinkedIn and Facebook across all five divisions, creating event recaps, announcements, capabilities overviews and more. That includes building monthly content calendars for each platform and planning shot lists for on-site content capture at live sporting events and activations, then editing the footage together in CapCut.</p>
-
-          <div class="app-switch" role="tablist">
-            <button class="active" data-app="reels" role="tab"><i class="fab fa-instagram"></i>Instagram Reels</button>
-            <button data-app="linkedin" role="tab"><i class="fab fa-linkedin"></i>LinkedIn</button>
-          </div>
-          <div class="vw-card" id="appCard">
-            <h3 id="appCardTitle">Instagram Reels</h3>
-            <span class="count" id="appCardCount">01/02</span>
-            <p id="appCardText">Short-form video from the biggest moments: event recaps, launch videos and on-site content captured at live sporting events and activations, all edited together by Blake in CapCut.</p>
-            <div class="card-foot"><i class="fas fa-mobile-screen"></i>Scroll inside the phone to view</div>
-          </div>
-        </div>
-
-        <div class="phone-col">
-        <div class="phone-slot" id="phoneSlot">
-          <div class="phone-frame">
-            <div class="phone-screen">
-
-              <!-- Instagram Reels app -->
-              <div class="app app-reels" id="appReels">
-                <div class="feed" id="feed"></div>
-                <div class="status">
-                  <span>9:41</span>
-                  <span class="icons"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></span>
-                </div>
-                <div class="reels-top">
-                  <span>Reels<i class="fas fa-chevron-down"></i></span>
-                  <i class="fas fa-camera"></i>
-                </div>
-                <div class="mute-flash" id="muteFlash"><i class="fas fa-volume-xmark"></i></div>
-                <nav class="reels-nav" aria-hidden="true">
-                  <i class="fas fa-house"></i>
-                  <i class="fas fa-magnifying-glass"></i>
-                  <i class="far fa-square-plus"></i>
-                  <i class="fas fa-clapperboard"></i>
-                  <i class="far fa-circle-user"></i>
-                </nav>
-              </div>
-
-              <!-- LinkedIn app -->
-              <div class="app app-linkedin hidden" id="appLinkedin">
-                <div class="status">
-                  <span>9:41</span>
-                  <span class="icons"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></span>
-                </div>
-                <div class="li-top">
-                  <span class="li-me"></span>
-                  <span class="li-search"><i class="fas fa-magnifying-glass"></i>Search</span>
-                  <i class="far fa-comment-dots"></i>
-                </div>
-                <div class="li-feed" id="liFeed"></div>
-                <nav class="li-nav" aria-hidden="true">
-                  <div class="on"><i class="fas fa-house"></i>Home</div>
-                  <div><i class="fas fa-user-group"></i>Network</div>
-                  <div><i class="fas fa-square-plus"></i>Post</div>
-                  <div><i class="fas fa-bell"></i>Alerts</div>
-                  <div><i class="fas fa-briefcase"></i>Jobs</div>
-                </nav>
-              </div>
-
-            </div>
-            <img class="phone-outline" src="iphone-17.svg" alt="">
-          </div>
-        </div>
+  <!-- FEATURES -->
+  <div id="features" class="features-wrap">
+    <section class="feature">
+      <div class="feature-media reveal">
+        <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.07.24_PM-removebg-preview.png" alt="Home screen: Hello, Blake. It's time for breakfast"></div>
+      </div>
+      <div class="reveal">
+        <span class="num">01</span>
+        <h2 class="split">Intuitive <em>navigation.</em></h2>
+        <p>Simple, clean interface that makes finding recipes effortless. The home screen greets you by name and serves the right meal for the time of day.</p>
+        <div class="ui-chips">
+          <span class="chip"><span class="msi">home</span>Home</span>
+          <span class="chip"><span class="msi">notifications</span>Alerts</span>
+          <span class="chip"><span class="msi">restaurant</span>Meals</span>
+          <span class="chip"><span class="msi">shopping_cart</span>Cart</span>
+          <span class="chip"><span class="msi">person</span>Profile</span>
         </div>
       </div>
     </section>
 
-    <!-- Blog posts -->
-    <section class="vw-section writing" id="writing">
-      <div class="container">
-        <div class="work-head reveal">
-          <h2 class="vw-title">Blog Posts</h2>
-          <p class="vw-text">SEO-focused articles and case studies Blake wrote for the Van Wagner News page, documenting client activation results from college football's most famous nets to the FIFA Fan Festival. Scroll the page to read, then flip to the next post.</p>
-        </div>
-        <div class="chapters" id="chapters" role="tablist" aria-label="Blog posts"></div>
-        <div class="packet" id="packet" aria-live="polite">
-        </div>
-        <div class="pile-nav">
-          <span class="book-count" id="bookCount"></span>
-          <a class="vw-btn" id="bookLink" href="https://www.vanwagner.com/news/" target="_blank" rel="noopener">Read on vanwagner.com</a>
-          <span class="packet-btns"><button id="bookPrev" aria-label="Previous page"><i class="fas fa-arrow-left"></i></button><button id="bookNext" aria-label="Next page"><i class="fas fa-arrow-right"></i></button></span>
+    <section class="feature flip">
+      <div class="feature-media duo reveal">
+        <div class="phone back"><img src="Screen_Shot_2025-10-28_at_5.07.34_PM-removebg-preview.png" alt="Recipe overview screen"></div>
+        <div class="phone front"><img src="Screen_Shot_2025-10-28_at_5.07.42_PM-removebg-preview.png" alt="Step-by-step ingredients screen"></div>
+      </div>
+      <div class="reveal">
+        <span class="num">02</span>
+        <h2 class="split">Step-by-step <em>guides.</em></h2>
+        <p>Clear cooking instructions with visual aids for every recipe. Each ingredient gets its own card with a photo and exactly what to do with it.</p>
+        <div class="ui-chips">
+          <span class="chip">1 Cup of Rolled Oats</span>
+          <span class="chip">4 TSP of Chia Seeds</span>
+          <span class="chip">1.5 Cups of Coconut Milk</span>
+          <span class="chip">3 TSP of Matcha</span>
         </div>
       </div>
     </section>
-  </main>
 
+    <section class="feature">
+      <div class="feature-media reveal">
+        <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.07.49_PM-removebg-preview.png" alt="Saved recipes screen"></div>
+      </div>
+      <div class="reveal">
+        <span class="num">03</span>
+        <h2 class="split">Personalized <em>content.</em></h2>
+        <p>Tailored recipe recommendations based on your preferences. Saved recipes are searchable and sorted by meal, with dietary tags right on the dish.</p>
+        <div class="ui-chips">
+          <span class="chip on">Breakfast</span>
+          <span class="chip">Lunch</span>
+          <span class="chip">Dinner</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature flip">
+      <div class="feature-media reveal">
+        <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.07.58_PM-removebg-preview.png" alt="Alerts screen with meal prep reminders"></div>
+      </div>
+      <div class="reveal">
+        <span class="num">04</span>
+        <h2 class="split">Meal <em>planning.</em></h2>
+        <p>Organize your weekly meals with smart planning tools. Timed alerts tell you what to restock, when to preheat and what to defrost.</p>
+        <div class="timeline">
+          <div><b>7:00am</b>Restock rolled oats</div>
+          <div><b>11:00am</b>Pre-heat the oven to 475°F</div>
+          <div><b>4:00pm</b>Defrost your salmon</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+
+  <!-- ALL SCREENS -->
+  <section class="screens" id="screens">
+    <h2 class="section-title split">Six screens. <em>One simple flow.</em></h2>
+    <p class="lede reveal">Follow the flow from logging in to your first reminder. Tap any screen to see it up close.</p>
+    <div class="journey" id="journey">
+      <div class="journey-stage">
+        <div class="journey-track" id="journeyTrack">
+          <svg class="journey-line" id="journeyLine" aria-hidden="true"><path id="jlBase" d=""/><path id="jlDraw" d=""/></svg>
+          <figure class="stop" data-i="0">
+            <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.06.53_PM-removebg-preview.png" alt="DirectChef Log in screen"></div>
+            <figcaption><span class="stop-num">01</span><b>Log in</b><span class="stop-desc">A calm welcome: the DirectChef plate, a username, a password, and you are in.</span></figcaption>
+          </figure>
+          <figure class="stop low" data-i="1">
+            <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.07.24_PM-removebg-preview.png" alt="DirectChef Home screen"></div>
+            <figcaption><span class="stop-num">02</span><b>Home</b><span class="stop-desc">Greets you by name and serves the right meal for the time of day.</span></figcaption>
+          </figure>
+          <figure class="stop" data-i="2">
+            <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.07.34_PM-removebg-preview.png" alt="DirectChef Recipe screen"></div>
+            <figcaption><span class="stop-num">03</span><b>Recipe</b><span class="stop-desc">Calories, protein and carbs up top, ingredients one swipe away.</span></figcaption>
+          </figure>
+          <figure class="stop low" data-i="3">
+            <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.07.42_PM-removebg-preview.png" alt="DirectChef Ingredients screen"></div>
+            <figcaption><span class="stop-num">04</span><b>Ingredients</b><span class="stop-desc">Every ingredient gets a photo and the exact step to follow.</span></figcaption>
+          </figure>
+          <figure class="stop" data-i="4">
+            <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.07.49_PM-removebg-preview.png" alt="DirectChef Saved recipes screen"></div>
+            <figcaption><span class="stop-num">05</span><b>Saved recipes</b><span class="stop-desc">Search saved dishes and filter by breakfast, lunch or dinner.</span></figcaption>
+          </figure>
+          <figure class="stop low" data-i="5">
+            <div class="phone"><img src="Screen_Shot_2025-10-28_at_5.07.58_PM-removebg-preview.png" alt="DirectChef Alerts screen"></div>
+            <figcaption><span class="stop-num">06</span><b>Alerts</b><span class="stop-desc">Timed reminders to restock, preheat and defrost, right on time.</span></figcaption>
+          </figure>
+        </div>
+        <div class="journey-ui"><span id="journeyLabel">01 · Log in</span><i><b id="journeyBar"></b></i><span>06</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="reflection" id="reflection">
+    <p class="kicker reveal">Design reflection</p>
+    <p class="big reveal">Looking back at this first project, I'd refocus on ensuring <strong>consistent layout patterns, scalable components, and emotional cohesion</strong> throughout the user journey. This project taught me the importance of maintaining visual hierarchy and creating a <strong>seamless, minimal design that prioritizes user needs</strong> above all else.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="foot-inner">
+      <a class="brand" href="#top" aria-label="Back to top"><img src="directchef/directchef-lockup.png" alt="DirectChef"></a>
+      <div class="foot-links">
+        <a href="projects.html">All projects</a>
+        <a href="vanwagner.html">Van Wagner</a>
+        <a href="imemails.html">IL MAKIAGE</a>
+        <a href="studentportal.html">Path@Penn redesign</a>
+        <a href="resume.html">Resume</a>
+        <a href="index.html">Home</a>
+      </div>
+      <small>A UX/UI class project by Blake Massoni, designed in Figma.</small>
+    </div>
+  </footer>
+
+  <!-- ZOOM -->
+  <div class="popup" id="popup">
+    <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
+    <img id="popupImg" src="" alt="">
+  </div>
 
 <script>
-  // --- Posts: videos live in the "vanwagner" folder ---
-  // landscape: true turns the phone on its side to play horizontal videos
-  const posts = [
-    { src: 'frozen-four.mp4', title: 'Frozen Four', caption: '' },
-    { src: 'derby.mp4', title: 'The Derby', caption: '' },
-    { src: 'june-recap.mp4', title: 'June Recap', caption: '' },
-    { src: 'aerial.mp4', title: 'Aerial Advertising', caption: '' , landscape: true },
-    { src: 'blog-video.mp4', title: 'Blog Feature', caption: '' , landscape: true }
-  ];
+  // ============ REVEAL ON SCROLL ============
+  const revealObs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); }
+  }), { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (el.closest('.hero') ? i * 0.08 : 0) + 's'; revealObs.observe(el); });
 
-  // --- Blog posts Blake wrote for the Van Wagner News page ---
-  const blogPosts = [
-    {
-      title: "The Net That Became an Icon: Allstate’s Good Hands® Field Goal Nets",
-      date: "August 28, 2026",
-      image: "AS-Field-goal-1.jpg",
-      url: "https://www.vanwagner.com/the-net-that-became-an-icon-allstates-good-hands-field-goal-nets/",
-      html: "<p>More than two decades ago, Allstate and Van Wagner saw an opportunity in one of the most familiar pieces of equipment on a football field: the field goal net.</p><p>The idea was simple: transform the field goal net into a highly visible branding platform, placing Allstate’s iconic Good Hands® mark directly behind the goalposts during field goals and extra points. That vision has since become one of the most recognizable <a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">TV-visible sponsorship</a> platforms in college football. As the 2026 college football season begins, the Allstate Good Hands® Field Goal Net Program continues its long-standing tradition, following a strong 2025 season.</p><h4>The Opportunity Behind the Net</h4><p>During field goals and extra points, cameras and viewers are naturally focused on the uprights, bringing the branded net into view during key moments in the game. Its position also creates a relevant connection to Allstate’s Good Hands® identity, making the sponsorship distinctive and easy to recognize.</p><p>The strength of the concept lies in its combination of visibility, brand relevance and consistency. It could be scaled across stadiums without losing its visual impact from one game and broadcast to the next.</p><h4>From 30 Stadiums to 96</h4><p>The program launched with branded nets at more than 30 NCAA Division I football stadiums. Today, that footprint has grown to 96 college stadiums nationwide. During the 2025 season alone, the nets appeared across 631 games, extending beyond the regular season to neutral-site matchups and more than 25 bowl games.</p><p>More than two decades of growth have transformed a single sponsorship concept into a nationwide college football platform.</p><img src=\"AS-Field-goal-2-1024x574.png\" alt=\"\"><h4>Reaching College Football’s Largest Audiences</h4><p>Scale is one measure of the program’s impact. Its presence during college football’s biggest games is another.</p><p>During the 2025 regular season, Allstate Field Goal Nets appeared in 22 of the 25 most-watched games, including the season’s three largest audiences. Ohio State–Michigan led with 18.42 million viewers, followed by Texas–Ohio State at 16.6 million and Texas A&amp;M–Texas at more than 13 million.</p><p>That visibility carried into the postseason, with Allstate Field Goal Nets featured in all 25 of the most-watched games, including the College Football Playoff National Championship, which drew 30.1 million viewers.</p><p>College football audiences also grew during the 2025 season. Average regular-season viewership across major networks increased approximately 10 percent year over year, including gains of 19 percent on ABC, 14 percent on ESPN and 12 percent on FOX. As college football audiences grow, so does the visibility generated by the nets.</p><img src=\"AS-Field-goal-3.jpg\" alt=\"\"><h4>Connecting Brand Visibility to Student Support</h4><p>The program’s value extends beyond the visibility it generates for Allstate. Since its launch, Allstate has donated millions of dollars to scholarship funds at participating schools, extending the program’s impact to college communities nationwide.</p><p>By combining national brand exposure with meaningful support for students, the program creates value both on and off the field.</p><h4>Still the Standard</h4><p>The program’s longevity reflects the strength of the collaboration between Allstate and Van Wagner, and the continued effectiveness of a sponsorship concept designed specifically for college football.</p><p>As another season begins, the nets will rise behind the goalposts once again. And when the game turns toward the uprights, the Good Hands® will be there.</p>"
-    },
-    {
-      title: "Pickleball Is Scaling: Van Wagner Brings TV-Visible Signage to the Fastest-Growing Sport in America",
-      date: "June 16, 2026",
-      image: "PB1.jpg",
-      url: "https://www.vanwagner.com/pickleball-is-scaling-van-wagner-brings-tv-visible-signage-to-the-fastest-growing-sport-in-america/",
-      html: "<p style=\"text-align: left;\"><b><em>Pickleball is growing fast. The advertising opportunity is growing with it.</em></b></p><p style=\"text-align: left;\">________________________________________</p><p>Pickleball has graduated from backyard courts and recreational leagues to primetime television. The 2026 SFIA annual report confirms pickleball as America&#8217;s fastest-growing sport for the fifth consecutive year — now the fourth-most played sport in the country, with 24.3 million Americans playing in 2025, a 171.8% increase since 2022. The professional game is catching up fast, and with it, a serious sports marketing opportunity is taking shape.</p><p>Van Wagner is now offering TV-visible signage opportunities across the top two professional pickleball tours — the Carvana PPA Tour and Major League Pickleball (MLP) presented by DoorDash. Across both tours, the schedule includes 30 tour stops, giving brands consistent, repeatable exposure throughout the season.</p><p>________________________________________</p><h4><strong>What This Means for Advertisers</strong></h4><img src=\"PB-graphic.jpg\" alt=\"\"><p>For advertisers, this presents an opportunity to reach an engaged, rapidly growing, and increasingly mainstream sports audience through efficient, high-impact marketing inventory built for live broadcasts, streaming coverage, highlights, and social amplification. For brands looking to build awareness with passionate sports audiences without the long-term commitment of an official team or league partnership, TV-visible signage offers a flexible, high-impact alternative.</p><p><a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">Van Wagner’s Dorna division</a> specializes in TV-visible signage that places brands directly within game broadcasts, integrating advertisers’ brands and messaging into pickleball coverage. This tried-and-true format has already delivered measurable results across MLB, NHL, NBA, NCAA, MLS, and now professional pickleball.</p><p>The signage appears naturally within the broadcast frame through Sidewall LED, Backwall LED, and Virtual On-Court Signage — captured consistently throughout live coverage, highlight packages, and social content. Rather than a single impression, advertisers benefit from sustained brand visibility across every platform the sport reaches.</p><p>________________________________________</p><h4><strong>A Sport with Serious Media Infrastructure</strong></h4><p><img src=\"PB3.jpg\" alt=\"\">What separates pickleball from many emerging sports is how quickly it has established a legitimate broadcast ecosystem. The Carvana PPA Tour and MLP presented by DoorDash now reach audiences across linear television, streaming, and digital platforms, including CBS, FOX, ESPN, Tennis Channel, PickleballTV, and YouTube. That growth is already translating into viewership. The 2026 Carvana PPA Masters on CBS averaged 791,000 viewers and surpassed 1 million peak viewers, signaling pickleball’s continued rise into the mainstream sports landscape.</p><img src=\"PB4.jpg\" alt=\"\"><p>The momentum is also being reflected at the industry level. Earlier this year, United Pickleball Association (UPA) — the parent company of both the PPA Tour and MLP — secured $225 million in funding, reinforcing long-term investment in pickleball’s professional infrastructure. Nike also signed Anna Leigh Waters, the sport’s biggest star, to its first-ever pickleball endorsement deal, further signaling growing confidence in the sport’s future and commercial potential.</p><p>________________________________________</p><h4 style=\"text-align: left;\">Why TV-Visible Signage Works in Pickleball</h4><p>Pickleball broadcasts naturally create strong visibility for signage. The sport’s compact court, consistent camera angles, and fast-paced action ensure courtside and sideline branding stays in frame throughout rallies, replays, and the highlight moments that live far beyond the broadcast itself.</p><p>In many ways, it mirrors what has made TV-visible signage so effective in established sports — but with added upside. For advertisers, pickleball offers:</p><ul><li>Sustained on-screen exposure across live coverage, replays, and highlight programming</li><li>Cross-platform longevity as content is clipped, shared, and redistributed across social and digital channels</li><li>An engaged, fast-growing audience that skews active, health-conscious, and highly valuable to brands across categories</li><li>Early-entry inventory in a sport still early in its professional lifecycle, giving advertisers a chance to build presence ahead of increased competition</li></ul><p>________________________________________</p><h4>What Dorna Does — Across Every Sport</h4><p>TV-visible signage is one of the most efficient and durable formats in sports advertising, and as the industry leader, Dorna has been building and managing this inventory across professional sports for more than four decades. Working with us, advertisers have access to the largest network of brand-building opportunities in sports, including behind home plate, courtside, and along fields of play across more than 500 professional and collegiate sports teams and events. Dorna specializes in identifying the right placements, negotiating the right inventory, and delivering measurable results in-broadcast, highlights, and across the social and digital content that surrounds every major sporting event.</p><p>________________________________________</p><h4><strong>The Takeaway</strong></h4><p>Pickleball is no longer a question of whether it belongs alongside established professional sports. The audience is real, the media distribution is substantial, and the advertising opportunity will only continue to grow as the sport’s professional ecosystem matures.</p><p>Van Wagner is positioned to help brands move now — before the space becomes crowded — and deliver the same sustained, cross-platform visibility that TV-visible signage has generated across decades of professional sports broadcasting.</p><p style=\"text-align: center;\"><b><a href=\"https://www.vanwagner.com/contact-us/\" target=\"_blank\" rel=\"noopener\">Contact our team today</a></b></p>"
-    },
-    {
-      title: "Beyond the Match: Delivering a World-Class FIFA Fan Festival™ Experience in Kansas City",
-      date: "July 23, 2026",
-      image: "KCff1.png",
-      url: "https://www.vanwagner.com/beyond-the-match-delivering-a-world-class-fifa-fan-festival-experience-in-kansas-city/",
-      html: "<p>Fifty acres. Nineteen days. Hundreds of thousands of fans. That&#8217;s what it took to turn the National WWI Museum and Memorial grounds into one of the country&#8217;s largest free summer events.</p><p>Creating a successful FIFA Fan Festival™ requires more than giant screens and room to gather. The vision for <a href=\"https://www.kc2026.com/\" target=\"_blank\" rel=\"noopener\"><strong>FIFA Fan Festival™ Kansas City</strong></a> was never just about scale. It was about holding two things at once: an experience big enough to match the world&#8217;s largest sporting event, and one that still felt unmistakably like Kansas City, down to details like the KC Heart Gateway, a massive entry installation framing the National WWI Museum&#8217;s tower beyond it.</p><p>To bring that vision to life, KC2026 brought together a consortium of industry-leading partners. <strong>Populous</strong> led the project, overseeing project management, venue planning and development, and brand design. <strong>TEG Sport</strong> handled ticketing, marketing, and front-of-house operations.</p><p><a href=\"https://www.vanwagner.com/services/productions/\" target=\"_blank\" rel=\"noopener\"><strong>Van Wagner Productions</strong></a> was the team behind the scenes making it all run: site operations, vendor management, production and entertainment, and VIP hospitality, the connective tissue that turned a nationally significant landmark into a world-class destination for fans from around the globe.</p><p><strong> </strong></p><h4><strong>FIFA Fan Festival™ Kansas City By The Numbers</strong></h4><ul><li>19 operational event days</li><li>Hundreds of thousands of attendees</li><li>50+ acre festival footprint</li><li>250+ semi-trucks required to build the event</li><li>42+ vendors and suppliers</li><li>11+ FIFA Commercial Partners and Host City Supporters</li><li>100+ artists, bands, DJs, and performers on stage</li></ul><h4><strong>The Work Nobody Sees</strong></h4><p>None of Van Wagner&#8217;s work was visible to attendees, and that was the point. The festival grounds functioned less like a single event site and more like a small city, distinct zones for the Live Stage, Legacy Lounge, Premium Garden, and sponsor activations, each running independently but wired together as one operation. Behind the scenes, the team coordinated 42-plus vendors, 11-plus FIFA Commercial Partners and Host City Supporters, more than 250 semi-trucks of equipment, and hundreds of skilled craftspeople from IATSE Local 31, turning 50 acres into that fully functioning temporary city.</p><p><b>Mallory Cage, Director of FIFA Fan Festival &amp; Events KC2026, felt that reliability firsthand:</b></p><p><b><em>“I never worried that things were not being handled and I never had to follow up on an ask I made. This level of comfort changed the way I could handle and experience everything else occurring, and I am so grateful for that.”</em></b></p><p><strong> </strong></p><h4><strong>Where the Festival Came Alive</strong></h4><p>At the center of it all sat the Live Stage, 60 feet tall and 140 feet wide, anchored by a 50-by-25-foot LED screen, with the Live Plus canopy, roughly the size of an NFL football field, stretched alongside it to give fans shade and gathering space through the summer heat. Together, they became the emotional center of the event, where fans celebrated and Kansas City showed its culture to the world</p><img src=\"KCFF2.jpg\" alt=\"\"><p>Behind that stage was the talent to fill it. Working with local vendors, Van Wagner booked more than 100 artists, bands, and DJs across the run, while a 15-plus person production crew show-called, stage-managed, and programmed every talent, video, and audio element in real time.</p><h4><strong>Hospitality as Experience</strong></h4><p>The Legacy Lounge, designed by Van Wagner with Renegade Design and Infinite Structures, felt less like a temporary build and more like a permanent one, a custom two-story viewing patio, a 6,000-square-foot climate-controlled club, and premium finishes throughout. The Premium Garden offered a more accessible upgrade with dedicated entry, private bar service, and premium viewing, its own reason to stay a little longer.</p><h4><strong>The Finale</strong></h4><p>Leadership challenged the team to give fans a reason to stay after the final whistle. In under 48 hours, they built an entire closing set from scratch: local artists performing stadium anthems for 30 minutes, capped with fireworks. It&#8217;s the moment Keli O&#8217;Neill Wenzel, CEO/President/CFEE at O&#8217;Neill Events &amp; Marketing, calls the one that stood out most.</p><p>&#8220;We pulled together the concept, the artists, and the marketing pieces on the fly, and Van Wagner was right there at every step,&#8221; Wenzel said. &#8220;They quickly advanced all the artists involved and produced a two-minute wrap-up video that played at the close of the final match. The moment was electric. Fans loved it, and the production was absolutely flawless. That&#8217;s what this team does. They find a way, fast, and make it look effortless.&#8221;</p><h4><strong>A Legacy Beyond the Final Whistle</strong></h4><p>None of that work stayed on the festival grounds. Across the full World Cup tournament, <strong>Fan Festival content generated over 700 million video views and is approaching 35 million engagements</strong>.</p><p>A 50-acre festival, dozens of vendors, 100-plus performers, and a hospitality program built to permanent-venue standards, all running on logistics fans never saw. That invisibility was the goal: build something people could lose themselves in, and let the people who trusted Van Wagner with it feel that trust was well placed.</p><img src=\"KC-Fan-Fest-Crowd-Close-up.jpg\" alt=\"\"><p><b>About Van Wagner</b><br />Van Wagner is a leading sports advertising and entertainment agency, with global expertise in live events, sponsorship sales, multimedia rights and aerial advertising. Van Wagner creates, advises and sells on behalf of world-class teams, leagues, brands and properties. An innovator in the sports and media business, Van Wagner is a global leader in high-impact <a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">broadcast visible signage</a> throughout the NCAA, MLB, NBA, and international soccer, as well as <a href=\"https://www.vanwagner.com/services/college/\" target=\"_blank\" rel=\"noopener\">collegiate multimedia rights</a> and <a href=\"https://www.vanwagner.com/services/productions/\" target=\"_blank\" rel=\"noopener\">production</a> of the world’s biggest sporting events. For more information, visit <a href=\"http://www.vanwagner.com\" target=\"_blank\" rel=\"noopener\">www.vanwagner.com</a>.</p><img src=\"KC-Fan-Fest-2026-VW-Team-1024x810.jpg\" alt=\"\">"
-    },
-    {
-      title: "Why AI Companies Are Betting on TV-Visible Signage in Live Sports",
-      date: "July 21, 2026",
-      image: "legora.png",
-      url: "https://www.vanwagner.com/why-ai-companies-are-betting-on-tv-visible-signage-in-live-sports/",
-      html: "<h4>In a Crowded Category, Performance Marketing Isn&#8217;t Enough</h4><p>The fastest-growing technology category in the world has a branding problem.</p><p>AI companies are multiplying faster than buyers can evaluate them. Every platform claims to be the most intelligent, the most efficient, the most transformative. In a category this crowded and this abstract, it&#8217;s becoming harder to stand out, and performance marketing alone may not be enough to build the kind of trust that closes enterprise deals.</p><p>The companies that recognize this are making a move that might seem counterintuitive for a technology brand: they&#8217;re showing up in live sports through <a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">TV-visible signage</a> placed directly inside the broadcast frame, in front of millions of engaged viewers, integrated naturally into the game itself.</p><p>The results are already visible across every major league.</p><p>Behind home plate at MLB stadiums. Courtside at NBA arenas. Along the boards at NHL games. The brands showcased in these placements used to primarily consist of beer companies, financial institutions, and telecom giants. Increasingly, they&#8217;re AI companies and the shift is accelerating fast. Van Wagner&#8217;s Dorna division has been placing brands inside live sports broadcasts for 30 years. We&#8217;re watching this category emerge in real time.</p><p>________________________________________</p><h4>The Brands Making the Move</h4><p>The examples are mounting fast. In MLB stadiums, Harvey, a legal AI platform, executed a rapid-fire expansion across some of the country&#8217;s most-watched sports markets, securing broadcast-visible signage at Wrigley Field with the Chicago Cubs and at Globe Life Field with the Texas Rangers as part of nine major sports deals announced since March 2026. Legora, another legal AI platform, made a similarly deliberate choice, placing its logo on rotation behind home plate at Yankee Stadium, one of the most consistently broadcast locations in American sports.</p><img src=\"harvey.jpg\" alt=\"\"><p>In NBA arenas, the same play is unfolding. Harvey extended its expansion to American Airlines Center with the Dallas Mavericks, while Perplexity, an AI search platform, secured courtside LED signage with the LA Clippers, placing its brand in the rotating courtside inventory that sits in frame for virtually every broadcast possession.</p><img src=\"perplexity.png\" alt=\"\"><p>The trend extends beyond the pros, and beyond signage. SentinelOne, a cybersecurity AI platform, put its name on the event itself, title-sponsoring the SentinelOne Classic at Madison Square Garden, a recurring high-profile college basketball showcase featuring top programs like Duke, Illinois, and Texas Tech, broadcast on FOX and ESPN.</p><img src=\"sentinal-one.png\" alt=\"\"><p><strong>What&#8217;s notable is the breadth:</strong> legal AI, search AI, cybersecurity AI. These are companies from across the AI landscape that have independently arrived at the same conclusion: live sports is where you build a brand.</p><p>These aren&#8217;t isolated experiments. This is a category converging on the same strategy.</p><p>________________________________________</p><h4>From the Arena to the Feed</h4><p>TV-visible signage doesn&#8217;t exist in just one place; it exists in three simultaneously.</p><ol><li><strong>The first is the physical venue.</strong> Fans in attendance see the signage courtside, behind home plate, along the boards: in the same space as the athletes they came to watch. That in-person impression carries a weight no digital ad can replicate.</li><li><strong>The second is the broadcast.</strong> Every camera angle, every replay, every slow-motion moment captures the signage as part of the frame, reaching millions watching at home across linear television, streaming, and connected devices simultaneously.</li><li><strong>The third is everything that comes after.</strong> Game-day photography, highlight clips, and viral moments naturally carry in-venue branding with them, and when fan interest peaks, that exposure multiplies across social and earned media channels indefinitely. A single game-winning shot can send clips circling the internet for days with a brand&#8217;s logo embedded in every frame. Studies show advanced broadcast-visible signage can improve brand recall by over 15%, and that recall compounds every time the content is redistributed.</li></ol><p>For AI brands, this three-layer presence delivers exactly what the category needs most right now: credibility from appearing inside one of the most trusted advertising environments in media, scale from reaching millions of decision-makers simultaneously across every platform the sport touches, and amplification that keeps working long after the final buzzer.<br />One placement. Three channels. Indefinite shelf life.</p><p>________________________________________</p><h4>Why AI Brands Need TV-Visible Signage Specifically</h4><p>What makes sports such a powerful brand-building environment isn&#8217;t the logo on the jersey; it&#8217;s the emotional state of the viewer. Research by Mediaprobe found that emotional engagement with content is the single largest predictor of ad recall and that for every measurable increase in emotional engagement, the probability of recalling a brand increases by 10%. Live sports are one of the most emotionally engaging content environments in media. TV-visible signage places a brand inside that environment, absorbed by fans who are fully present, emotionally invested, and primed to form brand associations. Rather than being tied to one team&#8217;s fanbase, one market, and one season&#8217;s worth of wins and losses, <a href=\"https://www.vanwagner.com/services/dorna-tv-visible-signage/\" target=\"_blank\" rel=\"noopener\">TV-visible signage</a> reaches fans of every team, across every market the broadcast touches, simultaneously.</p><p>________________________________________</p><h4>What Dorna Does</h4><p>TV-visible signage is one of the most efficient and durable formats in sports advertising. As the industry leader, Van Wagner&#8217;s Dorna division has been building and managing this inventory across professional sports for 30 years. Working with us, AI brands have access to the largest network of brand-building opportunities in sports, including behind home plate, courtside, and along fields of play across more than 500 professional and collegiate sports teams and events. Dorna specializes in identifying the right placements, negotiating the right inventory, and delivering measurable results in-broadcast, in highlights, and across the social and digital content that surrounds every major sporting event.</p><p>The brands making this move now are building familiarity before their competitors do. The window to get in ahead of the crowd won&#8217;t stay open forever.</p><p style=\"text-align: center;\"><b><a href=\"https://www.vanwagner.com/contact-us/\" target=\"_blank\" rel=\"noopener\">Contact our team today</a>.</b></p>"
-    }
-  ];
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // --- LinkedIn posts ---
-  // text keeps its line breaks; #hashtags and links turn blue automatically
-  // mentions: tagged (blue) names, like @-tagging a company; the last time each name appears gets tagged
-  // optional: images: ['photo.jpg', ...] (1-4 show as a grid) or video: 'clip.mp4', plus reactions / comments counts
-  const linkedinPosts = [
-    {
-      title: 'AI Brands in Live Sports',
-      date: 'Jul 31',
-      images: ['ai-1.jpg', 'ai-2.jpg', 'ai-3.jpg', 'ai-4.jpg'],
-      text: "The fastest-growing tech category in the world has a branding problem.\n\n#AI companies are multiplying faster than buyers can evaluate them. In a market this crowded, performance #marketing alone isn't building the trust needed to close enterprise deals. So a handful of AI brands are making a move that looks counterintuitive for a tech company: showing up inside live sports broadcasts.\n\nBehind home plate. Courtside. Along the stadium LED boards. Inventory that used to belong almost exclusively to beer, finance, and telecom is now going to AI.\n\n➡️ Learn more: https://lnkd.in/ewc53XeP\n\nThe pattern is already visible across leagues:\n✅ Harvey (legal AI) has closed nine major sports deals since March 2026, including broadcast-visible signage at Wrigley Field, Globe Life Field, and American Airlines Center.\n✅ Legora (legal AI) placed its logo behind home plate at Yankee Stadium, one of the most consistently broadcast locations in American sports.\n✅ Perplexity (AI search) secured courtside LED signage with the LA Clippers.\n✅ SentinelOne (cybersecurity AI) title-sponsored the SentinelOne Classic at Madison Square Garden, broadcast on FOX and ESPN.\n\nLegal AI, search AI, cybersecurity AI: different products, same conclusion. Live sports signage delivers three layers of exposure from a single placement: the in-venue audience, the broadcast audience, and the indefinite afterlife in highlight clips and social replays as game moments get redistributed.\n\nVan Wagner's Dorna TV-Visible Signage has built and managed this category of inventory for over 30 years, across 500+ professional and collegiate teams and events. For AI brands trying to build category trust before a competitor gets there first, the time is now.",
-      mentions: ['Van Wagner']
-    },
-    {
-      title: 'Three Events, One Week',
-      date: 'May',
-      images: ['events-1.jpg', 'events-2.jpg', 'events-3.jpg', 'events-4.jpg'],
-      text: "NFL Draft. Kentucky Derby. F1 Miami Grand Prix. Three iconic events. One week. Our Van Wagner Productions team was at all three.\n\nShow calling. Content design. Site setup. Implementation. That's us.\n\n805,000 fans at the most-attended NFL Draft in history. The first female trainer to win the Kentucky Derby in its 152-year history. Kimi Antonelli's third straight victory to open his F1 season in Miami.\n\nFor more than 5 decades, Van Wagner has worked behind the scenes of live sports — honored to power moments like these. We’d like to thank our partners at the National Football League (NFL), Churchill Downs Incorporated, and F1 Miami Grand Prix for an unforgettable week.\n\n#NFLDraft2026 #KentuckyDerby2026 #MiamiGP #VanWagnerOnSite #Productions #LiveEvents #SportsBusiness #VanWagner",
-      mentions: ['National Football League (NFL)', 'Churchill Downs Incorporated', 'F1 Miami Grand Prix']
-    }
-  ];
-
-
-  // --- Scroll reveal ---
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll('.reveal').forEach((el, i) => {
-    el.style.transitionDelay = (i < 3 ? i * 0.15 : 0) + 's';
-    revealObserver.observe(el);
+  // ============ LIQUID GLASS NAV ============
+  const nav = document.querySelector('.nav');
+  nav.addEventListener('mousemove', e => {
+    const r = nav.getBoundingClientRect();
+    nav.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
   });
+  const onNavScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onNavScroll, { passive: true });
+  onNavScroll();
 
-
-  // ============ PHONE (Reels + LinkedIn) ============
-  const feed = document.getElementById('feed');
-  const liFeed = document.getElementById('liFeed');
-  const phoneSlot = document.getElementById('phoneSlot');
-  const muteBtn = document.getElementById('muteBtn');
-  const muteFlash = document.getElementById('muteFlash');
-  const apps = { reels: document.getElementById('appReels'), linkedin: document.getElementById('appLinkedin') };
-  let app = 'reels';
-  let currentReel = 0;
-  let currentPost = 0;
-  let muted = true;
-  let phoneVisible = false;
-  let listButtons = [];
-
-  // --- Build reels ---
-  const reels = posts.map((post, i) => {
-    const reel = document.createElement('div');
-    reel.className = 'reel';
-    reel.innerHTML = `
-      <video src="${post.src}" class="${post.landscape ? 'contain' : ''}" muted loop playsinline preload="${i === 0 ? 'auto' : 'metadata'}"></video>
-      <div class="reel-shade"></div>
-      <div class="heart-burst"><i class="fas fa-heart"></i></div>
-      <div class="reel-actions">
-        <button class="act like" aria-label="Like"><i class="far fa-heart"></i>${post.likes ? `<span>${post.likes}</span>` : ''}</button>
-        <div class="act"><i class="far fa-comment"></i>${post.comments ? `<span>${post.comments}</span>` : ''}</div>
-        <div class="act"><i class="far fa-paper-plane"></i></div>
-        <div class="act"><i class="fas fa-ellipsis"></i></div>
-        <div class="audio-thumb"></div>
-      </div>
-      <div class="reel-info">
-        <div class="reel-user"><span class="avatar" role="img" aria-label="Van Wagner"></span><b>vanwagner</b><span class="follow">Follow</span></div>
-        <div class="reel-caption">${post.caption || post.title}</div>
-        <div class="reel-audio"><i class="fas fa-music"></i>vanwagner · Original audio</div>
-      </div>
-      <div class="reel-progress"><div></div></div>`;
-
-    const video = reel.querySelector('video');
-    const likeBtn = reel.querySelector('.like');
-    const burst = reel.querySelector('.heart-burst');
-
-    video.addEventListener('timeupdate', () => {
-      if (video.duration) {
-        reel.querySelector('.reel-progress div').style.width = (video.currentTime / video.duration * 100) + '%';
-      }
-    });
-
-    const setLiked = liked => {
-      likeBtn.classList.toggle('liked', liked);
-      likeBtn.querySelector('i').className = liked ? 'fas fa-heart' : 'far fa-heart';
-    };
-
-    likeBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      setLiked(!likeBtn.classList.contains('liked'));
-    });
-
-    // tap = sound on/off, double-tap = like (like Instagram)
-    reel.addEventListener('click', () => toggleMute());
-    reel.addEventListener('dblclick', () => {
-      setLiked(true);
-      burst.classList.remove('show');
-      void burst.offsetWidth;
-      burst.classList.add('show');
-    });
-
-    feed.appendChild(reel);
-    return reel;
-  });
-
-  // --- Build LinkedIn posts ---
-  // escape the text, then color #hashtags and links like LinkedIn does
-  function linkify(text, mentions = []) {
-    let out = text
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
-      .replace(/(^|\s)#(\w+)/g, '$1<span class="li-tag">#$2</span>');
-    mentions.forEach(m => {
-      const at = out.lastIndexOf(m);
-      if (at !== -1) out = out.slice(0, at) + `<span class="li-tag">${m}</span>` + out.slice(at + m.length);
-    });
-    return out;
-  }
-
-  const liCards = linkedinPosts.map(post => {
-    const card = document.createElement('article');
-    card.className = 'li-post';
-    let media = '';
-    if (post.video) media = `<div class="li-media"><video src="${post.video}" muted loop playsinline autoplay></video></div>`;
-    else if (post.images) media = `<div class="li-media li-grid-${Math.min(post.images.length, 4)}">${post.images.slice(0, 4).map(src => `<img src="${src}" alt="">`).join('')}</div>`;
-
-    card.innerHTML = `
-      <div class="li-head">
-        <span class="li-logo" role="img" aria-label="Van Wagner"></span>
-        <div>
-          <div class="li-name">Van Wagner</div>
-          <div class="li-sub">Sports Advertising &amp; Entertainment</div>
-          <div class="li-sub">${post.date} · <i class="fas fa-earth-americas"></i></div>
-        </div>
-        <span class="li-follow">+ Follow</span>
-      </div>
-      <div class="li-text">${linkify(post.text, post.mentions)}</div>
-      ${media}
-      ${post.reactions ? `
-      <div class="li-stats">
-        <span class="li-reacts"><i class="fas fa-thumbs-up r-like"></i><i class="fas fa-hands-clapping r-clap"></i><i class="fas fa-heart r-love"></i><span>${post.reactions}</span></span>
-        <span>${post.comments ? post.comments + ' comments' : ''}</span>
-      </div>` : ''}
-      <div class="li-actions">
-        <button class="li-like"><i class="far fa-thumbs-up"></i>Like</button>
-        <button><i class="far fa-comment"></i>Comment</button>
-        <button><i class="fas fa-retweet"></i>Repost</button>
-        <button><i class="fas fa-paper-plane"></i>Send</button>
-      </div>`;
-
-    const like = card.querySelector('.li-like');
-    like.addEventListener('click', () => {
-      const on = !like.classList.contains('liked');
-      like.classList.toggle('liked', on);
-      like.querySelector('i').className = on ? 'fas fa-thumbs-up' : 'far fa-thumbs-up';
-    });
-
-    liFeed.appendChild(card);
-    return card;
-  });
-
-  // --- Side list + counter ---
-  function renderList() {
-    highlight();
-  }
-
-  function highlight() {
-    const i = app === 'reels' ? currentReel : currentPost;
-    listButtons.forEach((b, j) => b.classList.toggle('active', j === i));
-    updateOrientation();
-  }
-
-  // turn the phone sideways while a horizontal reel is playing
-  function updateOrientation() {
-    reels.forEach((reel, i) => reel.classList.toggle('current', i === currentReel));
-    const landscape = app === 'reels' && !!posts[currentReel].landscape;
-    if (landscape === phoneSlot.classList.contains('landscape')) return;
-
-    // shrink the sideways phone enough to fit its column
-    const fit = (phoneSlot.parentElement.clientWidth - 16) / phoneSlot.offsetHeight;
-    phoneSlot.style.setProperty('--land-scale', Math.min(0.95, fit).toFixed(3));
-    phoneSlot.classList.toggle('landscape', landscape);
-    // the feed changes height, so keep the same reel lined up
-    feed.scrollTop = currentReel * feed.clientHeight;
-  }
-
-  function goTo(i) {
-    if (app === 'reels') {
-      i = Math.max(0, Math.min(posts.length - 1, i));
-      feed.scrollTo({ top: i * feed.clientHeight, behavior: 'smooth' });
-    } else {
-      i = Math.max(0, Math.min(liCards.length - 1, i));
-      liFeed.scrollTo({ top: liCards[i].offsetTop - liFeed.firstElementChild.offsetTop, behavior: 'smooth' });
-    }
-  }
-
-  document.getElementById('prevBtn')?.addEventListener('click', () => goTo((app === 'reels' ? currentReel : currentPost) - 1));
-  document.getElementById('nextBtn')?.addEventListener('click', () => goTo((app === 'reels' ? currentReel : currentPost) + 1));
-
-  // --- Playback: only the reel on screen plays, and only while Reels is open ---
-  function playCurrent() {
-    reels.forEach((reel, i) => {
-      const video = reel.querySelector('video');
-      video.muted = muted;
-      if (i === currentReel && phoneVisible && app === 'reels') {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    });
-  }
-
-  // whichever reel fills most of the screen is the active one
-  const reelObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        currentReel = reels.indexOf(entry.target);
-        highlight();
-        playCurrent();
-      }
-    });
-  }, { root: feed, threshold: 0.6 });
-  reels.forEach(reel => reelObserver.observe(reel));
-
-  // the LinkedIn post nearest the top of the feed is the active one
-  liFeed.addEventListener('scroll', () => {
-    const top = liFeed.scrollTop + liFeed.clientHeight * 0.3;
-    let i = 0;
-    liCards.forEach((card, j) => { if (card.offsetTop - liFeed.firstElementChild.offsetTop <= top) i = j; });
-    if (i !== currentPost) {
-      currentPost = i;
-      highlight();
-    }
-  });
-
-  // --- App switcher ---
-  document.querySelectorAll('.app-switch button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      app = btn.dataset.app;
-      document.querySelectorAll('.app-switch button').forEach(b => b.classList.toggle('active', b === btn));
-      apps.reels.classList.toggle('hidden', app !== 'reels');
-      apps.linkedin.classList.toggle('hidden', app !== 'linkedin');
-      updateOrientation();
-      renderList();
-      playCurrent();
-    });
-  });
-
-  // --- Sound ---
-  let flashTimer;
-  function toggleMute() {
-    muted = !muted;
-    const icon = muted ? '<i class="fas fa-volume-xmark"></i>' : '<i class="fas fa-volume-high"></i>';
-    muteBtn.innerHTML = icon;
-    muteFlash.innerHTML = icon;
-    muteFlash.classList.add('show');
-    clearTimeout(flashTimer);
-    flashTimer = setTimeout(() => muteFlash.classList.remove('show'), 700);
-    playCurrent();
-  }
-
-  muteBtn.addEventListener('click', toggleMute);
-
-  // --- 3D phone body: 16 shaded edge layers + a back plate behind the screen ---
-  (function build3DPhone() {
-    const frame = phoneSlot.querySelector('.phone-frame');
-    const LAYERS = 16;
-    const slabs = [];
-    for (let i = 0; i < LAYERS; i++) {
-      const sl = document.createElement('span');
-      sl.className = 'vw-slab' + (i === LAYERS - 1 ? ' back' : '');
-      const t = i / (LAYERS - 1);
-      sl.style.setProperty('--c', `hsl(220, 10%, ${(30 + 42 * Math.sin(Math.PI * t)).toFixed(1)}%)`);   // brushed metal: bright band mid-edge
-      frame.insertBefore(sl, frame.firstChild);
-      slabs.push(sl);
-    }
-    function size() {
-      const t = Math.max(14, phoneSlot.offsetWidth * 0.085);   // about as thick as a real iPhone
-      phoneSlot.style.setProperty('--t', t + 'px');
-      // slab 0 sits at the front edge, the last one (the back plate) at the very back
-      slabs.forEach((sl, k) => sl.style.setProperty('--z', (t / 2 - (t * k) / (LAYERS - 1)).toFixed(2) + 'px'));
-    }
-    size();
-    window.addEventListener('resize', size);
-  })();
-
-  // --- Phone slides in when scrolled to, and only plays while on screen ---
-  const phoneObserver = new IntersectionObserver(entries => {
-    phoneVisible = entries[0].isIntersecting;
-    if (phoneVisible) phoneSlot.classList.add('in');
-    playCurrent();
-  }, { threshold: 0.25 });
-  phoneObserver.observe(phoneSlot);
-
-  renderList();
-
-  // ============ BLOG PACKET: one post per sheet; scroll to read, flip up to the next ============
-  const packet = document.getElementById('packet');
-  const chaptersEl = document.getElementById('chapters');
-  const bookPrev = document.getElementById('bookPrev'), bookNext = document.getElementById('bookNext');
-  const bookCount = document.getElementById('bookCount'), bookLink = document.getElementById('bookLink');
-  let page = 0, turning = false;
-
-  // newest first
-  const chapterOrder = blogPosts.map((p, i) => i).sort((a, b) => new Date(blogPosts[b].date) - new Date(blogPosts[a].date));
-  chaptersEl.innerHTML = chapterOrder.map((idx, n) => `<button role="tab" data-n="${n}"><b>Post ${n + 1} · ${blogPosts[idx].date}</b></button>`).join('');
-  chapterOrder.forEach((idx, n) => { chaptersEl.children[n].append(blogPosts[idx].title); });
-
-  const sheets = chapterOrder.map((idx, n) => {
-    const post = blogPosts[idx];
-    const sh = document.createElement('div');
-    sh.className = 'sheet';
-    sh.innerHTML = `<div class="face"><div class="scroll">
-        <div class="ch-kicker"><span>Van Wagner News</span><span>${post.date}</span></div>
-        <h3>${post.title}</h3>
-        <p class="ch-by">Written by Blake Massoni</p>
-        <img class="ch-cover" src="${post.image}" alt="" loading="lazy">
-        <div class="body">${post.html}</div>
-        <p class="end">— End of post ${n + 1} of ${chapterOrder.length} —</p>
-      </div><div class="fade"></div><div class="progress"></div><span class="scroll-cue"><i class="fas fa-arrow-down"></i> Scroll to read</span>${n < chapterOrder.length - 1 ? '<button class="corner" aria-label="Flip to the next post"></button>' : ''}</div><div class="rear"></div>`;
-    packet.appendChild(sh);
-    return sh;
-  });
-  packet.querySelectorAll('.sheet .body img').forEach(im => im.loading = 'lazy');
-  sheets.forEach(sh => {
-    const sc = sh.querySelector('.scroll'), bar = sh.querySelector('.progress');
-    sc.addEventListener('scroll', () => {
-      const max = sc.scrollHeight - sc.clientHeight;
-      bar.style.width = (max > 0 ? Math.min(100, sc.scrollTop / max * 100) : 100) + '%';
-      sh.classList.toggle('read', sc.scrollTop > 40);
-    }, { passive: true });
-  });
-
-  // posts already flipped are hidden; the rest sit stacked with their edges peeking out
-  function layout() {
-    sheets.forEach((sh, i) => {
-      const d = i - page;
-      sh.style.zIndex = 500 - i;
-      sh.classList.toggle('gone', d < 0 && !sh.classList.contains('flipping'));
-      sh.inert = d !== 0;
-      const k = Math.min(Math.max(d, 0), 4);
-      if (!sh.classList.contains('flipping')) sh.style.transform = k ? `translate(${k * 3}px, ${k * 4}px) rotate(${k % 2 ? 0.35 : -0.25}deg)` : 'none';   // the page you read has no transform so text and photos stay sharp
-    });
-    bookCount.textContent = `Post ${page + 1} of ${sheets.length}`;
-    bookLink.href = blogPosts[chapterOrder[page]].url;
-    [...chaptersEl.children].forEach((b, n) => b.classList.toggle('on', n === page));
-    bookPrev.disabled = page === 0;
-    bookNext.disabled = page === sheets.length - 1;
-  }
-
-  function goTo(target) {
-    target = Math.max(0, Math.min(sheets.length - 1, target));
-    if (turning || target === page) return;
-    turning = true;
-    const fwd = target > page;
-    const sh = fwd ? sheets[page] : sheets[target];
-    // skipped sheets just disappear/appear underneath the one that flips
-    sheets[target].querySelector('.scroll').scrollTop = 0; sheets[target].classList.remove('read'); sheets[target].querySelector('.progress').style.width = '0';
-    sh.style.transform = '';
-    sh.classList.add('flipping');
-    if (!fwd) sh.classList.add('rev');
-    page = target; layout();
-    setTimeout(() => { sh.classList.remove('flipping', 'rev'); turning = false; layout(); }, 800);
-  }
-
-  bookNext.addEventListener('click', () => goTo(page + 1));
-  bookPrev.addEventListener('click', () => goTo(page - 1));
-  packet.addEventListener('click', e => { if (e.target.closest('.corner')) goTo(page + 1); });
-  chaptersEl.addEventListener('click', e => { const b = e.target.closest('button'); if (b) goTo(+b.dataset.n); });
-  document.addEventListener('keydown', e => {
-    const r = packet.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > window.innerHeight) return;   // only when the packet is on screen
-    if (e.key === 'ArrowRight') goTo(page + 1);
-    if (e.key === 'ArrowLeft') goTo(page - 1);
-  });
-  // sideways swipe on phones flips; up/down still scrolls the post
-  let sx = null, sy = null;
-  packet.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-  packet.addEventListener('touchend', e => {
-    if (sx === null) return;
-    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(page + (dx < 0 ? 1 : -1));
-    sx = null;
-  });
-  layout();
-
-  // ============ BLUE CARD follows the Instagram / LinkedIn tabs ============
-  const appCopy = {
-    reels: ['Instagram Reels', '01/02', 'Short-form video from the biggest moments: event recaps, launch videos and on-site content captured at live sporting events and activations, all edited together by Blake in CapCut.'],
-    linkedin: ['LinkedIn', '02/02', 'Company announcements, partnerships, capabilities overviews and thought leadership, written and designed for Van Wagner\'s LinkedIn audience.']
+  // ============ 3D PHONES ============
+  // wrap every screen in a 3D device: metal slabs behind for thickness, glare on top
+  // measured phone outline inside each screenshot (top right bottom left, as % of the image), nudged inward 0.8%
+  const outlines = {
+    '5.06.53': '4.6% 4% 2.2% 4.2%',
+    '5.07.24': '4.3% 3.4% 2.3% 2.2%',
+    '5.07.34': '4.2% 3.4% 2.6% 4%',
+    '5.07.42': '4.4% 5.1% 4.2% 4.5%',
+    '5.07.49': '4% 4.2% 2.3% 3.9%',
+    '5.07.58': '5.2% 6.5% 2.8% 4.8%'
   };
-  document.querySelectorAll('.app-switch button').forEach(btn => btn.addEventListener('click', () => {
-    const [t, c, d] = appCopy[btn.dataset.app];
-    document.getElementById('appCardTitle').textContent = t;
-    document.getElementById('appCardCount').textContent = c;
-    document.getElementById('appCardText').textContent = d;
-  }));
+  const phones = [...document.querySelectorAll('.phone')];
+  const LAYERS = 16;
+  // frame shading: darker at the front and back edges, a bright band in the middle, like brushed titanium
+  const frameColor = i => {
+    const t = i / (LAYERS - 1);                       // 0 = front, 1 = back
+    const light = 46 + 40 * Math.sin(Math.PI * t) - 6 * t;
+    return `hsl(222, 7%, ${light.toFixed(1)}%)`;
+  };
+  function buildDevice(ph) {
+    const img = ph.querySelector('img');
+    const key = Object.keys(outlines).find(k => img.getAttribute('src').includes(k));
+    if (key) ph.style.setProperty('--in', outlines[key]);
+    const device = document.createElement('div');
+    device.className = 'device';
+    ph.insertBefore(device, img);
+    for (let i = 0; i < LAYERS; i++) {
+      const slab = document.createElement('span');
+      slab.className = 'slab' + (i === LAYERS - 1 ? ' back' : '');
+      slab.dataset.i = i;
+      slab.style.setProperty('--c', frameColor(i));
+      device.appendChild(slab);
+    }
+    device.appendChild(img);
+    const glare = document.createElement('span');
+    glare.className = 'glare';
+    device.appendChild(glare);
+  }
+  // thickness follows the phone's size (~8.5% of its width)
+  function sizeDevices() {
+    phones.forEach(ph => {
+      const t = Math.max(12, ph.offsetWidth * 0.085);
+      ph.style.setProperty('--t', t + 'px');
+      ph.querySelectorAll('.slab').forEach(sl => {
+        const i = +sl.dataset.i;
+        sl.style.setProperty('--z', (t / 2 - (t * i) / (LAYERS - 1)).toFixed(2) + 'px');
+      });
+    });
+  }
+  phones.forEach(buildDevice);
+  sizeDevices();
 
-  // ============ ADDRESS BAR SEARCH ENGINE ============
+  // scroll-linked: each phone turns, rises and settles as it comes into view, then keeps turning gently
+  const heroPhones = phones.filter(ph => ph.closest('.fan'));
+  const scrollPhones = phones.filter(ph => !ph.closest('.fan') && !ph.closest('.journey'));
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const clamp01 = v => Math.min(1, Math.max(0, v));
+  function updatePhones() {
+    const vh = window.innerHeight;
+    scrollPhones.forEach(ph => {
+      const r = ph.getBoundingClientRect();
+      const raw = (vh - r.top) / (vh * 0.55 + r.height * 0.5);
+      ph.style.setProperty('--p', ease(clamp01(raw)).toFixed(3));
+      // -1 … 1 as the phone moves from the bottom of the screen to the top
+      const n = Math.max(-1, Math.min(1, ((r.top + r.height / 2) - vh / 2) / (vh / 2)));
+      ph.style.setProperty('--spin', (n * 6).toFixed(2) + 'deg');
+      ph.style.setProperty('--spin-n', n.toFixed(3));
+    });
+    // hero phones turn a little further as you scroll away from the top
+    const h = clamp01(window.scrollY / (vh * 0.8));
+    heroPhones.forEach((ph, i) => {
+      ph.style.setProperty('--spin', ([1, -1, -1][i] * h * 7).toFixed(2) + 'deg');
+      ph.style.setProperty('--spin-n', ([1, -1, -1][i] * h).toFixed(3));
+    });
+  }
+  // hero phones turn into place as the page loads
+  function introHero() {
+    const start = performance.now();
+    (function step(now) {
+      heroPhones.forEach((ph, i) => {
+        const t = clamp01((now - start - 250 - [1, 0, 2][i] * 140) / 1500);
+        ph.style.setProperty('--p', ease(t).toFixed(3));
+      });
+      if (now - start < 2300) requestAnimationFrame(step);
+    })(start);
+  }
+  window.addEventListener('resize', () => { sizeDevices(); updatePhones(); });
+  if (!reduce) {
+    phones.forEach(ph => ph.style.setProperty('--p', 0));
+    window.addEventListener('scroll', () => requestAnimationFrame(updatePhones), { passive: true });
+    updatePhones();
+    introHero();
+  }
+
+  // ============ SPLIT HEADLINES INTO WORDS (they rise in one by one) ============
+  document.querySelectorAll('.split').forEach(el => {
+    let i = 0;
+    const wrap = node => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            const w = document.createElement('span'); w.className = 'w'; const wi = document.createElement('span'); wi.className = 'wi'; wi.style.setProperty('--i', i++); wi.textContent = part; w.appendChild(wi); frag.appendChild(w);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) wrap(n);
+      });
+    };
+    wrap(el);
+    revealObs.observe(el);
+  });
+
+  // ============ COUNT-UP MACROS ============
+  const countObs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    countObs.unobserve(e.target);
+    const end = +e.target.dataset.count, start = performance.now();
+    (function tick(now) {
+      const t = Math.min(1, (now - start) / 1400);
+      e.target.textContent = Math.round(end * (1 - Math.pow(1 - t, 3)));
+      if (t < 1) requestAnimationFrame(tick);
+    })(start);
+  }), { threshold: 0.6 });
+  if (!reduce) document.querySelectorAll('[data-count]').forEach(el => { el.textContent = '0'; countObs.observe(el); });
+
+  // ============ HOW IT COOKS: each ingredient actually pours into the bowl ============
+  // Everything is a function of scroll progress, so scrolling back up "un-pours" it.
+  const recipeEl = document.getElementById('recipe');
+  const ings = [...recipeEl.querySelectorAll('.ing')];
+  const NS = 'http://www.w3.org/2000/svg';
+  const $ = id => document.getElementById(id);
+  const fallingG = $('falling'), landedG = $('landed');
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const c01 = v => Math.min(1, Math.max(0, v));
+  const easeO = t => 1 - Math.pow(1 - t, 3);
+  const easeI = t => t * t;
+  // seeded random so the particles land in the same places every time
+  let seed = 7; const rnd = (a = 0, b = 1) => { seed = (seed * 16807) % 2147483647; return a + (b - a) * (seed / 2147483647); };
+  // half-width of the inside of the bowl at height y (rim at 72, bottom at 196)
+  const halfW = y => 132 * Math.sqrt(Math.max(0, 1 - Math.pow((y - 72) / 124, 2)));
+
+  // surface height of the contents for each ingredient's pour progress u[0..3]
+  const oatTop = u => 196 - 30 * u[0] - 5 * u[1];
+  const surface = u => oatTop(u) - 36 * u[2] - 2 * u[3];
+
+  function makeParticles(n, kind, src, landY) {
+    return Array.from({ length: n }, () => {
+      const ly = rnd(landY[0], landY[1]);
+      const lx = 160 + rnd(-0.85, 0.85) * halfW(ly);
+      const el = document.createElementNS(NS, kind === 'oat' ? 'ellipse' : 'circle');
+      if (kind === 'oat') { el.setAttribute('rx', rnd(4, 6.5)); el.setAttribute('ry', rnd(2.2, 3.4)); el.setAttribute('fill', rnd() > 0.5 ? '#ecdfbd' : '#dccb9d'); el.setAttribute('stroke', '#c9b585'); el.setAttribute('stroke-width', '0.8'); }
+      else if (kind === 'chia') { el.setAttribute('r', rnd(1.4, 2.2)); el.setAttribute('fill', rnd() > 0.3 ? '#3a3f4b' : '#6b6f78'); }
+      else { el.setAttribute('r', rnd(1.2, 2.2)); el.setAttribute('fill', rnd() > 0.4 ? '#8fa860' : '#a9c07a'); }
+      fallingG.appendChild(el);
+      return { el, kind, sx: src[0] + rnd(-6, 6), sy: src[1] + rnd(-3, 3), lx, ly, d: rnd(0, 0.72), spin: rnd(-180, 180), drift: rnd(-14, 14) };
+    });
+  }
+  const oats   = makeParticles(46, 'oat',    [150, -48], [168, 192]);
+  const chia   = makeParticles(90, 'chia',   [168, -44], [160, 186]);
+  const matcha = makeParticles(70, 'matcha', [176, -40], [126, 134]);
+  // where every oat flake and chia seed ends up once the whisk mixes it through
+  [...oats, ...chia].forEach(p => { p.my = rnd(0, 1); p.mxr = rnd(-0.86, 0.86); p.ph = rnd(0, Math.PI * 2); });
+  // ---- the finished overnight oats: a heaped, lumpy, flake-filled mixture ----
+  const finalTop = 196 - 30 - 5 - 36 - 2;                       // surface once everything is in
+  const heap = x => 16 * Math.pow(Math.cos(((x - 160) / 170) * Math.PI / 2), 2);
+  const lumps = Array.from({ length: 28 }, () => rnd(-4.5, 4.5));
+  const lumpyY = x => finalTop - heap(x) + lumps[Math.min(27, Math.max(0, Math.round(x / 320 * 27)))];
+  function lumpyPath(blend, waveTop) {
+    // blend 0 = flat milky surface, 1 = heaped lumpy oats
+    let d = '';
+    for (let i = 0; i <= 27; i++) {
+      const x = i * 320 / 27;
+      const y = lerp(waveTop(x), lumpyY(x), blend);
+      if (i === 0) d = `M0 ${y.toFixed(1)}`;
+      else { const px = (i - 0.5) * 320 / 27; d += ` Q ${px.toFixed(1)} ${(y - 2.4 * blend * (i % 2 ? 1 : -0.4)).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}`; }
+    }
+    return d + ' V 200 H 0 Z';
+  }
+  // dense oat texture: lots of soft, overlapping flakes in pale matcha tones, plus creamy highlights
+  const mushG = $('mush');
+  const flakeTones = ['#e3e7c3', '#d4dca9', '#c6d095', '#ecefd6', '#bcc888', '#d9d3b0'];
+  for (let i = 0; i < 380; i++) {
+    const x = rnd(30, 290);
+    const y = rnd(lumpyY(x) + 1, 194);
+    if (Math.abs(x - 160) > halfW(y) * 0.98) continue;
+    const e = document.createElementNS(NS, 'ellipse');
+    e.setAttribute('cx', x.toFixed(1)); e.setAttribute('cy', y.toFixed(1));
+    e.setAttribute('rx', rnd(5, 12).toFixed(1)); e.setAttribute('ry', rnd(3, 6.5).toFixed(1));
+    e.setAttribute('transform', `rotate(${rnd(-50, 50).toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})`);
+    e.setAttribute('fill', flakeTones[Math.floor(rnd(0, flakeTones.length))]);
+    e.setAttribute('opacity', rnd(0.45, 0.85).toFixed(2));
+    mushG.appendChild(e);
+  }
+  for (let i = 0; i < 18; i++) {     // creamy highlights on the mounded top
+    const x = rnd(50, 270), y = lumpyY(x) + rnd(2, 10);
+    const h = document.createElementNS(NS, 'ellipse');
+    h.setAttribute('cx', x.toFixed(1)); h.setAttribute('cy', y.toFixed(1)); h.setAttribute('rx', rnd(5, 11).toFixed(1)); h.setAttribute('ry', rnd(1.5, 3).toFixed(1));
+    h.setAttribute('fill', '#fbfcf2'); h.setAttribute('opacity', '0.55');
+    mushG.appendChild(h);
+  }
+
+  // blueberries that drop onto the finished oats
+  const berries = Array.from({ length: 8 }, (_, i) => {
+    const g = document.createElementNS(NS, 'g');
+    const r = rnd(8.5, 11);
+    g.innerHTML = `<circle r="${r}" fill="url(#berryGrad)"/><circle r="${r * 0.32}" cx="${-r * 0.3}" cy="${-r * 0.35}" fill="#fff" opacity=".22"/><path d="M${-r * 0.3} ${-r * 0.82}l${r * 0.3} ${r * 0.28} ${r * 0.3} ${-r * 0.28}" stroke="#262c45" stroke-width="1.4" fill="none" stroke-linecap="round"/>`;
+    $('berriesG').appendChild(g);
+    return { g, r, x: 160 + (i - 3.5) * 22 + rnd(-6, 6), dy: rnd(-4, 3), d: i * 0.08 + rnd(0, 0.04) };
+  });
+
+  // pour sources: where each one hovers above the bowl and how far it tips
+  const sources = [
+    { el: $('srcOats'),   x: 130, y: -70, tilt: 62 },
+    { el: $('srcChia'),   x: 180, y: -78, tilt: 150 },
+    { el: $('srcMilk'),   x: 96,  y: -84, tilt: 70 },
+    { el: $('srcMatcha'), x: 150, y: -60, tilt: 38 },
+  ];
+
+  function drawParticles(list, u) {
+    list.forEach(p => {
+      const t = c01((u - p.d) / 0.26);
+      if (t <= 0) { p.el.setAttribute('opacity', 0); return; }
+      const e = easeI(t);
+      const x = lerp(p.sx, p.lx, easeO(t)) + Math.sin(t * Math.PI) * p.drift;
+      const y = lerp(p.sy, p.ly, e);
+      const tr = `translate(${x.toFixed(1)} ${y.toFixed(1)})` + (p.kind === 'oat' ? ` rotate(${(p.spin * (1 - t) + 20).toFixed(0)})` : '');
+      p.el.setAttribute('transform', tr);
+      p.el.setAttribute('opacity', 1);
+    });
+  }
+
+  const stepsCopy = [
+    'Add 1 cup of rolled oats into a large metal bowl.',
+    'Add 4 teaspoons of chia seeds and mix them in with the rolled oats.',
+    'Add 1.5 cups of coconut milk and whisk until it reaches a thick consistency.',
+    'Add 3 teaspoons of matcha, then dilute the mixture with water.',
+    'Whisk everything together and top with fresh blueberries.'
+  ];
+  const stepText = $('stepText'), stepCount = $('stepCount');
+  const dots = [...document.querySelectorAll('#stepDots i')];
+  let shownStep = -1;
+
+  function renderRecipe(p) {
+    // timeline: 4 pours (0.04 → 0.68), whisk (0.66 → 0.86), blueberries (0.86 → 0.96)
+    const local = [0, 1, 2, 3].map(i => c01((p - (0.04 + i * 0.16)) / 0.16));
+    const u = local.map(t => c01((t - 0.3) / 0.62));
+    const mixRaw = c01((p - 0.68) / 0.18);
+    const mix = mixRaw < 0.5 ? 2 * mixRaw * mixRaw : 1 - Math.pow(-2 * mixRaw + 2, 2) / 2;
+    const bt = c01((p - 0.86) / 0.1);
+
+    ings.forEach((el, i) => {
+      el.style.setProperty('--t', easeO(c01(local[i] / 0.35)).toFixed(3));
+      el.style.setProperty('--gone', c01((local[i] - 0.3) / 0.12).toFixed(3));
+    });
+    sources.forEach((s, i) => {
+      const t = local[i];
+      const vis = c01((t - 0.25) / 0.08) * (1 - c01((t - 0.9) / 0.08));
+      const tip = easeO(c01((t - 0.3) / 0.18)) * (1 - easeO(c01((t - 0.86) / 0.1)));
+      const shake = i === 1 ? Math.sin(t * 60) * 6 * tip : 0;
+      s.el.setAttribute('opacity', vis.toFixed(2));
+      s.el.setAttribute('transform', `translate(${s.x + shake} ${s.y}) rotate(${(s.tilt * tip).toFixed(1)})`);
+    });
+
+    const ot = oatTop(u), sf = surface(u);
+    const angle = mixRaw * Math.PI * 2 * 4.5;            // the whisk goes round ~4½ times
+    const churn = Math.sin(mixRaw * Math.PI);           // strongest in the middle of mixing
+
+    drawParticles(oats, u[0]);
+    drawParticles(chia, u[1]);
+    drawParticles(matcha, u[3]);
+    matcha.forEach(m => { if (u[3] > m.d + 0.26) m.el.setAttribute('opacity', (1 - c01((u[3] - 0.7) / 0.3)).toFixed(2)); });
+    // mixing: landed oats + chia travel from their layer into the whole mixture, swirling as they go
+    if (mix > 0) {
+      [...oats, ...chia].forEach(pt => {
+        const my = lerp(lumpyY(160) + 8, 190, pt.my);
+        const mx = 160 + pt.mxr * halfW(my);
+        const sw = Math.sin(angle + pt.ph) * 16 * churn;
+        const x = lerp(pt.lx, mx, mix) + sw;
+        const y = lerp(pt.ly, my, mix) + Math.cos(angle + pt.ph) * 3 * churn;
+        pt.el.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})` + (pt.kind === 'oat' ? ` rotate(${(pt.spin + angle * 40).toFixed(0)})` : ''));
+        pt.el.setAttribute('opacity', pt.kind === 'oat' ? (1 - 0.8 * mix).toFixed(2) : (0.6 + 0.2 * mix).toFixed(2));
+      });
+    } else {
+      chia.forEach(c => { if (u[1] > c.d + 0.26) c.el.setAttribute('opacity', (1 - 0.55 * u[2]).toFixed(2)); });
+    }
+
+    $('oatLayer').setAttribute('y', ot.toFixed(1));
+    $('oatLayer').setAttribute('height', (200 - ot).toFixed(1));
+    $('oatLayer').setAttribute('opacity', (1 - mix).toFixed(2));
+
+    const pour = c01((u[2] - 0.02) / 0.12) * (1 - c01((u[2] - 0.86) / 0.1));
+    const sp = [124, -58], end = [154, sf];
+    const streamD = `M${sp[0]} ${sp[1]} C ${sp[0] + 18} ${sp[1] - 4}, ${end[0] - 6} ${lerp(sp[1], end[1], 0.4)}, ${end[0]} ${end[1]}`;
+    ['milkStream', 'milkStreamEdge'].forEach(id => { $(id).setAttribute('d', streamD); $(id).setAttribute('opacity', pour.toFixed(2)); });
+    const wave = (u[2] > 0 ? Math.sin(u[2] * 18) * 2.5 * (1 - u[3]) : 0) + Math.sin(angle) * 3 * churn;
+    const top = `M0 ${sf} C 80 ${(sf - wave).toFixed(1)}, 160 ${(sf + wave).toFixed(1)}, 320 ${sf}`;
+    $('milkLayer').setAttribute('d', u[2] > 0 ? `${top} V ${ot + 4} H 0 Z` : '');
+    $('milkLayer').setAttribute('opacity', (0.93 * (1 - mix)).toFixed(2));
+    $('matchaTint').setAttribute('y', sf.toFixed(1));
+    $('matchaTint').setAttribute('opacity', (0.82 * easeO(c01((u[3] - 0.45) / 0.55)) * (1 - mix)).toFixed(2));
+    // the finished overnight oats: one creamy green mixture, top to bottom
+    const waveTop = x => sf + Math.sin(x / 320 * Math.PI * 2 + angle) * wave * 0.5;
+    $('mixture').setAttribute('d', lumpyPath(easeO(mix), waveTop));
+    $('mixture').setAttribute('opacity', c01(mix * 1.6).toFixed(2));
+    $('mush').setAttribute('opacity', easeO(c01((mix - 0.25) / 0.75)).toFixed(2));
+
+    // swirl marks on the surface while whisking
+    $('swirl').setAttribute('opacity', (0.85 * churn).toFixed(2));
+    $('swirlA').setAttribute('cy', (sf + 2).toFixed(1)); $('swirlB').setAttribute('cy', (sf + 3).toFixed(1));
+    $('swirlA').setAttribute('stroke-dashoffset', (-angle * 16).toFixed(1));
+    $('swirlB').setAttribute('stroke-dashoffset', (angle * 22).toFixed(1));
+
+    // whisk: drops in from the top right, circles the bowl, lifts back out
+    const wIn = easeO(c01((p - 0.655) / 0.035)), wOut = easeO(c01((p - 0.86) / 0.03));
+    const tipX = 160 + Math.cos(angle) * 74 * churn, tipY = sf + 16 + Math.sin(angle) * 6;
+    const wx = lerp(lerp(300, tipX, wIn), 300, wOut), wy = lerp(lerp(-150, tipY, wIn), -150, wOut);
+    $('whisk').setAttribute('opacity', (wIn * (1 - wOut)).toFixed(2));
+    $('whisk').setAttribute('transform', `translate(${wx.toFixed(1)} ${wy.toFixed(1)}) rotate(${(18 - Math.cos(angle) * 14 * churn).toFixed(1)})`);
+
+    // blueberries drop in one after another and settle on top
+    berries.forEach(b => {
+      const t = c01((bt - b.d) / 0.4);
+      const land = lerp(sf, lumpyY(b.x), c01(mix * 2)) - b.r * 0.55 + b.dy;
+      const e = t < 1 ? 1 - Math.pow(1 - t, 3) * Math.abs(Math.cos(t * Math.PI * 1.5)) : 1;   // small bounce
+      b.g.setAttribute('opacity', t > 0 ? 1 : 0);
+      b.g.setAttribute('transform', `translate(${b.x.toFixed(1)} ${lerp(-140, land, e).toFixed(1)})`);
+    });
+
+    const step = p < 0.66 ? Math.min(3, Math.max(0, Math.floor((p - 0.04) / 0.16))) : 4;
+    if (step !== shownStep) {
+      shownStep = step;
+      stepText.textContent = stepsCopy[step];
+      stepCount.textContent = `Step ${step + 1} of 5`;
+      stepText.classList.remove('swap'); void stepText.offsetWidth; stepText.classList.add('swap');
+      dots.forEach((d, i) => d.classList.toggle('on', i <= step));
+    }
+    recipeEl.classList.toggle('done', p > 0.93);
+  }
+  function updateRecipe() {
+    const r = recipeEl.getBoundingClientRect();
+    const total = recipeEl.offsetHeight - window.innerHeight;
+    renderRecipe(c01(-r.top / total));
+  }
+
+  // ============ PROGRESS BAR + COOKING SCENE ============
+  const progressBar = document.getElementById('progressBar');
+  function updateScrollFx() {
+    const vh = window.innerHeight;
+    progressBar.style.setProperty('--sp', (window.scrollY / (document.documentElement.scrollHeight - vh)).toFixed(4));
+    updateRecipe();
+  }
+  if (!reduce) {
+    window.addEventListener('scroll', () => requestAnimationFrame(updateScrollFx), { passive: true });
+    window.addEventListener('resize', updateScrollFx);
+    updateScrollFx();
+  } else {
+    // show the finished dish without the animation
+    renderRecipe(1);
+  }
+
+
+  // ============ NAV: highlight the section on screen ============
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navObs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  ['recipe', 'features', 'screens', 'reflection'].forEach(id => navObs.observe(document.getElementById(id)));
+
+  // ============ ZOOM ============
+  const popup = document.getElementById('popup');
+  const popupImg = document.getElementById('popupImg');
+  function closePopup() { popup.classList.remove('active'); document.body.style.overflow = ''; }
+  document.getElementById('popupClose').addEventListener('click', closePopup);
+  popup.addEventListener('click', e => { if (e.target === popup) closePopup(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+
+  // ============ THE JOURNEY ============
+  const journey = document.getElementById('journey');
+  const jTrack = document.getElementById('journeyTrack');
+  const jStops = [...jTrack.querySelectorAll('.stop')];
+  const jBase = document.getElementById('jlBase'), jDraw = document.getElementById('jlDraw');
+  const jLabel = document.getElementById('journeyLabel'), jBar = document.getElementById('journeyBar');
+  let jLen = 0, jPts = [];
+  // build a smooth line through the middle of every phone
+  function buildJourneyLine() {
+    const tr = jTrack.getBoundingClientRect();
+    jPts = jStops.map(st => {
+      const ph = st.querySelector('.phone').getBoundingClientRect();
+      const y = ph.top + ph.height * 0.5 - tr.top;
+      st.style.setProperty('--node-y', (ph.top - st.getBoundingClientRect().top + ph.height * 0.5) + 'px');
+      return [ph.left + ph.width / 2 - tr.left, y];
+    });
+    const first = jPts[0], last = jPts[jPts.length - 1];
+    const pts = [[first[0] - 420, first[1] + 60], ...jPts, [last[0] + 420, last[1] - 60]];
+    let d = `M${pts[0][0]} ${pts[0][1]}`;
+    for (let i = 1; i < pts.length; i++) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2;
+      d += ` C ${mx} ${y0}, ${mx} ${y1}, ${x1} ${y1}`;
+    }
+    jBase.setAttribute('d', d); jDraw.setAttribute('d', d);
+    jLen = jDraw.getTotalLength();
+    jDraw.style.strokeDasharray = jLen;
+  }
+  function updateJourney() {
+    const r = journey.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const p = c01(-r.top / (journey.offsetHeight - window.innerHeight));
+    const travel = jTrack.scrollWidth - vw;
+    jTrack.style.transform = `translate3d(${(-travel * p).toFixed(1)}px, 0, 0)`;
+    // draw the line up to the middle of the screen
+    const drawTo = travel * p + vw * 0.55;
+    const frac = c01(drawTo / jTrack.scrollWidth);
+    jDraw.style.strokeDashoffset = (jLen * (1 - frac)).toFixed(1);
+    jBar.parentElement.style.setProperty('--jp', p.toFixed(3));
+    // each phone swings in as it reaches the right side of the screen
+    let current = 0;
+    jStops.forEach((st, i) => {
+      const ph = st.querySelector('.phone');
+      const box = ph.getBoundingClientRect();
+      const raw = (vw - box.left) / (vw * 0.42);
+      const e = reduce ? 1 : easeO(c01(raw));
+      ph.style.setProperty('--p', e.toFixed(3));
+      st.style.setProperty('--p', e.toFixed(3));
+      const n = Math.max(-1, Math.min(1, ((box.left + box.width / 2) - vw / 2) / (vw / 2)));
+      ph.style.setProperty('--spin', (n * -8).toFixed(2) + 'deg');
+      ph.style.setProperty('--spin-n', n.toFixed(3));
+      if (box.left + box.width / 2 < vw * 0.62) current = i;
+    });
+    jLabel.textContent = `${String(current + 1).padStart(2, '0')} · ${jStops[current].querySelector('b').textContent}`;
+  }
+  window.addEventListener('scroll', () => requestAnimationFrame(updateJourney), { passive: true });
+  window.addEventListener('resize', () => { buildJourneyLine(); updateJourney(); });
+  window.addEventListener('load', () => { buildJourneyLine(); updateJourney(); });
+  buildJourneyLine(); updateJourney();
+  jTrack.addEventListener('click', e => {
+    const st = e.target.closest('.stop');
+    if (!st) return;
+    const img = st.querySelector('img');
+    popupImg.src = img.src; popupImg.alt = img.alt;
+    popup.classList.add('active'); document.body.style.overflow = 'hidden';
+  });
+
+  // ============ SEARCH: finds any page on Blake's site ============
   // Every page on the site, with the words that should find it.
   const sitePages = [
     { title: 'Blake Massoni', url: 'index.html', display: 'blakemassoni.com', icon: 'home',
@@ -2097,7 +1175,7 @@
       keys: ['spread of activation', 'activation', 'psychology', 'research'] }
   ];
 
-  const pageUrl = 'VanWagner-Social.com/blakemassoni';
+  const pageUrl = '';
   const obSearch = document.getElementById('obSearch');
   const obInput = document.getElementById('obInput');
   const obMenu = document.getElementById('obMenu');
@@ -2188,8 +1266,8 @@
       e.preventDefault(); obInput.focus();
     }
   });
-</script>
 
+</script>
 </body>
 </html>
 
